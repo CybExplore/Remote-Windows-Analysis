@@ -37,7 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'accounts.apps.AccountsConfig',
 ]
+
+INSTALLED_APPS += [
+    'oauth2_provider',
+    'rest_framework',
+
+]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -47,6 +56,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'accounts.middleware.PasswordChangeMiddleware',
 ]
 
 ROOT_URLCONF = 'server.urls'
@@ -115,9 +126,68 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'static'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+# EMAIL_BACKEND = 'accounts.email_backends.FileEmailBackend'
+EMAIL_FILE_PATH = "email-messages"
+
+# Authentication Framework
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
+
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}
+
+LOGIN_URL = '/admin/login/'
+
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
+AUTHENTICATION_BACKENDS = [
+    'accounts.backends.DualAuthBackend', 
+    'accounts.backends.CustomRemoteUserBackend', 
+    'django.contrib.auth.backends.ModelBackend', 
+    # 'django.contrib.auth.backends.RemoteUserBackend',
+]
+
+
+# OIDC_ENABLED = True
+# OAuth2 Provider settings
+OAUTH2_PROVIDER = {
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope'},
+    'ACCESS_TOKEN_EXPIRE_SECONDS': 3600,  # 1 hour
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'accounts': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+    },
+}
+
+

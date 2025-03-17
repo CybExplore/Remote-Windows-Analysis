@@ -1,0 +1,10 @@
+django
+PyMysql
+wheel
+mysqlclient
+sorl-thumbnail
+# redis
+Pillow
+# pgmagick
+django-oauth-toolkit 
+djangorestframework

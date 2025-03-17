@@ -1,0 +1,83 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "Client/1.0.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1",
+          "System.Management": "9.0.3"
+        },
+        "runtime": {
+          "Client.dll": {}
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.1.25517"
+          }
+        }
+      },
+      "System.CodeDom/9.0.3": {
+        "runtime": {
+          "lib/net9.0/System.CodeDom.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.325.11113"
+          }
+        }
+      },
+      "System.Management/9.0.3": {
+        "dependencies": {
+          "System.CodeDom": "9.0.3"
+        },
+        "runtime": {
+          "lib/net9.0/System.Management.dll": {
+            "assemblyVersion": "9.0.0.3",
+            "fileVersion": "9.0.325.11113"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net9.0/System.Management.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "9.0.0.3",
+            "fileVersion": "9.0.325.11113"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Client/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "path": "newtonsoft.json/13.0.1",
+      "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
+    },
+    "System.CodeDom/9.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-KeFk4+is5IB3FCjFmPjtFYaTSYhFA/l6ZOeWBQo6CVVQchpvl6vv+3kPPfNttkEoA/Gq78FsJFMu4Eej/ln44Q==",
+      "path": "system.codedom/9.0.3",
+      "hashPath": "system.codedom.9.0.3.nupkg.sha512"
+    },
+    "System.Management/9.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Wsb47+pRN1xnCxKOXcj+80FZ5OYQK2Dr8nnS8CHS1LVB+MXdzyK90sEmDYs/ux+btrxpE1N56FZo5rDbzpd1HA==",
+      "path": "system.management/9.0.3",
+      "hashPath": "system.management.9.0.3.nupkg.sha512"
+    }
+  }
+}
