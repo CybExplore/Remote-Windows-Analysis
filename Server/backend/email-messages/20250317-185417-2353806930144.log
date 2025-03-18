@@ -1,0 +1,23 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Your New Account Credentials
+From: webmaster@localhost
+To: admin@cybexplore.org
+Date: Tue, 18 Mar 2025 01:54:17 -0000
+Message-ID: <174226285754.8760.16537059911035876824@DESKTOP-AOU91JJ>
+
+Dear NURUDEEN ADEBILEJE,
+
+Your account has been created successfully. Here are your credentials:
+SID: S-1-5-21-550850760-2695552310-605195006-1001
+Password: MnZw)n%!)e4f
+Client ID: 811cf04f04574a73a4f8820ed1e53b30
+Client Secret: 1VBzuOugbTJFy7vNRa7glOHC3ue/fmZyuLAEunoBCZc=
+
+Please log in and change your password as soon as possible.
+Login URL: http://localhost:8000/login/
+
+Regards,
+Remote Windows Security Management System
+-------------------------------------------------------------------------------

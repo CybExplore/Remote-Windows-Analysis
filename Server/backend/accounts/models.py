@@ -1,27 +1,29 @@
+# accounts/models.py
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
+from django.utils import timezone
 
 
 class CustomUser(AbstractUser):
-    """Custom User Model with additional fields for system and user information."""
+    """Custom User Model for Windows Security Management System."""
 
-    # Remove default fields from AbstractUser
+    # Remove default AbstractUser fields
     username = None
     first_name = None
     last_name = None
 
-    # Track whether the user has changed their password
+    # Track password changes
     password_changed = models.BooleanField(default=False, help_text="Has the user changed their password?")
 
-    # Additional fields from Win32_UserAccount and authentication
+    # Core fields from Win32_Account and authentication
     full_name = models.CharField(max_length=255, blank=True, null=True, help_text="Full name of the user")
     email = models.EmailField(
         unique=True,
         db_index=True,
-        blank=True,
-        null=True,
-        help_text="User's email address (optional)"
+        blank=False,
+        null=False,
+        help_text="User's email address (required for credentials delivery)"
     )
     sid = models.CharField(
         max_length=50,
@@ -38,27 +40,27 @@ class CustomUser(AbstractUser):
     sid_type = models.CharField(max_length=10, blank=True, null=True, help_text="Type of SID (e.g., '1' for User)")
     domain = models.CharField(max_length=255, blank=True, null=True, help_text="Domain of the user account")
     local_account = models.BooleanField(default=False, help_text="Is this a local account?")
-    is_shutting_down = models.BooleanField(default=False, help_text="Is the system shutting down during account creation?")
+    is_shutting_down = models.BooleanField(default=False, help_text="Was the system shutting down during account creation?")
     account_type = models.CharField(max_length=50, blank=True, null=True, help_text="Account type (e.g., '512' for Normal)")
     status = models.CharField(max_length=50, blank=True, null=True, help_text="Account status (e.g., 'OK', 'Degraded')")
     caption = models.CharField(max_length=255, blank=True, null=True, help_text="Caption from Win32_UserAccount")
+    description = models.TextField(blank=True, null=True, help_text="Description of the user account")
 
-    # Timestamps for record creation and updates
+    # Timestamps
     created_at = models.DateTimeField(auto_now_add=True, help_text="When the account was created")
     updated_at = models.DateTimeField(auto_now=True, help_text="When the account was last updated")
 
-    # Use SID as the username field for authentication
+    # Authentication setup
     USERNAME_FIELD = 'sid'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['email']
 
     def save(self, *args, **kwargs):
-        """Normalize email to lowercase for case-insensitive lookups."""
+        """Normalize email to lowercase and ensure initial setup."""
         if self.email:
             self.email = self.email.lower()
         super().save(*args, **kwargs)
 
     def __str__(self):
-        """Return the SID as the string representation of the user."""
         return self.sid
 
 
@@ -75,7 +77,6 @@ class UserProfile(models.Model):
     )
 
     # Fields from PowerShell/WMI/AD
-    description = models.TextField(blank=True, null=True, help_text="Description of the user account")
     account_expires = models.DateTimeField(blank=True, null=True, help_text="Date the account expires (AD: accountExpires)")
     enabled = models.BooleanField(default=True, help_text="Is the account enabled? (Local: Enabled, AD: userAccountControl)")
     password_changeable_date = models.DateTimeField(
@@ -102,7 +103,7 @@ class UserProfile(models.Model):
     last_password_change = models.DateTimeField(blank=True, null=True, help_text="Date of last password change in Windows")
     logon_count = models.IntegerField(default=0, help_text="Number of logons tracked by the system")
 
-    # Enhanced fields for security, organization, and Windows integration
+    # Security and organization fields
     locked_out = models.BooleanField(default=False, help_text="Is the account currently locked out?")
     lockout_time = models.DateTimeField(blank=True, null=True, help_text="Timestamp of last lockout")
     department = models.CharField(max_length=100, blank=True, null=True, help_text="User's department (AD: department)")
@@ -112,11 +113,10 @@ class UserProfile(models.Model):
     )
 
     def __str__(self):
-        """Return a string representation of the profile."""
         return f"Profile for {self.user.sid}"
 
     def sync_from_ad(self, ad_data):
-        """Helper method to update profile from AD data."""
+        """Update profile from AD data."""
         self.description = ad_data.get('description')
         self.account_expires = ad_data.get('account_expires')
         self.enabled = ad_data.get('enabled', True)
@@ -131,7 +131,7 @@ class UserProfile(models.Model):
         self.save()
 
     def sync_from_local(self, local_data):
-        """Helper method to update profile from local Windows data."""
+        """Update profile from local Windows data."""
         self.description = local_data.get('description')
         self.password_expires = local_data.get('password_expires')
         self.user_may_change_password = local_data.get('user_may_change_password', True)
@@ -142,6 +142,12 @@ class UserProfile(models.Model):
         self.logon_count = local_data.get('logon_count', 0)
         self.local_groups = local_data.get('local_groups', [])
         self.save()
+
+    def get_local_time(self, datetime_value):
+        """Convert a datetime value to the user's preferred time zone."""
+        if self.time_zone:
+            return datetime_value.astimezone(timezone.get_current_timezone(self.time_zone))
+        return datetime_value
 
 
 

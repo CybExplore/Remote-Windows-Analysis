@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 INSTALLED_APPS += [
     'oauth2_provider',
     'rest_framework',
+    'corsheaders',
 
 ]
 
@@ -51,6 +52,7 @@ INSTALLED_APPS += [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -151,8 +153,11 @@ REST_FRAMEWORK = {
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.IsAuthenticated',
     ],
+
+    'DEFAULT_THROTTLE_CLASSES': ['rest_framework.throttling.UserRateThrottle'],
+    'DEFAULT_THROTTLE_RATES': {'user': '10/hour'},
 }
 
 LOGIN_URL = '/admin/login/'
@@ -170,9 +175,19 @@ AUTHENTICATION_BACKENDS = [
 # OIDC_ENABLED = True
 # OAuth2 Provider settings
 OAUTH2_PROVIDER = {
-    'SCOPES': {'read': 'Read scope', 'write': 'Write scope'},
+    'SCOPES': {
+        'read': 'Read scope',
+        'write': 'Write scope',
+    },
     'ACCESS_TOKEN_EXPIRE_SECONDS': 3600,  # 1 hour
+    # 'REFRESH_TOKEN_EXPIRE_SECONDS': 2592000,  # 30 days, optional if using client_credentials
+    'ALLOWED_GRANT_TYPES': [
+        'client_credentials',  # For C# client
+        'password',           # For React frontend login
+        # 'refresh_token',      # Optional for frontend
+    ],
 }
+
 
 LOGGING = {
     'version': 1,
@@ -190,4 +205,15 @@ LOGGING = {
     },
 }
 
+
+
+# CORS for React
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
+
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    "*",
+]
+CORS_ALLOW_ALL_ORIGINS = True
 

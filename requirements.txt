@@ -3,8 +3,12 @@ PyMysql
 wheel
 mysqlclient
 sorl-thumbnail
-# redis
+channels 
+channels-redis
+daphne
 Pillow
-# pgmagick
 django-oauth-toolkit 
 djangorestframework
+hypercorn
+django-cors-headers
+uvicorn
