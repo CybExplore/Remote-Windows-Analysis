@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\CybExplore\\Documents\\Final-Year-Projects\\Remote-Windows-Analysis\\Client\\Client.csproj": {}
+    "C:\\Users\\CybExplore\\OneDrive\\Dokumente\\Final-Year-Projects\\Remote-Windows-Analysis\\Client\\Client.csproj": {}
   },
   "projects": {
-    "C:\\Users\\CybExplore\\Documents\\Final-Year-Projects\\Remote-Windows-Analysis\\Client\\Client.csproj": {
+    "C:\\Users\\CybExplore\\OneDrive\\Dokumente\\Final-Year-Projects\\Remote-Windows-Analysis\\Client\\Client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\CybExplore\\Documents\\Final-Year-Projects\\Remote-Windows-Analysis\\Client\\Client.csproj",
+        "projectUniqueName": "C:\\Users\\CybExplore\\OneDrive\\Dokumente\\Final-Year-Projects\\Remote-Windows-Analysis\\Client\\Client.csproj",
         "projectName": "Client",
-        "projectPath": "C:\\Users\\CybExplore\\Documents\\Final-Year-Projects\\Remote-Windows-Analysis\\Client\\Client.csproj",
+        "projectPath": "C:\\Users\\CybExplore\\OneDrive\\Dokumente\\Final-Year-Projects\\Remote-Windows-Analysis\\Client\\Client.csproj",
         "packagesPath": "C:\\Users\\CybExplore\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\CybExplore\\Documents\\Final-Year-Projects\\Remote-Windows-Analysis\\Client\\obj\\",
+        "outputPath": "C:\\Users\\CybExplore\\OneDrive\\Dokumente\\Final-Year-Projects\\Remote-Windows-Analysis\\Client\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

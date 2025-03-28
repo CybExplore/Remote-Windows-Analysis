@@ -48,3 +48,19 @@ class PasswordChangeMiddleware:
 
         return self.get_response(request)
     
+
+from django.shortcuts import redirect
+from django.urls import reverse
+
+class CheckPasswordChangedMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        if request.user.is_authenticated:
+            # Redirect to "Change Password" page if password has not been changed
+            if not request.user.password_changed and request.path != reverse('password_change'):
+                return redirect('password_change')
+        return self.get_response(request)
+
+

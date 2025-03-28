@@ -1,8 +1,16 @@
 # accounts/serializers.py
-from django.contrib.auth.models import Group
 from rest_framework import serializers
+from rest_framework import serializers
+from django.contrib.auth import password_validation
+
 from accounts.models import CustomUser, UserProfile
 from oauth2_provider.models import Application
+from django.contrib.auth import authenticate
+from django.contrib.auth.models import Group
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.utils.encoding import force_bytes, force_str
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+
 
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
@@ -14,6 +22,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
             'locked_out', 'lockout_time', 'department', 'job_title', 'local_groups'
         ]
 
+
 class CustomUserSerializer(serializers.ModelSerializer):
     profile = UserProfileSerializer(required=False)
     client_id = serializers.CharField(write_only=True)
@@ -21,15 +30,11 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        # fields = [
-        #     'sid', 'email', 'password', 'full_name', 'domain', 'account_type', 'caption', 'sid_type',
-        #     'description', 'status', 'local_account', 'is_shutting_down', 'created_at', 'updated_at', 'profile',
-        #     'client_id', 'client_secret'
-        # ]
         fields = '__all__'
         extra_kwargs = {
             'password': {'write_only': True},
-            'email': {'required': True}
+            'email': {'required': True},
+            'sid': {'required': True},  # Assuming SID is mandatory
         }
 
     def create(self, validated_data):
@@ -56,35 +61,171 @@ class CustomUserSerializer(serializers.ModelSerializer):
                 setattr(user.profile, key, value)
             user.profile.save()
         return user
-       
 
-class GroupSerializer(
-    serializers.ModelSerializer
-):
+# Generate GroupSerializer
+
+class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
-        fields = "__all__"
+        fields = '__all__'
+        extra_kwargs = {
+            'name': {'required': True},
+            'description': {'required': False},
+        }
 
 
+from rest_framework import serializers
+from django.contrib.auth import password_validation
 
 class PasswordChangeSerializer(serializers.Serializer):
-    old_password = serializers.CharField(required=True, write_only=True)
-    new_password = serializers.CharField(required=True, write_only=True)
-    confirm_password = serializers.CharField(required=True, write_only=True)
+    """Secure password change serializer with comprehensive validation"""
+    old_password = serializers.CharField(
+        write_only=True,
+        required=True,
+        style={'input_type': 'password'},
+        trim_whitespace=False
+    )
+    new_password = serializers.CharField(
+        write_only=True,
+        required=True,
+        style={'input_type': 'password'},
+        trim_whitespace=False,
+        min_length=12
+    )
+    confirm_password = serializers.CharField(
+        write_only=True,
+        required=True,
+        style={'input_type': 'password'},
+        trim_whitespace=False
+    )
+
+    def validate_new_password(self, value):
+        """Enforce strong password requirements"""
+        try:
+            password_validation.validate_password(
+                value,
+                user=self.context['request'].user
+            )
+        except Exception as e:
+            raise serializers.ValidationError(list(e.messages))
+        return value
+
+    def validate(self, data):
+        """Cross-field validation"""
+        if data['new_password'] != data['confirm_password']:
+            raise serializers.ValidationError({
+                'confirm_password': 'Passwords do not match'
+            })
+
+        if data['old_password'] == data['new_password']:
+            raise serializers.ValidationError({
+                'new_password': 'New password must be different from old password'
+            })
+
+        return data
+
+
+class LoginSerializer(serializers.Serializer):
+    """Custom Login serializer using sid or email address and password to login."""
+    identifier = serializers.CharField(
+        required=True,
+        help_text="SID or email address.",
+        label="SID or email address"
+    )
+    password = serializers.CharField(required=True, write_only=True)
 
     def validate(self, attrs):
-        user = self.context['request'].user
-        # Check old password
-        if not user.check_password(self.old_password):
-            raise serializers.ValidationError({"old_password": "Incorrect password"})
+        identifier = attrs.get('identifier')
+        password = attrs.get('password')
         
-        # Basic password strength (customize as needed)
-        if len(self.new_password) < 8:
-            raise serializers.ValidationError({"new_password": "Password must be at least 8 characters long"})
+        # Ensure request context is available
+        request = self.context.get('request')
+        if not request:
+            raise serializers.ValidationError("Request context is required for authentication")
+
+        # Authenticate the user using the custom backend
+        user = authenticate(request=request, identifier=identifier, password=password)
         
-        # Ensure that the new password and confirm password match
-        if attrs['new_password'] != attrs['confirm_password']:
-            raise serializers.ValidationError("New password and confirmation password do not match.")
+        if not user:
+            raise serializers.ValidationError({"non_field_errors": "Invalid credentials"})
+        if not user.is_active:
+            raise serializers.ValidationError({"non_field_errors": "Account is inactive"})
+        if hasattr(user, 'profile') and user.profile.locked_out:
+            raise serializers.ValidationError({"non_field_errors": "Account is locked out"})
+        
+        attrs['user'] = user
         return attrs
+
+
+class PasswordResetRequestSerializer(serializers.Serializer):
+    identifier = serializers.CharField(required=True, help_text="SID or email of the user")
+
+    def validate_identifier(self, value):
+        user = CustomUser.objects.filter(sid=value).first() or CustomUser.objects.filter(email__iexact=value).first()
+        if not user:
+            raise serializers.ValidationError("No user found with this SID or email")
+        if not user.is_active:
+            raise serializers.ValidationError("This account is inactive")
+        if hasattr(user, 'profile') and user.profile.locked_out:
+            raise serializers.ValidationError("This account is locked out")
+        self.context['user'] = user
+        return value
+
+
+class PasswordResetConfirmSerializer(serializers.Serializer):
+    """Serializer for validating password reset confirmation inputs."""
+    uidb64 = serializers.CharField()
+    token = serializers.CharField()
+    new_password = serializers.CharField(write_only=True)
+    confirm_password = serializers.CharField(write_only=True)
+
+    def validate(self, data):
+        """
+        Validate the uidb64 and token provided in the request.
+        """
+        # Validate that new_password matches confirm_password
+        new_password = data.get("new_password")
+        confirm_password = data.get("confirm_password")
+
+        if new_password != confirm_password:
+            raise serializers.ValidationError(
+                {"confirm_password": "Passwords do not match."}
+            )
+
+        # Optionally enforce additional password rules (e.g., minimum length)
+        if len(new_password) < 8:
+            raise serializers.ValidationError(
+                {"new_password": "Password must be at least 8 characters long."}
+            )
+
+        return data
     
+        # uidb64 = data.get('uidb64')
+        # token = data.get('token')
+        # new_password = data.get('new_password')
+        # confirm_password = data.get('confirm_password')
+
+        # # Decode UID and fetch user
+        # try:
+        #     uid = force_str(urlsafe_base64_decode(uidb64))
+        #     user = CustomUser.objects.get(pk=uid)
+        # except (TypeError, ValueError, OverflowError, CustomUser.DoesNotExist):
+        #     raise serializers.ValidationError({"uidb64": "Invalid user ID"})
+
+        # # Validate token
+        # token_generator = PasswordResetTokenGenerator()
+        # if not token_generator.check_token(user, token):
+        #     raise serializers.ValidationError({"token": "Invalid or expired token"})
+
+        # # Validate new password
+        # if len(new_password) < 8:
+        #     raise serializers.ValidationError({"new_password": "Password must be at least 8 characters long"})
+        # if new_password != confirm_password:
+        #     raise serializers.ValidationError({"confirm_password": "New password and confirmation password do not match"})
+        # if user.check_password(new_password):
+        #     raise serializers.ValidationError({"new_password": "New password must differ from old password"})
+
+        # data['user'] = user
+        # return data
     
+

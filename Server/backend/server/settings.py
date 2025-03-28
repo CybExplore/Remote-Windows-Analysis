@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-8r#crrjd0vf8xr&z2(m%1b@72pyajp36bwcek#p6jb9afs*-av
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -44,6 +44,8 @@ INSTALLED_APPS = [
 INSTALLED_APPS += [
     'oauth2_provider',
     'rest_framework',
+    
+    'rest_framework.authtoken',
     'corsheaders',
 
 ]
@@ -56,10 +58,13 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'accounts.middleware.PasswordChangeMiddleware',
+    'accounts.middleware.CheckPasswordChangedMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'server.urls'
@@ -144,23 +149,44 @@ EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 # EMAIL_BACKEND = 'accounts.email_backends.FileEmailBackend'
 EMAIL_FILE_PATH = "email-messages"
 
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'adminl@cybexplore.org'
+
+# settings.py
+SUPPORT_EMAIL = 'support@cybexplore.org'
+SUPPORT_PHONE = '+(234) 8057-691-197'
+SITE_NAME = 'CybExplore'
+
 # Authentication Framework
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
         # 'rest_framework.authentication.BasicAuthentication',
+        
+        'rest_framework.authentication.TokenAuthentication',
 
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         # 'rest_framework.permissions.IsAuthenticated',
-    ],
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
 
-    'DEFAULT_THROTTLE_CLASSES': ['rest_framework.throttling.UserRateThrottle'],
-    'DEFAULT_THROTTLE_RATES': {'user': '10/hour'},
+    ],
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ),
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.UserRateThrottle',
+        # 'rest_framework.throttling.AnonRateThrottle',
+    ],
+    # 'DEFAULT_THROTTLE_RATES': {
+    #     'user': '10/hour',
+    #     'anon': '3/min',
+    # },
 }
 
-LOGIN_URL = '/admin/login/'
+LOGIN_URL = '/api/login/'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
@@ -179,14 +205,15 @@ OAUTH2_PROVIDER = {
         'read': 'Read scope',
         'write': 'Write scope',
     },
-    'ACCESS_TOKEN_EXPIRE_SECONDS': 3600,  # 1 hour
-    # 'REFRESH_TOKEN_EXPIRE_SECONDS': 2592000,  # 30 days, optional if using client_credentials
+    'ACCESS_TOKEN_EXPIRE_SECONDS': 2592000, 
+    'REFRESH_TOKEN_EXPIRE_SECONDS': 2592000,
     'ALLOWED_GRANT_TYPES': [
-        'client_credentials',  # For C# client
-        'password',           # For React frontend login
-        # 'refresh_token',      # Optional for frontend
+        'client_credentials',
+        'password',
+        'refresh_token',
     ],
 }
+
 
 
 LOGGING = {
@@ -207,13 +234,24 @@ LOGGING = {
 
 
 
-# CORS for React
+# CORS Settings
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "http://127.0.0.1:3000",
 ]
 
 CORS_ALLOWED_ORIGIN_REGEXES = [
     "*",
 ]
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
 
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
+
+
+# Frontend URL for React app
+FRONTEND_URL = 'http://localhost:3000'

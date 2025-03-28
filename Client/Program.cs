@@ -185,6 +185,9 @@ class Program
             if (response.IsSuccessStatusCode)
             {
                 Console.WriteLine("Server response: " + await response.Content.ReadAsStringAsync());
+            
+                // Launch browser after successful account creation
+                LaunchBrowser("http://localhost:3000/login");
                 return true;
             }
             else
@@ -198,6 +201,24 @@ class Program
         {
             Console.WriteLine($"Error sending request: {ex.Message}");
             return false;
+        }
+    }
+
+    // // Helper method to launch default browser
+    static void LaunchBrowser(string url)
+    {
+        try
+        {
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = url,
+                UseShellExecute = true
+            });
+            Console.WriteLine($"Launched browser with URL: {url}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Failed to launch browser: {ex.Message}");
         }
     }
 

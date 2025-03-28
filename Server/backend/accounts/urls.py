@@ -1,30 +1,35 @@
-# Import django
-from django.urls import path, include # type: ignore
+# accounts/urls.py
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from accounts.views import (
+    CustomUserCreateView, CustomUserDetailView, LoginView, PasswordChangeView,
+    PasswordResetRequestView, PasswordResetConfirmView, ServerInfoView,
+    UserViewSet, GroupViewSet
+)
 
-# Import rest_framework
-from rest_framework import routers # type: ignore
+# Create a router for ViewSets
+router = DefaultRouter()
+router.register(r'users', UserViewSet, basename='user')
+router.register(r'groups', GroupViewSet, basename='group')
 
-# Import accounts
-from accounts import views
-from rest_framework.authtoken import views as rest_views # type: ignore
-
-
-router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
-
-# Wire up our API using automatic URL routing.
-# Additionally, we include login URLs for the browsable API.
+# Define URL patterns
 urlpatterns = [
-    path('', include((router.urls, 'accounts'), namespace='accounts')),
-    path('password-change/', views.PasswordChangeView.as_view(), name='password_change'),
-    
-    path('create-user/', views.CustomUserCreateView.as_view(), name='user-create'),
-    path('users/<str:sid>/', views.CustomUserDetailView.as_view(), name='user-detail'),
-    path('server-info/', views.ServerInfoView.as_view(), name='server-info'),
+    # Generic Views
+    path('create-user/', CustomUserCreateView.as_view(), name='user-create'),  # User registration
+    path('user/<str:sid>/', CustomUserDetailView.as_view(), name='user-detail'),  # User detail/update
 
-    # path('users/', views.UserList.as_view()),
-    # path('users/<pk>/', views.UserDetails.as_view()),
-    # path('groups/',views. GroupList.as_view()),
+    # Authentication Views
+    path('login/', LoginView.as_view(), name='login'),  # Custom login
+    path('password/change/', PasswordChangeView.as_view(), name='password_change'),  # Password change
+
+    # Password Reset Views
+    path('password/reset/request/', PasswordResetRequestView.as_view(), name='password-reset-request'),  # Request reset link
+    path('password/reset/confirm/', PasswordResetConfirmView.as_view(), name='password-reset-confirm'),  # Confirm reset
+
+    # Server Info View
+    path('server-info/', ServerInfoView.as_view(), name='server-info'),  # Server info from C# client
+
+    # ViewSet Routes
+    path('', include(router.urls)),  # Include router URLs for UserViewSet and GroupViewSet
 ]
 
