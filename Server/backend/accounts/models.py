@@ -4,19 +4,13 @@ from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
 from django.utils import timezone
 
-
 class CustomUser(AbstractUser):
     """Custom User Model for Windows Security Management System."""
-
-    # Remove default AbstractUser fields
     username = None
     first_name = None
     last_name = None
 
-    # Track password changes
     password_changed = models.BooleanField(default=False, help_text="Has the user changed their password?")
-
-    # Core fields from Win32_Account and authentication
     full_name = models.CharField(max_length=255, blank=True, null=True, help_text="Full name of the user")
     email = models.EmailField(
         unique=True,
@@ -45,17 +39,13 @@ class CustomUser(AbstractUser):
     status = models.CharField(max_length=50, blank=True, null=True, help_text="Account status (e.g., 'OK', 'Degraded')")
     caption = models.CharField(max_length=255, blank=True, null=True, help_text="Caption from Win32_UserAccount")
     description = models.TextField(blank=True, null=True, help_text="Description of the user account")
-
-    # Timestamps
     created_at = models.DateTimeField(auto_now_add=True, help_text="When the account was created")
     updated_at = models.DateTimeField(auto_now=True, help_text="When the account was last updated")
 
-    # Authentication setup
     USERNAME_FIELD = 'sid'
     REQUIRED_FIELDS = ['email']
 
     def save(self, *args, **kwargs):
-        """Normalize email to lowercase and ensure initial setup."""
         if self.email:
             self.email = self.email.lower()
         super().save(*args, **kwargs)
@@ -63,10 +53,8 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.sid
 
-
 class UserProfile(models.Model):
     """User Profile Model extending CustomUser with additional metadata."""
-
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='profile')
     image = models.ImageField(
         default="profile/default.png",
@@ -75,48 +63,37 @@ class UserProfile(models.Model):
         null=True,
         help_text="Profile image for the user"
     )
-
-    # Fields from PowerShell/WMI/AD
-    account_expires = models.DateTimeField(blank=True, null=True, help_text="Date the account expires (AD: accountExpires)")
-    enabled = models.BooleanField(default=True, help_text="Is the account enabled? (Local: Enabled, AD: userAccountControl)")
-    password_changeable_date = models.DateTimeField(
-        blank=True, null=True, help_text="When the password can next be changed (calculated from policy)"
+    client_id = models.CharField(
+        max_length=100, unique=True, blank=True, null=True, help_text="OAuth2 Client ID for this user"
     )
-    password_expires = models.DateTimeField(blank=True, null=True, help_text="When the password expires (Local: PasswordExpires)")
-    user_may_change_password = models.BooleanField(default=True, help_text="Can the user change their password? (AD: userAccountControl)")
-    password_required = models.BooleanField(default=True, help_text="Is a password required? (Local: PasswordRequired)")
-    password_last_set = models.DateTimeField(blank=True, null=True, help_text="Last password set (Local: PasswordLastSet, AD: pwdLastSet)")
-    last_logon = models.DateTimeField(blank=True, null=True, help_text="Last logon time (Local: LastLogon, AD: lastLogon)")
-    principal_source = models.CharField(
-        max_length=50, blank=True, null=True, help_text="Source of account (e.g., 'Local', 'ActiveDirectory')"
+    client_secret = models.CharField(
+        max_length=100, blank=True, null=True, help_text="OAuth2 Client Secret"
     )
-    object_class = models.CharField(max_length=50, blank=True, null=True, help_text="Object class (e.g., 'User' from AD: objectClass)")
-
-    # Basic profile fields
-    time_zone = models.CharField(
-        max_length=50, blank=True, null=True, help_text="User's time zone (e.g., 'UTC', 'America/New_York')"
-    )
-    preferences = models.JSONField(
-        default=dict, blank=True, null=True, help_text="User-specific settings (e.g., {'theme': 'dark'})"
-    )
-    last_login_ip = models.GenericIPAddressField(blank=True, null=True, help_text="IP address of last login")
-    last_password_change = models.DateTimeField(blank=True, null=True, help_text="Date of last password change in Windows")
-    logon_count = models.IntegerField(default=0, help_text="Number of logons tracked by the system")
-
-    # Security and organization fields
-    locked_out = models.BooleanField(default=False, help_text="Is the account currently locked out?")
-    lockout_time = models.DateTimeField(blank=True, null=True, help_text="Timestamp of last lockout")
-    department = models.CharField(max_length=100, blank=True, null=True, help_text="User's department (AD: department)")
-    job_title = models.CharField(max_length=100, blank=True, null=True, help_text="User's job title (AD: title)")
-    local_groups = models.JSONField(
-        default=list, blank=True, null=True, help_text="Local group memberships (e.g., ['Administrators', 'Users'])"
-    )
+    account_expires = models.DateTimeField(blank=True, null=True, help_text="Date the account expires")
+    enabled = models.BooleanField(default=True, help_text="Is the account enabled?")
+    password_changeable_date = models.DateTimeField(blank=True, null=True)
+    password_expires = models.DateTimeField(blank=True, null=True)
+    user_may_change_password = models.BooleanField(default=True)
+    password_required = models.BooleanField(default=True)
+    password_last_set = models.DateTimeField(blank=True, null=True)
+    last_logon = models.DateTimeField(blank=True, null=True)
+    principal_source = models.CharField(max_length=50, blank=True, null=True)
+    object_class = models.CharField(max_length=50, blank=True, null=True)
+    time_zone = models.CharField(max_length=50, blank=True, null=True)
+    preferences = models.JSONField(default=dict, blank=True, null=True)
+    last_login_ip = models.GenericIPAddressField(blank=True, null=True)
+    last_password_change = models.DateTimeField(blank=True, null=True)
+    logon_count = models.IntegerField(default=0)
+    locked_out = models.BooleanField(default=False)
+    lockout_time = models.DateTimeField(blank=True, null=True)
+    department = models.CharField(max_length=100, blank=True, null=True)
+    job_title = models.CharField(max_length=100, blank=True, null=True)
+    local_groups = models.JSONField(default=list, blank=True, null=True)
 
     def __str__(self):
         return f"Profile for {self.user.sid}"
 
     def sync_from_ad(self, ad_data):
-        """Update profile from AD data."""
         self.description = ad_data.get('description')
         self.account_expires = ad_data.get('account_expires')
         self.enabled = ad_data.get('enabled', True)
@@ -131,7 +108,6 @@ class UserProfile(models.Model):
         self.save()
 
     def sync_from_local(self, local_data):
-        """Update profile from local Windows data."""
         self.description = local_data.get('description')
         self.password_expires = local_data.get('password_expires')
         self.user_may_change_password = local_data.get('user_may_change_password', True)
@@ -143,11 +119,75 @@ class UserProfile(models.Model):
         self.local_groups = local_data.get('local_groups', [])
         self.save()
 
-    def get_local_time(self, datetime_value):
-        """Convert a datetime value to the user's preferred time zone."""
-        if self.time_zone:
-            return datetime_value.astimezone(timezone.get_current_timezone(self.time_zone))
-        return datetime_value
+class ServerInfo(models.Model):
+    """Stores system information from client machines."""
+    client = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='server_info')
+    machine_name = models.CharField(max_length=255)
+    os_version = models.CharField(max_length=100)
+    processor_count = models.IntegerField()
+    timestamp = models.DateTimeField()
+    is_64bit = models.BooleanField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"ServerInfo for {self.client.sid} at {self.timestamp}"
+
+class SecurityEvent(models.Model):
+    """Stores Windows security events from client machines."""
+    client = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='security_events')
+    event_id = models.IntegerField()
+    time_created = models.DateTimeField()
+    description = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Event {self.event_id} for {self.client.sid} at {self.time_created}"
 
 
+class SystemUserAccount(models.Model):
+    """This models use to store the WinUserAccount object."""
+    system_user_account = models.ForeignKey(
+        CustomUser, 
+        on_delete=models.CASCADE, 
+        related_name="accounts"
+    )
+    account_type = models.CharField(max_length=50, blank=True, null=True, help_text="Account type (e.g., '512' for Normal)")
+    caption = models.CharField(max_length=255, blank=True, null=True, help_text="Caption from Win32_UserAccount")
+    domain = models.CharField(max_length=255, blank=True, null=True, help_text="Domain of the user account")
+    sid = models.CharField(
+        max_length=50,
+        unique=True,
+        db_index=True,
+        validators=[
+            RegexValidator(
+                regex=r'^S-1-5-21-\d+-\d+-\d+-\d+$',
+                message="Invalid SID format. Must match Windows SID pattern (e.g., S-1-5-21-<domain>-<RID>).",
+            )
+        ],
+        help_text="Security Identifier (SID) from Windows"
+    )
+    full_name = models.CharField(max_length=255, blank=True, null=True, help_text="Full name of the user")
+    name = models.CharField(max_length=255, blank=True, null=True, help_text="name of the user")
+    is_local_account = models.BooleanField(default=False, help_text="Indicates if this is a local account") 
 
+
+class LoginActivity(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="login_logs")
+    login_time = models.DateTimeField(auto_now_add=True)
+    logout_time = models.DateTimeField(null=True, blank=True)
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
+    status = models.CharField(max_length=20, choices=[('success', 'Success'), ('failed', 'Failed')])
+
+    def __str__(self):
+        return f"LoginActivity for {self.user.sid} at {self.login_time}"
+
+
+class NotificationsLog(models.Model):
+    recipient = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="notifications")
+    email = models.EmailField()
+    subject = models.CharField(max_length=255)
+    body = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Notification to {self.recipient.email} - {self.subject}"

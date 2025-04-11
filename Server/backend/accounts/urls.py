@@ -1,11 +1,7 @@
 # accounts/urls.py
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from accounts.views import (
-    CustomUserCreateView, CustomUserDetailView, LoginView, PasswordChangeView,
-    PasswordResetRequestView, PasswordResetConfirmView, ServerInfoView,
-    UserViewSet, GroupViewSet
-)
+from accounts.views import *
 
 # Create a router for ViewSets
 router = DefaultRouter()

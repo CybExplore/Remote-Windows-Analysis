@@ -1,16 +1,32 @@
 # accounts/views.py
 from rest_framework import generics, status, permissions, viewsets
+from accounts.notifications import send_password_change_email
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.permissions import AllowAny
+from django.contrib.auth import login
+from django.utils.timezone import now
+from datetime import timedelta
+import random
+import logging
+
+from oauth2_provider.models import AccessToken, Application
+from oauth2_provider.settings import oauth2_settings
+
+from .serializers import LoginSerializer, CustomUserSerializer
+from .models import CustomUser
+
+logger = logging.getLogger(__name__)
+
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from django.utils.timezone import now as timezone_now
 from oauth2_provider.contrib.rest_framework import TokenHasReadWriteScope
 
-from accounts.models import CustomUser
-from accounts.serializers import (
-    CustomUserSerializer, PasswordChangeSerializer, LoginSerializer,
-    PasswordResetRequestSerializer, PasswordResetConfirmSerializer, GroupSerializer
-)
+from accounts.models import *
+from accounts.serializers import *
 from django.contrib.auth.models import Group
 from django.core.mail import send_mail
 from django.conf import settings
@@ -78,28 +94,14 @@ class CustomUserCreateView(generics.CreateAPIView):
                 "message": "User created successfully",
                 "user": user_serializer.data
             }, status=status.HTTP_201_CREATED)
+        else:
+            print(serializer.errors)
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 
 
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.permissions import AllowAny
-from django.contrib.auth import login
-from django.utils.timezone import now
-from datetime import timedelta
-import random
-import logging
-
-from oauth2_provider.models import AccessToken, Application
-from oauth2_provider.settings import oauth2_settings
-
-from .serializers import LoginSerializer, CustomUserSerializer
-from .models import CustomUser
-
-logger = logging.getLogger(__name__)
 
 class LoginView(APIView):
     """Custom login endpoint for users with SID or email address and password."""
@@ -209,12 +211,15 @@ class CustomUserDetailView(generics.RetrieveUpdateAPIView):
             }, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class UserViewSet(viewsets.ModelViewSet):
     """API endpoint that allows users to be viewed or edited."""
     queryset = CustomUser.objects.filter(is_active=True)
     serializer_class = CustomUserSerializer
     lookup_field = 'sid'
-    permission_classes = [IsOwnerOrAdmin, IsOwnerOrReadOnly]
+
+    permission_classes = [IsOwnerOrAdmin]
+    # permission_classes = [IsOwnerOrAdmin, IsOwnerOrReadOnly]
     # permission_classes = [permissions.IsAuthenticatedOrReadOnly,
     #                   IsOwnerOrReadOnly]
     # permission_classes = [permissions.IsAuthenticated]
@@ -313,21 +318,11 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 
 
-from django.contrib.auth import password_validation
-from django.utils import timezone
-from django.core.mail import send_mail
-from django.conf import settings
-from django.contrib.auth import update_session_auth_hash
-from rest_framework import serializers, permissions, status
-from rest_framework.response import Response
-from rest_framework.views import APIView
-import logging
 
 logger = logging.getLogger(__name__)
 
-
 class PasswordChangeView(APIView):
-    """Secure password change endpoint with audit logging"""
+    """Secure password change endpoint with audit logging."""
     permission_classes = [permissions.IsAuthenticated]
     throttle_scope = 'password_change'
 
@@ -337,6 +332,7 @@ class PasswordChangeView(APIView):
             context={'request': request}
         )
         
+        # Check if serializer is valid
         if not serializer.is_valid():
             logger.warning(
                 f"Password change validation failed for user {request.user.id}: "
@@ -347,17 +343,7 @@ class PasswordChangeView(APIView):
         user = request.user
         data = serializer.validated_data
 
-        # Verify old password
-        if not user.check_password(data['old_password']):
-            logger.warning(
-                f"Failed password change attempt for user {user.id} - incorrect old password"
-            )
-            return Response(
-                {'old_password': 'Incorrect password'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-
-        # Change password
+        # Change user's password
         user.set_password(data['new_password'])
         user.password_changed = True
         user.save()
@@ -366,84 +352,24 @@ class PasswordChangeView(APIView):
         update_session_auth_hash(request, user)
 
         # Log password change
-        logger.info(f"User {user.id} successfully changed their password")
+        logger.info(f"User {user.id} successfully changed their password.")
 
-        # Send notification email
-        self._send_password_change_notification(user)
+        # Send email notification
+        try:
+            send_password_change_email(user, request)
+        except Exception as e:
+            logger.error(f"Failed to send password change email: {str(e)}", exc_info=True)
 
         return Response(
             {
                 'message': 'Password changed successfully',
                 'next_steps': [
-                    'You have been automatically logged in with your new password',
-                    'Update any other devices/systems where you use this password'
+                    'You have been automatically logged in with your new password.',
+                    'Update any other devices/systems where you use this password.'
                 ]
             },
             status=status.HTTP_200_OK
         )
-
-    def _send_password_change_notification(self, user):
-        """Send password change notification email"""
-        try:
-            send_mail(
-                subject='Your Password Has Been Changed',
-                message=self._build_email_message(user),
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[user.email],
-                fail_silently=False
-            )
-            logger.info(f"Password change email sent to {user.email}")
-        except Exception as e:
-            logger.error(
-                f"Failed to send password change email to {user.email}: {str(e)}",
-                exc_info=True
-            )
-
-def _build_email_message(self, user):
-    """Constructs a detailed password change notification email with security guidance"""
-    timestamp = timezone.now().strftime('%Y-%m-%d at %H:%M %Z')
-    ip_address = self.request.META.get('REMOTE_ADDR', 'unknown IP')
-    user_agent = self.request.META.get('HTTP_USER_AGENT', 'unknown device')
-    
-    return f"""
-    Security Notification: Password Changed
-
-    Dear {user.get_full_name() or 'User'},
-
-    Your password for {settings.SITE_NAME} was successfully changed on {timestamp}.
-
-    Change Details:
-    - Account: {user.email}
-    - Changed From: {ip_address}
-    - Device: {user_agent}
-
-    If you didn't make this change:
-    1. Contact our security team immediately at {settings.SUPPORT_EMAIL}
-    2. Change your password again using the 'Forgot Password' feature
-    3. Check your account for any unauthorized activity
-
-    Security Recommendations:
-    ✓ Use a unique password for this service
-    ✓ Enable two-factor authentication
-    ✓ Regularly update your passwords (every 90 days)
-    ✓ Never share your credentials with anyone
-    ✓ Be cautious of phishing attempts
-
-    For your protection:
-    • This is an automated message - please do not reply
-    • We will never ask for your password via email
-    • Review your recent activity at {settings.SITE_URL}/account/activity
-
-    Thank you for helping us maintain account security.
-
-    The {settings.SITE_NAME} Team
-    {settings.SITE_URL}
-    {settings.SUPPORT_PHONE}
-
-    --------------------------------------------------
-    For security reasons, this email cannot be replied to.
-    If you need assistance, please contact {settings.SUPPORT_EMAIL}
-    """
 
 
 class PasswordResetRequestView(APIView):
@@ -570,4 +496,33 @@ class LogoutView(APIView):
         
 
 
+
+class ServerInfoView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        serializer = ServerInfoSerializer(data=request.data)
+        if serializer.is_valid():
+            try:
+                client = CustomUser.objects.get(sid=serializer.validated_data["client"].sid)
+                serializer.save(client=client)
+                return Response({"message": "Server info saved"}, status=status.HTTP_201_CREATED)
+            except CustomUser.DoesNotExist:
+                return Response({"error": "Client not found"}, status=status.HTTP_404_NOT_FOUND)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class SecurityEventView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        serializer = SecurityEventSerializer(data=request.data)
+        if serializer.is_valid():
+            try:
+                client = CustomUser.objects.get(sid=serializer.validated_data["client"].sid)
+                serializer.save(client=client)
+                return Response({"message": "Event saved"}, status=status.HTTP_201_CREATED)
+            except CustomUser.DoesNotExist:
+                return Response({"error": "Client not found"}, status=status.HTTP_404_NOT_FOUND)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
 

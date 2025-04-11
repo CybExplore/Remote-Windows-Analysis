@@ -3,7 +3,7 @@ from rest_framework import serializers
 from rest_framework import serializers
 from django.contrib.auth import password_validation
 
-from accounts.models import CustomUser, UserProfile
+from accounts.models import *
 from oauth2_provider.models import Application
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import Group
@@ -74,52 +74,61 @@ class GroupSerializer(serializers.ModelSerializer):
         }
 
 
-from rest_framework import serializers
-from django.contrib.auth import password_validation
-
 class PasswordChangeSerializer(serializers.Serializer):
-    """Secure password change serializer with comprehensive validation"""
+    """Secure password change serializer with comprehensive validation."""
     old_password = serializers.CharField(
         write_only=True,
         required=True,
         style={'input_type': 'password'},
-        trim_whitespace=False
+        trim_whitespace=True  # Use trim_whitespace=True for better handling of user input
     )
     new_password = serializers.CharField(
         write_only=True,
         required=True,
         style={'input_type': 'password'},
-        trim_whitespace=False,
-        min_length=12
+        trim_whitespace=True,  # Updated to True for consistent handling
+        min_length=12  # Enforce minimum length for stronger password security
     )
     confirm_password = serializers.CharField(
         write_only=True,
         required=True,
         style={'input_type': 'password'},
-        trim_whitespace=False
+        trim_whitespace=True  # Updated to True for consistent handling
     )
 
     def validate_new_password(self, value):
-        """Enforce strong password requirements"""
+        """
+        Validate the new password against Django's password validation framework.
+        Ensures compliance with strong password policies.
+        """
         try:
             password_validation.validate_password(
-                value,
+                value, 
                 user=self.context['request'].user
             )
         except Exception as e:
-            raise serializers.ValidationError(list(e.messages))
+            raise serializers.ValidationError(e.messages)  # Directly raise validation errors
         return value
 
     def validate(self, data):
-        """Cross-field validation"""
+        """
+        Cross-field validation to ensure coherence among fields.
+        """
         if data['new_password'] != data['confirm_password']:
             raise serializers.ValidationError({
-                'confirm_password': 'Passwords do not match'
+                'confirm_password': 'Passwords do not match.'
             })
 
         if data['old_password'] == data['new_password']:
             raise serializers.ValidationError({
-                'new_password': 'New password must be different from old password'
+                'new_password': 'New password must be different from the old password.'
+            })
+
+        # Verify the old password is correct
+        user = self.context['request'].user
+        if not user.check_password(data.get('old_password')):
+            raise serializers.ValidationError({
+                'old_password': 'Incorrect current password.'
             })
 
         return data
@@ -228,4 +237,20 @@ class PasswordResetConfirmSerializer(serializers.Serializer):
         # data['user'] = user
         # return data
     
+
+class ServerInfoSerializer(serializers.ModelSerializer):
+    sid = serializers.CharField(source="client.sid")
+
+    class Meta:
+        model = ServerInfo
+        fields = ["sid", "machine_name", "os_version", "processor_count", "timestamp", "is_64bit"]
+
+class SecurityEventSerializer(serializers.ModelSerializer):
+    sid = serializers.CharField(source="client.sid")
+
+    class Meta:
+        model = SecurityEvent
+        fields = ["sid", "event_id", "time_created", "description"]
+
+
 

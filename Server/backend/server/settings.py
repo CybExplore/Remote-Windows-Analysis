@@ -39,6 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'accounts.apps.AccountsConfig',
+    'core.apps.CoreConfig',
+    'system.apps.SystemConfig',
+    'services.apps.ServicesConfig',
+    'processes.apps.ProcessesConfig',
+    'network.apps.NetworkConfig',
+    'logs.apps.LogsConfig',
 ]
 
 INSTALLED_APPS += [

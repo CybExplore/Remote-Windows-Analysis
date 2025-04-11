@@ -8,7 +8,7 @@ const Profile = () => {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const { token, sid } = useAuth();
+  const { token, sid, passwordChanged } = useAuth();
 
   
   useEffect(() => {
@@ -39,14 +39,12 @@ const Profile = () => {
   if (loading) return <p>Loading profile...</p>;
   if (message) return <p>{message}</p>;
 
-  // if (passwordChanged) {
-  //   console.log("Not True");
+  if (!passwordChanged) {
+    console.log("Not True");
     
-  //   return <Navigate to="/password/change" />;
-  // } else {
-  //   console.log("True");
-  //   // return <Navigate to="/profile" />;
-  // }
+    return <Navigate to="/password/change" />;
+  } 
+
 
   return (
     <div>

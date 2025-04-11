@@ -14,10 +14,8 @@ const Dashboard = () => {
     console.log("Not True");
     
     return <Navigate to="/password/change" />;
-  } else {
-    console.log("True");
-    // return <Navigate to="/" />; // Redirect user to the main dashboard page
-  }
+  } 
+
 
   return (
     <div>
