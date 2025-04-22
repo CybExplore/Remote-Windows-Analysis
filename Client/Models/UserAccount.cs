@@ -1,24 +1,51 @@
-// Models/UserAccount.cs
+// // Models/UserAccount.cs
+
+// using Newtonsoft.Json;
+
+// namespace Client
+// {
+//     public class UserAccount
+//     {
+//         [JsonProperty("sid")] public string? Sid { get; set; }
+//         [JsonProperty("email")] public string? Email { get; set; }
+//         [JsonProperty("password")] public string? Password { get; set; }
+//         [JsonProperty("full_name")] public string? FullName { get; set; }
+//         [JsonProperty("domain")] public string? Domain { get; set; }
+//         [JsonProperty("account_type")] public string? AccountType { get; set; }
+//         [JsonProperty("caption")] public string? Caption { get; set; }
+//         [JsonProperty("sid_type")] public string? SidType { get; set; }
+//         [JsonProperty("description")] public string? Description { get; set; }
+//         [JsonProperty("status")] public string? Status { get; set; }
+//         [JsonProperty("local_account")] public bool LocalAccount { get; set; }
+//         [JsonProperty("is_shutting_down")] public bool IsShuttingDown { get; set; }
+//         [JsonProperty("client_id")] public string? ClientId { get; set; }
+//         [JsonProperty("client_secret")] public string? ClientSecret { get; set; }
+//         [JsonProperty("profile")] public object Profile => new { Description };
+//     }
+// }
+
+
+using Newtonsoft.Json;
 
 namespace Client
 {
     public class UserAccount
     {
-        public string? Sid { get; set; }
-        public string? Email { get; set; }
-        public string? Password { get; set; }
-        public string? FullName { get; set; }
-        public string? Domain { get; set; }
-        public string? AccountType { get; set; }
-        public string? Caption { get; set; }
-        public string? SidType { get; set; }
-        public string? Description { get; set; }
-        public string? Status { get; set; }
-        public bool LocalAccount { get; set; }
-        public bool IsShuttingDown { get; set; }
-        public string? ClientId { get; set; }
-        public string? ClientSecret { get; set; }
-        public object Profile => new { Description };
+        [JsonProperty("sid")] public string? Sid { get; set; }
+        [JsonProperty("email")] public string? Email { get; set; }
+        [JsonProperty("password")] public string? Password { get; set; }
+        [JsonProperty("full_name")] public string? FullName { get; set; }
+        [JsonProperty("domain")] public string? Domain { get; set; }
+        [JsonProperty("account_type")] public string? AccountType { get; set; }
+        [JsonProperty("caption")] public string? Caption { get; set; }
+        [JsonProperty("sid_type")] public string? SidType { get; set; }
+        [JsonProperty("description")] public string? Description { get; set; }
+        [JsonProperty("status")] public string? Status { get; set; }
+        [JsonProperty("local_account")] public bool LocalAccount { get; set; }
+        [JsonProperty("is_shutting_down")] public bool IsShuttingDown { get; set; }
+        [JsonProperty("client_id")] public string? ClientId { get; set; }
+        [JsonProperty("client_secret")] public string? ClientSecret { get; set; }
+        [JsonProperty("profile")] public object Profile => new { Description };
     }
 }
 

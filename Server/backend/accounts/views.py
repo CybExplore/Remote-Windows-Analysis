@@ -1,60 +1,43 @@
 # accounts/views.py
-from rest_framework import generics, status, permissions, viewsets
-from accounts.notifications import send_password_change_email
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.permissions import AllowAny
-from django.contrib.auth import login
-from django.utils.timezone import now
-from datetime import timedelta
-import random
+
 import logging
+import random
+from datetime import timedelta
+
+from django.conf import settings
+from django.contrib.auth import (
+    get_user_model, login, logout,
+    update_session_auth_hash
+)
+from django.contrib.auth.models import Group
+from django.contrib.auth.tokens import (
+    default_token_generator, PasswordResetTokenGenerator
+)
+from django.core.mail import send_mail
+from django.utils import timezone
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from django.utils.timezone import now as timezone_now
 
 from oauth2_provider.models import AccessToken, Application
 from oauth2_provider.settings import oauth2_settings
+from oauth2_provider.contrib.rest_framework import TokenHasReadWriteScope
 
-from .serializers import LoginSerializer, CustomUserSerializer
-from .models import CustomUser
-
-logger = logging.getLogger(__name__)
-
-from rest_framework.views import APIView
+from rest_framework import generics, status, permissions, viewsets
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from django.utils.timezone import now as timezone_now
-from oauth2_provider.contrib.rest_framework import TokenHasReadWriteScope
+from rest_framework.views import APIView
+from rest_framework.decorators import api_view
+from rest_framework import status
 
 from accounts.models import *
 from accounts.serializers import *
-from django.contrib.auth.models import Group
-from django.core.mail import send_mail
-from django.conf import settings
-from django.contrib.auth import login, update_session_auth_hash, logout
-from django.utils import timezone
-
-from django.contrib.auth.tokens import default_token_generator
-from django.utils.http import urlsafe_base64_decode
-from django.contrib.auth import get_user_model
-
-from oauth2_provider.models import AccessToken, Application
-from oauth2_provider.settings import oauth2_settings
-
-from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from django.utils.encoding import force_bytes
-from django.utils.http import urlsafe_base64_encode
-from accounts.permissions_a import IsOwnerOrReadOnly
-from datetime import timedelta
-import logging
-import random
+from accounts.permissions import *
+from accounts.notifications import send_password_change_email
 
 logger = logging.getLogger(__name__)
 
-class IsOwnerOrAdmin(permissions.BasePermission):
-    def has_object_permission(self, request, view, obj):
-        if request.method in permissions.SAFE_METHODS:
-            return request.user.is_authenticated
-        return request.user.is_staff or obj == request.user
+
 
 class CustomUserCreateView(generics.CreateAPIView):
     """API endpoint to create a new CustomUser and send credentials via email."""
@@ -98,9 +81,6 @@ class CustomUserCreateView(generics.CreateAPIView):
             print(serializer.errors)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-
 
 
 class LoginView(APIView):
@@ -170,9 +150,6 @@ class LoginView(APIView):
             status=status.HTTP_400_BAD_REQUEST,
         )
 
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from rest_framework import status
 
 @api_view(['GET'])
 def restricted_view(request):
@@ -316,10 +293,6 @@ class GroupViewSet(viewsets.ModelViewSet):
         self.perform_destroy(instance)
         return Response({"message": "Group deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
 
-
-
-
-logger = logging.getLogger(__name__)
 
 class PasswordChangeView(APIView):
     """Secure password change endpoint with audit logging."""
@@ -469,15 +442,6 @@ class PasswordResetConfirmView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class ServerInfoView(APIView):
-    """Receive server info from authenticated clients."""
-    parser_classes = [IsOwnerOrAdmin]
-    # permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
-
-    def post(self, request):
-        data = request.data
-        logger.info(f"Received server info from {request.user.sid}: {data}")
-        return Response({"message": "Server info received", "data": data}, status=status.HTTP_200_OK)
 
 class LogoutView(APIView):
     """Logout endpoint to invalidate the user's token."""
@@ -493,18 +457,16 @@ class LogoutView(APIView):
         except Exception as e:
             logger.error(f"Error during logout for {request.user.sid}: {str(e)}")
             return Response({"error": "Failed to logout"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-        
 
-
-
+# Sercurity Tables
 class ServerInfoView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [IsClientAuthenticated]
 
     def post(self, request):
         serializer = ServerInfoSerializer(data=request.data)
         if serializer.is_valid():
             try:
-                client = CustomUser.objects.get(sid=serializer.validated_data["client"].sid)
+                client = CustomUser.objects.get(sid=serializer.validated_data['client']['sid'])
                 serializer.save(client=client)
                 return Response({"message": "Server info saved"}, status=status.HTTP_201_CREATED)
             except CustomUser.DoesNotExist:
@@ -512,17 +474,31 @@ class ServerInfoView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class SecurityEventView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [IsClientAuthenticated]
 
     def post(self, request):
         serializer = SecurityEventSerializer(data=request.data)
         if serializer.is_valid():
             try:
-                client = CustomUser.objects.get(sid=serializer.validated_data["client"].sid)
+                client = CustomUser.objects.get(sid=serializer.validated_data['client']['sid'])
                 serializer.save(client=client)
-                return Response({"message": "Event saved"}, status=status.HTTP_201_CREATED)
+                return Response({"message": "Security event saved"}, status=status.HTTP_201_CREATED)
             except CustomUser.DoesNotExist:
                 return Response({"error": "Client not found"}, status=status.HTTP_404_NOT_FOUND)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
+class FirewallStatusView(APIView):
+    permission_classes = [IsClientAuthenticated]
+
+    def post(self, request):
+        serializer = FirewallStatusSerializer(data=request.data)
+        if serializer.is_valid():
+            try:
+                client = CustomUser.objects.get(sid=serializer.validated_data['client']['sid'])
+                serializer.save(client=client)
+                return Response({"message": "Firewall status saved"}, status=status.HTTP_201_CREATED)
+            except CustomUser.DoesNotExist:
+                return Response({"error": "Client not found"}, status=status.HTTP_404_NOT_FOUND)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+     
 

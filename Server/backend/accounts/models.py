@@ -31,6 +31,7 @@ class CustomUser(AbstractUser):
         ],
         help_text="Security Identifier (SID) from Windows"
     )
+    
     sid_type = models.CharField(max_length=10, blank=True, null=True, help_text="Type of SID (e.g., '1' for User)")
     domain = models.CharField(max_length=255, blank=True, null=True, help_text="Domain of the user account")
     local_account = models.BooleanField(default=False, help_text="Is this a local account?")
@@ -119,8 +120,10 @@ class UserProfile(models.Model):
         self.local_groups = local_data.get('local_groups', [])
         self.save()
 
+
+# ###### START ###### #
+
 class ServerInfo(models.Model):
-    """Stores system information from client machines."""
     client = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='server_info')
     machine_name = models.CharField(max_length=255)
     os_version = models.CharField(max_length=100)
@@ -133,16 +136,34 @@ class ServerInfo(models.Model):
         return f"ServerInfo for {self.client.sid} at {self.timestamp}"
 
 class SecurityEvent(models.Model):
-    """Stores Windows security events from client machines."""
     client = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='security_events')
     event_id = models.IntegerField()
     time_created = models.DateTimeField()
     description = models.TextField()
+    source = models.CharField(max_length=50, default="Security")  # E.g., Security, Defender, Firewall
+    logon_type = models.CharField(max_length=50, null=True, blank=True)
+    failure_reason = models.CharField(max_length=255, null=True, blank=True)
+    target_account = models.CharField(max_length=255, null=True, blank=True)
+    group_name = models.CharField(max_length=255, null=True, blank=True)
+    privilege_name = models.CharField(max_length=255, null=True, blank=True)
+    process_name = models.CharField(max_length=255, null=True, blank=True)
+    service_name = models.CharField(max_length=255, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"Event {self.event_id} for {self.client.sid} at {self.time_created}"
 
+class FirewallStatus(models.Model):
+    client = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='firewall_status')
+    is_enabled = models.BooleanField()
+    profile = models.CharField(max_length=50)
+    timestamp = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Firewall status for {self.client.sid} at {self.timestamp}"
+
+# ##### END ###### #
 
 class SystemUserAccount(models.Model):
     """This models use to store the WinUserAccount object."""
@@ -170,7 +191,6 @@ class SystemUserAccount(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True, help_text="name of the user")
     is_local_account = models.BooleanField(default=False, help_text="Indicates if this is a local account") 
 
-
 class LoginActivity(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="login_logs")
     login_time = models.DateTimeField(auto_now_add=True)
@@ -181,7 +201,6 @@ class LoginActivity(models.Model):
     def __str__(self):
         return f"LoginActivity for {self.user.sid} at {self.login_time}"
 
-
 class NotificationsLog(models.Model):
     recipient = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="notifications")
     email = models.EmailField()
@@ -191,3 +210,4 @@ class NotificationsLog(models.Model):
 
     def __str__(self):
         return f"Notification to {self.recipient.email} - {self.subject}"
+

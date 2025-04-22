@@ -172,10 +172,11 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
 
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+        
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        # 'rest_framework.permissions.IsAuthenticated',
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
 
     ],
     'DEFAULT_RENDERER_CLASSES': (
@@ -184,12 +185,7 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_THROTTLE_CLASSES': [
         'rest_framework.throttling.UserRateThrottle',
-        # 'rest_framework.throttling.AnonRateThrottle',
     ],
-    # 'DEFAULT_THROTTLE_RATES': {
-    #     'user': '10/hour',
-    #     'anon': '3/min',
-    # },
 }
 
 LOGIN_URL = '/api/login/'
@@ -200,7 +196,6 @@ AUTHENTICATION_BACKENDS = [
     'accounts.backends.DualAuthBackend', 
     'accounts.backends.CustomRemoteUserBackend', 
     'django.contrib.auth.backends.ModelBackend', 
-    # 'django.contrib.auth.backends.RemoteUserBackend',
 ]
 
 
@@ -261,3 +256,5 @@ CSRF_TRUSTED_ORIGINS = [
 
 # Frontend URL for React app
 FRONTEND_URL = 'http://localhost:3000'
+SITE_URL = 'http://localhost:8000'
+

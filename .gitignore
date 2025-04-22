@@ -2,3 +2,5 @@
 .env
 Remote-Windows-Analysis/Server/frontend/node_modules/
 ./Server/frontend/node_modules/
+
+.fake

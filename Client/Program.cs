@@ -1,15 +1,39 @@
 // Program.cs
 
-using System;
-using System.Runtime.Versioning;
-using System.Threading.Tasks;
+// using Microsoft.Extensions.DependencyInjection;
+// using Microsoft.Extensions.Hosting;
+
+// namespace Client
+// {
+//     class Program
+//     {
+//         static async Task Main(string[] args)
+//         {
+//             await Host.CreateDefaultBuilder(args)
+//                 .UseWindowsService()
+//                 .ConfigureServices((hostContext, services) =>
+//                 {
+//                     services.AddHostedService<Worker>();
+//                     services.AddSingleton<CredentialManager>();
+//                     services.AddSingleton<SystemInfoCollector>();
+//                     services.AddSingleton<ApiClient>(sp => new ApiClient(hostContext.Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:8000"));
+//                     services.AddSingleton<EventMonitor>();
+//                 })
+//                 .Build()
+//                 .RunAsync();
+//         }
+//     }
+// }
+
+
 using Microsoft.Extensions.Configuration;
+using System;
+using System.Threading.Tasks;
 
 namespace Client
 {
     class Program
     {
-        [SupportedOSPlatform("windows")]
         static async Task Main(string[] args)
         {
             Console.WriteLine("Starting Remote Windows Security Management Client...");
@@ -32,7 +56,6 @@ namespace Client
             {
                 Console.Write("Enter your email address: ");
                 string? email = Console.ReadLine();
-                Console.WriteLine("Registered Email is " + email);
                 if (string.IsNullOrEmpty(email) || !CredentialManager.IsValidEmail(email))
                 {
                     Console.WriteLine("A valid email address is required.");
@@ -55,11 +78,11 @@ namespace Client
                 if (success)
                 {
                     Console.WriteLine($"Account created successfully!\nSID: {userAccount.Sid}\nClient ID: {userAccount.ClientId}\nClient Secret: {userAccount.ClientSecret}");
-
                     credentialManager.SaveCredentials(userAccount.Sid, userAccount.ClientId, userAccount.ClientSecret);
-
-                    ApiClient.LaunchBrowser("http://localhost:3000/login");
-
+                    if (Environment.UserInteractive)
+                    {
+                        ApiClient.LaunchBrowser("http://localhost:3000/login");
+                    }
                     sid = userAccount.Sid;
                     clientId = userAccount.ClientId;
                     clientSecret = userAccount.ClientSecret;
@@ -71,19 +94,56 @@ namespace Client
                 }
             }
 
-            string? accessToken = await apiClient.GetOAuthTokenWithClientCredentials(clientId, clientSecret);
+            string? accessToken = null;
+            if (clientId != null && clientSecret != null)
+            {
+                accessToken = await apiClient.GetOAuthTokenWithClientCredentials(clientId, clientSecret);
+            }
+            else
+            {
+                Console.WriteLine("Client ID or Client Secret is null; cannot obtain OAuth token.");
+            }
+
             if (!string.IsNullOrEmpty(accessToken))
             {
                 Console.WriteLine("OAuth2 token obtained successfully!");
                 if (sid != null)
                 {
+                    // Send Server Info
                     var serverInfo = systemInfoCollector.GetServerInfo(sid);
-                    await apiClient.SendServerInfo(accessToken, serverInfo);
-                    eventMonitor.Start(sid, accessToken);
+                    try
+                    {
+                        await apiClient.SendServerInfo(accessToken, serverInfo);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Failed to send server info: {ex.Message}. Continuing with event monitoring...");
+                    }
+
+                    // Send Firewall Status
+                    var firewallStatus = systemInfoCollector.GetFirewallStatus(sid);
+                    try
+                    {
+                        await apiClient.SendFirewallStatus(accessToken, firewallStatus);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Failed to send firewall status: {ex.Message}. Continuing with event monitoring...");
+                    }
+
+                    // Start Event Monitoring
+                    try
+                    {
+                        eventMonitor.Start(sid, accessToken);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Failed to start event monitoring: {ex.Message}. Ensure the application is run as Administrator.");
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("SID is null; cannot send server info.");
+                    Console.WriteLine("SID is null; cannot send data.");
                 }
             }
             else
