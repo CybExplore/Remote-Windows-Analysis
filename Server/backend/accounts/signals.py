@@ -14,6 +14,7 @@ def create_user_profile(sender, instance, created, **kwargs):
         instance.profile.time_zone = 'UTC'  # Default time zone
         instance.profile.preferences = {'theme': 'light', 'notifications': 'email'}
         instance.profile.save()
+        
 
 
 @receiver(post_save, sender=CustomUser)

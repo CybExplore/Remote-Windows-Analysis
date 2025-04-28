@@ -16,18 +16,31 @@
 // }
 
 
-using Newtonsoft.Json;
+// using Newtonsoft.Json;
 
-namespace Client
+// namespace Client
+// {
+//     public class ServerInfo
+//     {
+//         [JsonProperty("sid")] public string? Sid { get; set; }
+//         [JsonProperty("machine_name")] public string? MachineName { get; set; }
+//         [JsonProperty("os_version")] public string? OsVersion { get; set; }
+//         [JsonProperty("processor_count")] public int ProcessorCount { get; set; }
+//         [JsonProperty("timestamp")] public string? Timestamp { get; set; }
+//         [JsonProperty("is_64bit")] public bool Is64Bit { get; set; }
+//     }
+// }
+
+namespace Client.Models
 {
     public class ServerInfo
     {
-        [JsonProperty("sid")] public string? Sid { get; set; }
-        [JsonProperty("machine_name")] public string? MachineName { get; set; }
-        [JsonProperty("os_version")] public string? OsVersion { get; set; }
-        [JsonProperty("processor_count")] public int ProcessorCount { get; set; }
-        [JsonProperty("timestamp")] public string? Timestamp { get; set; }
-        [JsonProperty("is_64bit")] public bool Is64Bit { get; set; }
+        public string Sid { get; set; } = string.Empty;
+        public string MachineName { get; set; } = string.Empty;
+        public string OsVersion { get; set; } = string.Empty;
+        public int ProcessorCount { get; set; }
+        public DateTime Timestamp { get; set; }
+        public bool Is64Bit { get; set; }
     }
 }
 

@@ -88,7 +88,7 @@ namespace Client
     {
         public static string GenerateRandomPassword(int length = 12)
         {
-            const string validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()<>"; 
+            const string validChars = "abcdecdfghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()<>"; 
             byte[] randomBytes = new byte[length];
             RandomNumberGenerator.Fill(randomBytes);
             var password = new StringBuilder(length);

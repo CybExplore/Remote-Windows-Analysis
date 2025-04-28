@@ -1,78 +1,7 @@
-// // SystemInfoCollector.cs
-
-// using System.Management;
-
-// namespace Client
-// {
-//     public class SystemInfoCollector
-//     {
-//         public UserAccount? GetUserAccountInfo()
-//         {
-//             string currentUser = Environment.UserName;
-//             string domain = Environment.UserDomainName;
-//             bool isShuttingDown = Environment.HasShutdownStarted;
-
-//             string query = $"SELECT * FROM Win32_Account WHERE Name='{currentUser}'";
-//             var searcher = new ManagementObjectSearcher(query);
-
-//             try
-//             {
-//                 using ManagementObjectCollection collection = searcher.Get();
-//                 foreach (ManagementObject userAccount in collection)
-//                 {
-//                     var sid = userAccount["SID"]?.ToString();
-//                     if (string.IsNullOrEmpty(sid))
-//                     {
-//                         Console.WriteLine("SID is empty; attempting to retrieve machine SID.");
-//                         sid = new ManagementObjectSearcher("SELECT SID FROM Win32_ComputerSystem")
-//                             .Get().Cast<ManagementObject>().FirstOrDefault()?["SID"]?.ToString() ?? "Unknown";
-//                     }
-
-//                     return new UserAccount
-//                     {
-//                         Sid = sid,
-//                         SidType = userAccount["SIDType"]?.ToString() ?? "Unknown",
-//                         AccountType = userAccount["AccountType"]?.ToString() ?? "Unknown",
-//                         FullName = userAccount["FullName"]?.ToString() ?? "Unknown",
-//                         Description = userAccount["Description"]?.ToString() ?? "",
-//                         Caption = userAccount["Caption"]?.ToString() ?? "",
-//                         Status = userAccount["Status"]?.ToString() ?? "Unknown",
-//                         LocalAccount = (bool)(userAccount["LocalAccount"] ?? false),
-//                         Domain = domain,
-//                         IsShuttingDown = isShuttingDown,
-//                         Email = "",
-//                         Password = "",
-//                         ClientId = "",
-//                         ClientSecret = ""
-//                     };
-//                 }
-//                 Console.WriteLine("No user account found for current user.");
-//             }
-//             catch (ManagementException ex)
-//             {
-//                 Console.WriteLine($"WMI query failed: {ex.Message}");
-//             }
-//             return null;
-//         }
-
-//         public ServerInfo GetServerInfo(string? sid)
-//         {
-//             return new ServerInfo
-//             {
-//                 Sid = sid ?? "Unknown",
-//                 MachineName = Environment.MachineName,
-//                 OsVersion = Environment.OSVersion.ToString(),
-//                 ProcessorCount = Environment.ProcessorCount,
-//                 Timestamp = DateTime.Now.ToString("o"),
-//                 Is64Bit = Environment.Is64BitOperatingSystem
-//             };
-//         }
-//     }
-// }
-
 using System;
 using System.Management;
-// using Client.Models;
+using Client.Models;
+using Microsoft.Win32;
 
 namespace Client
 {
@@ -121,17 +50,21 @@ namespace Client
             };
             try
             {
-                using var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_Firewall");
+                // Use MSFT_NetFirewallProfile in root\StandardCimv2 namespace
+                using var searcher = new ManagementObjectSearcher(
+                    @"root\StandardCimv2",
+                    "SELECT * FROM MSFT_NetFirewallProfile WHERE Enabled = 1"
+                );
                 var result = searcher.Get().Cast<ManagementObject>().FirstOrDefault();
                 if (result != null)
                 {
-                    status.IsEnabled = result["Enabled"]?.ToString() == "True";
-                    status.Profile = result["Profile"]?.ToString();
+                    status.IsEnabled = true;
+                    status.Profile = result["Name"]?.ToString() ?? "Unknown";
                 }
                 else
                 {
                     status.IsEnabled = false;
-                    status.Profile = "Unknown";
+                    status.Profile = "None";
                 }
             }
             catch (Exception ex)
@@ -157,5 +90,3 @@ namespace Client
         }
     }
 }
-
-

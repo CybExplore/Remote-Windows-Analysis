@@ -4,11 +4,15 @@ from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
 from django.utils import timezone
 
+from accounts.manager import CustomUserManager
+
 class CustomUser(AbstractUser):
     """Custom User Model for Windows Security Management System."""
     username = None
     first_name = None
     last_name = None
+
+    objects = CustomUserManager()
 
     password_changed = models.BooleanField(default=False, help_text="Has the user changed their password?")
     full_name = models.CharField(max_length=255, blank=True, null=True, help_text="Full name of the user")

@@ -1,5 +1,8 @@
 using System;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
+using System.Security;
+using Client.Models;
 
 namespace Client
 {
@@ -14,86 +17,90 @@ namespace Client
 
         public void Start(string sid, string accessToken)
         {
-            try
+            var logs = new[]
             {
-                // Security Event Log
-                EventLog securityLog = new EventLog("Security");
-                securityLog.EntryWritten += async (sender, e) =>
-                {
-                    if (e.Entry.InstanceId is 4624 or 4625 or 4634 or 4672 or 4720 or 4722 or 4728 or 4738 or 4673 or 4674 or 4616 or 4688 or 4697)
-                    {
-                        var securityEvent = new SecurityEvent
-                        {
-                            Sid = sid,
-                            EventId = e.Entry.InstanceId,
-                            TimeCreated = e.Entry.TimeGenerated.ToString("o"),
-                            Description = e.Entry.Message ?? "No description",
-                            Source = "Security",
-                            LogonType = e.Entry.InstanceId == 4624 ? GetLogonType(e.Entry) : null,
-                            FailureReason = e.Entry.InstanceId == 4625 ? GetFailureReason(e.Entry) : null,
-                            TargetAccount = e.Entry.InstanceId is 4720 or 4728 ? GetTargetAccount(e.Entry) : null,
-                            GroupName = e.Entry.InstanceId == 4728 ? GetGroupName(e.Entry) : null,
-                            PrivilegeName = e.Entry.InstanceId == 4673 ? GetPrivilegeName(e.Entry) : null,
-                            ProcessName = e.Entry.InstanceId == 4688 ? GetProcessName(e.Entry) : null,
-                            ServiceName = e.Entry.InstanceId == 4697 ? GetServiceName(e.Entry) : null
-                        };
-                        await _apiClient.SendSecurityEvent(accessToken, securityEvent);
-                    }
-                };
-                securityLog.EnableRaisingEvents = true;
+                new { Name = "Security", EventIds = new long[] { 4624, 4625, 4634, 4672, 4720, 4722, 4728, 4738, 4673, 4674, 4616, 4688, 4697 } },
+                new { Name = "Microsoft-Windows-Windows Defender/Operational", EventIds = new long[] { 1006, 1116 } },
+                new { Name = "Microsoft-Windows-Windows Firewall With Advanced Security/Firewall", EventIds = new long[] { 2003, 2004 } }
+            };
 
-                // Defender Event Log
-                EventLog defenderLog = new EventLog("Microsoft-Windows-Windows Defender/Operational");
-                defenderLog.EntryWritten += async (sender, e) =>
-                {
-                    if (e.Entry.InstanceId is 1006 or 1116)
-                    {
-                        var securityEvent = new SecurityEvent
-                        {
-                            Sid = sid,
-                            EventId = e.Entry.InstanceId,
-                            TimeCreated = e.Entry.TimeGenerated.ToString("o"),
-                            Description = e.Entry.Message ?? "No description",
-                            Source = "Defender"
-                        };
-                        await _apiClient.SendSecurityEvent(accessToken, securityEvent);
-                    }
-                };
-                defenderLog.EnableRaisingEvents = true;
-
-                // Firewall Event Log
-                EventLog firewallLog = new EventLog("Microsoft-Windows-Windows Firewall With Advanced Security/Firewall");
-                firewallLog.EntryWritten += async (sender, e) =>
-                {
-                    if (e.Entry.InstanceId is 2003 or 2004)
-                    {
-                        var securityEvent = new SecurityEvent
-                        {
-                            Sid = sid,
-                            EventId = e.Entry.InstanceId,
-                            TimeCreated = e.Entry.TimeGenerated.ToString("o"),
-                            Description = e.Entry.Message ?? "No description",
-                            Source = "Firewall"
-                        };
-                        await _apiClient.SendSecurityEvent(accessToken, securityEvent);
-                    }
-                };
-                firewallLog.EnableRaisingEvents = true;
-
-                Console.WriteLine("Monitoring Security, Defender, and Firewall Event Logs for critical events...");
-            }
-            catch (SecurityException ex)
+            foreach (var log in logs)
             {
-                Console.WriteLine($"Security error accessing Event Log: {ex.Message}. Run as Administrator or ensure the account has 'Event Log Readers' permissions.");
-                throw;
+                try
+                {
+                    // Check if log exists using EventLogSession
+                    bool logExists = false;
+                    try
+                    {
+                        using (var session = new EventLogSession())
+                        {
+                            logExists = session.GetLogNames().Contains(log.Name, StringComparer.OrdinalIgnoreCase);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error checking existence of Event Log '{log.Name}': {ex.Message}");
+                    }
+
+                    if (!logExists)
+                    {
+                        Console.WriteLine($"Event log '{log.Name}' does not exist. Skipping...");
+                        continue;
+                    }
+
+                    EventLog eventLog = new EventLog(log.Name);
+                    eventLog.EntryWritten += async (sender, e) =>
+                    {
+                        if (log.EventIds.Contains(e.Entry.InstanceId))
+                        {
+                            var securityEvent = new SecurityEvent
+                            {
+                                Sid = sid,
+                                EventId = e.Entry.InstanceId,
+                                TimeCreated = e.Entry.TimeGenerated.ToString("o"),
+                                Description = e.Entry.Message ?? "No description",
+                                Source = log.Name.Split('/')[0],
+                                LogonType = e.Entry.InstanceId == 4624 ? GetLogonType(e.Entry) : null,
+                                FailureReason = e.Entry.InstanceId == 4625 ? GetFailureReason(e.Entry) : null,
+                                TargetAccount = e.Entry.InstanceId is 4720 or 4728 ? GetTargetAccount(e.Entry) : null,
+                                GroupName = e.Entry.InstanceId == 4728 ? GetGroupName(e.Entry) : null,
+                                PrivilegeName = e.Entry.InstanceId == 4673 ? GetPrivilegeName(e.Entry) : null,
+                                ProcessName = e.Entry.InstanceId == 4688 ? GetProcessName(e.Entry) : null,
+                                ServiceName = e.Entry.InstanceId == 4697 ? GetServiceName(e.Entry) : null
+                            };
+                            try
+                            {
+                                await _apiClient.SendSecurityEvent(accessToken, securityEvent);
+                                Console.WriteLine($"Sent security event: {securityEvent.EventId} from {log.Name}");
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine($"Failed to send security event: {ex.Message}");
+                            }
+                        }
+                    };
+                    eventLog.EnableRaisingEvents = true;
+                    Console.WriteLine($"Monitoring {log.Name} for critical events...");
+                }
+                catch (SecurityException ex)
+                {
+                    Console.WriteLine($"Security error accessing Event Log '{log.Name}': {ex.Message}. Run as Administrator or ensure the account has 'Event Log Readers' permissions.");
+                    continue; // Skip to next log
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error accessing Event Log '{log.Name}': {ex.Message}");
+                    continue; // Skip to next log
+                }
             }
+
+            Console.WriteLine("Monitoring started for available Event Logs. Press Ctrl+C to exit...");
         }
 
         private string? GetLogonType(EventLogEntry entry)
         {
             try
             {
-                // Parse Logon Type from Message (e.g., "Logon Type: 2" for Interactive)
                 string[] lines = entry.Message.Split('\n');
                 foreach (string line in lines)
                 {
@@ -126,7 +133,6 @@ namespace Client
         {
             try
             {
-                // Parse Failure Reason from Message (e.g., "Failure Reason: Unknown user name or bad password")
                 string[] lines = entry.Message.Split('\n');
                 foreach (string line in lines)
                 {
@@ -147,7 +153,6 @@ namespace Client
         {
             try
             {
-                // Parse Target Account Name from Message (e.g., "Account Name: testuser")
                 string[] lines = entry.Message.Split('\n');
                 foreach (string line in lines)
                 {
@@ -168,7 +173,6 @@ namespace Client
         {
             try
             {
-                // Parse Group Name from Message (e.g., "Group Name: Administrators")
                 string[] lines = entry.Message.Split('\n');
                 foreach (string line in lines)
                 {
@@ -189,7 +193,6 @@ namespace Client
         {
             try
             {
-                // Parse Privilege Name from Message (e.g., "Privileges: SeBackupPrivilege")
                 string[] lines = entry.Message.Split('\n');
                 foreach (string line in lines)
                 {
@@ -210,7 +213,6 @@ namespace Client
         {
             try
             {
-                // Parse Process Name from Message (e.g., "New Process Name: C:\Windows\System32\cmd.exe")
                 string[] lines = entry.Message.Split('\n');
                 foreach (string line in lines)
                 {
@@ -231,7 +233,6 @@ namespace Client
         {
             try
             {
-                // Parse Service Name from Message (e.g., "Service Name: TestService")
                 string[] lines = entry.Message.Split('\n');
                 foreach (string line in lines)
                 {

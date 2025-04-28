@@ -3,7 +3,10 @@ from rest_framework import serializers
 from rest_framework import serializers
 from django.contrib.auth import password_validation
 
-from accounts.models import *
+from accounts.models import (
+    CustomUser, UserProfile, SecurityEvent, ServerInfo,
+    FirewallStatus
+)
 from oauth2_provider.models import Application
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import Group
@@ -16,51 +19,73 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
         fields = [
-            'image', 'account_expires', 'enabled', 'password_changeable_date', 'password_expires',
-            'user_may_change_password', 'password_required', 'password_last_set', 'last_logon', 'principal_source',
-            'object_class', 'time_zone', 'preferences', 'last_login_ip', 'last_password_change', 'logon_count',
-            'locked_out', 'lockout_time', 'department', 'job_title', 'local_groups'
+            'client_id', 'client_secret', 'image', 'account_expires', 'enabled',
+            'password_changeable_date', 'password_expires', 'user_may_change_password',
+            'password_required', 'password_last_set', 'last_logon', 'principal_source',
+            'object_class', 'time_zone', 'preferences', 'last_login_ip',
+            'last_password_change', 'logon_count', 'locked_out', 'lockout_time',
+            'department', 'job_title', 'local_groups'
         ]
-
 
 class CustomUserSerializer(serializers.ModelSerializer):
     profile = UserProfileSerializer(required=False)
-    client_id = serializers.CharField(write_only=True)
-    client_secret = serializers.CharField(write_only=True)
 
     class Meta:
         model = CustomUser
-        fields = '__all__'
+        fields = [
+            'sid', 'email', 'password', 'password_changed', 'full_name',
+            'sid_type', 'domain', 'local_account', 'is_shutting_down',
+            'account_type', 'status', 'caption', 'description',
+            'created_at', 'updated_at', 'profile'
+        ]
         extra_kwargs = {
             'password': {'write_only': True},
             'email': {'required': True},
-            'sid': {'required': True},  # Assuming SID is mandatory
+            'sid': {'required': True},
         }
 
     def create(self, validated_data):
-        profile_data = validated_data.pop('profile', None)
-        client_id = validated_data.pop('client_id')
-        client_secret = validated_data.pop('client_secret')
+        profile_data = validated_data.pop('profile', {})
+        try:
+            user = CustomUser.objects.create_user(
+                sid=validated_data['sid'],
+                email=validated_data['email'],
+                password=validated_data['password'],
+                **{k: v for k, v in validated_data.items() if k not in ['sid', 'email', 'password']}
+            )
+        except Exception as e:
+            raise serializers.ValidationError({"error": str(e)})
+        
+        client_id = profile_data.get('client_id')
+        client_secret = profile_data.get('client_secret')
+        if client_id and client_secret:
+            # Check if UserProfile already exists
+            if hasattr(user, 'profile') and user.profile:
+                # Update existing UserProfile
+                user.profile.client_id = client_id
+                user.profile.client_secret = client_secret
+                user.profile.save()
+            else:
+                # Create new UserProfile
+                UserProfile.objects.create(
+                    user=user,
+                    client_id=client_id,
+                    client_secret=client_secret
+                )
 
-        user = CustomUser(**validated_data)
-        user.set_password(validated_data['password'])
-        user.save()
-
-        # Register OAuth2 Application
-        Application.objects.create(
-            user=user,
-            client_id=client_id,
-            client_secret=client_secret,
-            client_type='confidential',
-            authorization_grant_type='client-credentials',
-            name=f"Client for {user.sid}"
-        )
-
-        if profile_data and hasattr(user, 'profile'):
-            for key, value in profile_data.items():
-                setattr(user.profile, key, value)
-            user.profile.save()
+            # Create or update OAuth2 Application
+            Application.objects.update_or_create(
+                user=user,
+                defaults={
+                    'client_id': client_id,
+                    'client_secret': client_secret,
+                    'client_type': 'confidential',
+                    'authorization_grant_type': 'client-credentials',
+                    'name': f"Client for {user.sid}"
+                }
+            )
         return user
+    
 
 # Generate GroupSerializer
 
@@ -238,33 +263,61 @@ class PasswordResetConfirmSerializer(serializers.Serializer):
         # return data
     
 
+# class ServerInfoSerializer(serializers.ModelSerializer):
+#     client = CustomUserSerializer()
+
+#     class Meta:
+#         model = ServerInfo
+#         fields = ['client', 'machine_name', 'os_version', 'processor_count', 'timestamp', 'is_64bit']
+
+#     def validate(self, data):
+#         if not data.get('client') or not data['client'].get('sid'):
+#             raise serializers.ValidationError("Client SID is required.")
+#         return data
+
 class ServerInfoSerializer(serializers.ModelSerializer):
-    client = CustomUserSerializer()
+    client = serializers.CharField(source='client.sid')
 
     class Meta:
         model = ServerInfo
         fields = ['client', 'machine_name', 'os_version', 'processor_count', 'timestamp', 'is_64bit']
 
     def validate(self, data):
-        if not data.get('client') or not data['client'].get('sid'):
+        if not data.get('client'):
             raise serializers.ValidationError("Client SID is required.")
         return data
 
+# class SecurityEventSerializer(serializers.ModelSerializer):
+#     client = CustomUserSerializer()
+
+#     class Meta:
+#         model = SecurityEvent
+#         fields = ['client', 'event_id', 'time_created', 'description', 'source', 'logon_type', 
+#                   'failure_reason', 'target_account', 'group_name', 'privilege_name', 
+#                   'process_name', 'service_name']
+
+#     def validate(self, data):
+#         if not data.get('client') or not data['client'].get('sid'):
+#             raise serializers.ValidationError("Client SID is required.")
+#         return data
+
 class SecurityEventSerializer(serializers.ModelSerializer):
-    client = CustomUserSerializer()
+    client = serializers.CharField(source='client.sid')
 
     class Meta:
         model = SecurityEvent
-        fields = ['client', 'event_id', 'time_created', 'description', 'source', 'logon_type', 
-                  'failure_reason', 'target_account', 'group_name', 'privilege_name', 
-                  'process_name', 'service_name']
+        fields = [
+            'client', 'event_id', 'time_created', 'description', 'source', 'logon_type',
+            'failure_reason', 'target_account', 'group_name', 'privilege_name',
+            'process_name', 'service_name'
+        ]
 
     def validate(self, data):
-        if not data.get('client') or not data['client'].get('sid'):
+        if not data.get('client'):
             raise serializers.ValidationError("Client SID is required.")
         return data
-
-class FirewallStatusSerializer(serializers.ModelSerializer):
+    
+# class FirewallStatusSerializer(serializers.ModelSerializer):
     client = CustomUserSerializer()
 
     class Meta:
@@ -275,6 +328,17 @@ class FirewallStatusSerializer(serializers.ModelSerializer):
         if not data.get('client') or not data['client'].get('sid'):
             raise serializers.ValidationError("Client SID is required.")
         return data
-         
+
+class FirewallStatusSerializer(serializers.ModelSerializer):
+    client = serializers.CharField(source='client.sid')
+
+    class Meta:
+        model = FirewallStatus
+        fields = ['client', 'is_enabled', 'profile', 'timestamp']
+
+    def validate(self, data):
+        if not data.get('client'):
+            raise serializers.ValidationError("Client SID is required.")
+        return data
 
 

@@ -8,8 +8,10 @@ class IsClientAuthenticated(permissions.BasePermission):
         if not request.auth:
             return False
         try:
+            print("\t\t\t Test \t\t\t")
             # Get client_id from the token
             client_id = request.auth.application.client_id
+            print(client_id)
             # Verify client_id exists in CustomUser
             UserProfile.objects.get(client_id=client_id)
             return True

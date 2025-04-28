@@ -1,15 +1,14 @@
 // Models/FirewallStatus.cs
 
-using System;
-
-namespace Client
+namespace Client.Models
 {
     public class FirewallStatus
     {
-        public string Sid { get; set; }
+        public string? Sid { get; set; }
         public bool IsEnabled { get; set; }
         public string? Profile { get; set; }
         public DateTime Timestamp { get; set; }
     }
 }
+
 

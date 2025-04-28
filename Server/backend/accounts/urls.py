@@ -13,7 +13,8 @@ urlpatterns = [
     # Generic Views
     path('create-user/', CustomUserCreateView.as_view(), name='user-create'),  # User registration
     path('user/<str:sid>/', CustomUserDetailView.as_view(), name='user-detail'),  # User detail/update
-
+    path('user-profile/<str:sid>/', UserProfileView.as_view(), name='user-profile'),
+    
     # Authentication Views
     path('login/', LoginView.as_view(), name='login'),  # Custom login
     path('password/change/', PasswordChangeView.as_view(), name='password_change'),  # Password change

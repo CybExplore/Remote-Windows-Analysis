@@ -1,31 +1,3 @@
-// Program.cs
-
-// using Microsoft.Extensions.DependencyInjection;
-// using Microsoft.Extensions.Hosting;
-
-// namespace Client
-// {
-//     class Program
-//     {
-//         static async Task Main(string[] args)
-//         {
-//             await Host.CreateDefaultBuilder(args)
-//                 .UseWindowsService()
-//                 .ConfigureServices((hostContext, services) =>
-//                 {
-//                     services.AddHostedService<Worker>();
-//                     services.AddSingleton<CredentialManager>();
-//                     services.AddSingleton<SystemInfoCollector>();
-//                     services.AddSingleton<ApiClient>(sp => new ApiClient(hostContext.Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:8000"));
-//                     services.AddSingleton<EventMonitor>();
-//                 })
-//                 .Build()
-//                 .RunAsync();
-//         }
-//     }
-// }
-
-
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Threading.Tasks;
@@ -63,7 +35,7 @@ namespace Client
                 }
 
                 var userAccount = systemInfoCollector.GetUserAccountInfo();
-                if (userAccount == null || string.IsNullOrEmpty(userAccount.Sid))
+                if (string.IsNullOrEmpty(userAccount.Sid))
                 {
                     Console.WriteLine("Failed to retrieve user account info.");
                     return;
@@ -94,61 +66,61 @@ namespace Client
                 }
             }
 
+            if (string.IsNullOrEmpty(clientId) || string.IsNullOrEmpty(clientSecret))
+            {
+                if (string.IsNullOrEmpty(sid))
+                {
+                    Console.WriteLine("SID is null. Cannot fetch client credentials.");
+                    return;
+                }
+                (clientId, clientSecret) = await apiClient.GetClientCredentials(sid);
+                if (!string.IsNullOrEmpty(clientId) && !string.IsNullOrEmpty(clientSecret))
+                {
+                    credentialManager.SaveCredentials(sid, clientId, clientSecret);
+                }
+            }
+
             string? accessToken = null;
-            if (clientId != null && clientSecret != null)
+            if (!string.IsNullOrEmpty(clientId) && !string.IsNullOrEmpty(clientSecret))
             {
                 accessToken = await apiClient.GetOAuthTokenWithClientCredentials(clientId, clientSecret);
             }
-            else
-            {
-                Console.WriteLine("Client ID or Client Secret is null; cannot obtain OAuth token.");
-            }
 
-            if (!string.IsNullOrEmpty(accessToken))
+            if (!string.IsNullOrEmpty(accessToken) && !string.IsNullOrEmpty(sid))
             {
                 Console.WriteLine("OAuth2 token obtained successfully!");
-                if (sid != null)
+                var serverInfo = systemInfoCollector.GetServerInfo(sid);
+                try
                 {
-                    // Send Server Info
-                    var serverInfo = systemInfoCollector.GetServerInfo(sid);
-                    try
-                    {
-                        await apiClient.SendServerInfo(accessToken, serverInfo);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"Failed to send server info: {ex.Message}. Continuing with event monitoring...");
-                    }
-
-                    // Send Firewall Status
-                    var firewallStatus = systemInfoCollector.GetFirewallStatus(sid);
-                    try
-                    {
-                        await apiClient.SendFirewallStatus(accessToken, firewallStatus);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"Failed to send firewall status: {ex.Message}. Continuing with event monitoring...");
-                    }
-
-                    // Start Event Monitoring
-                    try
-                    {
-                        eventMonitor.Start(sid, accessToken);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"Failed to start event monitoring: {ex.Message}. Ensure the application is run as Administrator.");
-                    }
+                    await apiClient.SendServerInfo(accessToken, serverInfo);
                 }
-                else
+                catch (Exception ex)
                 {
-                    Console.WriteLine("SID is null; cannot send data.");
+                    Console.WriteLine($"Failed to send server info: {ex.Message}");
+                }
+
+                var firewallStatus = systemInfoCollector.GetFirewallStatus(sid);
+                try
+                {
+                    await apiClient.SendFirewallStatus(accessToken, firewallStatus);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Failed to send firewall status: {ex.Message}");
+                }
+
+                try
+                {
+                    eventMonitor.Start(sid, accessToken);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Failed to start event monitoring: {ex.Message}. Ensure the application is run as Administrator.");
                 }
             }
             else
             {
-                Console.WriteLine("Failed to obtain OAuth2 token.");
+                Console.WriteLine("Failed to obtain OAuth2 token or SID is null.");
             }
 
             Console.WriteLine("Monitoring started. Press Ctrl+C to exit...");
@@ -156,4 +128,3 @@ namespace Client
         }
     }
 }
-

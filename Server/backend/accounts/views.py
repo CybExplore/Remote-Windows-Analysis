@@ -18,6 +18,7 @@ from django.utils import timezone
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.timezone import now as timezone_now
+from django.conf import settings
 
 from oauth2_provider.models import AccessToken, Application
 from oauth2_provider.settings import oauth2_settings
@@ -37,51 +38,114 @@ from accounts.notifications import send_password_change_email
 
 logger = logging.getLogger(__name__)
 
+class UserProfileView(APIView):
+    permission_classes = [permissions.AllowAny]
 
-
-class CustomUserCreateView(generics.CreateAPIView):
-    """API endpoint to create a new CustomUser and send credentials via email."""
-    queryset = CustomUser.objects.all()
-    serializer_class = CustomUserSerializer
-    permission_classes = []
-
-    def perform_create(self, serializer):
-        user = serializer.save()
-        password = self.request.data.get('password')
-        client_id = self.request.data.get('client_id')
-        client_secret = self.request.data.get('client_secret')
-        message = (
-            f"Dear {user.full_name or 'User'},\n\n"
-            f"Your account has been created successfully. Here are your credentials:\n"
-            f"SID: {user.sid}\n"
-            f"Password: {password}\n"
-            f"Client ID: {client_id}\n"
-            f"Client Secret: {client_secret}\n\n"
-            f"Please log in and change your password as soon as possible.\n"
-            f"Login URL: {self.request.build_absolute_uri('/login/')}\n\n"
-            f"Regards,\nRemote Windows Security Management System"
-        )
+    def get(self, request, sid):
         try:
-            send_mail(subject="Your New Account Credentials", message=message, from_email=settings.DEFAULT_FROM_EMAIL, recipient_list=[user.email])
-            logger.info(f"Credentials email sent to {user.email} for user {user.sid}")
-        except Exception as e:
-            logger.error(f"Failed to send email to {user.email}: {str(e)}")
-            raise  # Re-raise to trigger a 500 response in post()
+            profile = UserProfile.objects.get(user__sid=sid)
+            serializer = UserProfileSerializer(profile)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except UserProfile.DoesNotExist:
+            return Response({"error": "Profile not found"}, status=status.HTTP_404_NOT_FOUND)
+        
 
-    def post(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
+# class CustomUserCreateView(generics.CreateAPIView):
+#     """API endpoint to create a new CustomUser and send credentials via email."""
+#     queryset = CustomUser.objects.all()
+#     serializer_class = CustomUserSerializer
+#     permission_classes = []
+
+#     def perform_create(self, serializer):
+#         user = serializer.save()
+#         password = self.request.data.get('password')
+#         client_id = self.request.data.get('client_id')
+#         client_secret = self.request.data.get('client_secret')
+#         message = (
+#             f"Dear {user.full_name or 'User'},\n\n"
+#             f"Your account has been created successfully. Here are your credentials:\n"
+#             f"SID: {user.sid}\n"
+#             f"Password: {password}\n"
+#             f"Client ID: {client_id}\n"
+#             f"Client Secret: {client_secret}\n\n"
+#             f"Please log in and change your password as soon as possible.\n"
+#             f"Login URL: {settings.FRONTEND_URL}login/\n\n"
+#             f"Regards,\nRemote Windows Security Management System"
+#         )
+#         try:
+#             send_mail(subject="Your New Account Credentials", message=message, from_email=settings.DEFAULT_FROM_EMAIL, recipient_list=[user.email])
+#             logger.info(f"Credentials email sent to {user.email} for user {user.sid}")
+#         except Exception as e:
+#             logger.error(f"Failed to send email to {user.email}: {str(e)}")
+#             raise  # Re-raise to trigger a 500 response in post()
+
+#     def post(self, request, *args, **kwargs):
+#         serializer = self.get_serializer(data=request.data)
+#         if serializer.is_valid():
+#             self.perform_create(serializer)
+#             user_serializer = CustomUserSerializer(serializer.instance)
+#             return Response({
+#                 "message": "User created successfully",
+#                 "user": user_serializer.data
+#             }, status=status.HTTP_201_CREATED)
+#         else:
+#             print(serializer.errors)
+
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class CustomUserCreateView(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def post(self, request):
+        serializer = CustomUserSerializer(data=request.data)
         if serializer.is_valid():
-            self.perform_create(serializer)
-            user_serializer = CustomUserSerializer(serializer.instance)
-            return Response({
-                "message": "User created successfully",
-                "user": user_serializer.data
-            }, status=status.HTTP_201_CREATED)
-        else:
-            print(serializer.errors)
+            try:
+                user = serializer.save()
+                # Extract password and profile data
+                password = request.data.get('password')
+                profile_data = request.data.get('profile', {})
+                client_id = profile_data.get('client_id') if profile_data else None
+                client_secret = profile_data.get('client_secret') if profile_data else None
 
+                # Prepare email
+                message = (
+                    f"Dear {user.full_name or 'User'},\n\n"
+                    f"Your account has been created successfully. Here are your credentials:\n"
+                    f"SID: {user.sid}\n"
+                    f"Password: {password}\n"
+                    f"Client ID: {client_id}\n"
+                    f"Client Secret: {client_secret}\n\n"
+                    f"Please log in and change your password as soon as possible.\n"
+                    f"Login URL: {settings.FRONTEND_URL}/login/\n\n"
+                    f"Regards,\nRemote Windows Security Management System"
+                )
+
+                # Send email
+                try:
+                    send_mail(
+                        subject="Your New Account Credentials",
+                        message=message,
+                        from_email=settings.DEFAULT_FROM_EMAIL,
+                        recipient_list=[user.email],
+                        fail_silently=False,
+                    )
+                    logger.info(f"Credentials email sent to {user.email} for user {user.sid}")
+                except Exception as e:
+                    logger.error(f"Failed to send email to {user.email}: {str(e)}")
+                    # Continue despite email failure
+
+                return Response({
+                    "message": "User created successfully",
+                    "sid": user.sid,
+                    "email": user.email,
+                    "client_id": user.profile.client_id if user.profile else None,
+                    "client_secret": user.profile.client_secret if user.profile else None
+                }, status=status.HTTP_201_CREATED)
+            except Exception as e:
+                logger.error(f"Error creating user: {str(e)}")
+                return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+    
 
 class LoginView(APIView):
     """Custom login endpoint for users with SID or email address and password."""
@@ -116,7 +180,7 @@ class LoginView(APIView):
                     user=user,
                     application=app,
                     scope='read write',
-                    expires=now() + timedelta(seconds=oauth2_settings.ACCESS_TOKEN_EXPIRE_SECONDS),
+                    expires=timezone_now() + timedelta(seconds=oauth2_settings.ACCESS_TOKEN_EXPIRE_SECONDS),
                     token=''.join(random.choices('abcdefghijklmnopqrstuvwxyz0123456789', k=40))
                 )
 
@@ -458,7 +522,7 @@ class LogoutView(APIView):
             logger.error(f"Error during logout for {request.user.sid}: {str(e)}")
             return Response({"error": "Failed to logout"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-# Sercurity Tables
+# Security Tables
 class ServerInfoView(APIView):
     permission_classes = [IsClientAuthenticated]
 
@@ -472,6 +536,20 @@ class ServerInfoView(APIView):
             except CustomUser.DoesNotExist:
                 return Response({"error": "Client not found"}, status=status.HTTP_404_NOT_FOUND)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def get(self, request):
+        client = request.user
+        user_profile = UserProfile.objects.get(
+            user=request.user,
+        )
+        print(user_profile.client_id)
+        # client_id = request.user
+        # client_id = request.auth.application.client_id
+        # print(client_id)
+        server_infos = ServerInfo.objects.filter(client=client)
+        serializer = ServerInfoSerializer(server_infos, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 class SecurityEventView(APIView):
     permission_classes = [IsClientAuthenticated]
@@ -487,6 +565,13 @@ class SecurityEventView(APIView):
                 return Response({"error": "Client not found"}, status=status.HTTP_404_NOT_FOUND)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def get(self, request):
+        client = request.user
+        events = SecurityEvent.objects.filter(client=client)
+        serializer = SecurityEventSerializer(events, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
 class FirewallStatusView(APIView):
     permission_classes = [IsClientAuthenticated]
 
@@ -500,5 +585,11 @@ class FirewallStatusView(APIView):
             except CustomUser.DoesNotExist:
                 return Response({"error": "Client not found"}, status=status.HTTP_404_NOT_FOUND)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-     
+
+    def get(self, request):
+        client = request.user
+        statuses = FirewallStatus.objects.filter(client=client)
+        serializer = FirewallStatusSerializer(statuses, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
 
