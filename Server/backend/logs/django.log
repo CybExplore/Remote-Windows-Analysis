@@ -1,0 +1,1309 @@
+INFO 2025-04-29 05:56:18,043 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 05:56:46,202 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\settings.py changed, reloading.
+INFO 2025-04-29 05:56:49,857 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 05:58:10,126 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\manager.py changed, reloading.
+INFO 2025-04-29 05:58:12,559 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 05:58:22,705 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\manager.py changed, reloading.
+INFO 2025-04-29 05:58:25,547 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 05:58:30,866 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\manager.py changed, reloading.
+INFO 2025-04-29 05:58:33,620 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 05:58:42,681 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\manager.py changed, reloading.
+INFO 2025-04-29 05:58:45,347 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 05:59:00,242 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\manager.py changed, reloading.
+INFO 2025-04-29 05:59:03,898 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:00:58,652 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\manager.py changed, reloading.
+INFO 2025-04-29 06:01:00,162 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:01:09,876 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\manager.py changed, reloading.
+INFO 2025-04-29 06:01:11,758 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:03:57,705 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\manager.py changed, reloading.
+INFO 2025-04-29 06:04:00,442 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:04:26,373 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\manager.py changed, reloading.
+INFO 2025-04-29 06:04:28,682 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:05:13,591 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\models.py changed, reloading.
+INFO 2025-04-29 06:05:17,071 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:08:21,734 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\models.py changed, reloading.
+INFO 2025-04-29 06:08:27,847 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:14:29,380 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\models.py changed, reloading.
+INFO 2025-04-29 06:14:36,018 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:14:39,985 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\models.py changed, reloading.
+INFO 2025-04-29 06:14:42,952 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:15:02,007 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\models.py changed, reloading.
+INFO 2025-04-29 06:15:04,935 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:15:12,759 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\models.py changed, reloading.
+INFO 2025-04-29 06:15:14,760 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:15:44,312 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\notifications.py changed, reloading.
+INFO 2025-04-29 06:15:51,384 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:16:02,793 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\notifications.py changed, reloading.
+INFO 2025-04-29 06:16:06,041 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:16:23,048 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\notifications.py changed, reloading.
+INFO 2025-04-29 06:16:26,377 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:16:37,806 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\notifications.py changed, reloading.
+INFO 2025-04-29 06:16:40,895 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:16:46,454 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\notifications.py changed, reloading.
+INFO 2025-04-29 06:16:48,767 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:16:55,544 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\notifications.py changed, reloading.
+INFO 2025-04-29 06:16:58,717 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:17:33,024 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\notifications.py changed, reloading.
+INFO 2025-04-29 06:17:40,909 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:17:50,763 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\notifications.py changed, reloading.
+INFO 2025-04-29 06:17:52,661 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:17:58,059 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\notifications.py changed, reloading.
+INFO 2025-04-29 06:17:59,675 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:18:06,050 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\notifications.py changed, reloading.
+INFO 2025-04-29 06:18:09,380 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:18:20,047 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\notifications.py changed, reloading.
+INFO 2025-04-29 06:18:22,697 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:18:33,751 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\notifications.py changed, reloading.
+INFO 2025-04-29 06:18:36,234 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:19:05,837 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 06:19:13,653 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:19:44,151 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-29 06:19:47,345 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:20:14,914 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-29 06:20:20,373 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:20:39,768 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-29 06:20:42,267 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:20:49,719 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-29 06:20:53,496 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:21:08,542 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-29 06:21:11,185 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:21:16,611 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-29 06:21:19,850 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:22:16,758 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 06:22:19,723 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:22:35,238 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 06:22:37,879 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:23:17,529 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\models.py changed, reloading.
+INFO 2025-04-29 06:23:21,849 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:23:40,422 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\notifications.py changed, reloading.
+INFO 2025-04-29 06:23:43,463 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:24:11,648 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\models.py changed, reloading.
+INFO 2025-04-29 06:24:19,999 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:24:29,480 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\models.py changed, reloading.
+INFO 2025-04-29 06:24:40,539 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:25:00,049 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-29 06:25:05,822 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:25:33,315 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-29 06:25:35,724 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:25:45,146 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-29 06:25:48,207 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:25:57,326 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-29 06:26:00,190 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:26:06,561 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-29 06:26:10,316 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:26:21,199 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-29 06:26:23,892 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:26:41,992 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-29 06:26:44,064 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:29:23,329 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-29 06:29:27,115 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:29:38,131 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 06:29:41,822 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:29:51,308 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 06:29:58,696 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:30:25,909 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-29 06:30:32,107 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:30:58,005 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-29 06:31:00,458 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:43:18,230 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-29 06:43:26,432 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:43:36,401 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-29 06:43:39,895 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:44:12,168 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 06:44:17,932 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:44:22,709 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 06:44:34,302 autoreload Watching for file changes with StatReloader
+ERROR 2025-04-29 06:46:04,348 log Internal Server Error: /api/users/
+Traceback (most recent call last):
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\db\backends\mysql\base.py", line 76, in execute
+    return self.cursor.execute(query, args)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+    ~~~~~~~~^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+MySQLdb.OperationalError: (1054, "Unknown column 'accounts_customuser.email_verified' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\mixins.py", line 46, in list
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 795, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 249, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 714, in to_representation
+    self.child.to_representation(item) for item in iterable
+                                                   ^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 400, in __iter__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\db\models\sql\compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\db\backends\mysql\base.py", line 76, in execute
+    return self.cursor.execute(query, args)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+    ~~~~~~~~^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.OperationalError: (1054, "Unknown column 'accounts_customuser.email_verified' in 'field list'")
+ERROR 2025-04-29 06:46:04,422 basehttp "GET /api/users/ HTTP/1.1" 500 213892
+INFO 2025-04-29 06:51:53,089 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\notifications.py changed, reloading.
+INFO 2025-04-29 06:51:55,693 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:52:48,869 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\notifications.py changed, reloading.
+INFO 2025-04-29 06:52:51,437 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:53:07,605 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\notifications.py changed, reloading.
+INFO 2025-04-29 06:53:11,620 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:53:24,065 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\notifications.py changed, reloading.
+INFO 2025-04-29 06:53:26,024 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:53:36,959 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\notifications.py changed, reloading.
+INFO 2025-04-29 06:53:40,156 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:53:48,954 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\notifications.py changed, reloading.
+INFO 2025-04-29 06:53:51,372 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:54:03,869 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\notifications.py changed, reloading.
+INFO 2025-04-29 06:54:06,119 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:54:17,721 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\notifications.py changed, reloading.
+INFO 2025-04-29 06:54:21,125 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:56:20,866 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 06:56:24,948 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:56:34,347 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 06:56:37,850 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:56:49,854 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 06:56:58,275 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:57:09,127 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 06:57:14,230 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:57:22,891 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 06:57:26,950 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 06:57:49,304 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 06:57:51,988 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 07:03:49,749 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-29 07:03:52,727 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 07:04:02,293 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-29 07:04:06,961 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 07:04:14,428 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-29 07:04:17,748 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 07:04:53,334 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 07:04:56,953 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 07:05:23,330 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 07:05:27,083 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 07:05:44,823 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 07:05:49,201 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 07:06:02,107 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 07:06:04,291 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 07:06:12,179 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 07:06:17,147 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 07:06:31,382 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 07:06:34,002 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 07:06:43,091 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 07:06:48,119 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 07:06:55,473 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 07:06:59,237 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 07:07:13,534 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\urls.py changed, reloading.
+INFO 2025-04-29 07:07:16,126 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 07:07:21,467 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\urls.py changed, reloading.
+INFO 2025-04-29 07:07:24,466 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 07:11:54,197 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 07:11:57,843 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 07:12:08,859 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 07:12:13,505 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 07:12:41,727 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 07:12:46,416 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 07:12:56,104 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 07:12:59,815 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 07:13:21,573 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 07:13:26,768 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 07:14:55,994 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\urls.py changed, reloading.
+INFO 2025-04-29 07:14:58,099 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 07:15:33,446 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 07:15:39,481 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 07:15:47,374 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 07:15:51,092 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 07:16:05,828 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 07:16:08,666 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 07:17:35,984 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\urls.py changed, reloading.
+INFO 2025-04-29 07:17:39,625 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 07:18:05,325 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 07:18:08,502 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-29 07:25:12,405 log Bad Request: /api/create-user/
+WARNING 2025-04-29 07:25:12,407 basehttp "POST /api/create-user/ HTTP/1.1" 400 48
+WARNING 2025-04-29 07:25:13,452 log Bad Request: /api/create-user/
+WARNING 2025-04-29 07:25:13,453 basehttp "POST /api/create-user/ HTTP/1.1" 400 48
+WARNING 2025-04-29 07:25:15,474 log Bad Request: /api/create-user/
+WARNING 2025-04-29 07:25:15,474 basehttp "POST /api/create-user/ HTTP/1.1" 400 48
+INFO 2025-04-29 07:25:15,502 basehttp - Broken pipe from ('127.0.0.1', 55261)
+WARNING 2025-04-29 07:29:26,935 log Bad Request: /api/create-user/
+WARNING 2025-04-29 07:29:26,936 basehttp "POST /api/create-user/ HTTP/1.1" 400 48
+WARNING 2025-04-29 07:29:27,972 log Bad Request: /api/create-user/
+WARNING 2025-04-29 07:29:27,973 basehttp "POST /api/create-user/ HTTP/1.1" 400 48
+WARNING 2025-04-29 07:29:29,997 log Bad Request: /api/create-user/
+WARNING 2025-04-29 07:29:29,998 basehttp "POST /api/create-user/ HTTP/1.1" 400 48
+INFO 2025-04-29 07:29:30,014 basehttp - Broken pipe from ('127.0.0.1', 55400)
+INFO 2025-04-29 07:39:55,394 basehttp "GET /api/users/ HTTP/1.1" 200 25923
+WARNING 2025-04-29 07:39:57,155 log Forbidden: /api/
+WARNING 2025-04-29 07:39:57,163 basehttp "GET /api/ HTTP/1.1" 403 9712
+WARNING 2025-04-29 07:39:59,727 log Not Found: /api/sa
+WARNING 2025-04-29 07:39:59,776 basehttp "GET /api/sa HTTP/1.1" 404 10051
+WARNING 2025-04-29 07:40:17,286 log Method Not Allowed: /api/login/
+WARNING 2025-04-29 07:40:17,450 basehttp "GET /api/login/ HTTP/1.1" 405 12318
+INFO 2025-04-29 07:40:24,739 backends No user found for identifier: admin@cybexplore.org
+WARNING 2025-04-29 07:40:24,747 views Login failed due to validation errors: {'non_field_errors': [ErrorDetail(string='Invalid credentials', code='invalid')]}
+WARNING 2025-04-29 07:40:24,775 log Bad Request: /api/login/
+WARNING 2025-04-29 07:40:24,784 basehttp "POST /api/login/ HTTP/1.1" 400 12420
+WARNING 2025-04-29 07:56:36,099 log Bad Request: /api/create-user/
+WARNING 2025-04-29 07:56:36,104 basehttp "POST /api/create-user/ HTTP/1.1" 400 48
+WARNING 2025-04-29 07:56:37,170 log Bad Request: /api/create-user/
+WARNING 2025-04-29 07:56:37,171 basehttp "POST /api/create-user/ HTTP/1.1" 400 48
+WARNING 2025-04-29 07:56:39,202 log Bad Request: /api/create-user/
+WARNING 2025-04-29 07:56:39,203 basehttp "POST /api/create-user/ HTTP/1.1" 400 48
+INFO 2025-04-29 07:56:39,405 basehttp - Broken pipe from ('127.0.0.1', 55766)
+INFO 2025-04-29 07:59:02,912 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 07:59:12,080 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 08:02:58,311 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-29 08:03:05,564 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 08:03:46,749 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\migrations\0001_initial.py changed, reloading.
+INFO 2025-04-29 08:03:53,721 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 08:04:54,688 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 08:05:01,060 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 08:05:08,161 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 08:05:10,822 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 08:05:52,749 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 08:05:55,774 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-29 08:08:59,258 log Method Not Allowed: /api/create-user/
+WARNING 2025-04-29 08:08:59,259 basehttp "GET /api/create-user/ HTTP/1.1" 405 10560
+INFO 2025-04-29 08:09:22,022 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 08:09:24,482 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-29 08:09:28,306 log Method Not Allowed: /api/create-user/
+WARNING 2025-04-29 08:09:28,307 basehttp "GET /api/create-user/ HTTP/1.1" 405 10560
+WARNING 2025-04-29 08:09:29,174 log Method Not Allowed: /api/create-user/
+WARNING 2025-04-29 08:09:29,181 basehttp "GET /api/create-user/ HTTP/1.1" 405 10560
+WARNING 2025-04-29 08:09:31,132 log Method Not Allowed: /api/create-user/
+WARNING 2025-04-29 08:09:31,133 basehttp "GET /api/create-user/ HTTP/1.1" 405 10560
+INFO 2025-04-29 08:09:48,493 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 08:09:53,062 autoreload Watching for file changes with StatReloader
+ERROR 2025-04-29 08:10:42,790 log Internal Server Error: /api/users/
+Traceback (most recent call last):
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\renderers.py", line 727, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\renderers.py", line 658, in get_context
+    raw_data_post_form = self.get_raw_data_form(data, view, 'POST', request)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\renderers.py", line 565, in get_raw_data_form
+    data = serializer.data.copy()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 571, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.get_initial()
+                 ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 420, in get_initial
+    field.field_name: field.get_initial()
+                      ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 421, in get_initial
+    for field in self.fields.values()
+                 ^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 372, in fields
+    for key, value in self.get_fields().items():
+                      ~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1103, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ~~~~~~~~~~~~~~~~^
+        source, info, model, depth
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1249, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1367, in build_unknown_field
+    raise ImproperlyConfigured(
+    ...<2 lines>...
+    )
+django.core.exceptions.ImproperlyConfigured: Field name `domain` is not valid for model `UserProfile` in `accounts.serializers.UserProfileSerializer`.
+ERROR 2025-04-29 08:10:42,822 basehttp "GET /api/users/ HTTP/1.1" 500 145518
+INFO 2025-04-29 08:11:12,950 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-29 08:11:16,627 autoreload Watching for file changes with StatReloader
+ERROR 2025-04-29 08:11:20,330 log Internal Server Error: /api/users/
+Traceback (most recent call last):
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\renderers.py", line 727, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\renderers.py", line 658, in get_context
+    raw_data_post_form = self.get_raw_data_form(data, view, 'POST', request)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\renderers.py", line 565, in get_raw_data_form
+    data = serializer.data.copy()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 571, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.get_initial()
+                 ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 420, in get_initial
+    field.field_name: field.get_initial()
+                      ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 421, in get_initial
+    for field in self.fields.values()
+                 ^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 372, in fields
+    for key, value in self.get_fields().items():
+                      ~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1103, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ~~~~~~~~~~~~~~~~^
+        source, info, model, depth
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1249, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1367, in build_unknown_field
+    raise ImproperlyConfigured(
+    ...<2 lines>...
+    )
+django.core.exceptions.ImproperlyConfigured: Field name `domain` is not valid for model `UserProfile` in `accounts.serializers.UserProfileSerializer`.
+ERROR 2025-04-29 08:11:20,418 basehttp "GET /api/users/ HTTP/1.1" 500 145576
+ERROR 2025-04-29 08:11:21,366 log Internal Server Error: /api/users/
+Traceback (most recent call last):
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\renderers.py", line 727, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\renderers.py", line 658, in get_context
+    raw_data_post_form = self.get_raw_data_form(data, view, 'POST', request)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\renderers.py", line 565, in get_raw_data_form
+    data = serializer.data.copy()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 571, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.get_initial()
+                 ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 420, in get_initial
+    field.field_name: field.get_initial()
+                      ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 421, in get_initial
+    for field in self.fields.values()
+                 ^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 372, in fields
+    for key, value in self.get_fields().items():
+                      ~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1103, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ~~~~~~~~~~~~~~~~^
+        source, info, model, depth
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1249, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1367, in build_unknown_field
+    raise ImproperlyConfigured(
+    ...<2 lines>...
+    )
+django.core.exceptions.ImproperlyConfigured: Field name `domain` is not valid for model `UserProfile` in `accounts.serializers.UserProfileSerializer`.
+ERROR 2025-04-29 08:11:21,402 basehttp "GET /api/users/ HTTP/1.1" 500 145576
+ERROR 2025-04-29 08:11:22,325 log Internal Server Error: /api/users/
+Traceback (most recent call last):
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\renderers.py", line 727, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\renderers.py", line 658, in get_context
+    raw_data_post_form = self.get_raw_data_form(data, view, 'POST', request)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\renderers.py", line 565, in get_raw_data_form
+    data = serializer.data.copy()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 571, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.get_initial()
+                 ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 420, in get_initial
+    field.field_name: field.get_initial()
+                      ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 421, in get_initial
+    for field in self.fields.values()
+                 ^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 372, in fields
+    for key, value in self.get_fields().items():
+                      ~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1103, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ~~~~~~~~~~~~~~~~^
+        source, info, model, depth
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1249, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1367, in build_unknown_field
+    raise ImproperlyConfigured(
+    ...<2 lines>...
+    )
+django.core.exceptions.ImproperlyConfigured: Field name `domain` is not valid for model `UserProfile` in `accounts.serializers.UserProfileSerializer`.
+ERROR 2025-04-29 08:11:22,385 basehttp "GET /api/users/ HTTP/1.1" 500 145576
+INFO 2025-04-29 08:11:40,798 autoreload Watching for file changes with StatReloader
+ERROR 2025-04-29 08:11:46,432 log Internal Server Error: /api/users/
+Traceback (most recent call last):
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\renderers.py", line 727, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\renderers.py", line 658, in get_context
+    raw_data_post_form = self.get_raw_data_form(data, view, 'POST', request)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\renderers.py", line 565, in get_raw_data_form
+    data = serializer.data.copy()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 571, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.get_initial()
+                 ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 420, in get_initial
+    field.field_name: field.get_initial()
+                      ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 421, in get_initial
+    for field in self.fields.values()
+                 ^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 372, in fields
+    for key, value in self.get_fields().items():
+                      ~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1103, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ~~~~~~~~~~~~~~~~^
+        source, info, model, depth
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1249, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1367, in build_unknown_field
+    raise ImproperlyConfigured(
+    ...<2 lines>...
+    )
+django.core.exceptions.ImproperlyConfigured: Field name `domain` is not valid for model `UserProfile` in `accounts.serializers.UserProfileSerializer`.
+ERROR 2025-04-29 08:11:46,491 basehttp "GET /api/users/ HTTP/1.1" 500 145576
+ERROR 2025-04-29 08:11:47,464 log Internal Server Error: /api/users/
+Traceback (most recent call last):
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\renderers.py", line 727, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\renderers.py", line 658, in get_context
+    raw_data_post_form = self.get_raw_data_form(data, view, 'POST', request)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\renderers.py", line 565, in get_raw_data_form
+    data = serializer.data.copy()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 571, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.get_initial()
+                 ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 420, in get_initial
+    field.field_name: field.get_initial()
+                      ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 421, in get_initial
+    for field in self.fields.values()
+                 ^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 372, in fields
+    for key, value in self.get_fields().items():
+                      ~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1103, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ~~~~~~~~~~~~~~~~^
+        source, info, model, depth
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1249, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1367, in build_unknown_field
+    raise ImproperlyConfigured(
+    ...<2 lines>...
+    )
+django.core.exceptions.ImproperlyConfigured: Field name `domain` is not valid for model `UserProfile` in `accounts.serializers.UserProfileSerializer`.
+ERROR 2025-04-29 08:11:47,513 basehttp "GET /api/users/ HTTP/1.1" 500 145576
+INFO 2025-04-29 08:11:47,680 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-29 08:11:50,408 autoreload Watching for file changes with StatReloader
+ERROR 2025-04-29 08:11:54,219 log Internal Server Error: /api/users/
+Traceback (most recent call last):
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\renderers.py", line 727, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\renderers.py", line 658, in get_context
+    raw_data_post_form = self.get_raw_data_form(data, view, 'POST', request)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\renderers.py", line 565, in get_raw_data_form
+    data = serializer.data.copy()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 571, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.get_initial()
+                 ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 420, in get_initial
+    field.field_name: field.get_initial()
+                      ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 421, in get_initial
+    for field in self.fields.values()
+                 ^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 372, in fields
+    for key, value in self.get_fields().items():
+                      ~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1103, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ~~~~~~~~~~~~~~~~^
+        source, info, model, depth
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1249, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1367, in build_unknown_field
+    raise ImproperlyConfigured(
+    ...<2 lines>...
+    )
+django.core.exceptions.ImproperlyConfigured: Field name `local_account` is not valid for model `UserProfile` in `accounts.serializers.UserProfileSerializer`.
+ERROR 2025-04-29 08:11:54,358 log Internal Server Error: /api/users/
+Traceback (most recent call last):
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\renderers.py", line 727, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\renderers.py", line 658, in get_context
+    raw_data_post_form = self.get_raw_data_form(data, view, 'POST', request)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\renderers.py", line 565, in get_raw_data_form
+    data = serializer.data.copy()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 571, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.get_initial()
+                 ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 420, in get_initial
+    field.field_name: field.get_initial()
+                      ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 421, in get_initial
+    for field in self.fields.values()
+                 ^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 372, in fields
+    for key, value in self.get_fields().items():
+                      ~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1103, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ~~~~~~~~~~~~~~~~^
+        source, info, model, depth
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1249, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1367, in build_unknown_field
+    raise ImproperlyConfigured(
+    ...<2 lines>...
+    )
+django.core.exceptions.ImproperlyConfigured: Field name `local_account` is not valid for model `UserProfile` in `accounts.serializers.UserProfileSerializer`.
+INFO 2025-04-29 08:11:54,360 basehttp - Broken pipe from ('127.0.0.1', 55988)
+ERROR 2025-04-29 08:11:54,397 basehttp "GET /api/users/ HTTP/1.1" 500 145708
+ERROR 2025-04-29 08:14:37,756 log Internal Server Error: /api/create-user/
+Traceback (most recent call last):
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py", line 134, in post
+    if serializer.is_valid():
+       ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 442, in run_validation
+    value = self.to_internal_value(data)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 499, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 442, in run_validation
+    value = self.to_internal_value(data)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 495, in to_internal_value
+    for field in fields:
+                 ^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 378, in _writable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 372, in fields
+    for key, value in self.get_fields().items():
+                      ~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1103, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ~~~~~~~~~~~~~~~~^
+        source, info, model, depth
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1249, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1367, in build_unknown_field
+    raise ImproperlyConfigured(
+    ...<2 lines>...
+    )
+django.core.exceptions.ImproperlyConfigured: Field name `local_account` is not valid for model `UserProfile` in `accounts.serializers.UserProfileSerializer`.
+ERROR 2025-04-29 08:14:37,883 basehttp "POST /api/create-user/ HTTP/1.1" 500 160197
+ERROR 2025-04-29 08:14:41,417 log Internal Server Error: /api/create-user/
+Traceback (most recent call last):
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py", line 134, in post
+    if serializer.is_valid():
+       ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 442, in run_validation
+    value = self.to_internal_value(data)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 499, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 442, in run_validation
+    value = self.to_internal_value(data)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 495, in to_internal_value
+    for field in fields:
+                 ^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 378, in _writable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 372, in fields
+    for key, value in self.get_fields().items():
+                      ~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1103, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ~~~~~~~~~~~~~~~~^
+        source, info, model, depth
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1249, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1367, in build_unknown_field
+    raise ImproperlyConfigured(
+    ...<2 lines>...
+    )
+django.core.exceptions.ImproperlyConfigured: Field name `local_account` is not valid for model `UserProfile` in `accounts.serializers.UserProfileSerializer`.
+ERROR 2025-04-29 08:14:41,860 basehttp "POST /api/create-user/ HTTP/1.1" 500 160197
+ERROR 2025-04-29 08:14:46,052 log Internal Server Error: /api/create-user/
+Traceback (most recent call last):
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py", line 134, in post
+    if serializer.is_valid():
+       ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 442, in run_validation
+    value = self.to_internal_value(data)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 499, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 442, in run_validation
+    value = self.to_internal_value(data)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 495, in to_internal_value
+    for field in fields:
+                 ^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 378, in _writable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 372, in fields
+    for key, value in self.get_fields().items():
+                      ~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1103, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ~~~~~~~~~~~~~~~~^
+        source, info, model, depth
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1249, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 1367, in build_unknown_field
+    raise ImproperlyConfigured(
+    ...<2 lines>...
+    )
+django.core.exceptions.ImproperlyConfigured: Field name `local_account` is not valid for model `UserProfile` in `accounts.serializers.UserProfileSerializer`.
+ERROR 2025-04-29 08:14:46,213 basehttp "POST /api/create-user/ HTTP/1.1" 500 160197
+INFO 2025-04-29 08:14:49,126 basehttp - Broken pipe from ('127.0.0.1', 56031)
+INFO 2025-04-29 08:15:49,282 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-29 08:15:54,068 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 08:16:00,491 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-29 08:16:02,966 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 08:16:24,663 basehttp "GET /api/users/ HTTP/1.1" 200 26274
+INFO 2025-04-29 08:16:27,945 basehttp "GET /api/users/ HTTP/1.1" 200 26274
+ERROR 2025-04-29 08:17:01,742 views Error creating user: ['SID must be exactly 10 alphanumeric characters.']
+WARNING 2025-04-29 08:17:01,743 log Bad Request: /api/create-user/
+WARNING 2025-04-29 08:17:01,743 basehttp "POST /api/create-user/ HTTP/1.1" 400 63
+ERROR 2025-04-29 08:17:02,778 views Error creating user: ['SID must be exactly 10 alphanumeric characters.']
+WARNING 2025-04-29 08:17:02,779 log Bad Request: /api/create-user/
+WARNING 2025-04-29 08:17:02,779 basehttp "POST /api/create-user/ HTTP/1.1" 400 63
+ERROR 2025-04-29 08:17:04,807 views Error creating user: ['SID must be exactly 10 alphanumeric characters.']
+WARNING 2025-04-29 08:17:04,808 log Bad Request: /api/create-user/
+WARNING 2025-04-29 08:17:04,808 basehttp "POST /api/create-user/ HTTP/1.1" 400 63
+INFO 2025-04-29 08:17:04,824 basehttp - Broken pipe from ('127.0.0.1', 56073)
+INFO 2025-04-29 08:17:21,558 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\manager.py changed, reloading.
+INFO 2025-04-29 08:17:23,480 autoreload Watching for file changes with StatReloader
+ERROR 2025-04-29 08:17:37,668 views Error creating user: name 'sid_validator' is not defined
+WARNING 2025-04-29 08:17:37,670 log Bad Request: /api/create-user/
+WARNING 2025-04-29 08:17:37,672 basehttp "POST /api/create-user/ HTTP/1.1" 400 47
+ERROR 2025-04-29 08:17:38,717 views Error creating user: name 'sid_validator' is not defined
+WARNING 2025-04-29 08:17:38,719 log Bad Request: /api/create-user/
+WARNING 2025-04-29 08:17:38,720 basehttp "POST /api/create-user/ HTTP/1.1" 400 47
+ERROR 2025-04-29 08:17:40,738 views Error creating user: name 'sid_validator' is not defined
+WARNING 2025-04-29 08:17:40,739 log Bad Request: /api/create-user/
+WARNING 2025-04-29 08:17:40,740 basehttp "POST /api/create-user/ HTTP/1.1" 400 47
+INFO 2025-04-29 08:17:40,775 basehttp - Broken pipe from ('127.0.0.1', 56089)
+ERROR 2025-04-29 08:19:02,754 views Error creating user: name 'sid_validator' is not defined
+WARNING 2025-04-29 08:19:02,755 log Bad Request: /api/create-user/
+WARNING 2025-04-29 08:19:02,756 basehttp "POST /api/create-user/ HTTP/1.1" 400 47
+ERROR 2025-04-29 08:19:03,794 views Error creating user: name 'sid_validator' is not defined
+WARNING 2025-04-29 08:19:03,795 log Bad Request: /api/create-user/
+WARNING 2025-04-29 08:19:03,796 basehttp "POST /api/create-user/ HTTP/1.1" 400 47
+ERROR 2025-04-29 08:19:05,810 views Error creating user: name 'sid_validator' is not defined
+WARNING 2025-04-29 08:19:05,811 log Bad Request: /api/create-user/
+WARNING 2025-04-29 08:19:05,811 basehttp "POST /api/create-user/ HTTP/1.1" 400 47
+INFO 2025-04-29 08:19:05,833 basehttp - Broken pipe from ('127.0.0.1', 56108)
+INFO 2025-04-29 08:19:22,097 basehttp "GET /api/users/ HTTP/1.1" 200 26274
+INFO 2025-04-29 08:19:45,378 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 08:21:26,945 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\models.py changed, reloading.
+INFO 2025-04-29 08:21:31,419 autoreload Watching for file changes with StatReloader
+ERROR 2025-04-29 08:22:26,083 views Error creating user: (1062, "Duplicate entry '1' for key 'accounts_userprofile.user_id'")
+WARNING 2025-04-29 08:22:26,085 log Bad Request: /api/create-user/
+WARNING 2025-04-29 08:22:26,086 basehttp "POST /api/create-user/ HTTP/1.1" 400 82
+WARNING 2025-04-29 08:22:27,186 log Bad Request: /api/create-user/
+WARNING 2025-04-29 08:22:27,247 basehttp "POST /api/create-user/ HTTP/1.1" 400 95
+WARNING 2025-04-29 08:22:29,391 log Bad Request: /api/create-user/
+WARNING 2025-04-29 08:22:29,392 basehttp "POST /api/create-user/ HTTP/1.1" 400 95
+INFO 2025-04-29 08:22:29,451 basehttp - Broken pipe from ('127.0.0.1', 56170)
+INFO 2025-04-29 08:23:44,747 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\manager.py changed, reloading.
+INFO 2025-04-29 08:23:53,097 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 08:24:06,348 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\manager.py changed, reloading.
+INFO 2025-04-29 08:24:11,100 autoreload Watching for file changes with StatReloader
+ERROR 2025-04-29 08:24:50,699 views Error creating user: (1062, "Duplicate entry '1' for key 'accounts_userprofile.user_id'")
+WARNING 2025-04-29 08:24:50,700 log Bad Request: /api/create-user/
+WARNING 2025-04-29 08:24:50,701 basehttp "POST /api/create-user/ HTTP/1.1" 400 82
+WARNING 2025-04-29 08:24:51,733 log Bad Request: /api/create-user/
+WARNING 2025-04-29 08:24:51,739 basehttp "POST /api/create-user/ HTTP/1.1" 400 95
+WARNING 2025-04-29 08:24:53,760 log Bad Request: /api/create-user/
+WARNING 2025-04-29 08:24:53,761 basehttp "POST /api/create-user/ HTTP/1.1" 400 95
+INFO 2025-04-29 08:24:53,778 basehttp - Broken pipe from ('127.0.0.1', 56219)
+INFO 2025-04-29 08:28:02,011 autoreload Watching for file changes with StatReloader
+ERROR 2025-04-29 08:30:42,772 views Error creating user: (1062, "Duplicate entry '1' for key 'accounts_userprofile.user_id'")
+WARNING 2025-04-29 08:30:42,773 log Bad Request: /api/create-user/
+WARNING 2025-04-29 08:30:42,774 basehttp "POST /api/create-user/ HTTP/1.1" 400 82
+INFO 2025-04-29 08:30:42,806 basehttp - Broken pipe from ('127.0.0.1', 56284)
+INFO 2025-04-29 08:31:31,111 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\migrations\0001_initial.py changed, reloading.
+INFO 2025-04-29 08:31:34,412 autoreload Watching for file changes with StatReloader
+ERROR 2025-04-29 08:32:50,977 views Error creating user: (1062, "Duplicate entry '1' for key 'accounts_userprofile.user_id'")
+WARNING 2025-04-29 08:32:50,979 log Bad Request: /api/create-user/
+WARNING 2025-04-29 08:32:50,980 basehttp "POST /api/create-user/ HTTP/1.1" 400 82
+INFO 2025-04-29 08:33:11,987 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 08:33:16,891 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-29 08:34:06,236 log Forbidden: /api/create-user/
+WARNING 2025-04-29 08:34:06,237 basehttp "POST /api/create-user/ HTTP/1.1" 403 58
+INFO 2025-04-29 08:34:06,264 basehttp - Broken pipe from ('127.0.0.1', 56327)
+INFO 2025-04-29 08:37:21,106 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\settings.py changed, reloading.
+INFO 2025-04-29 08:37:22,782 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 08:37:32,016 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\settings.py changed, reloading.
+INFO 2025-04-29 08:37:37,942 autoreload Watching for file changes with StatReloader
+ERROR 2025-04-29 08:38:00,279 views Error creating user: (1062, "Duplicate entry '1' for key 'accounts_userprofile.user_id'")
+WARNING 2025-04-29 08:38:00,280 log Bad Request: /api/create-user/
+WARNING 2025-04-29 08:38:00,281 basehttp "POST /api/create-user/ HTTP/1.1" 400 82
+INFO 2025-04-29 08:38:00,303 basehttp - Broken pipe from ('127.0.0.1', 56363)
+INFO 2025-04-29 08:39:11,495 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 08:39:15,019 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 08:39:43,178 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 08:39:46,121 autoreload Watching for file changes with StatReloader
+ERROR 2025-04-29 08:41:25,375 views Error creating user: name 'transaction' is not defined
+WARNING 2025-04-29 08:41:25,377 log Bad Request: /api/create-user/
+WARNING 2025-04-29 08:41:25,378 basehttp "POST /api/create-user/ HTTP/1.1" 400 45
+INFO 2025-04-29 08:41:25,412 basehttp - Broken pipe from ('127.0.0.1', 56401)
+INFO 2025-04-29 08:42:59,386 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 08:43:05,457 autoreload Watching for file changes with StatReloader
+ERROR 2025-04-29 08:43:33,262 views Error creating user: (1062, "Duplicate entry '2' for key 'accounts_userprofile.user_id'")
+WARNING 2025-04-29 08:43:33,264 log Bad Request: /api/create-user/
+WARNING 2025-04-29 08:43:33,265 basehttp "POST /api/create-user/ HTTP/1.1" 400 82
+ERROR 2025-04-29 08:43:35,916 views Error creating user: (1062, "Duplicate entry '3' for key 'accounts_userprofile.user_id'")
+WARNING 2025-04-29 08:43:35,917 log Bad Request: /api/create-user/
+WARNING 2025-04-29 08:43:35,919 basehttp "POST /api/create-user/ HTTP/1.1" 400 82
+ERROR 2025-04-29 08:43:39,681 views Error creating user: (1062, "Duplicate entry '4' for key 'accounts_userprofile.user_id'")
+WARNING 2025-04-29 08:43:39,699 log Bad Request: /api/create-user/
+WARNING 2025-04-29 08:43:39,703 basehttp "POST /api/create-user/ HTTP/1.1" 400 82
+INFO 2025-04-29 08:43:39,858 basehttp - Broken pipe from ('127.0.0.1', 56452)
+WARNING 2025-04-29 08:55:50,089 log Unauthorized: /o/token/
+WARNING 2025-04-29 08:55:50,090 basehttp "POST /o/token/ HTTP/1.1" 401 27
+INFO 2025-04-29 08:56:15,126 basehttp - Broken pipe from ('127.0.0.1', 56658)
+ERROR 2025-04-29 08:56:31,187 views Error creating user: (1062, "Duplicate entry '5' for key 'accounts_userprofile.user_id'")
+WARNING 2025-04-29 08:56:31,190 log Bad Request: /api/create-user/
+WARNING 2025-04-29 08:56:31,191 basehttp "POST /api/create-user/ HTTP/1.1" 400 82
+INFO 2025-04-29 08:56:31,250 basehttp - Broken pipe from ('127.0.0.1', 56667)
+INFO 2025-04-29 08:59:26,929 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 08:59:29,931 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 09:01:11,144 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\models.py changed, reloading.
+INFO 2025-04-29 09:01:17,946 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 09:02:27,562 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\signals.py changed, reloading.
+INFO 2025-04-29 09:02:33,219 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 09:03:28,134 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\signals.py changed, reloading.
+INFO 2025-04-29 09:03:31,348 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 09:05:28,082 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\signals.py changed, reloading.
+INFO 2025-04-29 09:05:30,746 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 09:05:44,881 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\signals.py changed, reloading.
+INFO 2025-04-29 09:05:48,346 autoreload Watching for file changes with StatReloader
+INFO 2025-04-29 09:05:58,849 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\signals.py changed, reloading.
+INFO 2025-04-29 09:06:01,323 autoreload Watching for file changes with StatReloader
+ERROR 2025-04-29 09:07:19,754 views Error creating user: (1062, "Duplicate entry '6' for key 'accounts_userprofile.user_id'")
+WARNING 2025-04-29 09:07:19,755 log Bad Request: /api/create-user/
+WARNING 2025-04-29 09:07:19,757 basehttp "POST /api/create-user/ HTTP/1.1" 400 82
+INFO 2025-04-29 09:07:19,789 basehttp - Broken pipe from ('127.0.0.1', 56799)
+INFO 2025-04-29 09:09:25,242 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-29 09:09:28,000 autoreload Watching for file changes with StatReloader
+ERROR 2025-04-29 09:10:41,301 views Error creating user: (1062, "Duplicate entry '7' for key 'accounts_userprofile.user_id'")
+WARNING 2025-04-29 09:10:41,303 log Bad Request: /api/create-user/
+WARNING 2025-04-29 09:10:41,304 basehttp "POST /api/create-user/ HTTP/1.1" 400 82
+INFO 2025-04-29 09:10:41,326 basehttp - Broken pipe from ('127.0.0.1', 56839)
+INFO 2025-04-30 04:05:41,873 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:10:47,990 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:22:44,950 basehttp "OPTIONS /api/login/ HTTP/1.1" 200 0
+INFO 2025-04-30 05:22:52,561 backends Invalid password for user with identifier: admin@cybexplore.org
+WARNING 2025-04-30 05:22:52,564 views Login failed due to validation errors: {'non_field_errors': [ErrorDetail(string='Invalid credentials', code='invalid')]}
+WARNING 2025-04-30 05:22:52,569 log Bad Request: /api/login/
+WARNING 2025-04-30 05:22:52,572 basehttp "POST /api/login/ HTTP/1.1" 400 85
+INFO 2025-04-30 05:23:19,988 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\permissions.py changed, reloading.
+INFO 2025-04-30 05:23:34,756 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:23:48,551 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\permissions.py changed, reloading.
+INFO 2025-04-30 05:23:56,774 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:24:05,558 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\permissions.py changed, reloading.
+INFO 2025-04-30 05:24:12,271 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:24:19,089 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\permissions.py changed, reloading.
+INFO 2025-04-30 05:24:24,993 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:26:11,445 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\permissions.py changed, reloading.
+INFO 2025-04-30 05:26:22,462 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:27:07,507 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-30 05:27:21,946 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:27:44,170 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\models.py changed, reloading.
+INFO 2025-04-30 05:27:56,747 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:28:26,688 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\signals.py changed, reloading.
+INFO 2025-04-30 05:28:33,050 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:28:59,039 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-30 05:29:13,071 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:29:47,380 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\notifications.py changed, reloading.
+INFO 2025-04-30 05:30:05,582 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:30:31,451 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\settings.py changed, reloading.
+INFO 2025-04-30 05:30:35,723 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:30:53,108 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\settings.py changed, reloading.
+INFO 2025-04-30 05:31:03,523 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:31:56,144 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\settings.py changed, reloading.
+INFO 2025-04-30 05:32:13,658 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:32:27,529 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\settings.py changed, reloading.
+INFO 2025-04-30 05:32:43,314 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:33:56,008 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\settings.py changed, reloading.
+INFO 2025-04-30 05:35:44,216 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:37:06,894 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\settings.py changed, reloading.
+INFO 2025-04-30 05:37:37,352 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:38:29,187 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\settings.py changed, reloading.
+INFO 2025-04-30 05:38:50,005 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:39:39,209 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\settings.py changed, reloading.
+INFO 2025-04-30 05:39:57,156 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:40:11,248 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\settings.py changed, reloading.
+INFO 2025-04-30 05:40:44,378 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:42:04,257 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\venv\Lib\site-packages\oauth2_provider\__init__.py changed, reloading.
+INFO 2025-04-30 05:42:11,855 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:42:36,789 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-30 05:42:39,687 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:47:39,531 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:51:51,917 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:55:19,868 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\settings.py changed, reloading.
+INFO 2025-04-30 05:55:25,208 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:56:51,642 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\settings.py changed, reloading.
+INFO 2025-04-30 05:57:01,638 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:57:25,166 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\settings.py changed, reloading.
+INFO 2025-04-30 05:57:27,486 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:58:03,845 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\urls.py changed, reloading.
+INFO 2025-04-30 05:58:05,926 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:58:15,128 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\urls.py changed, reloading.
+INFO 2025-04-30 05:58:18,546 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:58:23,661 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\urls.py changed, reloading.
+INFO 2025-04-30 05:58:27,065 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:58:34,993 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\urls.py changed, reloading.
+INFO 2025-04-30 05:58:39,733 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:58:52,122 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\urls.py changed, reloading.
+INFO 2025-04-30 05:58:55,455 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:59:06,660 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\urls.py changed, reloading.
+INFO 2025-04-30 05:59:11,246 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 05:59:20,277 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\urls.py changed, reloading.
+INFO 2025-04-30 05:59:24,225 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 06:00:35,958 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\models.py changed, reloading.
+INFO 2025-04-30 06:00:48,260 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 06:01:03,915 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\models.py changed, reloading.
+INFO 2025-04-30 06:01:10,173 autoreload Watching for file changes with StatReloader
+ERROR 2025-04-30 06:02:09,610 log Internal Server Error: /api/create-user/
+Traceback (most recent call last):
+  File "C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py", line 59, in post
+    if serializer.is_valid():
+       ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\venv\Lib\site-packages\rest_framework\serializers.py", line 225, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\venv\Lib\site-packages\rest_framework\serializers.py", line 444, in run_validation
+    value = self.to_internal_value(data)
+  File "C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\venv\Lib\site-packages\rest_framework\serializers.py", line 497, in to_internal_value
+    for field in fields:
+                 ^^^^^^
+  File "C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\venv\Lib\site-packages\rest_framework\serializers.py", line 380, in _writable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\venv\Lib\site-packages\rest_framework\serializers.py", line 374, in fields
+    for key, value in self.get_fields().items():
+                      ~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\venv\Lib\site-packages\rest_framework\serializers.py", line 1105, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ~~~~~~~~~~~~~~~~^
+        source, info, model, depth
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\venv\Lib\site-packages\rest_framework\serializers.py", line 1251, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\venv\Lib\site-packages\rest_framework\serializers.py", line 1369, in build_unknown_field
+    raise ImproperlyConfigured(
+    ...<2 lines>...
+    )
+django.core.exceptions.ImproperlyConfigured: Field name `description` is not valid for model `CustomUser` in `accounts.serializers.CustomUserSerializer`.
+ERROR 2025-04-30 06:02:09,677 basehttp "POST /api/create-user/ HTTP/1.1" 500 157753
+INFO 2025-04-30 06:02:12,086 basehttp - Broken pipe from ('127.0.0.1', 38788)
+INFO 2025-04-30 06:04:27,445 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-30 06:04:35,719 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 06:04:46,989 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-30 06:04:51,837 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 06:05:05,135 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-30 06:05:16,488 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-30 06:06:40,929 log Bad Request: /api/create-user/
+WARNING 2025-04-30 06:06:40,930 basehttp "POST /api/create-user/ HTTP/1.1" 400 136
+INFO 2025-04-30 06:06:40,954 basehttp - Broken pipe from ('127.0.0.1', 38846)
+ERROR 2025-04-30 06:07:18,203 views Error creating user: (1062, "Duplicate entry '1' for key 'accounts_userprofile.user_id'")
+WARNING 2025-04-30 06:07:18,249 log Bad Request: /api/create-user/
+WARNING 2025-04-30 06:07:18,263 basehttp "POST /api/create-user/ HTTP/1.1" 400 118
+INFO 2025-04-30 06:07:18,384 basehttp - Broken pipe from ('127.0.0.1', 38860)
+INFO 2025-04-30 06:09:00,282 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\signals.py changed, reloading.
+INFO 2025-04-30 06:09:06,964 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 06:09:29,323 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-04-30 06:09:34,981 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 06:09:51,822 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-30 06:10:02,914 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 06:10:25,388 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-30 06:10:32,374 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 06:10:48,629 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-30 06:10:54,068 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 06:11:16,895 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-04-30 06:11:20,075 autoreload Watching for file changes with StatReloader
+INFO 2025-04-30 06:11:59,226 views Account creation email sent to admin@cybexplore.org for user S-1-5-21-550850760-2695552310-605195006-1001
+INFO 2025-04-30 06:11:59,229 basehttp "POST /api/create-user/ HTTP/1.1" 201 179
+INFO 2025-04-30 06:12:05,548 basehttp "POST /o/token/ HTTP/1.1" 200 120
+INFO 2025-04-30 06:12:05,670 basehttp "POST /api/server-info/ HTTP/1.1" 201 31
+INFO 2025-04-30 06:12:05,860 basehttp "POST /api/firewall-status/ HTTP/1.1" 201 35
+INFO 2025-04-30 06:14:01,833 basehttp "OPTIONS /api/password/reset/confirm/ HTTP/1.1" 200 0
+INFO 2025-04-30 06:14:05,808 views Password reset confirmation email sent to admin@cybexplore.org
+INFO 2025-04-30 06:14:05,810 basehttp "POST /api/password/reset/confirm/ HTTP/1.1" 200 49
+INFO 2025-04-30 06:14:49,477 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:14:49,495 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:14:49,511 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:14:49,535 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:14:49,560 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:14:49,564 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:14:49,568 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:14:49,573 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:14:51,641 backends Invalid password for user with identifier: admin@cybexplore.org
+WARNING 2025-04-30 06:14:51,642 views Login failed due to validation errors: {'non_field_errors': [ErrorDetail(string='Invalid credentials', code='invalid')]}
+WARNING 2025-04-30 06:14:51,646 log Bad Request: /api/login/
+WARNING 2025-04-30 06:14:51,648 basehttp "POST /api/login/ HTTP/1.1" 400 85
+INFO 2025-04-30 06:14:57,812 backends User S-1-5-21-550850760-2695552310-605195006-1001 authenticated successfully from IP: 127.0.0.1
+INFO 2025-04-30 06:15:00,215 views OAuth application 'React Frontend' created successfully.
+INFO 2025-04-30 06:15:00,238 views User S-1-5-21-550850760-2695552310-605195006-1001 logged in successfully.
+INFO 2025-04-30 06:15:00,254 basehttp "POST /api/login/ HTTP/1.1" 200 1139
+INFO 2025-04-30 06:16:05,710 backends User S-1-5-21-550850760-2695552310-605195006-1001 authenticated successfully from IP: 127.0.0.1
+ERROR 2025-04-30 06:16:05,763 views Error generating token for user S-1-5-21-550850760-2695552310-605195006-1001: (1062, "Duplicate entry 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855' for key 'oauth2_provider_accesstoken.oauth2_provider_accesstoken_token_checksum_85319a26_uniq'")
+ERROR 2025-04-30 06:16:05,765 log Internal Server Error: /api/login/
+ERROR 2025-04-30 06:16:05,766 basehttp "POST /api/login/ HTTP/1.1" 500 71
+INFO 2025-04-30 06:16:28,364 backends Invalid password for user with identifier: admin@cybexplore.org
+WARNING 2025-04-30 06:16:28,365 views Login failed due to validation errors: {'non_field_errors': [ErrorDetail(string='Invalid credentials', code='invalid')]}
+WARNING 2025-04-30 06:16:28,366 log Bad Request: /api/login/
+WARNING 2025-04-30 06:16:28,367 basehttp "POST /api/login/ HTTP/1.1" 400 85
+INFO 2025-04-30 06:16:46,910 backends User S-1-5-21-550850760-2695552310-605195006-1001 authenticated successfully from IP: 127.0.0.1
+ERROR 2025-04-30 06:16:46,960 views Error generating token for user S-1-5-21-550850760-2695552310-605195006-1001: (1062, "Duplicate entry 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855' for key 'oauth2_provider_accesstoken.oauth2_provider_accesstoken_token_checksum_85319a26_uniq'")
+ERROR 2025-04-30 06:16:46,964 log Internal Server Error: /api/login/
+ERROR 2025-04-30 06:16:46,966 basehttp "POST /api/login/ HTTP/1.1" 500 71
+INFO 2025-04-30 06:16:53,021 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:16:53,355 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:16:53,821 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:16:53,825 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:16:59,054 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:16:59,060 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:18:08,475 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:18:08,483 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:21:22,502 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:21:22,508 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:21:22,509 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:21:22,509 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:22:03,579 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:22:03,582 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:26:57,957 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:26:57,965 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:28:31,751 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:28:32,097 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:33:33,258 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:33:33,714 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:37:00,776 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:37:01,170 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:37:50,106 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:37:50,117 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:42:21,785 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:42:21,832 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:42:21,868 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:42:21,897 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:42:27,158 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:42:27,160 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:42:27,165 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:42:27,171 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:48:21,206 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-04-30 06:48:21,254 basehttp "POST /api/events/ HTTP/1.1" 201 34

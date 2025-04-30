@@ -1,31 +1,34 @@
-# accounts/serializers.py
 from rest_framework import serializers
-from rest_framework import serializers
-from django.contrib.auth import password_validation
-
-from accounts.models import (
-    CustomUser, UserProfile, SecurityEvent, ServerInfo,
-    FirewallStatus
-)
-from oauth2_provider.models import Application
-from django.contrib.auth import authenticate
+from django.contrib.auth import password_validation, authenticate
+from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import Group
-from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from django.utils.encoding import force_bytes, force_str
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.encoding import force_str
+from django.utils.http import urlsafe_base64_decode
+from django.db import transaction
+import logging
+from accounts.models import CustomUser, UserProfile, AuditLog, PasswordHistory
+from oauth2_provider.models import Application
 
+logger = logging.getLogger(__name__)
 
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
         fields = [
-            'client_id', 'client_secret', 'image', 'account_expires', 'enabled',
+            'user', 'image', 'client_id', 'client_secret', 'account_expires', 'enabled',
             'password_changeable_date', 'password_expires', 'user_may_change_password',
             'password_required', 'password_last_set', 'last_logon', 'principal_source',
-            'object_class', 'time_zone', 'preferences', 'last_login_ip',
-            'last_password_change', 'logon_count', 'locked_out', 'lockout_time',
-            'department', 'job_title', 'local_groups'
+            'object_class', 'time_zone', 'preferences', 'last_login_ip', 'last_password_change',
+            'logon_count', 'locked_out', 'lockout_time', 'department', 'job_title', 'local_groups',
+            'description'
         ]
+        extra_kwargs = {
+            'user': {'required': False},
+            'image': {'required': False},
+            'client_id': {'required': False},
+            'client_secret': {'required': False},
+        }
 
 class CustomUserSerializer(serializers.ModelSerializer):
     profile = UserProfileSerializer(required=False)
@@ -33,10 +36,9 @@ class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = [
-            'sid', 'email', 'password', 'password_changed', 'full_name',
-            'sid_type', 'domain', 'local_account', 'is_shutting_down',
-            'account_type', 'status', 'caption', 'description',
-            'created_at', 'updated_at', 'profile'
+            'sid', 'email', 'password', 'password_changed', 'full_name', 'email_verified',
+            'sid_type', 'domain', 'local_account', 'is_shutting_down', 'account_type',
+            'status', 'caption', 'created_at', 'updated_at', 'profile'
         ]
         extra_kwargs = {
             'password': {'write_only': True},
@@ -44,36 +46,69 @@ class CustomUserSerializer(serializers.ModelSerializer):
             'sid': {'required': True},
         }
 
+    @transaction.atomic
     def create(self, validated_data):
+        """Create a user with associated profile and OAuth2 application."""
         profile_data = validated_data.pop('profile', {})
-        try:
-            user = CustomUser.objects.create_user(
-                sid=validated_data['sid'],
-                email=validated_data['email'],
-                password=validated_data['password'],
-                **{k: v for k, v in validated_data.items() if k not in ['sid', 'email', 'password']}
+        password = validated_data.pop('password')
+        user = self._create_user(validated_data, password)
+        self._create_user_profile(user, profile_data)
+        return user
+
+    def _create_user(self, validated_data, password):
+        """Create and save the CustomUser instance."""
+        logger.debug(f"Creating CustomUser with SID: {validated_data.get('sid')}")
+        return CustomUser.objects.create_user(password=password, **validated_data)
+
+    def _create_user_profile(self, user, profile_data):
+        """Create or update the UserProfile instance if it doesn't exist."""
+        if not profile_data:
+            logger.debug(f"No profile data provided for user {user.sid}, skipping profile creation")
+            return
+
+        # Check if UserProfile already exists to avoid duplicate creation
+        if hasattr(user, 'profile') and user.profile:
+            logger.debug(f"UserProfile already exists for user {user.sid}, updating instead")
+            profile = user.profile
+            for key, value in profile_data.items():
+                setattr(profile, key, value)
+            profile.save()
+        else:
+            logger.debug(f"Creating UserProfile for user {user.sid}")
+            profile = UserProfile.objects.create(
+                user=user,
+                client_id=profile_data.get('client_id', ''),
+                client_secret=profile_data.get('client_secret', ''),
+                account_expires=profile_data.get('account_expires'),
+                enabled=profile_data.get('enabled', True),
+                password_changeable_date=profile_data.get('password_changeable_date'),
+                password_expires=profile_data.get('password_expires'),
+                user_may_change_password=profile_data.get('user_may_change_password', True),
+                password_required=profile_data.get('password_required', True),
+                password_last_set=profile_data.get('password_last_set'),
+                last_logon=profile_data.get('last_logon'),
+                principal_source=profile_data.get('principal_source', 'Local'),
+                object_class=profile_data.get('object_class', 'User'),
+                time_zone=profile_data.get('time_zone', ''),
+                preferences=profile_data.get('preferences', {}),
+                last_login_ip=profile_data.get('last_login_ip'),
+                last_password_change=profile_data.get('last_password_change'),
+                logon_count=profile_data.get('logon_count', 0),
+                locked_out=profile_data.get('locked_out', False),
+                lockout_time=profile_data.get('lockout_time'),
+                department=profile_data.get('department', ''),
+                job_title=profile_data.get('job_title', ''),
+                local_groups=profile_data.get('local_groups', []),
+                description=profile_data.get('description', '')
             )
-        except Exception as e:
-            raise serializers.ValidationError({"error": str(e)})
-        
+        self._create_oauth_application(user, profile_data)
+
+    def _create_oauth_application(self, user, profile_data):
+        """Create or update an OAuth2 Application for the user."""
         client_id = profile_data.get('client_id')
         client_secret = profile_data.get('client_secret')
         if client_id and client_secret:
-            # Check if UserProfile already exists
-            if hasattr(user, 'profile') and user.profile:
-                # Update existing UserProfile
-                user.profile.client_id = client_id
-                user.profile.client_secret = client_secret
-                user.profile.save()
-            else:
-                # Create new UserProfile
-                UserProfile.objects.create(
-                    user=user,
-                    client_id=client_id,
-                    client_secret=client_secret
-                )
-
-            # Create or update OAuth2 Application
+            logger.debug(f"Creating/updating OAuth2 Application for user {user.sid}")
             Application.objects.update_or_create(
                 user=user,
                 defaults={
@@ -84,261 +119,115 @@ class CustomUserSerializer(serializers.ModelSerializer):
                     'name': f"Client for {user.sid}"
                 }
             )
-        return user
-    
-
-# Generate GroupSerializer
 
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
         fields = '__all__'
-        extra_kwargs = {
-            'name': {'required': True},
-            'description': {'required': False},
-        }
-
 
 class PasswordChangeSerializer(serializers.Serializer):
-    """Secure password change serializer with comprehensive validation."""
-    old_password = serializers.CharField(
-        write_only=True,
-        required=True,
-        style={'input_type': 'password'},
-        trim_whitespace=True  # Use trim_whitespace=True for better handling of user input
-    )
-    new_password = serializers.CharField(
-        write_only=True,
-        required=True,
-        style={'input_type': 'password'},
-        trim_whitespace=True,  # Updated to True for consistent handling
-        min_length=12  # Enforce minimum length for stronger password security
-    )
-    confirm_password = serializers.CharField(
-        write_only=True,
-        required=True,
-        style={'input_type': 'password'},
-        trim_whitespace=True  # Updated to True for consistent handling
-    )
-
-    def validate_new_password(self, value):
-        """
-        Validate the new password against Django's password validation framework.
-        Ensures compliance with strong password policies.
-        """
-        try:
-            password_validation.validate_password(
-                value, 
-                user=self.context['request'].user
-            )
-        except Exception as e:
-            raise serializers.ValidationError(e.messages)  # Directly raise validation errors
-        return value
+    old_password = serializers.CharField(write_only=True, style={'input_type': 'password'})
+    new_password = serializers.CharField(write_only=True, style={'input_type': 'password'})
+    confirm_password = serializers.CharField(write_only=True, style={'input_type': 'password'})
 
     def validate(self, data):
-        """
-        Cross-field validation to ensure coherence among fields.
-        """
-        if data['new_password'] != data['confirm_password']:
-            raise serializers.ValidationError({
-                'confirm_password': 'Passwords do not match.'
-            })
-
-        if data['old_password'] == data['new_password']:
-            raise serializers.ValidationError({
-                'new_password': 'New password must be different from the old password.'
-            })
-
-        # Verify the old password is correct
         user = self.context['request'].user
-        if not user.check_password(data.get('old_password')):
-            raise serializers.ValidationError({
-                'old_password': 'Incorrect current password.'
-            })
+        if hasattr(user, 'profile') and not user.profile.user_may_change_password:
+            raise serializers.ValidationError({'non_field_errors': 'Password changes are not allowed for this user'})
+        old_password = data.get('old_password')
+        new_password = data.get('new_password')
+        confirm_password = data.get('confirm_password')
+
+        if not user.check_password(old_password):
+            raise serializers.ValidationError({'old_password': 'Old password is incorrect'})
+        if new_password != confirm_password:
+            raise serializers.ValidationError({'confirm_password': 'New passwords do not match'})
+        password_validation.validate_password(new_password, user)
+
+        old_passwords = PasswordHistory.objects.filter(user=user).order_by('-changed_at')[:5]
+        for history in old_passwords:
+            if check_password(new_password, history.password):
+                raise serializers.ValidationError({'new_password': 'You have used this password before.'})
 
         return data
 
+    def save(self, **kwargs):
+        user = self.context['request'].user
+        new_password = self.validated_data['new_password']
+        user.set_password(new_password)
+        user.save()
+        PasswordHistory.objects.create(user=user, password=user.password)
 
 class LoginSerializer(serializers.Serializer):
-    """Custom Login serializer using sid or email address and password to login."""
-    identifier = serializers.CharField(
-        required=True,
-        help_text="SID or email address.",
-        label="SID or email address"
-    )
-    password = serializers.CharField(required=True, write_only=True)
+    identifier = serializers.CharField()
+    password = serializers.CharField(write_only=True)
 
-    def validate(self, attrs):
-        identifier = attrs.get('identifier')
-        password = attrs.get('password')
-        
-        # Ensure request context is available
+    def validate(self, data):
+        identifier = data.get('identifier')
+        password = data.get('password')
         request = self.context.get('request')
-        if not request:
-            raise serializers.ValidationError("Request context is required for authentication")
 
-        # Authenticate the user using the custom backend
         user = authenticate(request=request, identifier=identifier, password=password)
-        
         if not user:
-            raise serializers.ValidationError({"non_field_errors": "Invalid credentials"})
+            raise serializers.ValidationError({'non_field_errors': 'Invalid credentials'})
         if not user.is_active:
-            raise serializers.ValidationError({"non_field_errors": "Account is inactive"})
+            raise serializers.ValidationError({'non_field_errors': 'This account is inactive'})
         if hasattr(user, 'profile') and user.profile.locked_out:
-            raise serializers.ValidationError({"non_field_errors": "Account is locked out"})
-        
-        attrs['user'] = user
-        return attrs
+            raise serializers.ValidationError({'non_field_errors': 'This account is locked out'})
 
+        data['user'] = user
+        return data
 
 class PasswordResetRequestSerializer(serializers.Serializer):
-    identifier = serializers.CharField(required=True, help_text="SID or email of the user")
+    identifier = serializers.CharField()
 
     def validate_identifier(self, value):
         user = CustomUser.objects.filter(sid=value).first() or CustomUser.objects.filter(email__iexact=value).first()
         if not user:
-            raise serializers.ValidationError("No user found with this SID or email")
+            raise serializers.ValidationError("No user found with this SID or email.")
         if not user.is_active:
-            raise serializers.ValidationError("This account is inactive")
+            raise serializers.ValidationError("This account is inactive.")
         if hasattr(user, 'profile') and user.profile.locked_out:
-            raise serializers.ValidationError("This account is locked out")
+            raise serializers.ValidationError("This account is locked out.")
         self.context['user'] = user
         return value
 
-
 class PasswordResetConfirmSerializer(serializers.Serializer):
-    """Serializer for validating password reset confirmation inputs."""
     uidb64 = serializers.CharField()
     token = serializers.CharField()
     new_password = serializers.CharField(write_only=True)
     confirm_password = serializers.CharField(write_only=True)
 
     def validate(self, data):
-        """
-        Validate the uidb64 and token provided in the request.
-        """
-        # Validate that new_password matches confirm_password
-        new_password = data.get("new_password")
-        confirm_password = data.get("confirm_password")
+        try:
+            uid = force_str(urlsafe_base64_decode(data.get('uidb64')))
+            user = CustomUser.objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, CustomUser.DoesNotExist):
+            raise serializers.ValidationError({'uidb64': 'Invalid UID'})
 
-        if new_password != confirm_password:
-            raise serializers.ValidationError(
-                {"confirm_password": "Passwords do not match."}
-            )
+        if not default_token_generator.check_token(user, data.get('token')):
+            raise serializers.ValidationError({'token': 'Invalid or expired token'})
+        if data.get('new_password') != data.get('confirm_password'):
+            raise serializers.ValidationError({'confirm_password': 'Passwords do not match'})
+        if user.check_password(data.get('new_password')):
+            raise serializers.ValidationError({'new_password': 'New password must be different from the old one'})
+        password_validation.validate_password(data.get('new_password'), user)
 
-        # Optionally enforce additional password rules (e.g., minimum length)
-        if len(new_password) < 8:
-            raise serializers.ValidationError(
-                {"new_password": "Password must be at least 8 characters long."}
-            )
-
+        self.context['user'] = user
         return data
-    
-        # uidb64 = data.get('uidb64')
-        # token = data.get('token')
-        # new_password = data.get('new_password')
-        # confirm_password = data.get('confirm_password')
 
-        # # Decode UID and fetch user
-        # try:
-        #     uid = force_str(urlsafe_base64_decode(uidb64))
-        #     user = CustomUser.objects.get(pk=uid)
-        # except (TypeError, ValueError, OverflowError, CustomUser.DoesNotExist):
-        #     raise serializers.ValidationError({"uidb64": "Invalid user ID"})
-
-        # # Validate token
-        # token_generator = PasswordResetTokenGenerator()
-        # if not token_generator.check_token(user, token):
-        #     raise serializers.ValidationError({"token": "Invalid or expired token"})
-
-        # # Validate new password
-        # if len(new_password) < 8:
-        #     raise serializers.ValidationError({"new_password": "Password must be at least 8 characters long"})
-        # if new_password != confirm_password:
-        #     raise serializers.ValidationError({"confirm_password": "New password and confirmation password do not match"})
-        # if user.check_password(new_password):
-        #     raise serializers.ValidationError({"new_password": "New password must differ from old password"})
-
-        # data['user'] = user
-        # return data
-    
-
-# class ServerInfoSerializer(serializers.ModelSerializer):
-#     client = CustomUserSerializer()
-
-#     class Meta:
-#         model = ServerInfo
-#         fields = ['client', 'machine_name', 'os_version', 'processor_count', 'timestamp', 'is_64bit']
-
-#     def validate(self, data):
-#         if not data.get('client') or not data['client'].get('sid'):
-#             raise serializers.ValidationError("Client SID is required.")
-#         return data
-
-class ServerInfoSerializer(serializers.ModelSerializer):
-    client = serializers.CharField(source='client.sid')
-
-    class Meta:
-        model = ServerInfo
-        fields = ['client', 'machine_name', 'os_version', 'processor_count', 'timestamp', 'is_64bit']
+class EmailVerificationSerializer(serializers.Serializer):
+    uidb64 = serializers.CharField()
+    token = serializers.CharField()
 
     def validate(self, data):
-        if not data.get('client'):
-            raise serializers.ValidationError("Client SID is required.")
+        try:
+            uid = force_str(urlsafe_base64_decode(data.get('uidb64')))
+            user = CustomUser.objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, CustomUser.DoesNotExist):
+            raise serializers.ValidationError({'uidb64': 'Invalid UID'})
+        if not default_token_generator.check_token(user, data.get('token')):
+            raise serializers.ValidationError({'token': 'Invalid or expired token'})
+
+        self.context['user'] = user
         return data
-
-# class SecurityEventSerializer(serializers.ModelSerializer):
-#     client = CustomUserSerializer()
-
-#     class Meta:
-#         model = SecurityEvent
-#         fields = ['client', 'event_id', 'time_created', 'description', 'source', 'logon_type', 
-#                   'failure_reason', 'target_account', 'group_name', 'privilege_name', 
-#                   'process_name', 'service_name']
-
-#     def validate(self, data):
-#         if not data.get('client') or not data['client'].get('sid'):
-#             raise serializers.ValidationError("Client SID is required.")
-#         return data
-
-class SecurityEventSerializer(serializers.ModelSerializer):
-    client = serializers.CharField(source='client.sid')
-
-    class Meta:
-        model = SecurityEvent
-        fields = [
-            'client', 'event_id', 'time_created', 'description', 'source', 'logon_type',
-            'failure_reason', 'target_account', 'group_name', 'privilege_name',
-            'process_name', 'service_name'
-        ]
-
-    def validate(self, data):
-        if not data.get('client'):
-            raise serializers.ValidationError("Client SID is required.")
-        return data
-    
-# class FirewallStatusSerializer(serializers.ModelSerializer):
-    client = CustomUserSerializer()
-
-    class Meta:
-        model = FirewallStatus
-        fields = ['client', 'is_enabled', 'profile', 'timestamp']
-
-    def validate(self, data):
-        if not data.get('client') or not data['client'].get('sid'):
-            raise serializers.ValidationError("Client SID is required.")
-        return data
-
-class FirewallStatusSerializer(serializers.ModelSerializer):
-    client = serializers.CharField(source='client.sid')
-
-    class Meta:
-        model = FirewallStatus
-        fields = ['client', 'is_enabled', 'profile', 'timestamp']
-
-    def validate(self, data):
-        if not data.get('client'):
-            raise serializers.ValidationError("Client SID is required.")
-        return data
-
-

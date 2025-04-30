@@ -1,12 +1,10 @@
-# accounts/models.py
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, PermissionsMixin
 from django.core.validators import RegexValidator
-from django.utils import timezone
-
+from django.core.exceptions import ValidationError
 from accounts.manager import CustomUserManager
 
-class CustomUser(AbstractUser):
+class CustomUser(AbstractUser, PermissionsMixin):
     """Custom User Model for Windows Security Management System."""
     username = None
     first_name = None
@@ -23,6 +21,7 @@ class CustomUser(AbstractUser):
         null=False,
         help_text="User's email address (required for credentials delivery)"
     )
+    email_verified = models.BooleanField(default=False)
     sid = models.CharField(
         max_length=50,
         unique=True,
@@ -35,7 +34,6 @@ class CustomUser(AbstractUser):
         ],
         help_text="Security Identifier (SID) from Windows"
     )
-    
     sid_type = models.CharField(max_length=10, blank=True, null=True, help_text="Type of SID (e.g., '1' for User)")
     domain = models.CharField(max_length=255, blank=True, null=True, help_text="Domain of the user account")
     local_account = models.BooleanField(default=False, help_text="Is this a local account?")
@@ -43,7 +41,6 @@ class CustomUser(AbstractUser):
     account_type = models.CharField(max_length=50, blank=True, null=True, help_text="Account type (e.g., '512' for Normal)")
     status = models.CharField(max_length=50, blank=True, null=True, help_text="Account status (e.g., 'OK', 'Degraded')")
     caption = models.CharField(max_length=255, blank=True, null=True, help_text="Caption from Win32_UserAccount")
-    description = models.TextField(blank=True, null=True, help_text="Description of the user account")
     created_at = models.DateTimeField(auto_now_add=True, help_text="When the account was created")
     updated_at = models.DateTimeField(auto_now=True, help_text="When the account was last updated")
 
@@ -69,7 +66,7 @@ class UserProfile(models.Model):
         help_text="Profile image for the user"
     )
     client_id = models.CharField(
-        max_length=100, unique=True, blank=True, null=True, help_text="OAuth2 Client ID for this user"
+        max_length=100, unique=True, blank=True, null=True, db_index=True, help_text="OAuth2 Client ID for this user"
     )
     client_secret = models.CharField(
         max_length=100, blank=True, null=True, help_text="OAuth2 Client Secret"
@@ -94,11 +91,26 @@ class UserProfile(models.Model):
     department = models.CharField(max_length=100, blank=True, null=True)
     job_title = models.CharField(max_length=100, blank=True, null=True)
     local_groups = models.JSONField(default=list, blank=True, null=True)
+    description = models.TextField(blank=True, null=True, help_text="Description of the user account")
 
     def __str__(self):
         return f"Profile for {self.user.sid}"
 
+    @staticmethod
+    def validate_preferences(value):
+        if not isinstance(value, dict):
+            raise ValidationError("Preferences must be a dictionary")
+
+    @staticmethod
+    def validate_local_groups(value):
+        if not isinstance(value, list):
+            raise ValidationError("Local groups must be a list")
+
     def sync_from_ad(self, ad_data):
+        """Sync user profile data from Active Directory."""
+        required_keys = ['description', 'enabled']
+        if not all(key in ad_data for key in required_keys):
+            raise ValueError("Missing required AD data keys")
         self.description = ad_data.get('description')
         self.account_expires = ad_data.get('account_expires')
         self.enabled = ad_data.get('enabled', True)
@@ -113,6 +125,10 @@ class UserProfile(models.Model):
         self.save()
 
     def sync_from_local(self, local_data):
+        """Sync user profile data from local source."""
+        required_keys = ['description', 'password_required']
+        if not all(key in local_data for key in required_keys):
+            raise ValueError("Missing required local data keys")
         self.description = local_data.get('description')
         self.password_expires = local_data.get('password_expires')
         self.user_may_change_password = local_data.get('user_may_change_password', True)
@@ -124,94 +140,16 @@ class UserProfile(models.Model):
         self.local_groups = local_data.get('local_groups', [])
         self.save()
 
-
-# ###### START ###### #
-
-class ServerInfo(models.Model):
-    client = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='server_info')
-    machine_name = models.CharField(max_length=255)
-    os_version = models.CharField(max_length=100)
-    processor_count = models.IntegerField()
-    timestamp = models.DateTimeField()
-    is_64bit = models.BooleanField()
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"ServerInfo for {self.client.sid} at {self.timestamp}"
-
-class SecurityEvent(models.Model):
-    client = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='security_events')
-    event_id = models.IntegerField()
-    time_created = models.DateTimeField()
-    description = models.TextField()
-    source = models.CharField(max_length=50, default="Security")  # E.g., Security, Defender, Firewall
-    logon_type = models.CharField(max_length=50, null=True, blank=True)
-    failure_reason = models.CharField(max_length=255, null=True, blank=True)
-    target_account = models.CharField(max_length=255, null=True, blank=True)
-    group_name = models.CharField(max_length=255, null=True, blank=True)
-    privilege_name = models.CharField(max_length=255, null=True, blank=True)
-    process_name = models.CharField(max_length=255, null=True, blank=True)
-    service_name = models.CharField(max_length=255, null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"Event {self.event_id} for {self.client.sid} at {self.time_created}"
-
-class FirewallStatus(models.Model):
-    client = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='firewall_status')
-    is_enabled = models.BooleanField()
-    profile = models.CharField(max_length=50)
-    timestamp = models.DateTimeField()
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"Firewall status for {self.client.sid} at {self.timestamp}"
-
-# ##### END ###### #
-
-class SystemUserAccount(models.Model):
-    """This models use to store the WinUserAccount object."""
-    system_user_account = models.ForeignKey(
-        CustomUser, 
-        on_delete=models.CASCADE, 
-        related_name="accounts"
-    )
-    account_type = models.CharField(max_length=50, blank=True, null=True, help_text="Account type (e.g., '512' for Normal)")
-    caption = models.CharField(max_length=255, blank=True, null=True, help_text="Caption from Win32_UserAccount")
-    domain = models.CharField(max_length=255, blank=True, null=True, help_text="Domain of the user account")
-    sid = models.CharField(
-        max_length=50,
-        unique=True,
-        db_index=True,
-        validators=[
-            RegexValidator(
-                regex=r'^S-1-5-21-\d+-\d+-\d+-\d+$',
-                message="Invalid SID format. Must match Windows SID pattern (e.g., S-1-5-21-<domain>-<RID>).",
-            )
-        ],
-        help_text="Security Identifier (SID) from Windows"
-    )
-    full_name = models.CharField(max_length=255, blank=True, null=True, help_text="Full name of the user")
-    name = models.CharField(max_length=255, blank=True, null=True, help_text="name of the user")
-    is_local_account = models.BooleanField(default=False, help_text="Indicates if this is a local account") 
-
-class LoginActivity(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="login_logs")
-    login_time = models.DateTimeField(auto_now_add=True)
-    logout_time = models.DateTimeField(null=True, blank=True)
+class AuditLog(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    action = models.CharField(max_length=255)
     ip_address = models.GenericIPAddressField(null=True, blank=True)
-    status = models.CharField(max_length=20, choices=[('success', 'Success'), ('failed', 'Failed')])
-
-    def __str__(self):
-        return f"LoginActivity for {self.user.sid} at {self.login_time}"
-
-class NotificationsLog(models.Model):
-    recipient = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="notifications")
-    email = models.EmailField()
-    subject = models.CharField(max_length=255)
-    body = models.TextField()
+    user_agent = models.TextField(null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return f"Notification to {self.recipient.email} - {self.subject}"
+class PasswordHistory(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    password = models.CharField(max_length=128)
+    changed_at = models.DateTimeField(auto_now_add=True)
+
 

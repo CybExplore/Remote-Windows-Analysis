@@ -1,75 +1,55 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Menu, Button, Avatar, Dropdown } from 'antd';
-import { UserOutlined, LoginOutlined, LogoutOutlined } from '@ant-design/icons';
-import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
+import { Menubar } from 'primereact/menubar';
+import { Button } from 'primereact/button';
 
 const Navbar = () => {
-  const { user, isAuthenticated, logout } = useAuth();
+  const { user, logout, isAuthenticated } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    logout();
-    toast.success('Logged out successfully!', {
-      position: 'top-right',  
-      // position: 'bottom-right',
-      autoClose: 5000,
-      style: { backgroundColor: '#4CAF50', color: '#fff' },
-    
-    });
-    navigate('/login');
-  };
+  const items = isAuthenticated
+    ? [
+        { label: 'Dashboard', icon: 'pi pi-home', command: () => navigate('/') },
+        { label: 'Profile', icon: 'pi pi-user', command: () => navigate('/profile') },
+        {
+          label: 'Account',
+          icon: 'pi pi-cog',
+          items: [
+            { label: 'Change Password', icon: 'pi pi-key', command: () => navigate('/password/change') },
+            { label: 'Logout', icon: 'pi pi-sign-out', command: logout },
+          ],
+        },
+      ]
+    : [
+        { label: 'Login', icon: 'pi pi-sign-in', command: () => navigate('/login') },
+      ];
 
-  const userMenuItems = [
-    {
-      key: 'profile',
-      label: <Link to="/profile">Profile</Link>,
-    },
-    {
-      key: 'logout',
-      label: (
-        <span onClick={handleLogout}>
-          <LogoutOutlined /> Logout
+  const end = (
+    <div className="flex items-center gap-4">
+      <Button
+        icon={theme === 'light' ? 'pi pi-moon' : 'pi pi-sun'}
+        className="p-button-rounded p-button-text"
+        onClick={toggleTheme}
+      />
+      {isAuthenticated && (
+        <span className="text-gray-700 dark:text-gray-200">
+          {user?.full_name || user?.email}
         </span>
-      ),
-    },
-  ];
-
-  const menuItems = [
-    {
-      key: 'dashboard',
-      label: <Link to="/">Dashboard</Link>,
-    },
-    {
-      key: 'auth',
-      label: isAuthenticated ? (
-        <Dropdown menu={{ items: userMenuItems }} placement="bottomRight">
-          <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
-            <Avatar icon={<UserOutlined />} style={{ marginRight: 8 }} />
-            <span>{user?.email || user?.sid || 'User'}</span>
-          </div>
-        </Dropdown>
-      ) : (
-        <Button
-          type="primary"
-          icon={<LoginOutlined />}
-          onClick={() => {
-            toast.info('Redirecting to login...', {
-              position: 'top-right',
-            });
-            navigate('/login');
-          }}
-        >
-          Login
-        </Button>
-      ),
-      style: { marginLeft: 'auto' },
-    },
-  ];
+      )}
+    </div>
+  );
 
   return (
-    <Menu mode="horizontal" theme="dark" style={{ lineHeight: '64px' }} items={menuItems} />
+    <nav className="bg-white dark:bg-gray-800 shadow-md">
+      <Menubar
+        model={items}
+        end={end}
+        className="max-w-7xl mx-auto px-4 py-2"
+      />
+    </nav>
   );
 };
 

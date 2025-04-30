@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import secrets, logging, os
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +22,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-8r#crrjd0vf8xr&z2(m%1b@72pyajp36bwcek#p6jb9afs*-av'
+generated_key = secrets.token_urlsafe(50)
+SECRET_KEY = config('DJANGO_SECRET_KEY', default=generated_key)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DJANGO_DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='*').split(',')
 
 
 # Application definition
@@ -37,24 +41,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+   'drf_yasg',
 
     'accounts.apps.AccountsConfig',
-    # 'core.apps.CoreConfig',
-    # 'system.apps.SystemConfig',
-    # 'services.apps.ServicesConfig',
-    # 'processes.apps.ProcessesConfig',
-    # 'network.apps.NetworkConfig',
-    # 'logs.apps.LogsConfig',
+    'core.apps.CoreConfig',
 ]
 
 INSTALLED_APPS += [
     'oauth2_provider',
     'rest_framework',
-    
     'rest_framework.authtoken',
     'corsheaders',
-
 ]
+
 
 
 MIDDLEWARE = [
@@ -99,8 +99,12 @@ WSGI_APPLICATION = 'server.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST', default='127.0.0.1'),
+        'PORT': config('DB_PORT', default='3306'),
     }
 }
 
@@ -151,21 +155,22 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Email settings
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-# EMAIL_BACKEND = 'accounts.email_backends.FileEmailBackend'
-EMAIL_FILE_PATH = "email-messages"
-
+EMAIL_FILE_PATH = config('EMAIL_FILE_PATH', default='email-messages')
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'adminl@cybexplore.org'
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='admin@localhost')
 
-# settings.py
-SUPPORT_EMAIL = 'support@cybexplore.org'
-SUPPORT_PHONE = '+(234) 8057-691-197'
-SITE_NAME = 'CybExplore'
+# Custom App Constants
+SUPPORT_EMAIL = config('SUPPORT_EMAIL', default='support@example.com')
+SUPPORT_PHONE = config('SUPPORT_PHONE', default='+000000000')
+SITE_NAME = config('SITE_NAME', default='CybExplore')
+
 
 # Authentication Framework
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
         'rest_framework.authentication.SessionAuthentication',
         # 'rest_framework.authentication.BasicAuthentication',
         
@@ -176,6 +181,7 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.AllowAny',
         # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
 
     ],
@@ -184,9 +190,40 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.BrowsableAPIRenderer',
     ),
     'DEFAULT_THROTTLE_CLASSES': [
-        'rest_framework.throttling.UserRateThrottle',
+        # 'rest_framework.throttling.UserRateThrottle',
+
+        'rest_framework.throttling.ScopedRateThrottle',
     ],
+    'DEFAULT_THROTTLE_RATES': {
+        'login': '10/min',
+        'password_reset': '5/hour',
+        'password_change': '3/hour',
+    },
+    # 'DEFAULT_SCHEMA_CLASS': {
+    #     'drf_spectacular.openapi.AutoSchema',
+    # }
+
 }
+if not DEBUG:
+    REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
+        'rest_framework.renderers.JSONRenderer',
+    ]
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Remote Window Security Monitoring System',
+    'DESCRIPTION': 'This project monitors and analyzes security events on remote Windows machines.',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'SCHEMA_PATH_PREFIX': '/api',
+    'COMPONENT_SPLIT_REQUEST': True,
+    'SERVE_PERMISSIONS': ['rest_framework.permissions.IsAuthenticated'],
+
+    
+    'SWAGGER_UI_DIST': 'SIDECAR', 
+    'SWAGGER_UI_FAVICON_HREF': 'SIDECAR',
+    'REDOC_DIST': 'SIDECAR',
+}
+
 
 LOGIN_URL = '/api/login/'
 
@@ -217,6 +254,14 @@ OAUTH2_PROVIDER = {
 
 
 
+# Ensure the logs directory exists
+LOGS_DIR = os.path.join(BASE_DIR, 'logs')
+if not os.path.exists(LOGS_DIR):
+    os.makedirs(LOGS_DIR)
+
+logger = logging.getLogger('accounts')
+logger.info('This is an info log message.')
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -224,11 +269,32 @@ LOGGING = {
         'console': {
             'class': 'logging.StreamHandler',
         },
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(LOGS_DIR, 'django.log'),
+            'level': 'INFO',  # Adjust log level as necessary
+            'formatter': 'verbose',  # Optional: Define formatter below
+        },
     },
     'loggers': {
-        'accounts': {
-            'handlers': ['console'],
+        'django': {
+            'handlers': ['console', 'file'],
             'level': 'INFO',
+            'propagate': True,
+        },
+        'accounts': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+        },
+    },
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',  # Use f-string style for formatting
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
         },
     },
 }
@@ -257,4 +323,5 @@ CSRF_TRUSTED_ORIGINS = [
 # Frontend URL for React app
 FRONTEND_URL = 'http://localhost:3000'
 SITE_URL = 'http://localhost:8000'
+
 

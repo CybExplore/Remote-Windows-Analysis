@@ -1,10 +1,7 @@
 from django.contrib import admin
-from .models import SecurityLog, ProcessInfo, ServiceInfo, NetworkConnection, SystemConfig, UserSession
+from core.models import SecurityEvent, ServerInfo, FirewallStatus
 
-admin.site.register(SecurityLog)
-admin.site.register(ProcessInfo)
-admin.site.register(ServiceInfo)
-admin.site.register(NetworkConnection)
-admin.site.register(SystemConfig)
-admin.site.register(UserSession)
 
+admin.site.register(ServerInfo)
+admin.site.register(SecurityEvent)
+admin.site.register(FirewallStatus)

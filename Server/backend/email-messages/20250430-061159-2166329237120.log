@@ -1,0 +1,19 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Your New Account
+From: adminl@cybexplore.org
+To: admin@cybexplore.org
+Date: Wed, 30 Apr 2025 13:11:59 -0000
+Message-ID: <174601871921.13956.1832443351543354316@DESKTOP-AOU91JJ>
+
+Dear User,
+
+Your account has been created. Please reset your password:
+Reset URL: http://localhost:3000/password/reset/confirm/MQ/cp26jz-8b8af1ce4f4dff2ddf3401ad26b50d4e/
+
+Client ID: d06abcc23b2c4875a9b4f5c316122e91
+
+Regards,
+Remote Windows Security Management System
+-------------------------------------------------------------------------------

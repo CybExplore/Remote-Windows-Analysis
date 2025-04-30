@@ -6,9 +6,13 @@ sorl-thumbnail
 channels 
 channels-redis
 daphne
+python-decouple
 Pillow
+oauth2-provider
 django-oauth-toolkit 
 djangorestframework
 hypercorn
 django-cors-headers
 uvicorn
+drf-yasg
+drf-yasg[validation]

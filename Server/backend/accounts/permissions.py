@@ -1,26 +1,49 @@
+import logging
 from rest_framework import permissions
-from oauth2_provider.contrib.rest_framework import TokenHasScope
 from accounts.models import UserProfile
 
+logger = logging.getLogger(__name__)
+
 class IsClientAuthenticated(permissions.BasePermission):
+    """
+    Permission to allow access only if the request has a valid OAuth2 token
+    and the client_id is associated with a UserProfile.
+    """
     def has_permission(self, request, view):
-        # Check if the request has a valid OAuth2 token
+        client_id = request.auth.application.client_id
         if not request.auth:
+            logger.warning("No authentication token provided")
             return False
         try:
-            print("\t\t\t Test \t\t\t")
-            # Get client_id from the token
-            client_id = request.auth.application.client_id
-            print(client_id)
-            # Verify client_id exists in CustomUser
-            UserProfile.objects.get(client_id=client_id)
+            logger.debug(f"Checking client_id: {client_id}")
+            if not UserProfile.objects.filter(client_id=client_id).exists():
+                logger.warning(f"Client ID {client_id} not found in UserProfile")
+                return False
             return True
-        except UserProfile.DoesNotExist:
+        except Exception as e:
+            logger.error(f"Error checking client_id {client_id}: {str(e)}")
             return False
 
 class IsOwnerOrAdmin(permissions.BasePermission):
+    """
+    Permission to allow:
+    - Authenticated users to perform safe methods (GET, HEAD, OPTIONS).
+    - Staff or the object owner to perform non-safe methods (POST, PUT, DELETE).
+    """
     def has_object_permission(self, request, view, obj):
         if request.method in permissions.SAFE_METHODS:
             return request.user.is_authenticated
         return request.user.is_staff or obj == request.user
+
+class AllowCreateOrAuthenticatedRead(permissions.BasePermission):
+    """
+    Permission to allow:
+    - Anyone to access the POST (create) method.
+    - Only authenticated users to access GET, HEAD, OPTIONS, PUT, DELETE methods.
+    """
+    def has_permission(self, request, view):
+        if request.method == 'POST':
+            return True
+        return request.user and request.user.is_authenticated
+
 

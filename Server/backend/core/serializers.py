@@ -1,38 +1,60 @@
 from rest_framework import serializers
-from .models import SecurityLog, ProcessInfo, ServiceInfo, NetworkConnection, SystemConfig, UserSession
+from core.models import SecurityEvent, ServerInfo, FirewallStatus
+from accounts.serializers import CustomUserSerializer
 
-# Serializer for SecurityLog model
-class SecurityLogSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = SecurityLog
-        fields = '__all__'
 
-# Serializer for ProcessInfo model
-class ProcessInfoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ProcessInfo
-        fields = '__all__'
+class ServerInfoSerializer(serializers.ModelSerializer):
+    client = serializers.CharField(source='client.sid')
 
-# Serializer for ServiceInfo model
-class ServiceInfoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ServiceInfo
-        fields = '__all__'
+        model = ServerInfo
+        fields = ['client', 'machine_name', 'os_version', 'processor_count', 'timestamp', 'is_64bit']
 
-# Serializer for NetworkConnection model
-class NetworkConnectionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = NetworkConnection
-        fields = '__all__'
+    def validate(self, data):
+        if not data.get('client'):
+            raise serializers.ValidationError("Client SID is required.")
+        return data
 
-# Serializer for SystemConfig model
-class SystemConfigSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = SystemConfig
-        fields = '__all__'
 
-# Serializer for UserSession model
-class UserSessionSerializer(serializers.ModelSerializer):
+class SecurityEventSerializer(serializers.ModelSerializer):
+    client = serializers.CharField(source='client.sid')
+
     class Meta:
-        model = UserSession
-        fields = '__all__'
+        model = SecurityEvent
+        fields = [
+            'client', 'event_id', 'time_created', 'description', 'source', 'logon_type',
+            'failure_reason', 'target_account', 'group_name', 'privilege_name',
+            'process_name', 'service_name'
+        ]
+
+    def validate(self, data):
+        if not data.get('client'):
+            raise serializers.ValidationError("Client SID is required.")
+        return data
+    
+class FirewallStatusSerializer(serializers.ModelSerializer):
+    client = CustomUserSerializer()
+
+    class Meta:
+        model = FirewallStatus
+        fields = ['client', 'is_enabled', 'profile', 'timestamp']
+
+    def validate(self, data):
+        if not data.get('client') or not data['client'].get('sid'):
+            raise serializers.ValidationError("Client SID is required.")
+        return data
+
+class FirewallStatusSerializer(serializers.ModelSerializer):
+    client = serializers.CharField(source='client.sid')
+
+    class Meta:
+        model = FirewallStatus
+        fields = ['client', 'is_enabled', 'profile', 'timestamp']
+
+    def validate(self, data):
+        if not data.get('client'):
+            raise serializers.ValidationError("Client SID is required.")
+        return data
+
+
+
