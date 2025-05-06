@@ -4,7 +4,6 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthProvider from './context/AuthProvider';
 import ThemeProvider from './context/ThemeProvider';
-import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import PasswordChange from './pages/PasswordChange';
@@ -12,7 +11,9 @@ import PasswordReset from './pages/PasswordReset';
 import PasswordResetConfirm from './pages/PasswordResetConfirm';
 import EmailVerification from './pages/EmailVerification';
 import Profile from './pages/Profile';
+import Events from './pages/Events';
 import ProtectedRoute from './components/ProtectedRoute';
+import Logout from './pages/Logout';
 
 function App() {
   return (
@@ -20,7 +21,6 @@ function App() {
       <ThemeProvider>
         <AuthProvider>
           <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
-            <Navbar />
             <ToastContainer position="top-right" autoClose={3000} theme="colored" />
             <Routes>
               <Route path="/login" element={<Login />} />
@@ -30,7 +30,16 @@ function App() {
               <Route path="/email-verified/success" element={<EmailVerification success />} />
               <Route path="/email-verified/failure" element={<EmailVerification success={false} />} />
               <Route path="/profile" element={<ProtectedRoute component={Profile} />} />
+              <Route path="/events" element={<ProtectedRoute component={Events} />} />
               <Route path="/" element={<ProtectedRoute component={Home} />} />
+              <Route
+              path="/logout"
+              element={
+                <ProtectedRoute>
+                  <Logout />
+                </ProtectedRoute>
+              }
+            />
             </Routes>
           </div>
         </AuthProvider>

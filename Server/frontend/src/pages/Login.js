@@ -7,11 +7,13 @@ import { InputText } from 'primereact/inputtext';
 import { Password } from 'primereact/password';
 import { Button } from 'primereact/button';
 import { REGEX } from '../utils/constants';
+import { motion } from 'framer-motion';
+
+import imgLogo from '../images/cybexplore.png';
 
 const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
-  console.log(navigate);
 
   const formik = useFormik({
     initialValues: {
@@ -30,74 +32,102 @@ const Login = () => {
       const { success, message } = await login(values.identifier, values.password);
       if (!success) {
         setFieldError('identifier', message);
+      } else {
+        navigate('/');
       }
       setSubmitting(false);
     },
   });
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 px-4">
-      <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-        <h2 className="text-2xl font-bold text-center text-gray-700 dark:text-gray-200 mb-6">
-          Login to Remote Windows Security
-        </h2>
-        <form onSubmit={formik.handleSubmit} className="space-y-6">
+    <div className="flex min-h-screen items-center justify-center bg-gray-100 dark:bg-gray-900 px-4">
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 transition-all duration-500"
+      >
+        <div className="text-center">
+          <img
+            alt="Your Company"
+            src={imgLogo}
+            className="mx-auto h-15 w-auto"
+          />
+          <h2 className="mt-6 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            Sign in to your account
+          </h2>
+        </div>
+
+        <form onSubmit={formik.handleSubmit} className="mt-8 space-y-6">
           <div>
-            <label htmlFor="identifier" className="block text-sm font-medium text-gray-600 dark:text-gray-300">
+            <label htmlFor="identifier" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               SID or Email
             </label>
-            <InputText
-              id="identifier"
-              name="identifier"
-              value={formik.values.identifier}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              className={`w-full mt-1 ${formik.touched.identifier && formik.errors.identifier ? 'p-invalid' : ''}`}
-              placeholder="Enter SID or Email"
-            />
-            {formik.touched.identifier && formik.errors.identifier && (
-              <span className="text-red-500 text-sm">{formik.errors.identifier}</span>
-            )}
+            <div className="mt-2">
+              <InputText
+                id="identifier"
+                name="identifier"
+                value={formik.values.identifier}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                className={`w-full rounded-md px-3 py-2 shadow-sm text-base placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white transition ${
+                  formik.touched.identifier && formik.errors.identifier ? 'p-invalid border-red-500' : ''
+                }`}
+                placeholder="Enter your SID or email"
+              />
+              {formik.touched.identifier && formik.errors.identifier && (
+                <p className="text-sm text-red-500 mt-1">{formik.errors.identifier}</p>
+              )}
+            </div>
           </div>
+
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-600 dark:text-gray-300">
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               Password
             </label>
-            <Password
-              id="password"
-              name="password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              className={`w-full mt-1 ${formik.touched.password && formik.errors.password ? 'p-invalid' : ''}`}
-              placeholder="Enter Password"
-              toggleMask
-            />
-            {formik.touched.password && formik.errors.password && (
-              <span className="text-red-500 text-sm">{formik.errors.password}</span>
-            )}
+            <div className="mt-2">
+              <Password
+                id="password"
+                name="password"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                className={`w-full rounded-md px-3 py-2 shadow-sm text-base placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white transition ${
+                  formik.touched.password && formik.errors.password ? 'p-invalid border-red-500' : ''
+                }`}
+                placeholder="Enter your password"
+                toggleMask
+              />
+              {formik.touched.password && formik.errors.password && (
+                <p className="text-sm text-red-500 mt-1">{formik.errors.password}</p>
+              )}
+            </div>
           </div>
-          <Button
-            type="submit"
-            label={formik.isSubmitting ? 'Logging in...' : 'Login'}
-            disabled={formik.isSubmitting}
-            className="w-full p-button-raised p-button-primary"
-          />
+
+          <div>
+            <Button
+              type="submit"
+              label={formik.isSubmitting ? 'Logging in...' : 'Sign in'}
+              disabled={formik.isSubmitting}
+              className="w-full p-button-primary h-10 rounded-md text-white bg-indigo-600 hover:bg-indigo-500 shadow-md transition duration-300"
+            />
+          </div>
         </form>
-        <div className="mt-4 text-center">
-          <Link to="/password/reset/request" className="text-indigo-600 dark:text-indigo-400 hover:underline">
-            Forgot Password?
+
+        <p className="mt-6 text-center text-sm text-gray-500 dark:text-gray-300">
+          <Link to="/password/reset/request" className="font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400">
+            Forgot password?
           </Link>
-          <span className="mx-2 text-gray-600 dark:text-gray-300">|</span>
-          <a 
-            href="http://localhost:8000/media/Client.exe" 
-            className="text-indigo-600 dark:text-indigo-400 hover:underline"
+          <span className="mx-2">|</span>
+          <a
+            href="http://localhost:8000/media/Client.exe"
+            className="font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400"
             download
           >
-            Download The Client
+            Download the Client
           </a>
-        </div>
-      </div>
+        </p>
+      </motion.div>
     </div>
   );
 };

@@ -9,9 +9,9 @@ from django.utils.encoding import force_bytes
 logger = logging.getLogger(__name__)
 
 SITE_NAME = getattr(settings, 'SITE_NAME', 'Windows Security Management')
-SUPPORT_EMAIL = getattr(settings, 'SUPPORT_EMAIL', 'support@example.com')
+SUPPORT_EMAIL = getattr(settings, 'SUPPORT_EMAIL', 'support@cybexplore.org')
 SUPPORT_PHONE = getattr(settings, 'SUPPORT_PHONE', '')
-SITE_URL = getattr(settings, 'SITE_URL', 'https://example.com')
+SITE_URL = settings.SITE_URL
 
 def send_password_change_email(user, request):
     """Send a password change notification email to the user."""

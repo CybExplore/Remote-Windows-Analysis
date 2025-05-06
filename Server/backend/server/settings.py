@@ -53,6 +53,7 @@ INSTALLED_APPS += [
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
+    'django_filters',
 ]
 
 
@@ -68,8 +69,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'accounts.middleware.PasswordChangeMiddleware',
-    'accounts.middleware.CheckPasswordChangedMiddleware',
+    # 'accounts.middleware.PasswordChangeMiddleware',
+    # 'accounts.middleware.CheckPasswordChangedMiddleware',
     
 ]
 
@@ -170,14 +171,11 @@ SITE_NAME = config('SITE_NAME', default='CybExplore')
 # Authentication Framework
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
         'rest_framework.authentication.SessionAuthentication',
-        # 'rest_framework.authentication.BasicAuthentication',
-        
+        'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.TokenAuthentication',
 
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
-        
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
@@ -190,18 +188,17 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.BrowsableAPIRenderer',
     ),
     'DEFAULT_THROTTLE_CLASSES': [
-        # 'rest_framework.throttling.UserRateThrottle',
+        'rest_framework.throttling.UserRateThrottle',
 
-        'rest_framework.throttling.ScopedRateThrottle',
+        # 'rest_framework.throttling.ScopedRateThrottle',
     ],
-    'DEFAULT_THROTTLE_RATES': {
-        'login': '10/min',
-        'password_reset': '5/hour',
-        'password_change': '3/hour',
-    },
-    # 'DEFAULT_SCHEMA_CLASS': {
-    #     'drf_spectacular.openapi.AutoSchema',
-    # }
+    # 'DEFAULT_THROTTLE_RATES': {
+    #     'login': '10/min',
+    #     'password_reset': '5/hour',
+    #     'password_change': '3/hour',
+    # },
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20,
 
 }
 if not DEBUG:
@@ -250,6 +247,9 @@ OAUTH2_PROVIDER = {
         'password',
         'refresh_token',
     ],
+    'ACCESS_TOKEN_GENERATOR': 'accounts.utils.custom_token_generator',
+    # 'OAUTH2_VALIDATOR_CLASS': 'accounts.oauth_validators.CustomOAuth2Validator',
+    'OAUTH2_VALIDATOR_CLASS': 'oauth2_provider.oauth2_validators.OAuth2Validator',
 }
 
 
@@ -271,19 +271,21 @@ LOGGING = {
         },
         'file': {
             'class': 'logging.FileHandler',
-            'filename': os.path.join(LOGS_DIR, 'django.log'),
-            'level': 'INFO',  # Adjust log level as necessary
+            'filename': os.path.join(LOGS_DIR, 'file.log'),
+            'level': 'INFO', 
             'formatter': 'verbose',  # Optional: Define formatter below
         },
     },
     'loggers': {
         'django': {
             'handlers': ['console', 'file'],
+            'filename': os.path.join(LOGS_DIR, 'django.log'),
             'level': 'INFO',
             'propagate': True,
         },
         'accounts': {
             'handlers': ['console', 'file'],
+            'filename': os.path.join(LOGS_DIR, 'accounts.log'),
             'level': 'INFO',
         },
     },

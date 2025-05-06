@@ -37,6 +37,12 @@ const AuthProvider = ({ children }) => {
   const login = async (identifier, password) => {
     setOperationLoading(true);
     try {
+      const url = `${process.env.REACT_APP_API_URL}/login/`;
+      console.log('Environment API_URL:', process.env.REACT_APP_API_URL);
+      console.log('Submitting login to:', url);
+      console.log('Axios baseURL:', api.defaults.baseURL);
+      console.log('Login payload:', { identifier, password });
+
       const response = await api.post('/login/', { identifier, password });
       const { access_token, user: userData } = response.data.data;
       setToken(access_token);
@@ -49,6 +55,9 @@ const AuthProvider = ({ children }) => {
       return { success: true, message: 'Login successful!' };
     } catch (error) {
       const errorMsg = error.response?.data?.errors?.non_field_errors?.[0] || 'Login failed.';
+      console.error('Login error:', errorMsg, error.response?.data);
+      console.error('Error details:', error);
+
       toast.error(errorMsg);
       return { success: false, message: errorMsg };
     } finally {
@@ -56,21 +65,21 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const register = async (data) => {
-    setOperationLoading(true);
-    try {
-      const response = await api.post('/create-user/', data);
-      toast.success('Registration successful! Check your email for password reset instructions.');
-      navigate('/login');
-      return { success: true, message: response.data.message };
-    } catch (error) {
-      const errorMsg = error.response?.data?.errors?.[0] || 'Registration failed.';
-      toast.error(errorMsg);
-      return { success: false, message: errorMsg };
-    } finally {
-      setOperationLoading(false);
-    }
-  };
+  // const register = async (data) => {
+  //   setOperationLoading(true);
+  //   try {
+  //     const response = await api.post('/create-user/', data);
+  //     toast.success('Registration successful! Check your email for password reset instructions.');
+  //     navigate('/login');
+  //     return { success: true, message: response.data.message };
+  //   } catch (error) {
+  //     const errorMsg = error.response?.data?.errors?.[0] || 'Registration failed.';
+  //     toast.error(errorMsg);
+  //     return { success: false, message: errorMsg };
+  //   } finally {
+  //     setOperationLoading(false);
+  //   }
+  // };
 
   const requestPasswordReset = async (identifier) => {
     setOperationLoading(true);
@@ -188,7 +197,7 @@ const AuthProvider = ({ children }) => {
     passwordChanged: user?.password_changed || false,
     isAuthenticated: !!token && !!user,
     login,
-    register,
+    // register,
     logout,
     requestPasswordReset,
     passwordResetConfirm,

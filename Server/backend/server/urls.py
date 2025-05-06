@@ -48,7 +48,7 @@ urlpatterns = [
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
    
 
-    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    # path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,3 +1,6 @@
+# accounts/serializers.py
+import logging
+
 from rest_framework import serializers
 from django.contrib.auth import password_validation, authenticate
 from django.contrib.auth.hashers import check_password
@@ -6,7 +9,6 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
 from django.db import transaction
-import logging
 from accounts.models import CustomUser, UserProfile, AuditLog, PasswordHistory
 from oauth2_provider.models import Application
 
@@ -158,6 +160,7 @@ class PasswordChangeSerializer(serializers.Serializer):
         user.save()
         PasswordHistory.objects.create(user=user, password=user.password)
 
+
 class LoginSerializer(serializers.Serializer):
     identifier = serializers.CharField()
     password = serializers.CharField(write_only=True)
@@ -168,15 +171,20 @@ class LoginSerializer(serializers.Serializer):
         request = self.context.get('request')
 
         user = authenticate(request=request, identifier=identifier, password=password)
+        
         if not user:
+            logger.warning(f"Failed login attempt for identifier: {identifier}")
             raise serializers.ValidationError({'non_field_errors': 'Invalid credentials'})
+        
         if not user.is_active:
-            raise serializers.ValidationError({'non_field_errors': 'This account is inactive'})
+            raise serializers.ValidationError({'non_field_errors': 'Account is inactive'})
+        
         if hasattr(user, 'profile') and user.profile.locked_out:
-            raise serializers.ValidationError({'non_field_errors': 'This account is locked out'})
+            raise serializers.ValidationError({'non_field_errors': 'Account is locked out'})
 
         data['user'] = user
         return data
+    
 
 class PasswordResetRequestSerializer(serializers.Serializer):
     identifier = serializers.CharField()

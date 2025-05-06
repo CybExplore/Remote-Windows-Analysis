@@ -1,0 +1,761 @@
+INFO 2025-05-04 15:50:53,069 autoreload Watching for file changes with StatReloader
+INFO 2025-05-04 15:56:36,209 basehttp "POST /o/token/ HTTP/1.1" 200 120
+WARNING 2025-05-04 15:56:37,055 log Forbidden: /api/server-info/
+WARNING 2025-05-04 15:56:37,067 basehttp "POST /api/server-info/ HTTP/1.1" 403 63
+WARNING 2025-05-04 15:56:38,388 log Forbidden: /api/server-info/
+WARNING 2025-05-04 15:56:38,389 basehttp "POST /api/server-info/ HTTP/1.1" 403 63
+WARNING 2025-05-04 15:56:40,499 log Forbidden: /api/server-info/
+WARNING 2025-05-04 15:56:40,501 basehttp "POST /api/server-info/ HTTP/1.1" 403 63
+WARNING 2025-05-04 15:56:41,428 log Forbidden: /api/firewall-status/
+WARNING 2025-05-04 15:56:41,454 basehttp "POST /api/firewall-status/ HTTP/1.1" 403 63
+WARNING 2025-05-04 15:56:42,575 log Forbidden: /api/firewall-status/
+WARNING 2025-05-04 15:56:42,577 basehttp "POST /api/firewall-status/ HTTP/1.1" 403 63
+WARNING 2025-05-04 15:56:44,739 log Forbidden: /api/firewall-status/
+WARNING 2025-05-04 15:56:44,754 basehttp "POST /api/firewall-status/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:00:17,880 log Forbidden: /api/events/
+WARNING 2025-05-04 16:00:17,882 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:00:18,159 log Forbidden: /api/events/
+WARNING 2025-05-04 16:00:18,243 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:00:19,725 log Forbidden: /api/events/
+WARNING 2025-05-04 16:00:19,796 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:00:19,853 log Forbidden: /api/events/
+WARNING 2025-05-04 16:00:19,954 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:00:20,264 log Forbidden: /api/events/
+WARNING 2025-05-04 16:00:20,395 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:00:20,427 log Forbidden: /api/events/
+WARNING 2025-05-04 16:00:20,520 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:00:22,251 log Forbidden: /api/events/
+WARNING 2025-05-04 16:00:22,328 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:00:22,488 log Forbidden: /api/events/
+WARNING 2025-05-04 16:00:22,516 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:00:22,641 log Forbidden: /api/events/
+WARNING 2025-05-04 16:00:22,665 log Forbidden: /api/events/
+WARNING 2025-05-04 16:00:22,739 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:00:22,798 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:00:25,062 log Forbidden: /api/events/
+WARNING 2025-05-04 16:00:25,109 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:00:25,308 log Forbidden: /api/events/
+WARNING 2025-05-04 16:00:25,323 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:02:05,362 log Forbidden: /api/events/
+WARNING 2025-05-04 16:02:05,364 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:02:05,384 log Forbidden: /api/events/
+WARNING 2025-05-04 16:02:05,386 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:02:06,486 log Forbidden: /api/events/
+WARNING 2025-05-04 16:02:06,487 log Forbidden: /api/events/
+WARNING 2025-05-04 16:02:06,488 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:02:06,489 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:02:08,539 log Forbidden: /api/events/
+WARNING 2025-05-04 16:02:08,541 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:02:08,568 log Forbidden: /api/events/
+WARNING 2025-05-04 16:02:08,569 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:03:45,572 log Forbidden: /api/events/
+WARNING 2025-05-04 16:03:45,573 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:03:45,588 log Forbidden: /api/events/
+WARNING 2025-05-04 16:03:45,589 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:03:45,618 log Forbidden: /api/events/
+WARNING 2025-05-04 16:03:45,620 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:03:45,636 log Forbidden: /api/events/
+WARNING 2025-05-04 16:03:45,639 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:03:46,682 log Forbidden: /api/events/
+WARNING 2025-05-04 16:03:46,684 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:03:46,715 log Forbidden: /api/events/
+WARNING 2025-05-04 16:03:46,716 log Forbidden: /api/events/
+WARNING 2025-05-04 16:03:46,717 log Forbidden: /api/events/
+WARNING 2025-05-04 16:03:46,718 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:03:46,719 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:03:46,720 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:03:47,212 log Forbidden: /api/events/
+WARNING 2025-05-04 16:03:47,213 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:03:47,243 log Forbidden: /api/events/
+WARNING 2025-05-04 16:03:47,247 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:03:48,296 log Forbidden: /api/events/
+WARNING 2025-05-04 16:03:48,297 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:03:48,299 log Forbidden: /api/events/
+WARNING 2025-05-04 16:03:48,300 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:03:48,825 log Forbidden: /api/events/
+WARNING 2025-05-04 16:03:48,826 log Forbidden: /api/events/
+WARNING 2025-05-04 16:03:48,828 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:03:48,829 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:03:48,870 log Forbidden: /api/events/
+WARNING 2025-05-04 16:03:48,871 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:03:49,056 log Forbidden: /api/events/
+WARNING 2025-05-04 16:03:49,102 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:03:50,336 log Forbidden: /api/events/
+WARNING 2025-05-04 16:03:50,337 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:03:50,353 log Forbidden: /api/events/
+WARNING 2025-05-04 16:03:50,353 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:04:13,959 log Forbidden: /api/events/
+WARNING 2025-05-04 16:04:13,961 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:04:13,992 log Forbidden: /api/events/
+WARNING 2025-05-04 16:04:13,994 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:04:15,034 log Forbidden: /api/events/
+WARNING 2025-05-04 16:04:15,038 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:04:15,059 log Forbidden: /api/events/
+WARNING 2025-05-04 16:04:15,060 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:04:17,111 log Forbidden: /api/events/
+WARNING 2025-05-04 16:04:17,112 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:04:17,114 log Forbidden: /api/events/
+WARNING 2025-05-04 16:04:17,115 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:06:19,355 log Forbidden: /api/events/
+WARNING 2025-05-04 16:06:19,356 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:06:19,394 log Forbidden: /api/events/
+WARNING 2025-05-04 16:06:19,403 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:06:19,514 log Forbidden: /api/events/
+WARNING 2025-05-04 16:06:19,515 log Forbidden: /api/events/
+WARNING 2025-05-04 16:06:19,518 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:06:19,520 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:06:20,444 log Forbidden: /api/events/
+WARNING 2025-05-04 16:06:20,445 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:06:20,475 log Forbidden: /api/events/
+WARNING 2025-05-04 16:06:20,477 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:06:20,572 log Forbidden: /api/events/
+WARNING 2025-05-04 16:06:20,573 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:06:20,661 log Forbidden: /api/events/
+WARNING 2025-05-04 16:06:20,663 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:06:22,499 log Forbidden: /api/events/
+WARNING 2025-05-04 16:06:22,500 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:06:22,522 log Forbidden: /api/events/
+WARNING 2025-05-04 16:06:22,524 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:06:22,662 log Forbidden: /api/events/
+WARNING 2025-05-04 16:06:22,663 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:06:22,722 log Forbidden: /api/events/
+WARNING 2025-05-04 16:06:22,722 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:07:56,874 log Forbidden: /api/events/
+WARNING 2025-05-04 16:07:56,879 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:07:56,890 log Forbidden: /api/events/
+WARNING 2025-05-04 16:07:56,891 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:07:58,007 log Forbidden: /api/events/
+WARNING 2025-05-04 16:07:58,009 log Forbidden: /api/events/
+WARNING 2025-05-04 16:07:58,010 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:07:58,011 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:08:00,078 log Forbidden: /api/events/
+WARNING 2025-05-04 16:08:00,079 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:08:00,083 log Forbidden: /api/events/
+WARNING 2025-05-04 16:08:00,084 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:08:55,471 log Forbidden: /api/events/
+WARNING 2025-05-04 16:08:55,472 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:08:55,474 log Forbidden: /api/events/
+WARNING 2025-05-04 16:08:55,476 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:08:56,541 log Forbidden: /api/events/
+WARNING 2025-05-04 16:08:56,542 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:08:56,544 log Forbidden: /api/events/
+WARNING 2025-05-04 16:08:56,546 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:08:58,579 log Forbidden: /api/events/
+WARNING 2025-05-04 16:08:58,581 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:08:58,608 log Forbidden: /api/events/
+WARNING 2025-05-04 16:08:58,609 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:09:54,781 log Forbidden: /api/events/
+WARNING 2025-05-04 16:09:54,783 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:09:54,788 log Forbidden: /api/events/
+WARNING 2025-05-04 16:09:54,789 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:09:55,843 log Forbidden: /api/events/
+WARNING 2025-05-04 16:09:55,845 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:09:55,868 log Forbidden: /api/events/
+WARNING 2025-05-04 16:09:55,871 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:09:57,890 log Forbidden: /api/events/
+WARNING 2025-05-04 16:09:57,892 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:09:57,943 log Forbidden: /api/events/
+WARNING 2025-05-04 16:09:57,944 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:10:16,687 log Forbidden: /api/events/
+WARNING 2025-05-04 16:10:16,689 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:10:16,725 log Forbidden: /api/events/
+WARNING 2025-05-04 16:10:16,728 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:10:17,769 log Forbidden: /api/events/
+WARNING 2025-05-04 16:10:17,773 log Forbidden: /api/events/
+WARNING 2025-05-04 16:10:17,774 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:10:17,776 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:10:19,869 log Forbidden: /api/events/
+WARNING 2025-05-04 16:10:19,875 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:10:19,877 log Forbidden: /api/events/
+WARNING 2025-05-04 16:10:19,882 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:10:54,758 log Forbidden: /api/events/
+WARNING 2025-05-04 16:10:54,760 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:10:54,784 log Forbidden: /api/events/
+WARNING 2025-05-04 16:10:54,786 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:10:55,857 log Forbidden: /api/events/
+WARNING 2025-05-04 16:10:55,860 log Forbidden: /api/events/
+WARNING 2025-05-04 16:10:55,861 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:10:55,861 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:10:57,910 log Forbidden: /api/events/
+WARNING 2025-05-04 16:10:57,911 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:10:57,960 log Forbidden: /api/events/
+WARNING 2025-05-04 16:10:57,962 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:11:57,426 log Forbidden: /api/events/
+WARNING 2025-05-04 16:11:57,428 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:11:57,429 log Forbidden: /api/events/
+WARNING 2025-05-04 16:11:57,435 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:11:58,483 log Forbidden: /api/events/
+WARNING 2025-05-04 16:11:58,484 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:11:58,508 log Forbidden: /api/events/
+WARNING 2025-05-04 16:11:58,510 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:12:00,525 log Forbidden: /api/events/
+WARNING 2025-05-04 16:12:00,527 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:12:00,554 log Forbidden: /api/events/
+WARNING 2025-05-04 16:12:00,558 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:12:54,808 log Forbidden: /api/events/
+WARNING 2025-05-04 16:12:54,812 log Forbidden: /api/events/
+WARNING 2025-05-04 16:12:54,813 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:12:54,815 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:12:55,911 log Forbidden: /api/events/
+WARNING 2025-05-04 16:12:55,915 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:12:55,949 log Forbidden: /api/events/
+WARNING 2025-05-04 16:12:55,952 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:12:58,152 log Forbidden: /api/events/
+WARNING 2025-05-04 16:12:58,154 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:12:58,158 log Forbidden: /api/events/
+WARNING 2025-05-04 16:12:58,161 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:13:54,749 log Forbidden: /api/events/
+WARNING 2025-05-04 16:13:54,750 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:13:54,776 log Forbidden: /api/events/
+WARNING 2025-05-04 16:13:54,778 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:13:56,309 log Forbidden: /api/events/
+WARNING 2025-05-04 16:13:56,312 log Forbidden: /api/events/
+WARNING 2025-05-04 16:13:56,313 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:13:56,313 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:13:58,465 log Forbidden: /api/events/
+WARNING 2025-05-04 16:13:58,470 log Forbidden: /api/events/
+WARNING 2025-05-04 16:13:58,471 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:13:58,474 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:14:54,906 log Forbidden: /api/events/
+WARNING 2025-05-04 16:14:54,909 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:14:54,942 log Forbidden: /api/events/
+WARNING 2025-05-04 16:14:54,944 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:14:56,007 log Forbidden: /api/events/
+WARNING 2025-05-04 16:14:56,008 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:14:56,050 log Forbidden: /api/events/
+WARNING 2025-05-04 16:14:56,051 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:14:58,165 log Forbidden: /api/events/
+WARNING 2025-05-04 16:14:58,166 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:14:58,169 log Forbidden: /api/events/
+WARNING 2025-05-04 16:14:58,170 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:15:54,800 log Forbidden: /api/events/
+WARNING 2025-05-04 16:15:54,802 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:15:54,817 log Forbidden: /api/events/
+WARNING 2025-05-04 16:15:54,818 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:15:55,868 log Forbidden: /api/events/
+WARNING 2025-05-04 16:15:55,869 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:15:55,930 log Forbidden: /api/events/
+WARNING 2025-05-04 16:15:55,931 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:15:57,994 log Forbidden: /api/events/
+WARNING 2025-05-04 16:15:57,997 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:15:58,063 log Forbidden: /api/events/
+WARNING 2025-05-04 16:15:58,064 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:16:57,522 log Forbidden: /api/events/
+WARNING 2025-05-04 16:16:57,525 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:16:57,548 log Forbidden: /api/events/
+WARNING 2025-05-04 16:16:57,550 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:16:58,622 log Forbidden: /api/events/
+WARNING 2025-05-04 16:16:58,623 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:16:58,639 log Forbidden: /api/events/
+WARNING 2025-05-04 16:16:58,640 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:17:00,788 log Forbidden: /api/events/
+WARNING 2025-05-04 16:17:00,789 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:17:00,801 log Forbidden: /api/events/
+WARNING 2025-05-04 16:17:00,803 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:17:28,126 log Forbidden: /api/events/
+WARNING 2025-05-04 16:17:28,128 log Forbidden: /api/events/
+WARNING 2025-05-04 16:17:28,129 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:17:28,130 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:17:29,182 log Forbidden: /api/events/
+WARNING 2025-05-04 16:17:29,184 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:17:29,223 log Forbidden: /api/events/
+WARNING 2025-05-04 16:17:29,224 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:17:31,295 log Forbidden: /api/events/
+WARNING 2025-05-04 16:17:31,301 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:17:31,369 log Forbidden: /api/events/
+WARNING 2025-05-04 16:17:31,371 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:17:55,132 log Forbidden: /api/events/
+WARNING 2025-05-04 16:17:55,134 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:17:55,149 log Forbidden: /api/events/
+WARNING 2025-05-04 16:17:55,150 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:17:56,213 log Forbidden: /api/events/
+WARNING 2025-05-04 16:17:56,218 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:17:56,230 log Forbidden: /api/events/
+WARNING 2025-05-04 16:17:56,231 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:17:58,292 log Forbidden: /api/events/
+WARNING 2025-05-04 16:17:58,295 log Forbidden: /api/events/
+WARNING 2025-05-04 16:17:58,295 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:17:58,300 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:18:55,561 log Forbidden: /api/events/
+WARNING 2025-05-04 16:18:55,564 log Forbidden: /api/events/
+WARNING 2025-05-04 16:18:55,566 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:18:55,565 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:18:56,649 log Forbidden: /api/events/
+WARNING 2025-05-04 16:18:56,650 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:18:56,679 log Forbidden: /api/events/
+WARNING 2025-05-04 16:18:56,680 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:18:58,698 log Forbidden: /api/events/
+WARNING 2025-05-04 16:18:58,700 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:18:58,746 log Forbidden: /api/events/
+WARNING 2025-05-04 16:18:58,747 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:19:54,772 log Forbidden: /api/events/
+WARNING 2025-05-04 16:19:54,777 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:19:54,785 log Forbidden: /api/events/
+WARNING 2025-05-04 16:19:54,788 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:19:55,896 log Forbidden: /api/events/
+WARNING 2025-05-04 16:19:55,899 log Forbidden: /api/events/
+WARNING 2025-05-04 16:19:55,899 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:19:55,900 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:19:57,967 log Forbidden: /api/events/
+WARNING 2025-05-04 16:19:57,969 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:19:57,989 log Forbidden: /api/events/
+WARNING 2025-05-04 16:19:57,991 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:20:55,224 log Forbidden: /api/events/
+WARNING 2025-05-04 16:20:55,224 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:20:55,243 log Forbidden: /api/events/
+WARNING 2025-05-04 16:20:55,244 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:20:56,315 log Forbidden: /api/events/
+WARNING 2025-05-04 16:20:56,316 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:20:56,318 log Forbidden: /api/events/
+WARNING 2025-05-04 16:20:56,319 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:20:58,442 log Forbidden: /api/events/
+WARNING 2025-05-04 16:20:58,443 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:20:58,447 log Forbidden: /api/events/
+WARNING 2025-05-04 16:20:58,449 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:21:57,905 log Forbidden: /api/events/
+WARNING 2025-05-04 16:21:57,907 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:21:57,924 log Forbidden: /api/events/
+WARNING 2025-05-04 16:21:57,925 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:21:59,001 log Forbidden: /api/events/
+WARNING 2025-05-04 16:21:59,002 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:21:59,018 log Forbidden: /api/events/
+WARNING 2025-05-04 16:21:59,019 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:22:01,130 log Forbidden: /api/events/
+WARNING 2025-05-04 16:22:01,131 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:22:01,145 log Forbidden: /api/events/
+WARNING 2025-05-04 16:22:01,146 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:22:54,758 log Forbidden: /api/events/
+WARNING 2025-05-04 16:22:54,763 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:22:54,782 log Forbidden: /api/events/
+WARNING 2025-05-04 16:22:54,783 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:22:55,873 log Forbidden: /api/events/
+WARNING 2025-05-04 16:22:55,874 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:22:55,888 log Forbidden: /api/events/
+WARNING 2025-05-04 16:22:55,889 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:22:58,000 log Forbidden: /api/events/
+WARNING 2025-05-04 16:22:58,004 log Forbidden: /api/events/
+WARNING 2025-05-04 16:22:58,005 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:22:58,009 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:23:55,117 log Forbidden: /api/events/
+WARNING 2025-05-04 16:23:55,120 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:23:55,169 log Forbidden: /api/events/
+WARNING 2025-05-04 16:23:55,171 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:23:56,221 log Forbidden: /api/events/
+WARNING 2025-05-04 16:23:56,224 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:23:56,236 log Forbidden: /api/events/
+WARNING 2025-05-04 16:23:56,238 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:23:58,307 log Forbidden: /api/events/
+WARNING 2025-05-04 16:23:58,308 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:23:58,322 log Forbidden: /api/events/
+WARNING 2025-05-04 16:23:58,323 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:24:57,603 log Forbidden: /api/events/
+WARNING 2025-05-04 16:24:57,606 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:24:57,640 log Forbidden: /api/events/
+WARNING 2025-05-04 16:24:57,641 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:24:58,745 log Forbidden: /api/events/
+WARNING 2025-05-04 16:24:58,746 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:24:58,766 log Forbidden: /api/events/
+WARNING 2025-05-04 16:24:58,768 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:25:00,873 log Forbidden: /api/events/
+WARNING 2025-05-04 16:25:00,880 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:25:00,903 log Forbidden: /api/events/
+WARNING 2025-05-04 16:25:00,904 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:25:54,939 log Forbidden: /api/events/
+WARNING 2025-05-04 16:25:54,941 log Forbidden: /api/events/
+WARNING 2025-05-04 16:25:54,942 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:25:54,942 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:25:56,020 log Forbidden: /api/events/
+WARNING 2025-05-04 16:25:56,022 log Forbidden: /api/events/
+WARNING 2025-05-04 16:25:56,022 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:25:56,023 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:25:58,358 log Forbidden: /api/events/
+WARNING 2025-05-04 16:25:58,361 log Forbidden: /api/events/
+WARNING 2025-05-04 16:25:58,361 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:25:58,362 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:26:55,536 log Forbidden: /api/events/
+WARNING 2025-05-04 16:26:55,537 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:26:55,552 log Forbidden: /api/events/
+WARNING 2025-05-04 16:26:55,553 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:26:56,630 log Forbidden: /api/events/
+WARNING 2025-05-04 16:26:56,637 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:26:56,673 log Forbidden: /api/events/
+WARNING 2025-05-04 16:26:56,674 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:26:58,740 log Forbidden: /api/events/
+WARNING 2025-05-04 16:26:58,743 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:26:58,783 log Forbidden: /api/events/
+WARNING 2025-05-04 16:26:58,785 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:27:20,296 log Forbidden: /api/events/
+WARNING 2025-05-04 16:27:20,304 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:27:20,343 log Forbidden: /api/events/
+WARNING 2025-05-04 16:27:20,365 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:27:20,410 log Forbidden: /api/events/
+WARNING 2025-05-04 16:27:20,418 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:27:20,452 log Forbidden: /api/events/
+WARNING 2025-05-04 16:27:20,455 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:27:21,444 log Forbidden: /api/events/
+WARNING 2025-05-04 16:27:21,449 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:27:21,480 log Forbidden: /api/events/
+WARNING 2025-05-04 16:27:21,481 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:27:21,553 log Forbidden: /api/events/
+WARNING 2025-05-04 16:27:21,555 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:27:21,576 log Forbidden: /api/events/
+WARNING 2025-05-04 16:27:21,578 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:27:23,544 log Forbidden: /api/events/
+WARNING 2025-05-04 16:27:23,545 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:27:23,581 log Forbidden: /api/events/
+WARNING 2025-05-04 16:27:23,582 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:27:23,605 log Forbidden: /api/events/
+WARNING 2025-05-04 16:27:23,606 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:27:23,626 log Forbidden: /api/events/
+WARNING 2025-05-04 16:27:23,626 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:59:45,028 log Forbidden: /api/events/
+WARNING 2025-05-04 16:59:45,030 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:59:47,063 log Forbidden: /api/events/
+WARNING 2025-05-04 16:59:47,072 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:59:47,156 log Forbidden: /api/events/
+WARNING 2025-05-04 16:59:47,159 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:59:47,564 log Forbidden: /api/events/
+WARNING 2025-05-04 16:59:47,575 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:59:47,682 log Forbidden: /api/events/
+WARNING 2025-05-04 16:59:47,694 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:59:47,884 log Forbidden: /api/events/
+WARNING 2025-05-04 16:59:47,887 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:59:48,068 log Forbidden: /api/events/
+WARNING 2025-05-04 16:59:48,070 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:59:49,392 log Forbidden: /api/events/
+WARNING 2025-05-04 16:59:49,395 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:59:49,761 log Forbidden: /api/events/
+WARNING 2025-05-04 16:59:49,767 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:59:49,774 log Forbidden: /api/events/
+WARNING 2025-05-04 16:59:49,798 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:59:49,814 log Forbidden: /api/events/
+WARNING 2025-05-04 16:59:49,818 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:59:50,226 log Forbidden: /api/events/
+WARNING 2025-05-04 16:59:50,297 log Forbidden: /api/events/
+WARNING 2025-05-04 16:59:50,356 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:59:50,366 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:59:50,808 log Forbidden: /api/events/
+WARNING 2025-05-04 16:59:50,810 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:59:50,923 log Forbidden: /api/events/
+WARNING 2025-05-04 16:59:50,926 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:59:51,706 log Forbidden: /api/events/
+WARNING 2025-05-04 16:59:51,708 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:59:52,486 log Forbidden: /api/events/
+WARNING 2025-05-04 16:59:52,489 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:59:52,662 log Forbidden: /api/events/
+WARNING 2025-05-04 16:59:52,677 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:59:52,680 log Forbidden: /api/events/
+WARNING 2025-05-04 16:59:52,698 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:59:52,838 log Forbidden: /api/events/
+WARNING 2025-05-04 16:59:52,883 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:59:52,896 log Forbidden: /api/events/
+WARNING 2025-05-04 16:59:52,908 log Forbidden: /api/events/
+WARNING 2025-05-04 16:59:52,909 basehttp "POST /api/events/ HTTP/1.1" 403 63
+WARNING 2025-05-04 16:59:52,911 basehttp "POST /api/events/ HTTP/1.1" 403 63
+INFO 2025-05-04 16:59:55,499 basehttp - Broken pipe from ('127.0.0.1', 7981)
+INFO 2025-05-04 16:59:55,501 basehttp - Broken pipe from ('127.0.0.1', 7968)
+INFO 2025-05-04 16:59:55,511 basehttp - Broken pipe from ('127.0.0.1', 7973)
+WARNING 2025-05-04 17:02:44,266 log Method Not Allowed: /api/login/
+WARNING 2025-05-04 17:02:44,272 basehttp "GET /api/login/ HTTP/1.1" 405 12240
+WARNING 2025-05-04 17:02:58,901 log Not Found: /api/forgetpassword/
+WARNING 2025-05-04 17:02:58,957 basehttp "GET /api/forgetpassword/ HTTP/1.1" 404 10887
+WARNING 2025-05-04 17:03:13,015 log Forbidden: /api/send-verification/
+WARNING 2025-05-04 17:03:13,053 basehttp "GET /api/send-verification/ HTTP/1.1" 403 8633
+WARNING 2025-05-04 17:03:49,440 log Not Found: /api/password/reset/
+WARNING 2025-05-04 17:03:49,490 basehttp "GET /api/password/reset/ HTTP/1.1" 404 10887
+INFO 2025-05-04 17:04:00,236 basehttp "GET /api/password/reset/request/ HTTP/1.1" 200 13636
+INFO 2025-05-04 17:04:06,634 views Password reset email sent to admin@cybexplore.org for user S-1-5-21-550850760-2695552310-605195006-1001
+INFO 2025-05-04 17:04:06,672 basehttp "POST /api/password/reset/request/ HTTP/1.1" 200 13606
+WARNING 2025-05-04 17:04:22,759 log Not Found: /password/reset/confirm/MQ/cpafeu-c981806d842233d69450948301b7bf0d/
+WARNING 2025-05-04 17:04:22,764 basehttp "GET /password/reset/confirm/MQ/cpafeu-c981806d842233d69450948301b7bf0d/ HTTP/1.1" 404 3666
+WARNING 2025-05-04 17:05:14,408 log Not Found: /verify-email/MQ/cpafeu-c981806d842233d69450948301b7bf0d/
+WARNING 2025-05-04 17:05:14,419 basehttp "GET /verify-email/MQ/cpafeu-c981806d842233d69450948301b7bf0d/ HTTP/1.1" 404 3636
+INFO 2025-05-04 17:05:22,389 basehttp "GET /api/verify-email/MQ/cpafeu-c981806d842233d69450948301b7bf0d/ HTTP/1.1" 302 0
+INFO 2025-05-04 17:24:09,979 basehttp "OPTIONS /api/login/ HTTP/1.1" 200 0
+INFO 2025-05-04 17:24:16,403 backends User S-1-5-21-550850760-2695552310-605195006-1001 authenticated successfully from IP: 127.0.0.1
+ERROR 2025-05-04 17:24:16,480 views Error generating token for user S-1-5-21-550850760-2695552310-605195006-1001: (1062, "Duplicate entry 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855' for key 'oauth2_provider_accesstoken.oauth2_provider_accesstoken_token_checksum_85319a26_uniq'")
+ERROR 2025-05-04 17:24:16,487 log Internal Server Error: /api/login/
+ERROR 2025-05-04 17:24:16,493 basehttp "POST /api/login/ HTTP/1.1" 500 71
+INFO 2025-05-04 17:24:28,151 basehttp "OPTIONS /api/password/reset/request/ HTTP/1.1" 200 0
+INFO 2025-05-04 17:24:28,179 views Password reset email sent to admin@cybexplore.org for user S-1-5-21-550850760-2695552310-605195006-1001
+INFO 2025-05-04 17:24:28,181 basehttp "POST /api/password/reset/request/ HTTP/1.1" 200 62
+INFO 2025-05-04 17:25:05,518 basehttp "OPTIONS /api/password/reset/confirm/ HTTP/1.1" 200 0
+INFO 2025-05-04 17:25:16,215 views Password reset confirmation email sent to admin@cybexplore.org
+INFO 2025-05-04 17:25:16,229 basehttp "POST /api/password/reset/confirm/ HTTP/1.1" 200 49
+INFO 2025-05-04 17:25:29,749 backends User S-1-5-21-550850760-2695552310-605195006-1001 authenticated successfully from IP: 127.0.0.1
+ERROR 2025-05-04 17:25:29,799 views Error generating token for user S-1-5-21-550850760-2695552310-605195006-1001: (1062, "Duplicate entry 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855' for key 'oauth2_provider_accesstoken.oauth2_provider_accesstoken_token_checksum_85319a26_uniq'")
+ERROR 2025-05-04 17:25:29,810 log Internal Server Error: /api/login/
+ERROR 2025-05-04 17:25:29,813 basehttp "POST /api/login/ HTTP/1.1" 500 71
+WARNING 2025-05-04 17:30:11,122 log Not Found: /
+WARNING 2025-05-04 17:30:11,136 basehttp "GET / HTTP/1.1" 404 3450
+WARNING 2025-05-04 17:30:11,568 log Not Found: /
+WARNING 2025-05-04 17:30:11,570 basehttp "GET / HTTP/1.1" 404 3450
+WARNING 2025-05-04 17:30:12,285 log Not Found: /favicon.ico
+WARNING 2025-05-04 17:30:12,290 basehttp "GET /favicon.ico HTTP/1.1" 404 3501
+INFO 2025-05-04 17:30:19,406 basehttp "OPTIONS /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 200 0
+INFO 2025-05-04 17:30:19,407 basehttp "OPTIONS /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 200 0
+WARNING 2025-05-04 17:30:19,454 log Forbidden: /api/users/S-1-5-21-550850760-2695552310-605195006-1001/
+WARNING 2025-05-04 17:30:19,456 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 403 58
+INFO 2025-05-04 17:30:19,476 basehttp "OPTIONS /api/logout/ HTTP/1.1" 200 0
+WARNING 2025-05-04 17:30:19,495 log Forbidden: /api/users/S-1-5-21-550850760-2695552310-605195006-1001/
+WARNING 2025-05-04 17:30:19,520 log Not Found: /api/logout/
+WARNING 2025-05-04 17:30:19,521 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 403 58
+WARNING 2025-05-04 17:30:19,524 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 17:30:19,649 log Not Found: /api/logout/
+WARNING 2025-05-04 17:30:19,668 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 17:37:16,274 log Forbidden: /api/users/S-1-5-21-550850760-2695552310-605195006-1001/
+WARNING 2025-05-04 17:37:16,278 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 403 58
+WARNING 2025-05-04 17:37:16,316 log Forbidden: /api/users/S-1-5-21-550850760-2695552310-605195006-1001/
+WARNING 2025-05-04 17:37:16,319 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 403 58
+WARNING 2025-05-04 17:37:16,357 log Not Found: /api/logout/
+WARNING 2025-05-04 17:37:16,360 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 17:37:16,478 log Not Found: /api/logout/
+WARNING 2025-05-04 17:37:16,501 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 17:37:41,812 log Forbidden: /api/users/S-1-5-21-550850760-2695552310-605195006-1001/
+WARNING 2025-05-04 17:37:41,827 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 403 58
+WARNING 2025-05-04 17:37:41,890 log Not Found: /api/logout/
+WARNING 2025-05-04 17:37:41,900 log Forbidden: /api/users/S-1-5-21-550850760-2695552310-605195006-1001/
+WARNING 2025-05-04 17:37:41,904 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 17:37:41,905 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 403 58
+WARNING 2025-05-04 17:37:42,056 log Not Found: /api/logout/
+WARNING 2025-05-04 17:37:42,070 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 17:37:58,891 log Forbidden: /api/users/S-1-5-21-550850760-2695552310-605195006-1001/
+WARNING 2025-05-04 17:37:58,894 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 403 58
+WARNING 2025-05-04 17:37:58,934 log Forbidden: /api/users/S-1-5-21-550850760-2695552310-605195006-1001/
+WARNING 2025-05-04 17:37:58,964 log Not Found: /api/logout/
+WARNING 2025-05-04 17:37:58,965 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 403 58
+WARNING 2025-05-04 17:37:58,967 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 17:37:59,318 log Not Found: /api/logout/
+WARNING 2025-05-04 17:37:59,364 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 17:38:50,942 log Forbidden: /api/users/S-1-5-21-550850760-2695552310-605195006-1001/
+WARNING 2025-05-04 17:38:50,945 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 403 58
+WARNING 2025-05-04 17:38:51,003 log Not Found: /api/logout/
+WARNING 2025-05-04 17:38:51,005 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 17:38:51,015 log Forbidden: /api/users/S-1-5-21-550850760-2695552310-605195006-1001/
+WARNING 2025-05-04 17:38:51,023 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 403 58
+WARNING 2025-05-04 17:38:51,123 log Not Found: /api/logout/
+WARNING 2025-05-04 17:38:51,127 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 17:39:07,922 log Forbidden: /api/users/S-1-5-21-550850760-2695552310-605195006-1001/
+WARNING 2025-05-04 17:39:07,947 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 403 58
+WARNING 2025-05-04 17:39:08,007 log Not Found: /api/logout/
+WARNING 2025-05-04 17:39:08,017 log Forbidden: /api/users/S-1-5-21-550850760-2695552310-605195006-1001/
+WARNING 2025-05-04 17:39:08,032 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 17:39:08,039 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 403 58
+WARNING 2025-05-04 17:39:08,137 log Not Found: /api/logout/
+WARNING 2025-05-04 17:39:08,180 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+INFO 2025-05-04 17:41:41,336 basehttp "OPTIONS /api/login/ HTTP/1.1" 200 0
+INFO 2025-05-04 17:41:47,702 backends Invalid password for user with identifier: admin@cybexplore.org
+WARNING 2025-05-04 17:41:47,736 views Login failed due to validation errors: {'non_field_errors': [ErrorDetail(string='Invalid credentials', code='invalid')]}
+WARNING 2025-05-04 17:41:47,751 log Bad Request: /api/login/
+WARNING 2025-05-04 17:41:47,768 basehttp "POST /api/login/ HTTP/1.1" 400 85
+INFO 2025-05-04 17:41:59,926 backends User S-1-5-21-550850760-2695552310-605195006-1001 authenticated successfully from IP: 127.0.0.1
+ERROR 2025-05-04 17:42:00,146 views Error generating token for user S-1-5-21-550850760-2695552310-605195006-1001: (1062, "Duplicate entry 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855' for key 'oauth2_provider_accesstoken.oauth2_provider_accesstoken_token_checksum_85319a26_uniq'")
+ERROR 2025-05-04 17:42:00,237 log Internal Server Error: /api/login/
+ERROR 2025-05-04 17:42:00,360 basehttp "POST /api/login/ HTTP/1.1" 500 71
+INFO 2025-05-04 17:46:12,890 backends User S-1-5-21-550850760-2695552310-605195006-1001 authenticated successfully from IP: 127.0.0.1
+ERROR 2025-05-04 17:46:12,958 views Error generating token for user S-1-5-21-550850760-2695552310-605195006-1001: (1062, "Duplicate entry 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855' for key 'oauth2_provider_accesstoken.oauth2_provider_accesstoken_token_checksum_85319a26_uniq'")
+ERROR 2025-05-04 17:46:12,962 log Internal Server Error: /api/login/
+ERROR 2025-05-04 17:46:12,963 basehttp "POST /api/login/ HTTP/1.1" 500 71
+WARNING 2025-05-04 17:49:14,811 log Not Found: /application_successful/
+WARNING 2025-05-04 17:49:14,813 basehttp "GET /application_successful/ HTTP/1.1" 404 3537
+WARNING 2025-05-04 17:49:20,518 log Method Not Allowed: /api/login/
+WARNING 2025-05-04 17:49:20,519 basehttp "GET /api/login/ HTTP/1.1" 405 12240
+INFO 2025-05-04 17:49:32,721 backends User S-1-5-21-550850760-2695552310-605195006-1001 authenticated successfully from IP: 127.0.0.1
+ERROR 2025-05-04 17:49:32,820 views Error generating token for user S-1-5-21-550850760-2695552310-605195006-1001: (1062, "Duplicate entry 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855' for key 'oauth2_provider_accesstoken.oauth2_provider_accesstoken_token_checksum_85319a26_uniq'")
+ERROR 2025-05-04 17:49:32,843 log Internal Server Error: /api/login/
+ERROR 2025-05-04 17:49:32,850 basehttp "POST /api/login/ HTTP/1.1" 500 12877
+INFO 2025-05-04 17:52:54,934 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-05-04 17:53:04,972 autoreload Watching for file changes with StatReloader
+INFO 2025-05-04 17:53:17,039 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-05-04 17:53:22,322 autoreload Watching for file changes with StatReloader
+INFO 2025-05-04 17:54:14,473 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-05-04 17:54:20,179 autoreload Watching for file changes with StatReloader
+INFO 2025-05-04 17:54:29,697 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-05-04 17:54:35,655 autoreload Watching for file changes with StatReloader
+INFO 2025-05-04 17:54:47,531 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
+INFO 2025-05-04 17:54:54,038 autoreload Watching for file changes with StatReloader
+INFO 2025-05-04 17:55:17,707 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\settings.py changed, reloading.
+INFO 2025-05-04 17:55:19,525 autoreload Watching for file changes with StatReloader
+ERROR 2025-05-04 17:56:26,853 log Internal Server Error: /api/login/
+Traceback (most recent call last):
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\oauth2_provider\settings.py", line 168, in import_from_string
+    return import_string(val)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\utils\module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\utils\module_loading.py", line 15, in cached_import
+    module = import_module(module_path)
+  File "C:\Program Files\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'accounts.oauth_validators'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 414, in initial
+    self.perform_authentication(request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 324, in perform_authentication
+    request.user
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\request.py", line 231, in user
+    self._authenticate()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\rest_framework\request.py", line 384, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\oauth2_provider\contrib\rest_framework\authentication.py", line 29, in authenticate
+    oauthlib_core = get_oauthlib_core()
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\oauth2_provider\oauth2_backends.py", line 246, in get_oauthlib_core
+    validator_class = oauth2_settings.OAUTH2_VALIDATOR_CLASS
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\oauth2_provider\settings.py", line 219, in __getattr__
+    val = perform_import(val, attr)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\oauth2_provider\settings.py", line 157, in perform_import
+    return import_from_string(val, setting_name)
+  File "C:\Users\CybExplore\AppData\Roaming\Python\Python313\site-packages\oauth2_provider\settings.py", line 171, in import_from_string
+    raise ImportError(msg)
+ImportError: Could not import 'accounts.oauth_validators.CustomOAuth2Validator' for setting 'OAUTH2_VALIDATOR_CLASS'. ModuleNotFoundError: No module named 'accounts.oauth_validators'.
+ERROR 2025-05-04 17:56:26,883 basehttp "POST /api/login/ HTTP/1.1" 500 158955
+INFO 2025-05-04 17:57:06,027 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\settings.py changed, reloading.
+INFO 2025-05-04 17:57:10,185 autoreload Watching for file changes with StatReloader
+INFO 2025-05-04 17:59:03,400 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\settings.py changed, reloading.
+INFO 2025-05-04 17:59:06,549 autoreload Watching for file changes with StatReloader
+INFO 2025-05-04 18:00:04,987 backends User S-1-5-21-550850760-2695552310-605195006-1001 authenticated successfully from IP: 127.0.0.1
+INFO 2025-05-04 18:00:05,743 basehttp - Broken pipe from ('127.0.0.1', 40342)
+WARNING 2025-05-04 18:00:05,785 log Method Not Allowed: /api/login/
+WARNING 2025-05-04 18:00:05,790 basehttp "GET /api/login/ HTTP/1.1" 405 13523
+INFO 2025-05-04 18:00:14,599 backends User S-1-5-21-550850760-2695552310-605195006-1001 authenticated successfully from IP: 127.0.0.1
+INFO 2025-05-04 18:00:14,636 basehttp "POST /api/login/ HTTP/1.1" 200 14006
+INFO 2025-05-04 18:00:33,361 backends User S-1-5-21-550850760-2695552310-605195006-1001 authenticated successfully from IP: 127.0.0.1
+INFO 2025-05-04 18:00:33,393 basehttp "POST /api/login/ HTTP/1.1" 200 277
+INFO 2025-05-04 18:01:27,206 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 200 1056
+INFO 2025-05-04 18:01:27,487 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 200 1056
+INFO 2025-05-04 18:01:27,595 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 200 1056
+INFO 2025-05-04 18:01:40,229 backends User S-1-5-21-550850760-2695552310-605195006-1001 authenticated successfully from IP: 127.0.0.1
+INFO 2025-05-04 18:01:40,269 basehttp "POST /api/login/ HTTP/1.1" 200 277
+INFO 2025-05-04 18:03:48,688 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 200 1056
+INFO 2025-05-04 18:03:48,750 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 200 1056
+INFO 2025-05-04 18:03:48,913 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 200 1056
+INFO 2025-05-04 18:04:05,310 backends User S-1-5-21-550850760-2695552310-605195006-1001 authenticated successfully from IP: 127.0.0.1
+INFO 2025-05-04 18:04:05,351 basehttp "POST /api/login/ HTTP/1.1" 200 277
+INFO 2025-05-04 18:19:32,206 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\notifications.py changed, reloading.
+INFO 2025-05-04 18:19:44,055 autoreload Watching for file changes with StatReloader
+WARNING 2025-05-04 18:34:52,804 log Not Found: /api/logout/
+WARNING 2025-05-04 18:34:52,904 log Not Found: /api/logout/
+WARNING 2025-05-04 18:34:53,035 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:34:53,141 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:34:56,107 log Not Found: /api/logout/
+WARNING 2025-05-04 18:34:56,154 log Not Found: /api/logout/
+WARNING 2025-05-04 18:34:56,157 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:34:56,171 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:35:14,484 log Not Found: /api/logout/
+WARNING 2025-05-04 18:35:14,516 log Not Found: /api/logout/
+WARNING 2025-05-04 18:35:14,524 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:35:14,530 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:35:20,339 log Not Found: /api/logout/
+WARNING 2025-05-04 18:35:20,365 log Not Found: /api/logout/
+WARNING 2025-05-04 18:35:20,394 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:35:20,395 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:35:24,331 log Not Found: /api/logout/
+WARNING 2025-05-04 18:35:24,359 log Not Found: /api/logout/
+WARNING 2025-05-04 18:35:24,361 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:35:24,377 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:39:57,487 log Not Found: /api/logout/
+WARNING 2025-05-04 18:39:57,509 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:39:57,526 log Not Found: /api/logout/
+WARNING 2025-05-04 18:39:57,533 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:40:33,783 log Not Found: /api/logout/
+WARNING 2025-05-04 18:40:33,809 log Not Found: /api/logout/
+WARNING 2025-05-04 18:40:33,813 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:40:33,828 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:40:39,011 log Not Found: /api/logout/
+WARNING 2025-05-04 18:40:39,014 log Not Found: /api/logout/
+WARNING 2025-05-04 18:40:39,021 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:40:39,026 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:40:42,626 log Not Found: /api/logout/
+WARNING 2025-05-04 18:40:42,657 log Not Found: /api/logout/
+WARNING 2025-05-04 18:40:42,835 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:40:42,846 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:41:30,626 log Not Found: /learner/dashboard/
+WARNING 2025-05-04 18:41:31,155 basehttp "GET /learner/dashboard/ HTTP/1.1" 404 3522
+INFO 2025-05-04 18:42:06,534 backends User S-1-5-21-550850760-2695552310-605195006-1001 authenticated successfully from IP: 127.0.0.1
+INFO 2025-05-04 18:42:06,597 basehttp "POST /api/login/ HTTP/1.1" 200 277
+INFO 2025-05-04 18:43:34,982 basehttp "OPTIONS /api/logout/ HTTP/1.1" 200 0
+INFO 2025-05-04 18:43:35,061 basehttp "OPTIONS /api/logout/ HTTP/1.1" 200 0
+WARNING 2025-05-04 18:43:35,506 log Not Found: /api/logout/
+WARNING 2025-05-04 18:43:35,780 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:43:35,829 log Not Found: /api/logout/
+WARNING 2025-05-04 18:43:35,976 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:50:01,349 log Not Found: /api/logout/
+WARNING 2025-05-04 18:50:01,359 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:50:01,411 log Not Found: /api/logout/
+WARNING 2025-05-04 18:50:01,414 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:50:06,219 log Not Found: /api/logout/
+WARNING 2025-05-04 18:50:06,251 log Not Found: /api/logout/
+WARNING 2025-05-04 18:50:06,265 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:50:06,293 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:51:37,509 log Not Found: /api/logout/
+WARNING 2025-05-04 18:51:37,520 log Not Found: /api/logout/
+WARNING 2025-05-04 18:51:37,791 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:51:38,343 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:51:47,224 log Not Found: /api/logout/
+WARNING 2025-05-04 18:51:47,275 log Not Found: /api/logout/
+WARNING 2025-05-04 18:51:47,322 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:51:47,495 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:54:02,651 log Not Found: /api/logout/
+WARNING 2025-05-04 18:54:02,755 log Not Found: /api/logout/
+WARNING 2025-05-04 18:54:03,091 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:54:03,534 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+WARNING 2025-05-04 18:54:06,548 log Not Found: /api/logout/
+WARNING 2025-05-04 18:54:06,562 basehttp "POST /api/logout/ HTTP/1.1" 404 10864
+INFO 2025-05-04 19:00:52,963 backends User S-1-5-21-550850760-2695552310-605195006-1001 authenticated successfully from IP: 127.0.0.1
+INFO 2025-05-04 19:00:53,010 basehttp "POST /api/login/ HTTP/1.1" 200 277
+INFO 2025-05-04 19:04:51,585 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-05-04 19:05:03,990 autoreload Watching for file changes with StatReloader
+INFO 2025-05-04 19:05:20,043 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-05-04 19:05:28,796 autoreload Watching for file changes with StatReloader
+INFO 2025-05-04 19:05:56,188 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\urls.py changed, reloading.
+INFO 2025-05-04 19:06:05,632 autoreload Watching for file changes with StatReloader
+INFO 2025-05-04 19:08:29,139 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\urls.py changed, reloading.
+INFO 2025-05-04 19:08:34,813 autoreload Watching for file changes with StatReloader
+INFO 2025-05-04 19:09:03,476 autoreload Watching for file changes with StatReloader
+INFO 2025-05-04 19:12:13,378 backends User S-1-5-21-550850760-2695552310-605195006-1001 authenticated successfully from IP: 127.0.0.1
+INFO 2025-05-04 19:12:13,430 basehttp "POST /api/login/ HTTP/1.1" 200 277
+INFO 2025-05-04 19:16:08,775 basehttp "OPTIONS /api/login/ HTTP/1.1" 200 0
+INFO 2025-05-04 19:16:13,297 backends User S-1-5-21-550850760-2695552310-605195006-1001 authenticated successfully from IP: 127.0.0.1
+INFO 2025-05-04 19:16:13,339 basehttp "POST /api/login/ HTTP/1.1" 200 277
+INFO 2025-05-04 19:19:37,706 backends User S-1-5-21-550850760-2695552310-605195006-1001 authenticated successfully from IP: 127.0.0.1
+INFO 2025-05-04 19:19:37,792 basehttp "POST /api/login/ HTTP/1.1" 200 277
+INFO 2025-05-04 19:22:43,380 backends User S-1-5-21-550850760-2695552310-605195006-1001 authenticated successfully from IP: 127.0.0.1
+INFO 2025-05-04 19:22:43,437 basehttp "POST /api/login/ HTTP/1.1" 200 277
+INFO 2025-05-04 19:23:43,447 backends User S-1-5-21-550850760-2695552310-605195006-1001 authenticated successfully from IP: 127.0.0.1
+INFO 2025-05-04 19:23:43,492 basehttp "POST /api/login/ HTTP/1.1" 200 277
+INFO 2025-05-04 19:26:40,212 basehttp "OPTIONS /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 200 0
+INFO 2025-05-04 19:26:40,220 basehttp "OPTIONS /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 200 0
+INFO 2025-05-04 19:26:40,300 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 200 1056
+INFO 2025-05-04 19:26:40,346 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 200 1056
+INFO 2025-05-04 19:26:41,254 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 200 1056
+INFO 2025-05-04 19:26:59,254 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 200 1056
+INFO 2025-05-04 19:27:23,729 backends User S-1-5-21-550850760-2695552310-605195006-1001 authenticated successfully from IP: 127.0.0.1
+INFO 2025-05-04 19:27:23,766 basehttp "POST /api/login/ HTTP/1.1" 200 277

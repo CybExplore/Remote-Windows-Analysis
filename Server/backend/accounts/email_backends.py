@@ -50,7 +50,7 @@ class FileEmailBackend(BaseEmailBackend):
                     logger.info(f"Logged email to {self.file_path}: Subject={message.subject}")
         except Exception as e:
             logger.error(f"Failed to log email to {self.file_path}: {e}")
-            if not self.fail_silently:
+            if not self.fail_silently: # type: ignore
                 raise
 
         return num_sent

@@ -10,19 +10,21 @@ class IsClientAuthenticated(permissions.BasePermission):
     and the client_id is associated with a UserProfile.
     """
     def has_permission(self, request, view):
-        client_id = request.auth.application.client_id
-        if not request.auth:
-            logger.warning("No authentication token provided")
-            return False
-        try:
-            logger.debug(f"Checking client_id: {client_id}")
-            if not UserProfile.objects.filter(client_id=client_id).exists():
-                logger.warning(f"Client ID {client_id} not found in UserProfile")
-                return False
-            return True
-        except Exception as e:
-            logger.error(f"Error checking client_id {client_id}: {str(e)}")
-            return False
+        # client_id = request.auth.application.client_id
+        print(request)
+        return 
+        # if not request.auth:
+        #     logger.warning("No authentication token provided")
+        #     return False
+        # try:
+        #     logger.debug(f"Checking client_id: {client_id}")
+        #     if not UserProfile.objects.filter(client_id=client_id).exists():
+        #         logger.warning(f"Client ID {client_id} not found in UserProfile")
+        #         return False
+        #     return True
+        # except Exception as e:
+        #     logger.error(f"Error checking client_id {client_id}: {str(e)}")
+        #     return False
 
 class IsOwnerOrAdmin(permissions.BasePermission):
     """

@@ -1,5 +1,14 @@
+# accounts/views.py
 import logging
 import secrets
+from datetime import timedelta
+from django.db import transaction
+from django.utils import timezone
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from oauth2_provider.models import AccessToken, Application
+from oauth2_provider.settings import oauth2_settings
 from datetime import timedelta
 from django.conf import settings
 from django.contrib.auth import login, logout, update_session_auth_hash
@@ -16,6 +25,7 @@ from rest_framework import generics, status, permissions, viewsets
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
 from rest_framework.decorators import api_view
 from django.db.utils import IntegrityError
 from accounts.models import CustomUser, UserProfile
@@ -65,6 +75,7 @@ class CustomUserCreateView(APIView):
                 user = serializer.save()
                 profile_data = request.data.get('profile', {})
                 client_id = profile_data.get('client_id')
+                client_secret = profile_data.get('client_secret')
 
                 token_generator = PasswordResetTokenGenerator()
                 token = token_generator.make_token(user)
@@ -75,7 +86,8 @@ class CustomUserCreateView(APIView):
                     f"Dear {user.full_name or 'User'},\n\n"
                     f"Your account has been created. Please reset your password:\n"
                     f"Reset URL: {reset_url}\n\n"
-                    f"Client ID: {client_id}\n\n"
+                    f"Client ID: {client_id}\n"
+                    f"Client Secret: {client_secret}\n"
                     f"Regards,\nRemote Windows Security Management System"
                 )
                 send_mail(
@@ -174,101 +186,227 @@ class GroupViewSet(viewsets.ModelViewSet):
         self.perform_destroy(instance)
         return Response({"message": "Group deleted successfully", "data": {}}, status=status.HTTP_204_NO_CONTENT)
 
+
+
+
 class LoginView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = []
     serializer_class = LoginSerializer
     throttle_scope = 'login'
 
+    @transaction.atomic
     def post(self, request):
         serializer = self.serializer_class(data=request.data, context={'request': request})
-        if serializer.is_valid():
-            user = serializer.validated_data['user']
-            login(request, user)
-            try:
+        if not serializer.is_valid():
+            return Response(
+                {"message": "Validation failed", "errors": serializer.errors},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        user = serializer.validated_data['user']
+        
+        try:
+            # Update user profile login info
+            if hasattr(user, 'profile'):
                 profile = user.profile
                 profile.last_logon = timezone.now()
-                profile.last_login_ip = get_client_ip(request)
+                profile.last_login_ip = request.META.get('REMOTE_ADDR', '')
                 profile.logon_count += 1
                 profile.save()
 
-                app, created = Application.objects.get_or_create(
-                    name="React Frontend",
-                    defaults={
-                        'client_id': 'react_client_id',
-                        'client_secret': 'react_client_secret',
-                        'client_type': Application.CLIENT_CONFIDENTIAL,
-                        'authorization_grant_type': Application.GRANT_PASSWORD,
-                    }
-                )
-                if created:
-                    logger.info(f"OAuth application '{app.name}' created successfully.")
+            # Get or create OAuth application
+            app, created = Application.objects.get_or_create(
+                name="React Frontend",
+                defaults={
+                    'client_id': 'react_client_id',
+                    'client_secret': 'react_client_secret',
+                    'client_type': Application.CLIENT_CONFIDENTIAL,
+                    'authorization_grant_type': Application.GRANT_PASSWORD,
+                }
+            )
 
-                token = AccessToken.objects.create(
-                    user=user,
-                    application=app,
-                    scope='read write',
-                    expires=timezone.now() + timedelta(seconds=oauth2_settings.ACCESS_TOKEN_EXPIRE_SECONDS),
-                    # token=generate_token()
-                )
+            # Delete existing tokens to prevent duplicates
+            AccessToken.objects.filter(user=user, application=app).delete()
+            
+            # Generate secure token
+            token = secrets.token_urlsafe(50)
+            
+            # Create new access token
+            access_token = AccessToken.objects.create(
+                user=user,
+                application=app,
+                token=token,
+                expires=timezone.now() + timedelta(seconds=oauth2_settings.ACCESS_TOKEN_EXPIRE_SECONDS),
+                scope='read write'
+            )
 
-                user_serializer = CustomUserSerializer(user)
-                profile_serializer = UserProfileSerializer(profile)
-                response_data = {
-                    "message": "Login successful",
-                    "data": {
-                        "access_token": token.token,
-                        "token_type": "Bearer",
-                        "expires_in": oauth2_settings.ACCESS_TOKEN_EXPIRE_SECONDS,
-                        "scope": token.scope,
-                        "user": {
-                            **user_serializer.data,
-                            "profile": profile_serializer.data
-                        }
+            return Response({
+                "message": "Login successful",
+                "data": {
+                    "access_token": access_token.token,
+                    "token_type": "Bearer",
+                    "expires_in": oauth2_settings.ACCESS_TOKEN_EXPIRE_SECONDS,
+                    "user": {
+                        "sid": user.sid,
+                        "email": user.email,
+                        "full_name": user.full_name
                     }
                 }
-                logger.info(f"User {user.sid} logged in successfully.")
-                return Response(response_data, status=status.HTTP_200_OK)
-            except Exception as e:
-                logger.error(f"Error generating token for user {user.sid}: {str(e)}")
-                return Response(
-                    {"message": "Internal server error", "errors": ["Please try again later"]},
-                    status=status.HTTP_500_INTERNAL_SERVER_ERROR
-                )
-        logger.warning(f"Login failed due to validation errors: {serializer.errors}")
+            }, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            logger.error(f"Login error for {user.sid}: {str(e)}", exc_info=True)
+            return Response(
+                {"message": "Login failed", "errors": ["Internal server error"]},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+
+    def get(self, request):
         return Response(
-            {"message": "Validation failed", "errors": serializer.errors},
-            status=status.HTTP_400_BAD_REQUEST
+            {"detail": "POST method required for login"},
+            status=status.HTTP_405_METHOD_NOT_ALLOWED
         )
+    
+
+# class PasswordChangeView(APIView):
+#     permission_classes = [permissions.IsAuthenticated]
+#     throttle_scope = 'password_change'
+
+#     def post(self, request):
+#         serializer = PasswordChangeSerializer(data=request.data, context={'request': request})
+#         if not serializer.is_valid():
+#             logger.warning(f"Password change validation failed for user {request.user.sid}: {serializer.errors}")
+#             return Response({"message": "Validation failed", "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+
+#         user = request.user
+#         serializer.save()
+#         update_session_auth_hash(request, user)
+#         logger.info(f"User {user.sid} successfully changed their password.")
+
+#         try:
+#             send_password_change_email(user, request)
+#         except Exception as e:
+#             logger.error(f"Failed to send password change email: {str(e)}")
+
+#         return Response({
+#             "message": "Password changed successfully",
+#             "data": {
+#                 "next_steps": [
+#                     "You have been automatically logged in with your new password.",
+#                     "Update any other devices/systems where you use this password."
+#                 ]
+#             }
+#         }, status=status.HTTP_200_OK)
+
+
+from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
+from rest_framework.response import Response
+from rest_framework import status, permissions
+from rest_framework.schemas import get_schema_view
+from django.contrib.auth import update_session_auth_hash
+from django.utils import timezone
+from .serializers import PasswordChangeSerializer
+import logging
+from django.urls import reverse
+
+logger = logging.getLogger(__name__)
 
 class PasswordChangeView(APIView):
     permission_classes = [permissions.IsAuthenticated]
     throttle_scope = 'password_change'
+    renderer_classes = [JSONRenderer, TemplateHTMLRenderer]
+    template_name = 'rest_framework/password_change.html'  # DRF's default template
+
+    def get(self, request):
+        user = request.user
+        context = {
+            'user': {
+                'email': user.email,
+                'full_name': user.full_name,
+                'can_change_password': getattr(user.profile, 'user_may_change_password', False)
+            },
+            'password_policy': {
+                'min_length': 8,
+                'requires_upper': True,
+                'requires_lower': True,
+                'requires_number': True,
+                'requires_special': True
+            },
+            'post_url': reverse('password_change'),
+            'method': 'POST',
+            'csrf_token': request.META.get('CSRF_COOKIE', '')
+        }
+
+        if request.accepted_renderer.format == 'html':
+            return Response(context)
+        
+        return Response({
+            'form': {
+                'fields': [
+                    {'name': 'old_password', 'type': 'password', 'required': True},
+                    {'name': 'new_password', 'type': 'password', 'required': True},
+                    {'name': 'confirm_password', 'type': 'password', 'required': True}
+                ],
+                'action': context['post_url'],
+                'method': context['method']
+            },
+            'user': context['user'],
+            'password_policy': context['password_policy']
+        })
 
     def post(self, request):
-        serializer = PasswordChangeSerializer(data=request.data, context={'request': request})
+        serializer = PasswordChangeSerializer(
+            data=request.data,
+            context={'request': request}
+        )
+        
         if not serializer.is_valid():
-            logger.warning(f"Password change validation failed for user {request.user.sid}: {serializer.errors}")
-            return Response({"message": "Validation failed", "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
-
-        user = request.user
-        serializer.save()
-        update_session_auth_hash(request, user)
-        logger.info(f"User {user.sid} successfully changed their password.")
+            logger.warning(f"Password change failed for {request.user.email}")
+            
+            if request.accepted_renderer.format == 'html':
+                return Response(
+                    {'errors': serializer.errors},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+            
+            return Response(
+                {'status': 'error', 'errors': serializer.errors},
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
         try:
-            send_password_change_email(user, request)
-        except Exception as e:
-            logger.error(f"Failed to send password change email: {str(e)}")
+            user = request.user
+            serializer.save()
+            update_session_auth_hash(request, user)
+            
+            if hasattr(user, 'profile'):
+                user.profile.password_last_set = timezone.now()
+                user.profile.save()
 
-        return Response({
-            "message": "Password changed successfully",
-            "data": {
-                "next_steps": [
-                    "You have been automatically logged in with your new password.",
-                    "Update any other devices/systems where you use this password."
-                ]
-            }
-        }, status=status.HTTP_200_OK)
+            if request.accepted_renderer.format == 'html':
+                return Response(
+                    {'success': 'Password changed successfully'},
+                    template_name='rest_framework/password_change_success.html'
+                )
+            
+            return Response({
+                'status': 'success',
+                'message': 'Password changed successfully'
+            })
+            
+        except Exception as e:
+            logger.error(f"Password change error: {str(e)}")
+            if request.accepted_renderer.format == 'html':
+                return Response(
+                    {'error': str(e)},
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR
+                )
+            
+            return Response(
+                {'status': 'error', 'message': str(e)},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+        
 
 class SendEmailVerificationView(APIView):
     def post(self, request, *args, **kwargs):

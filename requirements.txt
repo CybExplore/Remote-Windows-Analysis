@@ -16,3 +16,4 @@ django-cors-headers
 uvicorn
 drf-yasg
 drf-yasg[validation]
+django-filter
