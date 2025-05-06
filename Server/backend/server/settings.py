@@ -240,16 +240,21 @@ OAUTH2_PROVIDER = {
         'read': 'Read scope',
         'write': 'Write scope',
     },
-    'ACCESS_TOKEN_EXPIRE_SECONDS': 2592000, 
-    'REFRESH_TOKEN_EXPIRE_SECONDS': 2592000,
     'ALLOWED_GRANT_TYPES': [
         'client_credentials',
         'password',
         'refresh_token',
     ],
-    'ACCESS_TOKEN_GENERATOR': 'accounts.utils.custom_token_generator',
+
+    'ACCESS_TOKEN_MODEL': 'oauth2_provider.AccessToken',
+    'REFRESH_TOKEN_MODEL': 'oauth2_provider.RefreshToken',
+    'APPLICATION_MODEL': 'oauth2_provider.Application',
+
+    # 'ACCESS_TOKEN_GENERATOR': 'accounts.utils.custom_token_generator',
     # 'OAUTH2_VALIDATOR_CLASS': 'accounts.oauth_validators.CustomOAuth2Validator',
-    'OAUTH2_VALIDATOR_CLASS': 'oauth2_provider.oauth2_validators.OAuth2Validator',
+    # 'OAUTH2_VALIDATOR_CLASS': 'oauth2_provider.oauth2_validators.OAuth2Validator',
+    'ACCESS_TOKEN_EXPIRE_SECONDS': 2592000, 
+    'REFRESH_TOKEN_EXPIRE_SECONDS': 2592000,
 }
 
 

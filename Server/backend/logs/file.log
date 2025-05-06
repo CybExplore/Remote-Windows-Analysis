@@ -759,3 +759,54 @@ INFO 2025-05-04 19:26:41,254 basehttp "GET /api/users/S-1-5-21-550850760-2695552
 INFO 2025-05-04 19:26:59,254 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 200 1056
 INFO 2025-05-04 19:27:23,729 backends User S-1-5-21-550850760-2695552310-605195006-1001 authenticated successfully from IP: 127.0.0.1
 INFO 2025-05-04 19:27:23,766 basehttp "POST /api/login/ HTTP/1.1" 200 277
+INFO 2025-05-06 01:52:10,782 autoreload Watching for file changes with StatReloader
+INFO 2025-05-06 01:59:46,189 autoreload Watching for file changes with StatReloader
+WARNING 2025-05-06 02:00:25,116 log Not Found: /ajax/cart-item-count/
+WARNING 2025-05-06 02:00:25,117 log Not Found: /notifications/
+WARNING 2025-05-06 02:00:25,122 basehttp "GET /ajax/cart-item-count/ HTTP/1.1" 404 3386
+WARNING 2025-05-06 02:00:25,125 basehttp "GET /notifications/ HTTP/1.1" 404 3365
+INFO 2025-05-06 02:01:15,327 basehttp "OPTIONS /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 200 0
+INFO 2025-05-06 02:01:15,331 basehttp "OPTIONS /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 200 0
+WARNING 2025-05-06 02:01:15,561 log Not Found: /api/users/S-1-5-21-550850760-2695552310-605195006-1001/
+WARNING 2025-05-06 02:01:15,582 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 404 51
+INFO 2025-05-06 02:01:15,614 basehttp "OPTIONS /api/logout/ HTTP/1.1" 200 0
+WARNING 2025-05-06 02:01:15,643 log Not Found: /api/users/S-1-5-21-550850760-2695552310-605195006-1001/
+WARNING 2025-05-06 02:01:15,674 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 404 51
+WARNING 2025-05-06 02:01:15,711 log Forbidden: /api/logout/
+WARNING 2025-05-06 02:01:15,764 basehttp "POST /api/logout/ HTTP/1.1" 403 58
+WARNING 2025-05-06 02:01:15,916 log Forbidden: /api/logout/
+WARNING 2025-05-06 02:01:16,046 basehttp "POST /api/logout/ HTTP/1.1" 403 58
+WARNING 2025-05-06 02:01:24,765 log Not Found: /ajax/cart-item-count/
+WARNING 2025-05-06 02:01:24,770 basehttp "GET /ajax/cart-item-count/ HTTP/1.1" 404 3386
+WARNING 2025-05-06 02:01:24,785 log Not Found: /notifications/
+WARNING 2025-05-06 02:01:24,786 basehttp "GET /notifications/ HTTP/1.1" 404 3365
+INFO 2025-05-06 02:01:24,950 basehttp "OPTIONS /api/login/ HTTP/1.1" 200 0
+INFO 2025-05-06 02:01:25,016 backends No user found for identifier: admin@cybexplore.org
+WARNING 2025-05-06 02:01:25,031 serializers Failed login attempt for identifier: admin@cybexplore.org
+WARNING 2025-05-06 02:01:25,035 log Bad Request: /api/login/
+WARNING 2025-05-06 02:01:25,045 basehttp "POST /api/login/ HTTP/1.1" 400 85
+WARNING 2025-05-06 02:02:24,665 log Not Found: /ajax/cart-item-count/
+WARNING 2025-05-06 02:02:24,670 log Not Found: /notifications/
+WARNING 2025-05-06 02:02:24,671 basehttp "GET /ajax/cart-item-count/ HTTP/1.1" 404 3386
+WARNING 2025-05-06 02:02:24,671 basehttp "GET /notifications/ HTTP/1.1" 404 3365
+INFO 2025-05-06 02:03:18,580 views Account creation email sent to admin@cybexplore.org for user S-1-5-21-550850760-2695552310-605195006-1001
+INFO 2025-05-06 02:03:18,582 basehttp "POST /api/create-user/ HTTP/1.1" 201 179
+WARNING 2025-05-06 02:03:19,185 log Not Found: /o/token/
+WARNING 2025-05-06 02:03:19,188 basehttp "POST /o/token/ HTTP/1.1" 404 3348
+WARNING 2025-05-06 02:03:22,584 log Forbidden: /api/users/S-1-5-21-550850760-2695552310-605195006-1001/
+WARNING 2025-05-06 02:03:22,630 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 403 58
+WARNING 2025-05-06 02:03:22,799 log Forbidden: /api/logout/
+WARNING 2025-05-06 02:03:22,802 log Forbidden: /api/users/S-1-5-21-550850760-2695552310-605195006-1001/
+WARNING 2025-05-06 02:03:22,955 basehttp "POST /api/logout/ HTTP/1.1" 403 58
+WARNING 2025-05-06 02:03:22,963 basehttp "GET /api/users/S-1-5-21-550850760-2695552310-605195006-1001/ HTTP/1.1" 403 58
+WARNING 2025-05-06 02:03:23,279 log Forbidden: /api/logout/
+WARNING 2025-05-06 02:03:23,321 basehttp "POST /api/logout/ HTTP/1.1" 403 58
+WARNING 2025-05-06 02:03:25,221 log Not Found: /ajax/cart-item-count/
+WARNING 2025-05-06 02:03:25,223 basehttp "GET /ajax/cart-item-count/ HTTP/1.1" 404 3386
+WARNING 2025-05-06 02:03:25,253 log Not Found: /notifications/
+WARNING 2025-05-06 02:03:25,254 basehttp "GET /notifications/ HTTP/1.1" 404 3365
+INFO 2025-05-06 02:03:33,080 backends Invalid password for user with identifier: admin@cybexplore.org
+WARNING 2025-05-06 02:03:33,081 serializers Failed login attempt for identifier: admin@cybexplore.org
+WARNING 2025-05-06 02:03:33,083 log Bad Request: /api/login/
+WARNING 2025-05-06 02:03:33,084 basehttp "POST /api/login/ HTTP/1.1" 400 85
+INFO 2025-05-06 02:03:39,744 basehttp - Broken pipe from ('127.0.0.1', 65441)
