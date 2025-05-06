@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.Security;
+using System.Threading.Tasks;
 using Client.Models;
 
 namespace Client
@@ -9,14 +11,18 @@ namespace Client
     public class EventMonitor
     {
         private readonly ApiClient _apiClient;
+        private readonly ConcurrentQueue<SecurityEvent> _eventQueue = new();
+        private readonly TimeSpan _batchInterval = TimeSpan.FromSeconds(10);
 
         public EventMonitor(ApiClient apiClient)
         {
             _apiClient = apiClient;
         }
 
-        public void Start(string sid, string accessToken)
+        public void Start(string sid, string accessToken, string clientId, string clientSecret)
         {
+            Task.Run(() => ProcessEventQueue(sid, accessToken, clientId, clientSecret));
+
             var logs = new[]
             {
                 new { Name = "Security", EventIds = new long[] { 4624, 4625, 4634, 4672, 4720, 4722, 4728, 4738, 4673, 4674, 4616, 4688, 4697 } },
@@ -28,7 +34,6 @@ namespace Client
             {
                 try
                 {
-                    // Check if log exists using EventLogSession
                     bool logExists = false;
                     try
                     {
@@ -49,15 +54,19 @@ namespace Client
                     }
 
                     EventLog eventLog = new EventLog(log.Name);
-                    eventLog.EntryWritten += async (sender, e) =>
+                    eventLog.EntryWritten += (sender, e) =>
                     {
                         if (log.EventIds.Contains(e.Entry.InstanceId))
                         {
+                            if (e.Entry.InstanceId > int.MaxValue)
+                            {
+                                Console.WriteLine($"Warning: Event ID {e.Entry.InstanceId} exceeds int range. Truncating to {int.MaxValue}.");
+                            }
                             var securityEvent = new SecurityEvent
                             {
                                 Sid = sid,
-                                EventId = e.Entry.InstanceId,
-                                TimeCreated = e.Entry.TimeGenerated.ToString("o"),
+                                EventId = (int)e.Entry.InstanceId, // Cast long to int
+                                TimeCreated = e.Entry.TimeGenerated, // Use DateTime directly
                                 Description = e.Entry.Message ?? "No description",
                                 Source = log.Name.Split('/')[0],
                                 LogonType = e.Entry.InstanceId == 4624 ? GetLogonType(e.Entry) : null,
@@ -66,17 +75,12 @@ namespace Client
                                 GroupName = e.Entry.InstanceId == 4728 ? GetGroupName(e.Entry) : null,
                                 PrivilegeName = e.Entry.InstanceId == 4673 ? GetPrivilegeName(e.Entry) : null,
                                 ProcessName = e.Entry.InstanceId == 4688 ? GetProcessName(e.Entry) : null,
-                                ServiceName = e.Entry.InstanceId == 4697 ? GetServiceName(e.Entry) : null
+                                ServiceName = e.Entry.InstanceId == 4697 ? GetServiceName(e.Entry) : null,
+                                ClientId = clientId,
+                                ClientSecret = clientSecret
                             };
-                            try
-                            {
-                                await _apiClient.SendSecurityEvent(accessToken, securityEvent);
-                                Console.WriteLine($"Sent security event: {securityEvent.EventId} from {log.Name}");
-                            }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine($"Failed to send security event: {ex.Message}");
-                            }
+                            _eventQueue.Enqueue(securityEvent);
+                            Console.WriteLine($"Queued security event: {securityEvent.EventId} from {log.Name}");
                         }
                     };
                     eventLog.EnableRaisingEvents = true;
@@ -85,16 +89,39 @@ namespace Client
                 catch (SecurityException ex)
                 {
                     Console.WriteLine($"Security error accessing Event Log '{log.Name}': {ex.Message}. Run as Administrator or ensure the account has 'Event Log Readers' permissions.");
-                    continue; // Skip to next log
+                    continue;
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine($"Error accessing Event Log '{log.Name}': {ex.Message}");
-                    continue; // Skip to next log
+                    continue;
                 }
             }
 
             Console.WriteLine("Monitoring started for available Event Logs. Press Ctrl+C to exit...");
+        }
+
+        private async Task ProcessEventQueue(string sid, string accessToken, string clientId, string clientSecret)
+        {
+            while (true)
+            {
+                if (_eventQueue.TryDequeue(out var securityEvent))
+                {
+                    try
+                    {
+                        await _apiClient.SendSecurityEvent(accessToken, securityEvent);
+                        Console.WriteLine($"Sent security event: {securityEvent.EventId}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Failed to send security event: {ex.Message}");
+                    }
+                }
+                else
+                {
+                    await Task.Delay(_batchInterval);
+                }
+            }
         }
 
         private string? GetLogonType(EventLogEntry entry)

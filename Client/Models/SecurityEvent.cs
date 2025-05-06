@@ -1,27 +1,10 @@
-// // Models/SecurityEvent.cs
-
-// using Newtonsoft.Json;
-
-// namespace Client
-// {
-//     public class SecurityEvent
-//     {
-//         [JsonProperty("sid")] public string? Sid { get; set; }
-//         [JsonProperty("event_id")] public long EventId { get; set; }
-//         [JsonProperty("time_created")] public string? TimeCreated { get; set; }
-//         [JsonProperty("description")] public string? Description { get; set; }
-//     }
-// }
-
-
-
 namespace Client.Models
 {
     public class SecurityEvent
     {
-        public string Sid { get; set; } = string.Empty;
-        public long EventId { get; set; }
-        public string TimeCreated { get; set; } = string.Empty;
+        public string Sid { get; set; } = string.Empty; // Maps to 'client' (SID)
+        public int EventId { get; set; } // Changed to int to match Django IntegerField
+        public DateTime TimeCreated { get; set; } // Changed to DateTime to match Django DateTimeField
         public string Description { get; set; } = string.Empty;
         public string? Source { get; set; }
         public string? LogonType { get; set; }
@@ -31,6 +14,7 @@ namespace Client.Models
         public string? PrivilegeName { get; set; }
         public string? ProcessName { get; set; }
         public string? ServiceName { get; set; }
+        public string? ClientId { get; set; } 
+        public string? ClientSecret { get; set; } 
     }
 }
-

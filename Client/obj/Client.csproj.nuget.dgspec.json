@@ -52,7 +52,7 @@
           "dependencies": {
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
-              "version": "[9.0.4, )"
+              "version": "[9.0.0, )"
             },
             "Microsoft.Extensions.Configuration.FileExtensions": {
               "target": "Package",
@@ -78,17 +78,21 @@
               "target": "Package",
               "version": "[13.0.3, )"
             },
-            "Serilog.Extensions.Logging.File": {
+            "Serilog.AspNetCore": {
               "target": "Package",
-              "version": "[3.0.0, )"
+              "version": "[8.0.3, )"
+            },
+            "Serilog.Sinks.File": {
+              "target": "Package",
+              "version": "[6.0.0, )"
             },
             "System.Diagnostics.EventLog": {
               "target": "Package",
-              "version": "[9.0.4, )"
+              "version": "[9.0.0, )"
             },
             "System.Management": {
               "target": "Package",
-              "version": "[9.0.4, )"
+              "version": "[9.0.0, )"
             },
             "System.Security.Cryptography.ProtectedData": {
               "target": "Package",

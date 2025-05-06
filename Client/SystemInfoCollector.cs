@@ -1,7 +1,6 @@
 using System;
 using System.Management;
 using Client.Models;
-using Microsoft.Win32;
 
 namespace Client
 {
@@ -50,7 +49,6 @@ namespace Client
             };
             try
             {
-                // Use MSFT_NetFirewallProfile in root\StandardCimv2 namespace
                 using var searcher = new ManagementObjectSearcher(
                     @"root\StandardCimv2",
                     "SELECT * FROM MSFT_NetFirewallProfile WHERE Enabled = 1"

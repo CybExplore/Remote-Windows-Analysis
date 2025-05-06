@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Threading.Tasks;
+using Client.Models;
 
 namespace Client
 {
@@ -14,14 +15,14 @@ namespace Client
                 .SetBasePath(AppContext.BaseDirectory)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .Build();
-            string apiBaseUrl = config["ApiSettings:BaseUrl"] ?? "http://localhost:8000";
+            string apiBaseUrl = config["ApiSettings:BaseUrl"] ?? "http://localhost:8000/";
 
             var credentialManager = new CredentialManager();
             var systemInfoCollector = new SystemInfoCollector();
             var apiClient = new ApiClient(apiBaseUrl);
             var eventMonitor = new EventMonitor(apiClient);
 
-            var (sid, clientId, clientSecret) = credentialManager.LoadCredentials();
+            var (sid, clientId, clientSecret, password) = credentialManager.LoadCredentials();
             bool isNewAccount = sid == null;
 
             if (isNewAccount)
@@ -42,7 +43,6 @@ namespace Client
                 }
 
                 userAccount.Email = email;
-                userAccount.Password = CredentialManager.GenerateRandomPassword();
                 userAccount.ClientId = CredentialManager.GenerateClientId();
                 userAccount.ClientSecret = CredentialManager.GenerateClientSecret();
 
@@ -50,7 +50,16 @@ namespace Client
                 if (success)
                 {
                     Console.WriteLine($"Account created successfully!\nSID: {userAccount.Sid}\nClient ID: {userAccount.ClientId}\nClient Secret: {userAccount.ClientSecret}");
-                    credentialManager.SaveCredentials(userAccount.Sid, userAccount.ClientId, userAccount.ClientSecret);
+                    Console.WriteLine("Check your email for a temporary password.");
+                    Console.Write("Enter the temporary password received via email: ");
+                    userAccount.Password = Console.ReadLine();
+                    if (string.IsNullOrEmpty(userAccount.Password))
+                    {
+                        Console.WriteLine("A valid temporary password is required.");
+                        return;
+                    }
+
+                    credentialManager.SaveCredentials(userAccount.Sid, userAccount.ClientId, userAccount.ClientSecret, userAccount.Password);
                     if (Environment.UserInteractive)
                     {
                         ApiClient.LaunchBrowser("http://localhost:3000/login");
@@ -58,6 +67,7 @@ namespace Client
                     sid = userAccount.Sid;
                     clientId = userAccount.ClientId;
                     clientSecret = userAccount.ClientSecret;
+                    password = userAccount.Password;
                 }
                 else
                 {
@@ -66,30 +76,13 @@ namespace Client
                 }
             }
 
-            if (string.IsNullOrEmpty(clientId) || string.IsNullOrEmpty(clientSecret))
-            {
-                if (string.IsNullOrEmpty(sid))
-                {
-                    Console.WriteLine("SID is null. Cannot fetch client credentials.");
-                    return;
-                }
-                (clientId, clientSecret) = await apiClient.GetClientCredentials(sid);
-                if (!string.IsNullOrEmpty(clientId) && !string.IsNullOrEmpty(clientSecret))
-                {
-                    credentialManager.SaveCredentials(sid, clientId, clientSecret);
-                }
-            }
-
-            string? accessToken = null;
-            if (!string.IsNullOrEmpty(clientId) && !string.IsNullOrEmpty(clientSecret))
-            {
-                accessToken = await apiClient.GetOAuthTokenWithClientCredentials(clientId, clientSecret);
-            }
-
+            string? accessToken = await apiClient.GetOAuthTokenWithPassword(clientId!, clientSecret!, sid!, password!);
             if (!string.IsNullOrEmpty(accessToken) && !string.IsNullOrEmpty(sid))
             {
                 Console.WriteLine("OAuth2 token obtained successfully!");
                 var serverInfo = systemInfoCollector.GetServerInfo(sid);
+                serverInfo.ClientId = clientId;
+                serverInfo.ClientSecret = clientSecret;
                 try
                 {
                     await apiClient.SendServerInfo(accessToken, serverInfo);
@@ -100,6 +93,8 @@ namespace Client
                 }
 
                 var firewallStatus = systemInfoCollector.GetFirewallStatus(sid);
+                firewallStatus.ClientId = clientId;
+                firewallStatus.ClientSecret = clientSecret;
                 try
                 {
                     await apiClient.SendFirewallStatus(accessToken, firewallStatus);
@@ -111,7 +106,7 @@ namespace Client
 
                 try
                 {
-                    eventMonitor.Start(sid, accessToken);
+                    eventMonitor.Start(sid, accessToken, clientId!, clientSecret!);
                 }
                 catch (Exception ex)
                 {
