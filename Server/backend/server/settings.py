@@ -176,22 +176,17 @@ REST_FRAMEWORK = {
         
         'rest_framework.authentication.TokenAuthentication',
 
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
         
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
         # 'rest_framework.permissions.AllowAny',
-        # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
 
     ],
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer',
-    ),
+        'rest_framework.renderers.BrowsableAPIRenderer' if DEBUG else 'rest_framework.renderers.JSONRenderer',    ),
     'DEFAULT_THROTTLE_CLASSES': [
-        # 'rest_framework.throttling.UserRateThrottle',
-
         'rest_framework.throttling.ScopedRateThrottle',
     ],
     'DEFAULT_THROTTLE_RATES': {
@@ -199,15 +194,9 @@ REST_FRAMEWORK = {
         'password_reset': '5/hour',
         'password_change': '3/hour',
     },
-    # 'DEFAULT_SCHEMA_CLASS': {
-    #     'drf_spectacular.openapi.AutoSchema',
-    # }
 
 }
-if not DEBUG:
-    REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
-        'rest_framework.renderers.JSONRenderer',
-    ]
+
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Remote Window Security Monitoring System',
@@ -235,8 +224,10 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend', 
 ]
 
+OAUTH2_PROVIDER_ACCESS_TOKEN_MODEL = 'oauth2_provider.AccessToken'
 
-# OIDC_ENABLED = True
+# 
+OIDC_ENABLED = True
 # OAuth2 Provider settings
 OAUTH2_PROVIDER = {
     'SCOPES': {
@@ -267,6 +258,7 @@ LOGGING = {
     'disable_existing_loggers': False,
     'handlers': {
         'console': {
+            'level': 'INFO',
             'class': 'logging.StreamHandler',
         },
         'file': {
@@ -299,7 +291,8 @@ LOGGING = {
     },
 }
 
-
+logger = logging.getLogger('accounts')
+logger.info('Logging configured.')
 
 # CORS Settings
 CORS_ALLOWED_ORIGINS = [
@@ -307,10 +300,9 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
 ]
 
-CORS_ALLOWED_ORIGIN_REGEXES = [
-    "*",
-]
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGIN_REGEXES = []  # Remove wildcard
 CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = [

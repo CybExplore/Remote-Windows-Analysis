@@ -13,6 +13,9 @@ namespace Client
         private readonly HttpClient _client;
         private readonly string _apiBaseUrl;
 
+        private string? _accessToken;
+        private string? _refreshToken;
+
         public ApiClient(string apiBaseUrl)
         {
             _client = new HttpClient();
