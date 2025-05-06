@@ -36,7 +36,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = [
-            'sid', 'email', 'password', 'password_changed', 'full_name', 'email_verified',
+            'sid', 'email', 'password', 'password_changed', 'full_name',
             'sid_type', 'domain', 'local_account', 'is_shutting_down', 'account_type',
             'status', 'caption', 'created_at', 'updated_at', 'profile'
         ]
@@ -216,18 +216,3 @@ class PasswordResetConfirmSerializer(serializers.Serializer):
         self.context['user'] = user
         return data
 
-class EmailVerificationSerializer(serializers.Serializer):
-    uidb64 = serializers.CharField()
-    token = serializers.CharField()
-
-    def validate(self, data):
-        try:
-            uid = force_str(urlsafe_base64_decode(data.get('uidb64')))
-            user = CustomUser.objects.get(pk=uid)
-        except (TypeError, ValueError, OverflowError, CustomUser.DoesNotExist):
-            raise serializers.ValidationError({'uidb64': 'Invalid UID'})
-        if not default_token_generator.check_token(user, data.get('token')):
-            raise serializers.ValidationError({'token': 'Invalid or expired token'})
-
-        self.context['user'] = user
-        return data

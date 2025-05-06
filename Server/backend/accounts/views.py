@@ -9,7 +9,6 @@ from django.core.mail import send_mail
 from django.utils import timezone
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.views.generic.base import RedirectView
 from oauth2_provider.models import AccessToken, Application
 from oauth2_provider.settings import oauth2_settings
 from rest_framework import generics, status, permissions, viewsets
@@ -21,11 +20,10 @@ from django.db.utils import IntegrityError
 from accounts.models import CustomUser, UserProfile
 from accounts.serializers import (
     CustomUserSerializer, UserProfileSerializer, GroupSerializer,
-    LoginSerializer, PasswordChangeSerializer, EmailVerificationSerializer,
-    PasswordResetConfirmSerializer, PasswordResetRequestSerializer
+    LoginSerializer, PasswordChangeSerializer, PasswordResetConfirmSerializer, PasswordResetRequestSerializer
 )
 from accounts.permissions import IsClientAuthenticated, IsOwnerOrAdmin
-from accounts.notifications import send_password_change_email, send_verification_email, get_client_ip
+from accounts.notifications import send_password_change_email, get_client_ip
 
 logger = logging.getLogger(__name__)
 
@@ -269,46 +267,6 @@ class PasswordChangeView(APIView):
                 ]
             }
         }, status=status.HTTP_200_OK)
-
-class SendEmailVerificationView(APIView):
-    def post(self, request, *args, **kwargs):
-        email = request.data.get('email')
-        try:
-            user = CustomUser.objects.get(email=email)
-        except CustomUser.DoesNotExist:
-            return Response({"message": "User not found", "errors": ["No user found with this email"]}, status=status.HTTP_400_BAD_REQUEST)
-
-        send_verification_email(user)
-        return Response({"message": "Verification email sent", "data": {}}, status=status.HTTP_200_OK)
-
-class EmailVerificationView(APIView):
-    def post(self, request, *args, **kwargs):
-        serializer = EmailVerificationSerializer(data=request.data)
-        if serializer.is_valid():
-            user = serializer.context['user']
-            user.is_active = True
-            user.email_verified = True
-            user.save()
-            return Response({"message": "Email successfully verified", "data": {}}, status=status.HTTP_200_OK)
-        return Response({"message": "Validation failed", "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
-
-class EmailVerificationRedirectView(RedirectView):
-    permanent = False
-
-    def get_redirect_url(self, *args, **kwargs):
-        uidb64 = kwargs.get('uidb64')
-        token = kwargs.get('token')
-        try:
-            uid = urlsafe_base64_decode(uidb64).decode()
-            user = CustomUser.objects.get(pk=uid)
-            if default_token_generator.check_token(user, token):
-                user.is_active = True
-                user.email_verified = True
-                user.save()
-                return f"{settings.FRONTEND_URL}/email-verified/success"
-        except Exception:
-            pass
-        return f"{settings.FRONTEND_URL}/email-verified/failure"
 
 class PasswordResetRequestView(APIView):
     permission_classes = [AllowAny]

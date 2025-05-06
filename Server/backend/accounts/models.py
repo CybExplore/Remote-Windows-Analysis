@@ -21,7 +21,6 @@ class CustomUser(AbstractUser, PermissionsMixin):
         null=False,
         help_text="User's email address (required for credentials delivery)"
     )
-    email_verified = models.BooleanField(default=False)
     sid = models.CharField(
         max_length=50,
         unique=True,

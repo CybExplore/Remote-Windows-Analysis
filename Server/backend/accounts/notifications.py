@@ -8,10 +8,10 @@ from django.utils.encoding import force_bytes
 
 logger = logging.getLogger(__name__)
 
-SITE_NAME = getattr(settings, 'SITE_NAME', 'Windows Security Management')
-SUPPORT_EMAIL = getattr(settings, 'SUPPORT_EMAIL', 'support@example.com')
-SUPPORT_PHONE = getattr(settings, 'SUPPORT_PHONE', '')
-SITE_URL = getattr(settings, 'SITE_URL', 'https://example.com')
+SITE_NAME = settings.SITE_NAME
+SUPPORT_EMAIL = settings.SUPPORT_EMAIL
+SUPPORT_PHONE = settings.SUPPORT_PHONE
+SITE_URL = settings.SITE_URL
 
 def send_password_change_email(user, request):
     """Send a password change notification email to the user."""
@@ -74,23 +74,6 @@ The {SITE_NAME} Team
 For security reasons, this email cannot be replied to.
 If you need assistance, please contact {SUPPORT_EMAIL}.
 """
-
-def send_verification_email(user):
-    """Send a verification email to the user with a secure token."""
-    try:
-        token = default_token_generator.make_token(user)
-        uid = urlsafe_base64_encode(force_bytes(user.pk))
-        verification_link = f"{settings.FRONTEND_URL}/verify-email/{uid}/{token}/"
-        send_mail(
-            subject="Verify Your Email",
-            message=f"Dear {user.full_name or 'User'},\n\nClick the link to verify your email:\n\n{verification_link}\n\nRegards,\n{SITE_NAME}",
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=[user.email],
-            fail_silently=False,
-        )
-        logger.info(f"Verification email sent to {user.email}")
-    except Exception as e:
-        logger.error(f"Failed to send verification email to {user.email}: {str(e)}")
 
 def get_client_ip(request):
     """Return the client's real IP address."""

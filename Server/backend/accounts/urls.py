@@ -18,10 +18,6 @@ urlpatterns = [
     # Authentication Views
     path('login/', accounts_views.LoginView.as_view(), name='login'), 
     
-    path('send-verification/', accounts_views.SendEmailVerificationView.as_view(), name='send-verification'),
-    path('verify-email/', accounts_views.EmailVerificationView.as_view(), name='verify-email'),
-    path('verify-email/<uidb64>/<token>/', accounts_views.EmailVerificationRedirectView.as_view(), name='verify-email-redirect'),
-
     path('password/change/', accounts_views.PasswordChangeView.as_view(), name='password_change'),
 
     # Password Reset Views

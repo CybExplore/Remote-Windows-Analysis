@@ -1307,3 +1307,13 @@ INFO 2025-04-30 06:42:27,165 basehttp "POST /api/events/ HTTP/1.1" 201 34
 INFO 2025-04-30 06:42:27,171 basehttp "POST /api/events/ HTTP/1.1" 201 34
 INFO 2025-04-30 06:48:21,206 basehttp "POST /api/events/ HTTP/1.1" 201 34
 INFO 2025-04-30 06:48:21,254 basehttp "POST /api/events/ HTTP/1.1" 201 34
+INFO 2025-05-06 02:15:28,868 autoreload Watching for file changes with StatReloader
+INFO 2025-05-06 02:16:04,234 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
+INFO 2025-05-06 02:16:43,228 autoreload Watching for file changes with StatReloader
+INFO 2025-05-06 02:17:12,621 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\notifications.py changed, reloading.
+INFO 2025-05-06 02:17:29,344 autoreload Watching for file changes with StatReloader
+INFO 2025-05-06 02:17:51,799 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\urls.py changed, reloading.
+INFO 2025-05-06 02:17:57,463 autoreload Watching for file changes with StatReloader
+INFO 2025-05-06 02:21:25,075 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\models.py changed, reloading.
+INFO 2025-05-06 02:21:29,350 autoreload Watching for file changes with StatReloader
+INFO 2025-05-06 02:21:52,074 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
