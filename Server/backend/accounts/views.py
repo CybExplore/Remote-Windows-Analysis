@@ -1,5 +1,5 @@
-import logging
-import secrets
+import logging,json
+import secrets, uuid
 from datetime import timedelta
 from django.conf import settings
 from django.contrib.auth import login, logout, update_session_auth_hash
@@ -9,15 +9,15 @@ from django.core.mail import send_mail
 from django.utils import timezone
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from oauth2_provider.models import AccessToken, Application
-from oauth2_provider.settings import oauth2_settings
+# from oauth2_provider.models import AccessToken, Application
+# from oauth2_provider.settings import oauth2_settings
 from rest_framework import generics, status, permissions, viewsets
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from django.db.utils import IntegrityError
-from accounts.models import CustomUser, UserProfile
+from accounts.models import CustomUser, UserProfile, Client, LogEntry
 from accounts.serializers import (
     CustomUserSerializer, UserProfileSerializer, GroupSerializer,
     LoginSerializer, PasswordChangeSerializer, PasswordResetConfirmSerializer, PasswordResetRequestSerializer
@@ -25,7 +25,149 @@ from accounts.serializers import (
 from accounts.permissions import IsClientAuthenticated, IsOwnerOrAdmin
 from accounts.notifications import send_password_change_email, get_client_ip
 
+from rest_framework_simplejwt.tokens import RefreshToken
+from django.contrib.auth.hashers import check_password, make_password
+
+from .tasks import detect_anomalies
+from django.utils import timezone
+
+
 logger = logging.getLogger(__name__)
+
+
+class ClientAuthView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        client_id = request.data['client_id']
+        secret_id = request.data['secret_id']
+        sid = request.data['sid']
+
+        try:
+            client = Client.objects.get(client_id=client_id, sid=sid)
+            if check_password(secret_id, client.secret_id):
+                refresh = RefreshToken.for_user(client.user)
+                return Response({
+                    'user': client.user,
+                    'access_token': str(refresh.access_token),
+                    'refresh_token': str(refresh),
+                })
+            return Response({'error': 'Invalid credentials'}, status=401)
+        except Client.DoesNotExist:
+            return Response({'error': 'Client not found'}, status=404)
+
+
+class LogReceiverView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        logs = request.data.get('logs', [])
+        client_id = request.data.get('client_id')
+        # Process and store logs (e.g., save to database)
+        try:
+            client = Client.objects.get(client_id=client_id, user=request.user) if client_id else None
+            log_entries = [
+                LogEntry(
+                    user=request.user,
+                    client=client,
+                    event_type=log.get('event_type'),
+                    event_id=log.get('event_id'),
+                    source=log.get('source'),
+                    timestamp=log.get('timestamp'),
+                    details=log.get('details', {})
+                )
+                for log in logs
+            ]
+            LogEntry.objects.bulk_create(log_entries)
+            # Trigger anomaly detection task
+            end_time = timezone.now()
+            start_time = end_time - timezone.timedelta(minutes=15)  # Analyze last 15 minutes
+            detect_anomalies.delay(
+                user_id=request.user.id,
+                start_time=start_time.isoformat(),
+                end_time=end_time.isoformat(),
+                client_id=client_id
+            )
+            
+            return Response({'status': 'success', 'count': len(logs)})
+        except Client.DoesNotExist:
+            return Response({'error': 'Client not found'}, status=404)
+        except Exception as e:
+            return Response({'error': str(e)}, status=400)
+        
+    
+
+class RotateClientCredentialsView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        client_id = request.data.get('client_id')
+        try:
+            client = Client.objects.get(client_id=client_id, user=request.user)
+            client.client_id = uuid.uuid4()  # Generate new client_id
+            client.set_secret_id(uuid.uuid4().hex)  # Generate and hash new secret_id
+            client.save()
+            return Response({
+                'new_client_id': str(client.client_id),
+                'new_secret_id': client.secret_id,  # Return unhashed for one-time use
+            })
+        except Client.DoesNotExist:
+            return Response({'error': 'Client not found'}, status=404)
+        
+
+
+from django.db.models import Count
+from math import log2
+
+def calculate_entropy(user, start_time, end_time):
+    logs = LogEntry.objects.filter(user=user, timestamp__range=(start_time, end_time))
+    event_counts = logs.values('event_type').annotate(count=Count('event_type'))
+    total = logs.count()
+    if total == 0:
+        return 0
+    entropy = -sum((item['count'] / total) * log2(item['count'] / total) for item in event_counts)
+    return entropy
+
+from scipy.stats import gaussian_kde
+import numpy as np
+
+def detect_density_anomalies(user, start_time, end_time):
+    logs = LogEntry.objects.filter(user=user, timestamp__range=(start_time, end_time))
+    timestamps = np.array([log.timestamp.timestamp() for log in logs])
+    if len(timestamps) < 2:
+        return []
+    kde = gaussian_kde(timestamps)
+    densities = kde(timestamps)
+    threshold = np.percentile(density, 95)  # Flag top 5% as anomalies
+    anomalies = [log for log, d in zip(logs, density) if d > threshold]
+    for log in anomalies:
+        log.anomaly_score = d
+        log.save()
+    return anomalies
+
+
+# views.py
+class LogListView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        event_type = request.query_params.get('event_type')
+        start_time = request.query_params.get('start_time')
+        end_time = request.query_params.get('end_time')
+        logs = LogEntry.objects.filter(user=request.user)
+        if event_type:
+            logs = logs.filter(event_type=event_type)
+        if start_time and end_time:
+            logs = logs.filter(timestamp__range=(start_time, end_time))
+        return Response([{
+            'id': log.id,
+            'event_type': log.event_type,
+            'event_id': log.event_id,
+            'source': log.source,
+            'timestamp': log.timestamp,
+            'details': log.details,
+            'anomaly_score': log.anomaly_score
+        } for log in logs])
 
 class UserProfileView(APIView):
     permission_classes = [IsClientAuthenticated]
@@ -50,30 +192,102 @@ class UserProfileView(APIView):
         except CustomUser.DoesNotExist:
             return Response({"message": "User not found", "errors": ["User not found"]}, status=status.HTTP_404_NOT_FOUND)
 
+# class CustomUserCreateView(APIView):
+#     permission_classes = [AllowAny]
+
+#     def post(self, request):
+#         logger.debug(f"Received create user request: {request.data}")
+#         serializer = CustomUserSerializer(data=request.data)
+#         if serializer.is_valid():
+#             try:
+#                 temp_password = secrets.token_urlsafe(16)
+#                 request.data['password'] = temp_password
+#                 user = serializer.save()
+#                 profile_data = request.data.get('profile', {})
+#                 client_id = profile_data.get('client_id')
+
+#                 token_generator = PasswordResetTokenGenerator()
+#                 token = token_generator.make_token(user)
+#                 uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+#                 reset_url = f"{settings.FRONTEND_URL}/password/reset/confirm/{uidb64}/{token}/"
+
+#                 message = (
+#                     f"Dear {user.full_name or 'User'},\n\n"
+#                     f"Your account has been created. Please reset your password:\n"
+#                     f"Reset URL: {reset_url}\n\n"
+#                     f"Client ID: {client_id}\n\n"
+#                     f"Regards,\nRemote Windows Security Management System"
+#                 )
+#                 send_mail(
+#                     subject="Your New Account",
+#                     message=message,
+#                     from_email=settings.DEFAULT_FROM_EMAIL,
+#                     recipient_list=[user.email],
+#                     fail_silently=False,
+#                 )
+#                 logger.info(f"Account creation email sent to {user.email} for user {user.sid}")
+#                 return Response({
+#                     "message": "User created successfully",
+#                     "data": {
+#                         "sid": user.sid,
+#                         "email": user.email,
+#                         "client_id": user.profile.client_id if user.profile else None
+#                     }
+#                 }, status=status.HTTP_201_CREATED)
+#             except IntegrityError as e:
+#                 logger.error(f"Database integrity error during user creation: {str(e)}")
+#                 return Response({
+#                     "message": "User creation failed",
+#                     "errors": ["A profile for this user already exists or another database conflict occurred"]
+#                 }, status=status.HTTP_400_BAD_REQUEST)
+#             except Exception as e:
+#                 logger.error(f"Error creating user: {str(e)}")
+#                 return Response({"message": "User creation failed", "errors": [str(e)]}, status=status.HTTP_400_BAD_REQUEST)
+#         logger.warning(f"User creation validation failed: {serializer.errors}")
+#         return Response({"message": "Validation failed", "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+
+
+from django.conf import settings
+from django.core.mail import send_mail
+from django.db import IntegrityError
+from rest_framework.views import APIView
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from rest_framework import status
+from .serializers import CustomUserSerializer
+import logging
+import secrets
+
+logger = logging.getLogger(__name__)
+
 class CustomUserCreateView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
         logger.debug(f"Received create user request: {request.data}")
-        serializer = CustomUserSerializer(data=request.data)
+        print(f"Received create user request: {request.data}")
+        # Generate temp_password once
+        temp_password = secrets.token_urlsafe(16)
+        data = request.data.copy()  # Make mutable copy
+        data['password'] = temp_password  # Set password for serializer
+
+        serializer = CustomUserSerializer(data=data)
         if serializer.is_valid():
             try:
-                temp_password = secrets.token_urlsafe(16)
-                request.data['password'] = temp_password
                 user = serializer.save()
                 profile_data = request.data.get('profile', {})
-                client_id = profile_data.get('client_id')
+                client_id = profile_data.get('client_id', '')
+                client_secret = profile_data.get('client_secret', '')
 
-                token_generator = PasswordResetTokenGenerator()
-                token = token_generator.make_token(user)
-                uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
-                reset_url = f"{settings.FRONTEND_URL}/password/reset/confirm/{uidb64}/{token}/"
-
+                # Send email with temp_password
                 message = (
                     f"Dear {user.full_name or 'User'},\n\n"
-                    f"Your account has been created. Please reset your password:\n"
-                    f"Reset URL: {reset_url}\n\n"
-                    f"Client ID: {client_id}\n\n"
+                    f"Your account has been created.\n"
+                    f"Email: {user.email}\n"
+                    f"Temporary Password: {temp_password}\n"
+                    f"Client ID: {client_id}\n"
+                    f"Client Secret: {client_secret}\n\n"
+                    f"Please use these credentials to log in and change your password.\n\n"
                     f"Regards,\nRemote Windows Security Management System"
                 )
                 send_mail(
@@ -84,6 +298,7 @@ class CustomUserCreateView(APIView):
                     fail_silently=False,
                 )
                 logger.info(f"Account creation email sent to {user.email} for user {user.sid}")
+                print(f"Account creation email sent to {user.email} for user {user.sid}")
                 return Response({
                     "message": "User created successfully",
                     "data": {
@@ -94,15 +309,19 @@ class CustomUserCreateView(APIView):
                 }, status=status.HTTP_201_CREATED)
             except IntegrityError as e:
                 logger.error(f"Database integrity error during user creation: {str(e)}")
+                print(f"Database integrity error during user creation: {str(e)}")
                 return Response({
                     "message": "User creation failed",
                     "errors": ["A profile for this user already exists or another database conflict occurred"]
                 }, status=status.HTTP_400_BAD_REQUEST)
             except Exception as e:
                 logger.error(f"Error creating user: {str(e)}")
+                print(f"Error creating user: {str(e)}")
                 return Response({"message": "User creation failed", "errors": [str(e)]}, status=status.HTTP_400_BAD_REQUEST)
         logger.warning(f"User creation validation failed: {serializer.errors}")
+        print(f"User creation validation failed: {serializer.errors}")
         return Response({"message": "Validation failed", "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+    
 
 @api_view(['GET'])
 def restricted_view(request):
@@ -172,71 +391,70 @@ class GroupViewSet(viewsets.ModelViewSet):
         self.perform_destroy(instance)
         return Response({"message": "Group deleted successfully", "data": {}}, status=status.HTTP_204_NO_CONTENT)
 
+
+# accounts/views.py
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .serializers import LoginSerializer
+
 class LoginView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = []  # Allow unauthenticated access
     serializer_class = LoginSerializer
-    throttle_scope = 'login'
+
 
     def post(self, request):
+        # Validate credentials
         serializer = self.serializer_class(data=request.data, context={'request': request})
-        if serializer.is_valid():
-            user = serializer.validated_data['user']
-            login(request, user)
-            try:
-                profile = user.profile
-                profile.last_logon = timezone.now()
-                profile.last_login_ip = get_client_ip(request)
-                profile.logon_count += 1
-                profile.save()
+        if not serializer.is_valid():
+            return Response({
+                "message": "Login failed",
+                "errors": serializer.errors
+            }, status=400)
 
-                app, created = Application.objects.get_or_create(
-                    name="React Frontend",
-                    defaults={
-                        'client_id': 'react_client_id',
-                        'client_secret': 'react_client_secret',
-                        'client_type': Application.CLIENT_CONFIDENTIAL,
-                        'authorization_grant_type': Application.GRANT_PASSWORD,
-                    }
-                )
-                if created:
-                    logger.info(f"OAuth application '{app.name}' created successfully.")
+        user = serializer.validated_data['user']
 
-                token = AccessToken.objects.create(
-                    user=user,
-                    application=app,
-                    scope='read write',
-                    expires=timezone.now() + timedelta(seconds=oauth2_settings.ACCESS_TOKEN_EXPIRE_SECONDS),
-                    # token=generate_token()
-                )
-
-                user_serializer = CustomUserSerializer(user)
-                profile_serializer = UserProfileSerializer(profile)
-                response_data = {
-                    "message": "Login successful",
-                    "data": {
-                        "access_token": token.token,
-                        "token_type": "Bearer",
-                        "expires_in": oauth2_settings.ACCESS_TOKEN_EXPIRE_SECONDS,
-                        "scope": token.scope,
-                        "user": {
-                            **user_serializer.data,
-                            "profile": profile_serializer.data
-                        }
-                    }
-                }
-                logger.info(f"User {user.sid} logged in successfully.")
-                return Response(response_data, status=status.HTTP_200_OK)
-            except Exception as e:
-                logger.error(f"Error generating token for user {user.sid}: {str(e)}")
-                return Response(
-                    {"message": "Internal server error", "errors": ["Please try again later"]},
-                    status=status.HTTP_500_INTERNAL_SERVER_ERROR
-                )
-        logger.warning(f"Login failed due to validation errors: {serializer.errors}")
-        return Response(
-            {"message": "Validation failed", "errors": serializer.errors},
-            status=status.HTTP_400_BAD_REQUEST
+        # Generate OAuth2 token
+        token = self.oauth_server.create_token_response(
+            uri=request.build_absolute_uri(),
+            http_method='POST',
+            body={
+                'grant_type': 'password',
+                'username': user.sid,  # Always use SID for token generation
+                'password': request.data['password'],
+                'client_id': request.data.get('client_id', 'unsecured_client'),  # From C# client
+                'client_secret': request.data.get('client_secret', 'unsecured_secret')  # From C# client
+            },
+            headers={'Content-Type': 'application/x-www-form-urlencoded'}
         )
+
+        return Response({
+            "message": "Login successful",
+            "data": {
+                "access_token": token['access_token'],
+                "token_type": "Bearer",
+                "expires_in": 3600,
+                "sid": user.sid,  # For C# client
+                "email": user.email  # For React frontend
+            }
+        })
+    
+
+
+class PasswordSyncView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        user = request.user
+        try:
+            # Note: Storing plain password is insecure; consider a secure token-based approach
+            return Response({
+                "message": "Password retrieved successfully",
+                "password": user.password  # This is a placeholder; actual implementation needs security
+            }, status=status.HTTP_200_OK)
+        except Exception as e:
+            logger.error(f"Error syncing password for user {user.sid}: {str(e)}")
+            return Response({"message": "Password sync failed", "errors": [str(e)]}, status=status.HTTP_400_BAD_REQUEST)
+
 
 class PasswordChangeView(APIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -359,5 +577,31 @@ class LogoutView(APIView):
         except Exception as e:
             logger.error(f"Error during logout for {request.user.sid}: {str(e)}")
             return Response({"message": "Failed to logout", "errors": [str(e)]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+# TOKEN
+from oauthlib.oauth2 import RequestValidator, WebApplicationServer
+from django.http import JsonResponse
+from django.views import View
+
+
+class TokenView(View):
+    def __init__(self, **kwargs):
+        self.validator = BasicOAuthValidator()
+        self.server = WebApplicationServer(self.validator)
+        super().__init__(**kwargs)
+
+    def post(self, request):
+        uri = request.build_absolute_uri()
+        headers = request.headers
+        body = request.body.decode('utf-8')
+        token_response, headers, status_code = self.server.create_token_response(
+            uri=uri,
+            http_method='POST',
+            body=body,
+            headers=headers
+        )
+        return JsonResponse(json.loads(token_response), status=status_code)
+
 
 

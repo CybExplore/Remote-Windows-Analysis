@@ -32,25 +32,12 @@ class SecurityEventSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Client SID is required.")
         return data
     
-class FirewallStatusSerializer(serializers.ModelSerializer):
-    client = CustomUserSerializer()
-
-    class Meta:
-        model = FirewallStatus
-        fields = ['client', 'is_enabled', 'profile', 'timestamp']
-
-    def validate(self, data):
-        if not data.get('client') or not data['client'].get('sid'):
-            raise serializers.ValidationError("Client SID is required.")
-        return data
 
 class FirewallStatusSerializer(serializers.ModelSerializer):
     client = serializers.CharField(source='client.sid')
-
     class Meta:
         model = FirewallStatus
         fields = ['client', 'is_enabled', 'profile', 'timestamp']
-
     def validate(self, data):
         if not data.get('client'):
             raise serializers.ValidationError("Client SID is required.")

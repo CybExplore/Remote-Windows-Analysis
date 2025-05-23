@@ -45,13 +45,12 @@ INSTALLED_APPS = [
    'drf_yasg',
 
     'accounts.apps.AccountsConfig',
-    'core.apps.CoreConfig',
 ]
 
 INSTALLED_APPS += [
-    'oauth2_provider',
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework_simplejwt',
     'corsheaders',
 ]
 
@@ -68,8 +67,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'accounts.middleware.PasswordChangeMiddleware',
-    'accounts.middleware.CheckPasswordChangedMiddleware',
+    # 'accounts.middleware.PasswordChangeMiddleware',
+    # 'accounts.middleware.CheckPasswordChangedMiddleware',
+
+    # 'accounts.middleware.AuditLogMiddleware', 
     
 ]
 
@@ -170,30 +171,31 @@ SITE_NAME = config('SITE_NAME', default='CybExplore')
 # Authentication Framework
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
         'rest_framework.authentication.SessionAuthentication',
-        # 'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
         
-        'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
 
         
     ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-        # 'rest_framework.permissions.AllowAny',
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.IsAuthenticated',
+    #     # 'rest_framework.permissions.AllowAny',
 
-    ],
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer' if DEBUG else 'rest_framework.renderers.JSONRenderer',    ),
-    'DEFAULT_THROTTLE_CLASSES': [
-        'rest_framework.throttling.ScopedRateThrottle',
-    ],
-    'DEFAULT_THROTTLE_RATES': {
-        'login': '10/min',
-        'password_reset': '5/hour',
-        'password_change': '3/hour',
-    },
+    # ],
+    # 'DEFAULT_RENDERER_CLASSES': (
+    #     'rest_framework.renderers.JSONRenderer',
+    #     'rest_framework.renderers.BrowsableAPIRenderer' if DEBUG else 'rest_framework.renderers.JSONRenderer',    
+    # ),
+    # 'DEFAULT_THROTTLE_CLASSES': [
+    #     # 'rest_framework.throttling.ScopedRateThrottle',
+    # ],
+    # 'DEFAULT_THROTTLE_RATES': {
+    #     'login': '10/min',
+    #     'password_reset': '5/hour',
+    #     'password_change': '3/hour',
+    # },
 
 }
 
@@ -220,30 +222,18 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 
 AUTHENTICATION_BACKENDS = [
     'accounts.backends.DualAuthBackend', 
-    'accounts.backends.CustomRemoteUserBackend', 
+    # 'accounts.backends.CustomRemoteUserBackend', 
     'django.contrib.auth.backends.ModelBackend', 
 ]
 
-OAUTH2_PROVIDER_ACCESS_TOKEN_MODEL = 'oauth2_provider.AccessToken'
+from datetime import timedelta
 
-# 
-OIDC_ENABLED = True
-# OAuth2 Provider settings
-OAUTH2_PROVIDER = {
-    'SCOPES': {
-        'read': 'Read scope',
-        'write': 'Write scope',
-    },
-    'ACCESS_TOKEN_EXPIRE_SECONDS': 2592000, 
-    'REFRESH_TOKEN_EXPIRE_SECONDS': 2592000,
-    'ALLOWED_GRANT_TYPES': [
-        'client_credentials',
-        'password',
-        'refresh_token',
-    ],
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
 }
-
-
 
 # Ensure the logs directory exists
 LOGS_DIR = os.path.join(BASE_DIR, 'logs')
@@ -301,6 +291,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGIN_REGEXES = []  # Remove wildcard
 CORS_ALLOW_CREDENTIALS = True
@@ -310,6 +301,8 @@ CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:3000",
 ]
 
+
+CELERY_RESULT_BACKEND = 'django-db'
 
 
 # Frontend URL for React app
