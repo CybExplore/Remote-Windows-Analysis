@@ -6,7 +6,6 @@ from django.utils import timezone
 from accounts.models import (
     CustomUser, 
     UserProfile,
-    AuditLog,
     PasswordHistory
 )
 from django.core.exceptions import ValidationError
@@ -147,20 +146,6 @@ class PasswordChangeSerializer(serializers.Serializer):
             })
         return data
 
-class AuditLogSerializer(serializers.ModelSerializer):
-    user = CustomUserSerializer(read_only=True)
-    
-    class Meta:
-        model = AuditLog
-        fields = [
-            'id',
-            'user',
-            'action',
-            'ip_address',
-            'timestamp',
-            'metadata'
-        ]
-        read_only_fields = fields
 
 class PasswordResetRequestSerializer(serializers.Serializer):
     identifier = serializers.CharField(

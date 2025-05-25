@@ -9,7 +9,7 @@ from django.conf import settings
 from accounts.manager import CustomUserManager
 
 
-class CustomUser(AbstractUser, PermissionsMixin):
+class CustomUser(AbstractUser):
     """
     Enhanced User model for Windows Security Management System.
     Replaces username with Windows SID as primary identifier.
@@ -44,14 +44,8 @@ class CustomUser(AbstractUser, PermissionsMixin):
         default=False,
         help_text="Has the user changed their temporary password?"
     )
-    email_verified = models.BooleanField(blank=True, default=False)
-
-    # Windows account metadata
-    account_meta = models.JSONField(
-        default=dict,
-        blank=True,
-        help_text="Stores Windows account attributes like sid_type, domain, etc."
-    )
+    is_active = models.BooleanField(default=True)
+    last_login = models.DateTimeField(blank=True, null=True)
     
     # Timestamps
     created_at = models.DateTimeField(auto_now_add=True)
@@ -78,6 +72,36 @@ class CustomUser(AbstractUser, PermissionsMixin):
 
     def __str__(self):
         return f"{self.sid} ({self.email})"
+
+
+class UserProfile(models.Model):
+    """Extended user attributes and OAuth2 client credentials"""
+    user = models.OneToOneField(
+        CustomUser,
+        on_delete=models.CASCADE,
+        related_name='profile'
+    )
+    domain = models.CharField(max_length=255, blank=True, null=True)
+    account_type = models.IntegerField(blank=True, null=True)  # e.g., 512 for normal user
+    local_account = models.BooleanField(default=True)
+    password_changeable = models.BooleanField(default=True)
+    password_expires = models.BooleanField(default=False)
+    password_required = models.BooleanField(default=True)
+    status = models.CharField(max_length=50, blank=True, null=True)  # e.g., "OK"
+    groups = models.JSONField(default=list)  # List of group names
+    profile_local_path = models.CharField(max_length=255, blank=True, null=True)
+    profile_last_use_time = models.DateTimeField(blank=True, null=True)
+    profile_status = models.IntegerField(blank=True, null=True)
+    sessions = models.JSONField(default=list)  # List of session details
+    environment = models.JSONField(default=dict)  # Environment variables
+
+
+    class Meta:
+        verbose_name = "User Profile"
+        verbose_name_plural = "User Profiles"
+
+    def __str__(self):
+        return f"Profile for {self.user.sid}"
 
 
 class Client(models.Model):
@@ -118,77 +142,6 @@ class LogEntry(models.Model):
     
 
 
-class UserProfile(models.Model):
-    """Extended user attributes and OAuth2 client credentials"""
-    user = models.OneToOneField(
-        CustomUser,
-        on_delete=models.CASCADE,
-        related_name='profile'
-    )
-    
-    # Security state
-    enabled = models.BooleanField(default=True)
-    locked_out = models.BooleanField(default=False)
-    lockout_time = models.DateTimeField(null=True, blank=True)
-    logon_count = models.IntegerField(default=0)
-    
-    # Password policy
-    password_expires = models.DateTimeField(null=True, blank=True)
-    password_last_set = models.DateTimeField(null=True, blank=True)
-    user_may_change_password = models.BooleanField(default=True)
-    
-    # Activity tracking
-    last_logon = models.DateTimeField(null=True, blank=True)
-    last_login_ip = models.GenericIPAddressField(null=True, blank=True)
-    
-    # Additional metadata
-    meta = models.JSONField(
-        default=dict,
-        blank=True,
-        help_text="Extended profile attributes"
-    )
-
-    class Meta:
-        verbose_name = "User Profile"
-        verbose_name_plural = "User Profiles"
-
-    def __str__(self):
-        return f"Profile for {self.user.sid}"
-
-    def validate_client_id(self, client_id, request, *args, **kwargs):
-        return UserProfile.objects.filter(client_id=client_id).exists()
-
-
-
-class AuditLog(models.Model):
-    """System activity log for security monitoring"""
-    ACTION_CHOICES = [
-        ('login', 'User Login'),
-        ('logout', 'User Logout'),
-        ('password_change', 'Password Change'),
-        ('token_issued', 'Token Issued'),
-    ]
-
-    user = models.ForeignKey(
-        CustomUser,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True
-    )
-    action = models.CharField(max_length=50, choices=ACTION_CHOICES)
-    ip_address = models.GenericIPAddressField()
-    user_agent = models.TextField(blank=True)
-    metadata = models.JSONField(default=dict, blank=True)
-    timestamp = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        ordering = ['-timestamp']
-        indexes = [
-            models.Index(fields=['-timestamp']),
-            models.Index(fields=['user']),
-            models.Index(fields=['action']),
-            models.Index(fields=['ip_address']),
-        ]
 
 
 class PasswordHistory(models.Model):

@@ -13,6 +13,8 @@ Pillow
 celery 
 redis 
 scipy
+djangorestframework-simplejwt
+psycopg2-binary
 oauth2-provider
 django-oauth-toolkit
 oauthlib

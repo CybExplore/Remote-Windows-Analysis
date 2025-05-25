@@ -9,8 +9,6 @@ from django.core.mail import send_mail
 from django.utils import timezone
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-# from oauth2_provider.models import AccessToken, Application
-# from oauth2_provider.settings import oauth2_settings
 from rest_framework import generics, status, permissions, viewsets
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
@@ -33,6 +31,107 @@ from django.utils import timezone
 
 
 logger = logging.getLogger(__name__)
+
+
+class ClientRegisterView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        client_id = request.data.get('client_id')
+        secret_id = request.data.get('secret_id')
+        sid = request.data.get('sid')
+        user_email = request.data.get('user_email')
+
+        if not all([client_id, secret_id, sid, user_email]):
+            return Response({'error': 'Missing required fields'}, status=400)
+
+        try:
+            user = CustomUser.objects.get(email=user_email)
+            client, created = Client.objects.get_or_create(
+                client_id=client_id,
+                sid=sid,
+                user=user,
+                defaults={'secret_id': Client().set_secret_id(secret_id)}
+            )
+            if not created:
+                return Response({'error': 'Client with this client_id or sid already exists'}, status=400)
+
+            return Response({
+                'status': 'success',
+                'client_id': str(client.client_id),
+                'sid': client.sid,
+                'user_email': user.email
+            })
+        except CustomUser.DoesNotExist:
+            return Response({'error': 'User not found'}, status=404)
+        except Exception as e:
+            return Response({'error': str(e)}, status=400)
+
+
+
+class UserProfileView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        client_id = request.data.get('client_id')
+        user_data = request.data.get('user_data', {})
+        try:
+            client = Client.objects.get(client_id=client_id, user=request.user)
+            user = request.user
+            profile, created = UserProfile.objects.get_or_create(user=user)
+
+            # Update profile with user data
+            account_info = user_data.get('account_info', {})
+            profile.domain = account_info.get('Domain')
+            profile.account_type = account_info.get('AccountType')
+            profile.local_account = account_info.get('LocalAccount', True)
+            profile.password_changeable = account_info.get('PasswordChangeable', True)
+            profile.password_expires = account_info.get('PasswordExpires', False)
+            profile.password_required = account_info.get('PasswordRequired', True)
+            profile.status = account_info.get('Status')
+            profile.groups = user_data.get('groups', [])
+            profiles = user_data.get('profiles', [])
+            if profiles:
+                profile.profile_local_path = profiles[0].get('LocalPath')
+                profile_last_use_time = profiles[0].get('LastUseTime')
+                profile.profile_last_use_time = timezone.datetime.fromisoformat(profile_last_use_time) if profile_last_use_time else None
+                profile.profile_status = profiles[0].get('Status')
+            profile.sessions = user_data.get('sessions', [])
+            profile.environment = user_data.get('environment', {})
+            profile.save()
+
+            # Update CustomUser fields
+            user.sid = account_info.get('SID')
+            user.full_name = account_info.get('FullName')
+            user.save()
+
+            return Response({
+                'status': 'success',
+                'message': 'Profile updated' if not created else 'Profile created'
+            })
+        except Client.DoesNotExist:
+            return Response({'error': 'Client not found'}, status=404)
+        except Exception as e:
+            return Response({'error': str(e)}, status=400)
+
+
+# accounts/views.py
+class UserProfileDetailView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        profile = request.user.profile
+        return Response({
+            'email': request.user.email,
+            'sid': request.user.sid,
+            'full_name': request.user.full_name,
+            'domain': profile.domain,
+            'account_type': profile.account_type,
+            'groups': profile.groups,
+            'sessions': profile.sessions,
+            'profile_local_path': profile.profile_local_path,
+            'profile_last_use_time': profile.profile_last_use_time.isoformat() if profile.profile_last_use_time else None
+        })
 
 
 class ClientAuthView(APIView):
@@ -95,7 +194,6 @@ class LogReceiverView(APIView):
         except Exception as e:
             return Response({'error': str(e)}, status=400)
         
-    
 
 class RotateClientCredentialsView(APIView):
     permission_classes = [IsAuthenticated]
@@ -169,28 +267,6 @@ class LogListView(APIView):
             'anomaly_score': log.anomaly_score
         } for log in logs])
 
-class UserProfileView(APIView):
-    permission_classes = [IsClientAuthenticated]
-
-    def get(self, request, sid):
-        try:
-            profile = CustomUser.objects.select_related('profile').get(sid=sid).profile
-            serializer = UserProfileSerializer(profile)
-            return Response({"message": "Profile retrieved successfully", "data": serializer.data}, status=status.HTTP_200_OK)
-        except CustomUser.DoesNotExist:
-            return Response({"message": "Profile not found", "errors": ["User not found"]}, status=status.HTTP_404_NOT_FOUND)
-
-    def post(self, request):
-        try:
-            user = CustomUser.objects.get(sid=request.data.get('sid'))
-            profile = user.profile
-            serializer = UserProfileSerializer(profile, data=request.data.get('profile', {}), partial=True)
-            if serializer.is_valid():
-                serializer.save()
-                return Response({"message": "Profile updated successfully", "data": serializer.data}, status=status.HTTP_200_OK)
-            return Response({"message": "Validation failed", "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
-        except CustomUser.DoesNotExist:
-            return Response({"message": "User not found", "errors": ["User not found"]}, status=status.HTTP_404_NOT_FOUND)
 
 # class CustomUserCreateView(APIView):
 #     permission_classes = [AllowAny]

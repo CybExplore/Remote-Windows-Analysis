@@ -1,123 +1,533 @@
-INFO 2025-05-23 14:30:44,448 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:32:02,774 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\models.py changed, reloading.
-INFO 2025-05-23 14:32:38,849 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:32:59,732 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\models.py changed, reloading.
-INFO 2025-05-23 14:33:07,045 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:33:43,624 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\models.py changed, reloading.
-INFO 2025-05-23 14:33:48,695 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:33:57,948 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\models.py changed, reloading.
-INFO 2025-05-23 14:34:04,273 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:34:14,415 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\models.py changed, reloading.
-INFO 2025-05-23 14:34:19,713 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:34:35,239 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\models.py changed, reloading.
-INFO 2025-05-23 14:34:40,588 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:34:49,680 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\models.py changed, reloading.
-INFO 2025-05-23 14:34:55,255 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:35:16,346 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\settings.py changed, reloading.
-INFO 2025-05-23 14:35:23,071 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:35:59,093 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\settings.py changed, reloading.
-INFO 2025-05-23 14:36:03,728 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:36:14,737 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\settings.py changed, reloading.
-INFO 2025-05-23 14:36:18,254 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:37:49,634 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\settings.py changed, reloading.
-INFO 2025-05-23 14:37:54,271 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:39:17,461 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\settings.py changed, reloading.
-INFO 2025-05-23 14:39:21,689 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:39:45,343 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\settings.py changed, reloading.
-INFO 2025-05-23 14:39:58,855 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:40:37,887 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 14:40:56,335 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:41:14,022 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 14:41:21,566 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:41:38,599 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 14:41:46,299 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:41:59,873 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 14:42:05,697 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:42:20,751 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 14:42:29,543 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:42:39,555 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 14:42:45,502 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:43:00,403 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 14:43:08,072 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:43:23,127 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 14:43:28,167 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:43:39,308 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 14:43:44,451 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:43:54,209 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 14:44:01,109 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:44:13,321 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 14:44:19,752 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:44:32,000 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 14:44:38,355 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:44:48,986 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 14:44:55,638 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:45:07,595 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 14:45:13,730 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:45:33,223 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\urls.py changed, reloading.
-INFO 2025-05-23 14:45:37,877 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:45:49,129 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\urls.py changed, reloading.
-INFO 2025-05-23 14:45:53,025 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:46:20,998 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 14:46:25,965 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:46:47,460 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 14:46:51,882 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:47:06,507 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 14:47:11,174 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:47:21,874 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 14:47:25,270 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:47:33,515 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 14:47:38,881 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:53:24,517 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 14:53:26,117 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:55:18,320 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 14:55:19,773 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:56:05,351 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\models.py changed, reloading.
-INFO 2025-05-23 14:56:06,847 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:56:44,139 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 14:56:45,799 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:57:13,968 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 14:57:15,279 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:58:21,840 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 14:58:25,704 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:58:40,332 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\models.py changed, reloading.
-INFO 2025-05-23 14:58:46,041 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:59:48,952 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\models.py changed, reloading.
-INFO 2025-05-23 14:59:50,362 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 14:59:53,191 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\models.py changed, reloading.
-INFO 2025-05-23 14:59:54,837 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 15:00:33,596 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\admin.py changed, reloading.
-INFO 2025-05-23 15:00:34,926 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 15:00:43,656 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\admin.py changed, reloading.
-INFO 2025-05-23 15:00:44,976 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 15:00:49,332 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\admin.py changed, reloading.
-INFO 2025-05-23 15:00:51,324 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 15:00:57,051 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\admin.py changed, reloading.
-INFO 2025-05-23 15:00:58,848 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 15:01:13,006 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 15:01:14,230 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 15:01:29,712 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 15:01:31,034 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 15:01:47,740 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 15:01:49,180 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 15:01:59,378 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
-INFO 2025-05-23 15:02:00,860 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 15:02:04,779 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\serializers.py changed, reloading.
-INFO 2025-05-23 15:02:06,900 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 15:02:36,249 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 15:02:37,882 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 15:02:46,893 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 15:02:49,208 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 15:03:02,925 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 15:03:04,322 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 15:05:33,698 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 15:05:35,707 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 15:05:53,408 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 15:05:55,907 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 15:08:50,145 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 15:08:58,887 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 15:10:40,971 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\server\settings.py changed, reloading.
-INFO 2025-05-23 15:10:44,681 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 15:11:49,509 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\views.py changed, reloading.
-INFO 2025-05-23 15:11:52,641 autoreload Watching for file changes with StatReloader
-INFO 2025-05-23 15:12:22,307 autoreload C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\Server\backend\accounts\tasks.py changed, reloading.
-INFO 2025-05-23 15:12:25,875 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 22:43:38,471 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 22:44:21,832 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/server/settings.py changed, reloading.
+INFO 2025-05-23 22:44:22,458 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 22:45:14,048 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 22:48:16,603 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/server/settings.py changed, reloading.
+INFO 2025-05-23 22:48:17,635 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 23:28:09,697 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/server/settings.py changed, reloading.
+INFO 2025-05-23 23:28:12,731 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 23:30:21,584 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/server/settings.py changed, reloading.
+INFO 2025-05-23 23:30:24,644 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 23:52:19,629 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/models.py changed, reloading.
+INFO 2025-05-23 23:52:20,941 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 23:52:52,450 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/models.py changed, reloading.
+INFO 2025-05-23 23:52:53,292 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 23:52:59,787 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/models.py changed, reloading.
+INFO 2025-05-23 23:53:00,956 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 23:53:15,791 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/models.py changed, reloading.
+INFO 2025-05-23 23:53:16,840 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 23:53:57,847 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/models.py changed, reloading.
+INFO 2025-05-23 23:53:58,756 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 23:54:40,618 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/models.py changed, reloading.
+INFO 2025-05-23 23:54:41,991 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 23:55:00,824 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/models.py changed, reloading.
+INFO 2025-05-23 23:55:02,073 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 23:55:30,811 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/models.py changed, reloading.
+INFO 2025-05-23 23:55:31,512 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 23:55:37,200 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/models.py changed, reloading.
+INFO 2025-05-23 23:55:37,947 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 23:55:43,718 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/models.py changed, reloading.
+INFO 2025-05-23 23:55:44,565 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 23:55:49,606 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/models.py changed, reloading.
+INFO 2025-05-23 23:55:50,819 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 23:55:56,479 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/models.py changed, reloading.
+INFO 2025-05-23 23:55:57,194 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 23:56:00,837 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/models.py changed, reloading.
+INFO 2025-05-23 23:56:01,585 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 23:56:09,588 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/models.py changed, reloading.
+INFO 2025-05-23 23:56:10,722 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 23:56:26,239 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/models.py changed, reloading.
+INFO 2025-05-23 23:56:27,230 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 23:57:19,430 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/models.py changed, reloading.
+INFO 2025-05-23 23:57:20,504 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 23:57:30,290 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/admin.py changed, reloading.
+INFO 2025-05-23 23:57:31,085 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 23:57:38,740 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/admin.py changed, reloading.
+INFO 2025-05-23 23:57:40,034 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 23:57:45,374 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/admin.py changed, reloading.
+INFO 2025-05-23 23:57:46,268 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 23:57:51,826 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/serializers.py changed, reloading.
+INFO 2025-05-23 23:57:52,472 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 23:57:59,217 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/serializers.py changed, reloading.
+INFO 2025-05-23 23:58:00,326 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 23:58:19,034 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/admin.py changed, reloading.
+INFO 2025-05-23 23:58:19,893 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 23:58:24,151 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/admin.py changed, reloading.
+INFO 2025-05-23 23:58:25,174 autoreload Watching for file changes with StatReloader
+INFO 2025-05-23 23:59:03,009 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/admin.py changed, reloading.
+INFO 2025-05-23 23:59:04,051 autoreload Watching for file changes with StatReloader
+INFO 2025-05-24 00:00:49,513 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-05-24 00:00:58,370 autoreload Watching for file changes with StatReloader
+INFO 2025-05-24 00:01:14,474 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-05-24 00:01:24,451 autoreload Watching for file changes with StatReloader
+INFO 2025-05-24 00:02:06,832 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-05-24 00:02:11,775 autoreload Watching for file changes with StatReloader
+INFO 2025-05-24 00:02:53,512 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/urls.py changed, reloading.
+INFO 2025-05-24 00:02:58,931 autoreload Watching for file changes with StatReloader
+INFO 2025-05-24 00:04:21,039 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-05-24 00:04:26,339 autoreload Watching for file changes with StatReloader
+INFO 2025-05-24 00:04:42,444 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/urls.py changed, reloading.
+INFO 2025-05-24 00:04:44,666 autoreload Watching for file changes with StatReloader
+INFO 2025-05-24 00:05:26,712 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/urls.py changed, reloading.
+INFO 2025-05-24 00:05:28,318 autoreload Watching for file changes with StatReloader
+INFO 2025-05-24 00:05:36,733 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/urls.py changed, reloading.
+INFO 2025-05-24 00:05:37,926 autoreload Watching for file changes with StatReloader
+INFO 2025-05-24 00:05:46,412 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/urls.py changed, reloading.
+INFO 2025-05-24 00:05:47,628 autoreload Watching for file changes with StatReloader
+INFO 2025-05-24 00:06:30,393 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/server/settings.py changed, reloading.
+INFO 2025-05-24 00:06:31,931 autoreload Watching for file changes with StatReloader
+INFO 2025-05-24 00:06:56,362 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/migrations/0001_initial.py changed, reloading.
+INFO 2025-05-24 00:06:57,511 autoreload Watching for file changes with StatReloader
+WARNING 2025-05-24 00:18:04,082 log Not Found: /
+WARNING 2025-05-24 00:18:04,283 basehttp "GET / HTTP/1.1" 404 3151
+WARNING 2025-05-24 00:18:04,836 log Not Found: /favicon.ico
+WARNING 2025-05-24 00:18:04,855 basehttp "GET /favicon.ico HTTP/1.1" 404 3202
+WARNING 2025-05-24 00:18:15,809 log Not Found: /
+WARNING 2025-05-24 00:18:15,812 basehttp "GET / HTTP/1.1" 404 3151
+WARNING 2025-05-24 00:18:16,501 log Not Found: /api/accounts
+WARNING 2025-05-24 00:18:16,503 basehttp "GET /api/accounts HTTP/1.1" 404 3205
+WARNING 2025-05-24 00:18:18,891 log Not Found: /favicon.ico
+WARNING 2025-05-24 00:18:18,892 basehttp "GET /favicon.ico HTTP/1.1" 404 3202
+WARNING 2025-05-24 00:18:22,779 log Not Found: /api/accounts/
+WARNING 2025-05-24 00:18:22,781 basehttp "GET /api/accounts/ HTTP/1.1" 404 5328
+INFO 2025-05-24 00:19:10,408 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/server/urls.py changed, reloading.
+INFO 2025-05-24 00:19:14,310 autoreload Watching for file changes with StatReloader
+INFO 2025-05-24 00:19:29,145 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/urls.py changed, reloading.
+INFO 2025-05-24 00:19:34,330 autoreload Watching for file changes with StatReloader
+INFO 2025-05-24 00:26:23,558 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-05-24 00:26:25,668 autoreload Watching for file changes with StatReloader
+INFO 2025-05-24 00:26:48,112 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-05-24 00:26:50,033 autoreload Watching for file changes with StatReloader
+INFO 2025-05-24 00:27:01,732 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/urls.py changed, reloading.
+INFO 2025-05-24 00:27:02,827 autoreload Watching for file changes with StatReloader
+INFO 2025-05-24 00:27:36,940 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/urls.py changed, reloading.
+INFO 2025-05-24 00:27:37,853 autoreload Watching for file changes with StatReloader
+INFO 2025-05-25 08:59:41,749 autoreload Watching for file changes with StatReloader
+WARNING 2025-05-25 09:00:19,675 log Not Found: /notifications/
+WARNING 2025-05-25 09:00:19,679 log Not Found: /notifications/
+WARNING 2025-05-25 09:00:19,680 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:00:19,681 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:01:19,713 log Not Found: /notifications/
+WARNING 2025-05-25 09:01:19,726 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:01:19,738 log Not Found: /notifications/
+WARNING 2025-05-25 09:01:19,739 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:02:22,165 log Not Found: /notifications/
+WARNING 2025-05-25 09:02:22,166 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:02:22,303 log Not Found: /notifications/
+WARNING 2025-05-25 09:02:22,304 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:03:19,464 log Not Found: /notifications/
+WARNING 2025-05-25 09:03:19,465 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:03:19,556 log Not Found: /notifications/
+WARNING 2025-05-25 09:03:19,597 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:04:19,505 log Not Found: /notifications/
+WARNING 2025-05-25 09:04:19,515 log Not Found: /notifications/
+WARNING 2025-05-25 09:04:19,518 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:04:19,519 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:05:19,552 log Not Found: /notifications/
+WARNING 2025-05-25 09:05:19,558 log Not Found: /notifications/
+WARNING 2025-05-25 09:05:19,559 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:05:19,560 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:06:19,911 log Not Found: /notifications/
+WARNING 2025-05-25 09:06:19,912 log Not Found: /notifications/
+WARNING 2025-05-25 09:06:19,913 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:06:19,913 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:07:18,691 log Not Found: /notifications/
+WARNING 2025-05-25 09:07:18,702 log Not Found: /notifications/
+WARNING 2025-05-25 09:07:18,704 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:07:18,709 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:08:19,062 log Not Found: /notifications/
+WARNING 2025-05-25 09:08:19,069 log Not Found: /notifications/
+WARNING 2025-05-25 09:08:19,070 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:08:19,071 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:09:19,972 log Not Found: /notifications/
+WARNING 2025-05-25 09:09:19,973 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:09:20,038 log Not Found: /notifications/
+WARNING 2025-05-25 09:09:20,040 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:10:19,521 log Not Found: /notifications/
+WARNING 2025-05-25 09:10:19,527 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:10:19,526 log Not Found: /notifications/
+WARNING 2025-05-25 09:10:19,534 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:11:19,772 log Not Found: /notifications/
+WARNING 2025-05-25 09:11:19,774 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:11:19,818 log Not Found: /notifications/
+WARNING 2025-05-25 09:11:19,821 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:12:19,258 log Not Found: /notifications/
+WARNING 2025-05-25 09:12:19,258 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:12:19,327 log Not Found: /notifications/
+WARNING 2025-05-25 09:12:19,328 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:13:19,125 log Not Found: /notifications/
+WARNING 2025-05-25 09:13:19,134 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:13:21,365 log Not Found: /notifications/
+WARNING 2025-05-25 09:13:21,366 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:14:00,640 log Not Found: /notifications/
+WARNING 2025-05-25 09:14:00,641 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:14:07,735 log Not Found: /notifications/
+WARNING 2025-05-25 09:14:07,735 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:14:17,410 log Not Found: /notifications/
+WARNING 2025-05-25 09:14:17,411 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:14:19,319 log Not Found: /notifications/
+WARNING 2025-05-25 09:14:19,320 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:14:27,061 log Not Found: /notifications/
+WARNING 2025-05-25 09:14:27,062 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:14:37,861 log Not Found: /notifications/
+WARNING 2025-05-25 09:14:37,862 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:14:47,603 log Not Found: /notifications/
+WARNING 2025-05-25 09:14:47,605 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:14:57,339 log Not Found: /notifications/
+WARNING 2025-05-25 09:14:57,340 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:15:19,466 log Not Found: /notifications/
+WARNING 2025-05-25 09:15:19,472 log Not Found: /notifications/
+WARNING 2025-05-25 09:15:19,474 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:15:19,474 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:16:19,821 log Not Found: /notifications/
+WARNING 2025-05-25 09:16:19,831 log Not Found: /notifications/
+WARNING 2025-05-25 09:16:19,832 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:16:19,833 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:17:18,846 log Not Found: /notifications/
+WARNING 2025-05-25 09:17:18,861 log Not Found: /notifications/
+WARNING 2025-05-25 09:17:18,861 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:17:18,866 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:18:19,105 log Not Found: /notifications/
+WARNING 2025-05-25 09:18:19,099 log Not Found: /notifications/
+WARNING 2025-05-25 09:18:19,106 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:18:19,106 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:19:19,360 log Not Found: /notifications/
+WARNING 2025-05-25 09:19:19,367 log Not Found: /notifications/
+WARNING 2025-05-25 09:19:19,368 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:19:19,368 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:20:19,589 log Not Found: /notifications/
+WARNING 2025-05-25 09:20:19,591 log Not Found: /notifications/
+WARNING 2025-05-25 09:20:19,594 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:20:19,595 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:21:19,808 log Not Found: /notifications/
+WARNING 2025-05-25 09:21:19,814 log Not Found: /notifications/
+WARNING 2025-05-25 09:21:19,815 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:21:19,815 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:22:18,894 log Not Found: /notifications/
+WARNING 2025-05-25 09:22:18,900 log Not Found: /notifications/
+WARNING 2025-05-25 09:22:18,901 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:22:18,902 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:23:19,147 log Not Found: /notifications/
+WARNING 2025-05-25 09:23:19,154 log Not Found: /notifications/
+WARNING 2025-05-25 09:23:19,156 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:23:19,158 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:24:19,582 log Not Found: /notifications/
+WARNING 2025-05-25 09:24:19,588 log Not Found: /notifications/
+WARNING 2025-05-25 09:24:19,590 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:24:19,591 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:25:19,811 log Not Found: /notifications/
+WARNING 2025-05-25 09:25:19,820 log Not Found: /notifications/
+WARNING 2025-05-25 09:25:19,822 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:25:19,831 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:26:18,573 log Not Found: /notifications/
+WARNING 2025-05-25 09:26:18,575 log Not Found: /notifications/
+WARNING 2025-05-25 09:26:18,576 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:26:18,581 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:27:18,818 log Not Found: /notifications/
+WARNING 2025-05-25 09:27:18,819 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:27:18,831 log Not Found: /notifications/
+WARNING 2025-05-25 09:27:18,832 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:28:19,108 log Not Found: /notifications/
+WARNING 2025-05-25 09:28:19,114 log Not Found: /notifications/
+WARNING 2025-05-25 09:28:19,115 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:28:19,116 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:29:19,402 log Not Found: /notifications/
+WARNING 2025-05-25 09:29:19,417 log Not Found: /notifications/
+WARNING 2025-05-25 09:29:19,418 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:29:19,430 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:30:19,666 log Not Found: /notifications/
+WARNING 2025-05-25 09:30:19,672 log Not Found: /notifications/
+WARNING 2025-05-25 09:30:19,673 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:30:19,674 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:31:18,760 log Not Found: /notifications/
+WARNING 2025-05-25 09:31:18,766 log Not Found: /notifications/
+WARNING 2025-05-25 09:31:18,767 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:31:18,767 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:32:18,972 log Not Found: /notifications/
+WARNING 2025-05-25 09:32:18,973 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:32:19,005 log Not Found: /notifications/
+WARNING 2025-05-25 09:32:19,010 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:33:19,196 log Not Found: /notifications/
+WARNING 2025-05-25 09:33:19,207 log Not Found: /notifications/
+WARNING 2025-05-25 09:33:19,208 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:33:19,214 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:34:19,745 log Not Found: /notifications/
+WARNING 2025-05-25 09:34:19,756 log Not Found: /notifications/
+WARNING 2025-05-25 09:34:19,757 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:34:19,758 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:35:19,669 log Not Found: /notifications/
+WARNING 2025-05-25 09:35:19,669 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:35:19,685 log Not Found: /notifications/
+WARNING 2025-05-25 09:35:19,685 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:36:57,345 log Not Found: /notifications/
+WARNING 2025-05-25 09:36:57,366 log Not Found: /notifications/
+WARNING 2025-05-25 09:36:57,376 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:36:57,378 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:37:19,063 log Not Found: /notifications/
+WARNING 2025-05-25 09:37:19,104 log Not Found: /notifications/
+WARNING 2025-05-25 09:37:19,105 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:37:19,107 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:38:19,231 log Not Found: /notifications/
+WARNING 2025-05-25 09:38:19,256 log Not Found: /notifications/
+WARNING 2025-05-25 09:38:19,257 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:38:19,258 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:39:19,507 log Not Found: /notifications/
+WARNING 2025-05-25 09:39:19,508 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:39:19,519 log Not Found: /notifications/
+WARNING 2025-05-25 09:39:19,520 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:40:19,716 log Not Found: /notifications/
+WARNING 2025-05-25 09:40:19,724 log Not Found: /notifications/
+WARNING 2025-05-25 09:40:19,725 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:40:19,726 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:41:18,774 log Not Found: /notifications/
+WARNING 2025-05-25 09:41:18,780 log Not Found: /notifications/
+WARNING 2025-05-25 09:41:18,781 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:41:18,782 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:42:19,006 log Not Found: /notifications/
+WARNING 2025-05-25 09:42:19,006 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:42:19,017 log Not Found: /notifications/
+WARNING 2025-05-25 09:42:19,018 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:43:19,235 log Not Found: /notifications/
+WARNING 2025-05-25 09:43:19,236 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:43:19,245 log Not Found: /notifications/
+WARNING 2025-05-25 09:43:19,246 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:44:19,613 log Not Found: /notifications/
+WARNING 2025-05-25 09:44:19,616 log Not Found: /notifications/
+WARNING 2025-05-25 09:44:19,617 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:44:19,617 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:45:19,852 log Not Found: /notifications/
+WARNING 2025-05-25 09:45:19,847 log Not Found: /notifications/
+WARNING 2025-05-25 09:45:19,853 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:45:19,854 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:46:18,783 log Not Found: /notifications/
+WARNING 2025-05-25 09:46:18,793 log Not Found: /notifications/
+WARNING 2025-05-25 09:46:18,794 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:46:18,797 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:47:18,970 log Not Found: /notifications/
+WARNING 2025-05-25 09:47:18,970 log Not Found: /notifications/
+WARNING 2025-05-25 09:47:18,971 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:47:18,971 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:48:19,362 log Not Found: /notifications/
+WARNING 2025-05-25 09:48:19,384 log Not Found: /notifications/
+WARNING 2025-05-25 09:48:19,384 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:48:19,397 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:49:19,687 log Not Found: /notifications/
+WARNING 2025-05-25 09:49:19,688 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:49:26,633 log Not Found: /notifications/
+WARNING 2025-05-25 09:49:26,634 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:50:20,897 log Not Found: /notifications/
+WARNING 2025-05-25 09:50:20,919 log Not Found: /notifications/
+WARNING 2025-05-25 09:50:20,920 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:50:20,921 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:51:18,889 log Not Found: /notifications/
+WARNING 2025-05-25 09:51:18,910 log Not Found: /notifications/
+WARNING 2025-05-25 09:51:18,922 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:51:18,923 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:52:19,218 log Not Found: /notifications/
+WARNING 2025-05-25 09:52:19,244 log Not Found: /notifications/
+WARNING 2025-05-25 09:52:19,245 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:52:19,254 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:53:19,349 log Not Found: /notifications/
+WARNING 2025-05-25 09:53:19,355 log Not Found: /notifications/
+WARNING 2025-05-25 09:53:19,356 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:53:19,358 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:54:19,607 log Not Found: /notifications/
+WARNING 2025-05-25 09:54:19,607 log Not Found: /notifications/
+WARNING 2025-05-25 09:54:19,608 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:54:19,609 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:55:19,832 log Not Found: /notifications/
+WARNING 2025-05-25 09:55:19,841 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:55:19,841 log Not Found: /notifications/
+WARNING 2025-05-25 09:55:19,845 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:56:18,915 log Not Found: /notifications/
+WARNING 2025-05-25 09:56:18,924 log Not Found: /notifications/
+WARNING 2025-05-25 09:56:18,925 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:56:18,933 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:57:19,177 log Not Found: /notifications/
+WARNING 2025-05-25 09:57:19,185 log Not Found: /notifications/
+WARNING 2025-05-25 09:57:19,186 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:57:19,187 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:58:19,316 log Not Found: /notifications/
+WARNING 2025-05-25 09:58:19,333 log Not Found: /notifications/
+WARNING 2025-05-25 09:58:19,334 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:58:19,340 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:59:18,685 log Not Found: /notifications/
+WARNING 2025-05-25 09:59:18,686 log Not Found: /notifications/
+WARNING 2025-05-25 09:59:18,688 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 09:59:18,689 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:00:19,325 log Not Found: /notifications/
+WARNING 2025-05-25 10:00:19,330 log Not Found: /notifications/
+WARNING 2025-05-25 10:00:19,338 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:00:19,338 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:01:19,533 log Not Found: /notifications/
+WARNING 2025-05-25 10:01:19,568 log Not Found: /notifications/
+WARNING 2025-05-25 10:01:19,569 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:01:19,570 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:02:20,320 log Not Found: /notifications/
+WARNING 2025-05-25 10:02:20,322 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:02:26,529 log Not Found: /notifications/
+WARNING 2025-05-25 10:02:26,530 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:03:19,269 log Not Found: /notifications/
+WARNING 2025-05-25 10:03:19,279 log Not Found: /notifications/
+WARNING 2025-05-25 10:03:19,280 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:03:19,289 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:04:19,578 log Not Found: /notifications/
+WARNING 2025-05-25 10:04:19,597 log Not Found: /notifications/
+WARNING 2025-05-25 10:04:19,599 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:04:19,603 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:05:19,317 log Not Found: /notifications/
+WARNING 2025-05-25 10:05:19,330 log Not Found: /notifications/
+WARNING 2025-05-25 10:05:19,331 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:05:19,333 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:06:19,465 log Not Found: /notifications/
+WARNING 2025-05-25 10:06:19,477 log Not Found: /notifications/
+WARNING 2025-05-25 10:06:19,478 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:06:19,479 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:07:19,722 log Not Found: /notifications/
+WARNING 2025-05-25 10:07:19,722 log Not Found: /notifications/
+WARNING 2025-05-25 10:07:19,724 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:07:19,724 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:08:19,864 log Not Found: /notifications/
+WARNING 2025-05-25 10:08:19,865 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:08:19,892 log Not Found: /notifications/
+WARNING 2025-05-25 10:08:19,904 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:09:19,107 log Not Found: /notifications/
+WARNING 2025-05-25 10:09:19,116 log Not Found: /notifications/
+WARNING 2025-05-25 10:09:19,117 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:09:19,117 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:10:19,236 log Not Found: /notifications/
+WARNING 2025-05-25 10:10:19,241 log Not Found: /notifications/
+WARNING 2025-05-25 10:10:19,242 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:10:19,243 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:11:19,421 log Not Found: /notifications/
+WARNING 2025-05-25 10:11:19,425 log Not Found: /notifications/
+WARNING 2025-05-25 10:11:19,427 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:11:19,427 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:12:19,512 log Not Found: /notifications/
+WARNING 2025-05-25 10:12:19,513 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:12:19,522 log Not Found: /notifications/
+WARNING 2025-05-25 10:12:19,523 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:13:19,747 log Not Found: /notifications/
+WARNING 2025-05-25 10:13:19,756 log Not Found: /notifications/
+WARNING 2025-05-25 10:13:19,757 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:13:19,758 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:14:19,189 log Not Found: /notifications/
+WARNING 2025-05-25 10:14:19,196 log Not Found: /notifications/
+WARNING 2025-05-25 10:14:19,197 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:14:19,198 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:15:19,331 log Not Found: /notifications/
+WARNING 2025-05-25 10:15:19,341 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:15:19,346 log Not Found: /notifications/
+WARNING 2025-05-25 10:15:19,348 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:16:19,452 log Not Found: /notifications/
+WARNING 2025-05-25 10:16:19,456 log Not Found: /notifications/
+WARNING 2025-05-25 10:16:19,458 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:16:19,459 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:17:19,585 log Not Found: /notifications/
+WARNING 2025-05-25 10:17:19,596 log Not Found: /notifications/
+WARNING 2025-05-25 10:17:19,598 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:17:19,599 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:18:25,502 log Not Found: /notifications/
+WARNING 2025-05-25 10:18:25,538 log Not Found: /notifications/
+WARNING 2025-05-25 10:18:25,539 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:18:25,542 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:19:20,062 log Not Found: /notifications/
+WARNING 2025-05-25 10:19:20,075 log Not Found: /notifications/
+WARNING 2025-05-25 10:19:20,078 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:19:20,079 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:20:19,089 log Not Found: /notifications/
+WARNING 2025-05-25 10:20:19,098 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:20:19,108 log Not Found: /notifications/
+WARNING 2025-05-25 10:20:19,109 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:21:19,334 log Not Found: /notifications/
+WARNING 2025-05-25 10:21:19,342 log Not Found: /notifications/
+WARNING 2025-05-25 10:21:19,343 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:21:19,344 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:22:19,539 log Not Found: /notifications/
+WARNING 2025-05-25 10:22:19,540 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:22:19,605 log Not Found: /notifications/
+WARNING 2025-05-25 10:22:19,629 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:23:19,619 log Not Found: /notifications/
+WARNING 2025-05-25 10:23:19,628 log Not Found: /notifications/
+WARNING 2025-05-25 10:23:19,630 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:23:19,630 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:24:19,795 log Not Found: /notifications/
+WARNING 2025-05-25 10:24:19,806 log Not Found: /notifications/
+WARNING 2025-05-25 10:24:19,815 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:24:19,816 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:25:18,993 log Not Found: /notifications/
+WARNING 2025-05-25 10:25:19,017 log Not Found: /notifications/
+WARNING 2025-05-25 10:25:19,019 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:25:19,020 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:26:19,103 log Not Found: /notifications/
+WARNING 2025-05-25 10:26:19,122 log Not Found: /notifications/
+WARNING 2025-05-25 10:26:19,124 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:26:19,124 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:27:19,262 log Not Found: /notifications/
+WARNING 2025-05-25 10:27:19,272 log Not Found: /notifications/
+WARNING 2025-05-25 10:27:19,273 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:27:19,274 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:28:19,637 log Not Found: /notifications/
+WARNING 2025-05-25 10:28:19,638 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:28:19,710 log Not Found: /notifications/
+WARNING 2025-05-25 10:28:19,711 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:29:19,817 log Not Found: /notifications/
+WARNING 2025-05-25 10:29:19,818 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:29:19,994 log Not Found: /notifications/
+WARNING 2025-05-25 10:29:19,995 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:30:18,910 log Not Found: /notifications/
+WARNING 2025-05-25 10:30:18,931 log Not Found: /notifications/
+WARNING 2025-05-25 10:30:18,932 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:30:18,933 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:31:19,355 log Not Found: /notifications/
+WARNING 2025-05-25 10:31:19,356 log Not Found: /notifications/
+WARNING 2025-05-25 10:31:19,357 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:31:19,357 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+ERROR 2025-05-25 10:31:31,892 log Internal Server Error: /api/client/auth/
+Traceback (most recent call last):
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py", line 141, in post
+    client_id = request.data['client_id']
+                ~~~~~~~~~~~~^^^^^^^^^^^^^
+KeyError: 'client_id'
+ERROR 2025-05-25 10:31:31,896 basehttp "POST /api/client/auth/ HTTP/1.1" 500 94173
+WARNING 2025-05-25 10:32:19,361 log Not Found: /notifications/
+WARNING 2025-05-25 10:32:19,369 log Not Found: /notifications/
+WARNING 2025-05-25 10:32:19,370 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:32:19,373 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:33:19,547 log Not Found: /notifications/
+WARNING 2025-05-25 10:33:19,551 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+WARNING 2025-05-25 10:34:19,878 log Not Found: /api/api/client/auth/
+WARNING 2025-05-25 10:34:19,880 basehttp "POST /api/api/client/auth/ HTTP/1.1" 404 5523
+WARNING 2025-05-25 10:34:20,020 log Not Found: /notifications/
+WARNING 2025-05-25 10:34:20,029 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+INFO 2025-05-25 10:35:03,471 autoreload Watching for file changes with StatReloader
+INFO 2025-05-25 10:35:11,359 autoreload Watching for file changes with StatReloader
+WARNING 2025-05-25 10:35:19,269 log Not Found: /notifications/
+WARNING 2025-05-25 10:35:19,270 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+INFO 2025-05-25 10:49:05,975 autoreload Watching for file changes with StatReloader
+WARNING 2025-05-25 10:49:20,260 log Not Found: /notifications/
+WARNING 2025-05-25 10:49:20,271 basehttp "GET /notifications/ HTTP/1.1" 404 3202
+INFO 2025-05-25 10:49:29,326 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/server/settings.py changed, reloading.
+INFO 2025-05-25 10:49:33,844 autoreload Watching for file changes with StatReloader
