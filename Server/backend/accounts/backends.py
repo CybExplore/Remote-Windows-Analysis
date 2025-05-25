@@ -63,72 +63,72 @@ class DualAuthBackend(BaseBackend):
             return None
 
 
-class CustomRemoteUserBackend(DjangoRemoteUserBackend):
-    """Customized RemoteUserBackend to authenticate existing users only via REMOTE_USER."""
+# class CustomRemoteUserBackend(DjangoRemoteUserBackend):
+#     """Customized RemoteUserBackend to authenticate existing users only via REMOTE_USER."""
 
-    create_unknown_user = False  # Do not create users if they don’t exist
+#     create_unknown_user = False  # Do not create users if they don’t exist
 
-    def authenticate(self, request, remote_user):
-        """
-        Authenticate an existing user using the REMOTE_USER header, matching SID, email, or caption.
+#     def authenticate(self, request, remote_user):
+#         """
+#         Authenticate an existing user using the REMOTE_USER header, matching SID, email, or caption.
 
-        Args:
-            request: HTTP request object.
-            remote_user: Value from REMOTE_USER header (e.g., 'DOMAIN\\username', SID, or email).
+#         Args:
+#             request: HTTP request object.
+#             remote_user: Value from REMOTE_USER header (e.g., 'DOMAIN\\username', SID, or email).
 
-        Returns:
-            CustomUser instance if authenticated and exists, None otherwise.
-        """
-        if not remote_user:
-            logger.warning("No REMOTE_USER provided")
-            return None
+#         Returns:
+#             CustomUser instance if authenticated and exists, None otherwise.
+#         """
+#         if not remote_user:
+#             logger.warning("No REMOTE_USER provided")
+#             return None
 
-        try:
-            # Normalize remote_user
-            identifier = remote_user.strip()
+#         try:
+#             # Normalize remote_user
+#             identifier = remote_user.strip()
 
-            # Look for an existing user by SID, email, or caption (e.g., DOMAIN\username)
-            user = CustomUser.objects.filter(
-                Q(sid=identifier) |              # Match SID directly
-                Q(email__iexact=identifier) |    # Match email case-insensitively
-                Q(caption=identifier)            # Match caption (e.g., 'DOMAIN\\username')
-            ).first()
+#             # Look for an existing user by SID, email, or caption (e.g., DOMAIN\username)
+#             user = CustomUser.objects.filter(
+#                 Q(sid=identifier) |              # Match SID directly
+#                 Q(email__iexact=identifier) |    # Match email case-insensitively
+#                 Q(caption=identifier)            # Match caption (e.g., 'DOMAIN\\username')
+#             ).first()
 
-            if not user:
-                logger.info(f"No existing user found for REMOTE_USER: {identifier}")
-                return None
+#             if not user:
+#                 logger.info(f"No existing user found for REMOTE_USER: {identifier}")
+#                 return None
 
-            # Check account status
-            if not user.is_active:
-                logger.warning(f"User {user.sid} is inactive")
-                return None
-            if hasattr(user, 'profile') and user.profile.locked_out:
-                logger.warning(f"User {user.sid} is locked out")
-                return None
+#             # Check account status
+#             if not user.is_active:
+#                 logger.warning(f"User {user.sid} is inactive")
+#                 return None
+#             if hasattr(user, 'profile') and user.profile.locked_out:
+#                 logger.warning(f"User {user.sid} is locked out")
+#                 return None
 
-            # Log successful authentication
-            client_ip = request.META.get('REMOTE_ADDR', 'unknown') if request else 'unknown'
-            logger.info(f"User {user.sid} authenticated via REMOTE_USER from IP: {client_ip}")
-            return user
+#             # Log successful authentication
+#             client_ip = request.META.get('REMOTE_ADDR', 'unknown') if request else 'unknown'
+#             logger.info(f"User {user.sid} authenticated via REMOTE_USER from IP: {client_ip}")
+#             return user
 
-        except Exception as e:
-            logger.error(f"Error in RemoteUserBackend for REMOTE_USER {remote_user}: {str(e)}", exc_info=True)
-            return None
+#         except Exception as e:
+#             logger.error(f"Error in RemoteUserBackend for REMOTE_USER {remote_user}: {str(e)}", exc_info=True)
+#             return None
 
-    def get_user(self, user_id):
-        """Retrieve a user by their primary key (ID)."""
-        try:
-            user = CustomUser.objects.get(pk=user_id)
-            if not user.is_active or (hasattr(user, 'profile') and user.profile.locked_out):
-                logger.warning(f"User {user.sid} retrieved but is inactive or locked out")
-                return None
-            return user
-        except CustomUser.DoesNotExist:
-            logger.info(f"No user found for ID: {user_id}")
-            return None
-        except Exception as e:
-            logger.error(f"Error retrieving user ID {user_id}: {str(e)}", exc_info=True)
-            return None
+#     def get_user(self, user_id):
+#         """Retrieve a user by their primary key (ID)."""
+#         try:
+#             user = CustomUser.objects.get(pk=user_id)
+#             if not user.is_active or (hasattr(user, 'profile') and user.profile.locked_out):
+#                 logger.warning(f"User {user.sid} retrieved but is inactive or locked out")
+#                 return None
+#             return user
+#         except CustomUser.DoesNotExist:
+#             logger.info(f"No user found for ID: {user_id}")
+#             return None
+#         except Exception as e:
+#             logger.error(f"Error retrieving user ID {user_id}: {str(e)}", exc_info=True)
+#             return None
 
         
               

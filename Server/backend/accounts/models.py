@@ -38,7 +38,7 @@ class CustomUser(AbstractUser):
         unique=True,
         db_index=True,
         validators=[validate_email],
-        help_text="Verified email address (lowercase)"
+        help_text="Email address (lowercase)"
     )
     password_changed = models.BooleanField(
         default=False,
