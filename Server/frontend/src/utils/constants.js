@@ -1,14 +1,12 @@
 export const API_ENDPOINTS = {
-    LOGIN: '/login/',
-    REGISTER: '/create-user/',
-    PROFILE: (sid) => `/profile/${sid}/`,
-    USER_DETAIL: (sid) => `/users/${sid}/`,
-    PASSWORD_CHANGE: '/password/change/',
-    PASSWORD_RESET_REQUEST: '/password/reset/request/',
-    PASSWORD_RESET_CONFIRM: '/password/reset/confirm/',
-    EMAIL_VERIFY: '/email/verify/',
-    EMAIL_VERIFY_CONFIRM: '/email/verify/confirm/',
-    LOGOUT: '/logout/',
+    LOGIN: '/accounts/login/',
+    REGISTER: '/accounts/create-user/',
+    PROFILE: (sid) => `/accounts/user-profile/${sid}/`,
+    USER_DETAIL: (sid) => `/accounts/users/${sid}/`,
+    PASSWORD_CHANGE: '/accounts/password/change/',
+    PASSWORD_RESET_REQUEST: '/accounts/password/reset/request/',
+    PASSWORD_RESET_CONFIRM: '/accounts/password/reset/confirm/',
+    LOGOUT: '/accounts/logout/',
   };
   
   export const REGEX = {

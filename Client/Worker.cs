@@ -104,7 +104,7 @@ namespace Client
                     firewallStatus.ClientSecret = clientSecret;
                     try
                     {
-                        // await _apiClient.SendFirewallStatus(accessToken, firewallStatus);
+                        await _apiClient.SendFirewallStatus(accessToken, firewallStatus);
                         Console.WriteLine(accessToken, firewallStatus);
                     }
                     catch (Exception ex)

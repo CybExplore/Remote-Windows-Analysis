@@ -2,9 +2,9 @@ namespace Client.Models
 {
     public class SecurityEvent
     {
-        public string Sid { get; set; } = string.Empty; // Maps to 'client' (SID)
-        public int EventId { get; set; } // Changed to int to match Django IntegerField
-        public DateTime TimeCreated { get; set; } // Changed to DateTime to match Django DateTimeField
+        public string Sid { get; set; } = string.Empty;
+        public long EventId { get; set; } 
+        public DateTime TimeCreated { get; set; } 
         public string Description { get; set; } = string.Empty;
         public string? Source { get; set; }
         public string? LogonType { get; set; }

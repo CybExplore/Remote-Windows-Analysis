@@ -16,3 +16,11 @@ django-cors-headers
 uvicorn
 drf-yasg
 drf-yasg[validation]
+django 
+djangorestframework 
+djangorestframework-simplejwt 
+celery 
+redis 
+mysqlclient 
+scipy
+

@@ -83,11 +83,12 @@ namespace Client
                     {"client_secret", clientSecret},
                     {"username", sid},
                     {"password", password},
-                    {"scope", "read write"}
+                    // {"scope", "read write"}
                 };
                 var content = new FormUrlEncodedContent(payload);
                 Console.WriteLine($"Sending POST to {_apiBaseUrl}api/oauth2/token/ with payload: {JsonConvert.SerializeObject(payload)}");
-                var response = await _client.PostAsync($"{_apiBaseUrl}api/oauth2/token/", content);
+                // var response = await _client.PostAsync($"{_apiBaseUrl}api/oauth2/token/", content);
+                var response = await _client.PostAsync($"{_apiBaseUrl}api/oauth/token/", new FormUrlEncodedContent(payload));
                 var responseContent = await response.Content.ReadAsStringAsync();
                 if (response.IsSuccessStatusCode)
                 {

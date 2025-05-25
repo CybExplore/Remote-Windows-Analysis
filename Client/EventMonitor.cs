@@ -56,7 +56,8 @@ namespace Client
                     EventLog eventLog = new EventLog(log.Name);
                     eventLog.EntryWritten += (sender, e) =>
                     {
-                        if (log.EventIds.Contains(e.Entry.InstanceId))
+                        // if (log.EventIds.Contains(e.Entry.InstanceId))
+                        if (log.EventIds.Contains(e.Entry.InstanceId) && e.Entry.InstanceId <= int.MaxValue)
                         {
                             if (e.Entry.InstanceId > int.MaxValue)
                             {
@@ -65,7 +66,7 @@ namespace Client
                             var securityEvent = new SecurityEvent
                             {
                                 Sid = sid,
-                                EventId = (int)e.Entry.InstanceId, // Cast long to int
+                                EventId = e.Entry.InstanceId, 
                                 TimeCreated = e.Entry.TimeGenerated, // Use DateTime directly
                                 Description = e.Entry.Message ?? "No description",
                                 Source = log.Name.Split('/')[0],

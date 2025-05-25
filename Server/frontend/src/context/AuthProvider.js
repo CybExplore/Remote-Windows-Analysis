@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import AuthContext from './AuthContext';
 import { CircleSpinner } from '../components/CircleSpinner';
 
+
 const AuthProvider = ({ children }) => {
   // States for authentication
   const [token, setToken] = useState(localStorage.getItem('access_token') || null);
@@ -17,7 +18,7 @@ const AuthProvider = ({ children }) => {
   // Fetch user data based on token and SID
   const fetchUserData = useCallback(async (token, sid) => {
     try {
-      const response = await axios.get(`http://localhost:8000/api/users/${sid}/`, {
+      const response = await axios.get(`http://localhost:8000/api/accounts/users/${sid}/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUser(response.data);
@@ -45,7 +46,7 @@ const AuthProvider = ({ children }) => {
   const login = async (identifier, password) => {
     setOperationLoading(true);
     try {
-      const response = await axios.post('http://localhost:8000/api/login/', 
+      const response = await axios.post('http://localhost:8000/api/accounts/login/', 
         { identifier, password },
         { headers: { 'Content-Type': 'application/json' } }
       );
@@ -75,7 +76,7 @@ const AuthProvider = ({ children }) => {
     setOperationLoading(true);
     try {
       const response = await axios.post(
-        'http://localhost:8000/api/password/reset/request/', 
+        'http://localhost:8000/api/accounts/password/reset/request/', 
         { identifier }
       );
       return {
@@ -95,7 +96,7 @@ const AuthProvider = ({ children }) => {
   // Password Reset
   const passwordResetConfirm = async (uidb64, token, newPassword, confirmPassword) => {
     try {
-      const response = await axios.post('http://localhost:8000/api/password/reset/confirm/', {
+      const response = await axios.post('http://localhost:8000/api/accounts/password/reset/confirm/', {
         uidb64,
         token,
         new_password: newPassword,
@@ -124,7 +125,7 @@ const AuthProvider = ({ children }) => {
     setOperationLoading(true);
     try {
       const response = await axios.post(
-        'http://localhost:8000/api/password/change/',
+        'http://localhost:8000/api/accounts/password/change/',
         {
           sid,
           old_password: oldPassword,
