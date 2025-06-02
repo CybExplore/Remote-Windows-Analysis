@@ -31,3 +31,6 @@ uvicorn
 drf-yasg
 drf-yasg[validation]
 coreapi
+black
+isort
+pre-commit

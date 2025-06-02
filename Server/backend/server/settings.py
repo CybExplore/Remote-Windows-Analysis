@@ -173,45 +173,53 @@ SITE_NAME = config('SITE_NAME', default='CybExplore')
 
 
 # Authentication Framework
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        # For development/testing (keep only in DEBUG mode)
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         # For development/testing (keep only in DEBUG mode)
+#         'rest_framework.authentication.SessionAuthentication',
+#         'rest_framework.authentication.BasicAuthentication',
         
-        # Production authentication
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ],
+#         # Production authentication
+#         'rest_framework_simplejwt.authentication.JWTAuthentication',
+#     ],
     
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',  # Default secure stance
-    ],
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.IsAuthenticated',  # Default secure stance
+#     ],
     
-    'DEFAULT_RENDERER_CLASSES': [
-        'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer' if DEBUG else None,
-    ],
+#     'DEFAULT_RENDERER_CLASSES': [
+#         'rest_framework.renderers.JSONRenderer',
+#         'rest_framework.renderers.BrowsableAPIRenderer' if DEBUG else None,
+#     ],
     
-    'DEFAULT_THROTTLE_CLASSES': [
-        'rest_framework.throttling.AnonRateThrottle',
-        'rest_framework.throttling.UserRateThrottle',
-    ],
+#     'DEFAULT_THROTTLE_CLASSES': [
+#         'rest_framework.throttling.AnonRateThrottle',
+#         'rest_framework.throttling.UserRateThrottle',
+#     ],
     
-    'DEFAULT_THROTTLE_RATES': {
-        'anon': '100/hour',  # Anonymous users
-        'user': '1000/hour',  # Authenticated users
-        'login': '10/minute',
-        'password_reset': '5/hour',
-    },
+#     'DEFAULT_THROTTLE_RATES': {
+#         'anon': '100/hour',  # Anonymous users
+#         'user': '1000/hour',  # Authenticated users
+#         'login': '10/minute',
+#         'password_reset': '5/hour',
+#     },
     
-    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+#     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     
-    'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler',
+#     'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler',
     
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 20,
-}
+#     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+#     'PAGE_SIZE': 20,
+# }
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
 
 # Conditional settings (add to your config)
 if not DEBUG:
@@ -246,15 +254,15 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 
 AUTHENTICATION_BACKENDS = [
     'accounts.backends.DualAuthBackend', 
-    # 'accounts.backends.CustomRemoteUserBackend', 
     'django.contrib.auth.backends.ModelBackend', 
 ]
 
 from datetime import timedelta
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'AUTH_HEADER_TYPES': ('Bearer',),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
 }

@@ -1697,3 +1697,41 @@ INFO 2025-05-25 19:08:13,570 autoreload Watching for file changes with StatReloa
 WARNING 2025-05-25 19:39:36,329 log Method Not Allowed: /api/client/register/
 WARNING 2025-05-25 19:39:36,330 basehttp "GET /api/client/register/ HTTP/1.1" 405 8732
 INFO 2025-06-02 13:21:27,278 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 18:08:22,869 autoreload Watching for file changes with StatReloader
+WARNING 2025-06-02 18:08:56,212 log Not Found: /
+WARNING 2025-06-02 18:08:56,213 basehttp "GET / HTTP/1.1" 404 3327
+WARNING 2025-06-02 18:08:58,359 log Not Found: /favicon.ico
+WARNING 2025-06-02 18:08:58,386 basehttp "GET /favicon.ico HTTP/1.1" 404 3378
+INFO 2025-06-02 18:12:09,171 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/server/settings.py changed, reloading.
+INFO 2025-06-02 18:12:17,022 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 18:12:31,690 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/server/settings.py changed, reloading.
+INFO 2025-06-02 18:12:40,739 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 18:12:54,378 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/server/settings.py changed, reloading.
+INFO 2025-06-02 18:13:01,456 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 18:16:16,832 basehttp "OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+WARNING 2025-06-02 18:16:16,918 log Not Found: /api/auth/login/
+WARNING 2025-06-02 18:16:16,919 basehttp "POST /api/auth/login/ HTTP/1.1" 404 5966
+WARNING 2025-06-02 18:16:24,517 log Not Found: /api/auth/login/
+WARNING 2025-06-02 18:16:24,528 basehttp "POST /api/auth/login/ HTTP/1.1" 404 5966
+WARNING 2025-06-02 18:16:44,219 log Not Found: /api/auth/login/</td>
+WARNING 2025-06-02 18:16:44,221 basehttp "GET /api/auth/login/%3C/td%3E HTTP/1.1" 404 5996
+WARNING 2025-06-02 18:16:50,025 log Not Found: /api/auth/login/
+WARNING 2025-06-02 18:16:50,035 basehttp "GET /api/auth/login/ HTTP/1.1" 404 5965
+INFO 2025-06-02 18:17:03,727 basehttp "GET /api/token HTTP/1.1" 301 0
+WARNING 2025-06-02 18:17:04,188 log Method Not Allowed: /api/token/
+WARNING 2025-06-02 18:17:04,200 basehttp "GET /api/token/ HTTP/1.1" 405 7657
+INFO 2025-06-02 18:17:04,558 basehttp "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3426
+INFO 2025-06-02 18:17:04,623 basehttp "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+INFO 2025-06-02 18:17:04,693 basehttp "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+INFO 2025-06-02 18:17:04,909 basehttp "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2025-06-02 18:17:04,918 basehttp "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+INFO 2025-06-02 18:17:04,920 basehttp "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+INFO 2025-06-02 18:17:04,927 basehttp "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+INFO 2025-06-02 18:17:04,937 basehttp "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2025-06-02 18:17:04,970 basehttp "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+INFO 2025-06-02 18:17:05,105 basehttp "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+INFO 2025-06-02 18:17:05,176 basehttp "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+INFO 2025-06-02 18:17:05,406 basehttp "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+INFO 2025-06-02 18:17:59,888 basehttp "OPTIONS /api/token/ HTTP/1.1" 200 0
+WARNING 2025-06-02 18:17:59,939 log Bad Request: /api/token/
+WARNING 2025-06-02 18:17:59,940 basehttp "POST /api/token/ HTTP/1.1" 400 35
