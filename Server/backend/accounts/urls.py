@@ -3,11 +3,12 @@ from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from .views import (
     ClientAuthView, LogReceiverView, RotateClientCredentialsView, LogListView, 
-    UserProfileView, UserProfileDetailView, ClientRegisterView
+    UserProfileView, UserProfileDetailView, ClientRegisterView, UserRegisterView
 )
 
 urlpatterns = [
     path('client/register/', ClientRegisterView.as_view(), name='client_register'),
+    path('user/register/', UserRegisterView.as_view(), name='user_register'),
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('client/auth/', ClientAuthView.as_view(), name='client_auth'),

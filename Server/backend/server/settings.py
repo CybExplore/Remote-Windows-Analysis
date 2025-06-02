@@ -105,7 +105,7 @@ DATABASES = {
         'NAME': config('DB_NAME'),
         'USER': config('DB_USER'),
         'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST', default='127.0.0.1'),
+        'HOST': config('DB_HOST'),
         'PORT': config('DB_PORT', default='3306'),
     }
 }
@@ -175,34 +175,54 @@ SITE_NAME = config('SITE_NAME', default='CybExplore')
 # Authentication Framework
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        # For development/testing (keep only in DEBUG mode)
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
         
-        # 'rest_framework.authentication.TokenAuthentication',
+        # Production authentication
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-
-        
     ],
-    # 'DEFAULT_PERMISSION_CLASSES': [
-    #     'rest_framework.permissions.IsAuthenticated',
-    #     # 'rest_framework.permissions.AllowAny',
-
-    # ],
-    # 'DEFAULT_RENDERER_CLASSES': (
-    #     'rest_framework.renderers.JSONRenderer',
-    #     'rest_framework.renderers.BrowsableAPIRenderer' if DEBUG else 'rest_framework.renderers.JSONRenderer',    
-    # ),
-    # 'DEFAULT_THROTTLE_CLASSES': [
-    #     # 'rest_framework.throttling.ScopedRateThrottle',
-    # ],
-    # 'DEFAULT_THROTTLE_RATES': {
-    #     'login': '10/min',
-    #     'password_reset': '5/hour',
-    #     'password_change': '3/hour',
-    # },
-
+    
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',  # Default secure stance
+    ],
+    
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer' if DEBUG else None,
+    ],
+    
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle',
+    ],
+    
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '100/hour',  # Anonymous users
+        'user': '1000/hour',  # Authenticated users
+        'login': '10/minute',
+        'password_reset': '5/hour',
+    },
+    
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    
+    'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler',
+    
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20,
 }
 
+
+# Conditional settings (add to your config)
+if not DEBUG:
+    REST_FRAMEWORK.update({
+        'DEFAULT_AUTHENTICATION_CLASSES': [
+            'rest_framework_simplejwt.authentication.JWTAuthentication',
+        ],
+        'DEFAULT_RENDERER_CLASSES': [
+            'rest_framework.renderers.JSONRenderer',
+        ],
+    })
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Remote Window Security Monitoring System',

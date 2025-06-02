@@ -17,7 +17,7 @@ from rest_framework.decorators import api_view
 from django.db.utils import IntegrityError
 from accounts.models import CustomUser, UserProfile, Client, LogEntry
 from accounts.serializers import (
-    CustomUserSerializer, UserProfileSerializer, GroupSerializer,
+    CustomUserSerializer, UserProfileSerializer, GroupSerializer, ClientRegisterSerializer, UserRegisterSerializer,
     LoginSerializer, PasswordChangeSerializer, PasswordResetConfirmSerializer, PasswordResetRequestSerializer
 )
 from accounts.permissions import IsClientAuthenticated, IsOwnerOrAdmin
@@ -30,42 +30,76 @@ from .tasks import detect_anomalies
 from django.utils import timezone
 
 
+
 logger = logging.getLogger(__name__)
 
 
-class ClientRegisterView(APIView):
+# class ClientRegisterView(APIView):
+#     permission_classes = [AllowAny]
+
+#     def post(self, request):
+#         client_id = request.data.get('client_id')
+#         secret_id = request.data.get('secret_id')
+#         sid = request.data.get('sid')
+#         user_email = request.data.get('user_email')
+
+#         if not all([client_id, secret_id, sid, user_email]):
+#             return Response({'error': 'Missing required fields'}, status=400)
+
+#         try:
+#             user = CustomUser.objects.get(email=user_email)
+#             client, created = Client.objects.get_or_create(
+#                 client_id=client_id,
+#                 sid=sid,
+#                 user=user,
+#                 defaults={'secret_id': Client().set_secret_id(secret_id)}
+#             )
+#             if not created:
+#                 return Response({'error': 'Client with this client_id or sid already exists'}, status=400)
+
+#             return Response({
+#                 'status': 'success',
+#                 'client_id': str(client.client_id),
+#                 'sid': client.sid,
+#                 'user_email': user.email
+#             })
+#         except CustomUser.DoesNotExist:
+#             return Response({'error': 'User not found'}, status=404)
+#         except Exception as e:
+#             return Response({'error': str(e)}, status=400)
+
+from rest_framework.generics import CreateAPIView
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from rest_framework import status
+from accounts.models import Client
+from accounts.serializers import ClientRegisterSerializer
+import logging
+
+logger = logging.getLogger(__name__)
+
+class ClientRegisterView(CreateAPIView):
     permission_classes = [AllowAny]
+    serializer_class = ClientRegisterSerializer
 
-    def post(self, request):
-        client_id = request.data.get('client_id')
-        secret_id = request.data.get('secret_id')
-        sid = request.data.get('sid')
-        user_email = request.data.get('user_email')
+    def perform_create(self, serializer):
+        client = serializer.save()
 
-        if not all([client_id, secret_id, sid, user_email]):
-            return Response({'error': 'Missing required fields'}, status=400)
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        return Response({
+            'status': 'success',
+            'client_id': str(serializer.instance.client_id),
+            'sid': serializer.instance.sid,
+            'user_email': serializer.instance.user.email
+        }, status=status.HTTP_201_CREATED)
 
-        try:
-            user = CustomUser.objects.get(email=user_email)
-            client, created = Client.objects.get_or_create(
-                client_id=client_id,
-                sid=sid,
-                user=user,
-                defaults={'secret_id': Client().set_secret_id(secret_id)}
-            )
-            if not created:
-                return Response({'error': 'Client with this client_id or sid already exists'}, status=400)
 
-            return Response({
-                'status': 'success',
-                'client_id': str(client.client_id),
-                'sid': client.sid,
-                'user_email': user.email
-            })
-        except CustomUser.DoesNotExist:
-            return Response({'error': 'User not found'}, status=404)
-        except Exception as e:
-            return Response({'error': str(e)}, status=400)
+class UserRegisterView(generics.CreateAPIView):
+    permission_classes = [AllowAny]
+    serializer_class = UserRegisterSerializer
 
 
 class UserProfileView(APIView):

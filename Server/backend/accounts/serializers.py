@@ -11,6 +11,157 @@ from accounts.models import (
 from django.core.exceptions import ValidationError
 from django.contrib.auth.password_validation import validate_password
 
+
+from rest_framework import serializers
+from accounts.models import CustomUser, Client
+from django.core.validators import RegexValidator
+from django.contrib.auth.hashers import make_password
+from django.core.mail import send_mail
+from django.conf import settings
+import uuid
+import secrets
+import logging
+
+logger = logging.getLogger(__name__)
+
+class ClientRegisterSerializer(serializers.Serializer):
+    client_id = serializers.UUIDField(default=uuid.uuid4, help_text="Unique client ID (UUID)")
+    secret_id = serializers.CharField(max_length=128, default=secrets.token_urlsafe(32), help_text="Client secret ID")
+    sid = serializers.CharField(
+        max_length=50,
+        validators=[
+            RegexValidator(
+                regex=r'^S-1-5-21-\d+-\d+-\d+-\d+$',
+                message="Invalid SID format"
+            )
+        ],
+        help_text="Windows Security Identifier"
+    )
+    user_email = serializers.EmailField(help_text="User email address", label="Email ")
+    full_name = serializers.CharField(max_length=500, required=False, allow_blank=True, help_text="User full name")
+
+    def validate(self, data):
+        user_email = data['user_email'].lower()
+        sid = data['sid']
+
+        # Check if user exists or create one
+        user, created = CustomUser.objects.get_or_create(
+            email__iexact=user_email,
+            defaults={
+                'sid': sid,
+                'full_name': data.get('full_name') or user_email.split('@')[0],
+                'password': make_password(secrets.token_urlsafe(16))
+            }
+        )
+        if created:
+            send_mail(
+                subject=f"Welcome to {settings.SITE_NAME}",
+                message=f"""
+                Welcome to {settings.SITE_NAME}!
+
+                Your account has been created with the following details:
+                SID: {sid}
+                Email: {user_email}
+                Temporary Password: (Check with admin for your temporary password)
+
+                Please log in at {settings.SITE_URL}/login and change your password immediately.
+
+                Thank you,
+                The {settings.SITE_NAME} Team
+                """,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[user_email],
+                fail_silently=False,
+            )
+            logger.info(f"Created new user: {user_email}")
+
+        data['user'] = user
+        return data
+
+    def create(self, validated_data):
+        user = validated_data.pop('user')
+        client_id = validated_data['client_id']
+        secret_id = validated_data['secret_id']
+        sid = validated_data['sid']
+
+        client, created = Client.objects.get_or_create(
+            client_id=client_id,
+            sid=sid,
+            user=user,
+            defaults={'secret_id': make_password(secret_id)}
+        )
+        if not created:
+            raise serializers.ValidationError({'client_id': 'Client with this client_id or sid already exists'})
+
+        return client
+
+    def to_representation(self, instance):
+        return {
+            'status': 'success',
+            'client_id': str(instance.client_id),
+            'sid': instance.sid,
+            'user_email': instance.user.email
+        }
+
+class UserRegisterSerializer(serializers.ModelSerializer):
+    sid = serializers.CharField(
+        max_length=50,
+        validators=[
+            RegexValidator(
+                regex=r'^S-1-5-21-\d+-\d+-\d+-\d+$',
+                message="Invalid SID format"
+            )
+        ]
+    )
+    email = serializers.EmailField()
+    full_name = serializers.CharField(max_length=500, allow_blank=True)
+
+    class Meta:
+        model = CustomUser
+        fields = ['sid', 'email', 'full_name']
+
+    def validate_email(self, value):
+        value = value.lower()
+        if CustomUser.objects.filter(email__iexact=value).exists():
+            raise serializers.ValidationError("User with this email already exists")
+        return value
+
+    def validate_sid(self, value):
+        if CustomUser.objects.filter(sid=value).exists():
+            raise serializers.ValidationError("User with this SID already exists")
+        return value
+
+    def create(self, validated_data):
+        temporary_password = secrets.token_urlsafe(16)
+        user = CustomUser.objects.create_user(
+            sid=validated_data['sid'],
+            email=validated_data['email'].lower(),
+            password=temporary_password,
+            full_name=validated_data.get('full_name', '')
+        )
+        send_mail(
+            subject=f"Welcome to {settings.SITE_NAME}",
+            message=f"""
+            Welcome to {settings.SITE_NAME}!
+
+            Your account has been created with the following details:
+            SID: {validated_data['sid']}
+            Email: {validated_data['email']}
+            Temporary Password: {temporary_password}
+
+            Please log in at {settings.SITE_URL}/login and change your password immediately.
+
+            Thank you,
+            The {settings.SITE_NAME} Team
+            """,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[validated_data['email']],
+            fail_silently=False,
+        )
+        logger.info(f"Created new user: {validated_data['email']}")
+        return user
+
+
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
