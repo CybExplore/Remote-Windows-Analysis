@@ -172,3 +172,5 @@ WARNING 2025-06-02 22:57:10,149 log Bad Request: /api/client/register/
 WARNING 2025-06-02 22:57:58,909 log Not Found: /api/auth/refresh/
 WARNING 2025-06-02 22:58:10,503 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
 WARNING 2025-06-02 22:58:10,504 log Bad Request: /api/client/register/
+INFO 2025-06-02 22:59:52,577 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/serializers.py changed, reloading.
+INFO 2025-06-02 22:59:59,503 autoreload Watching for file changes with StatReloader
