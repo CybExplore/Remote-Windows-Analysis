@@ -1,7 +1,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
-using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.Diagnostics;
@@ -10,10 +9,12 @@ using Microsoft.Win32;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Net.NetworkInformation;
+using System.Security.Principal;
+using RwsmsClient.Models;
 
 namespace RwsmsClient;
 
@@ -24,8 +25,12 @@ public class RwsmsClientService : IDisposable
     private readonly ILogger<RwsmsClientService> _logger;
     private readonly IConfiguration _configuration;
     private readonly JsonSerializerOptions _jsonOptions;
-    private readonly List<Dictionary<string, object>> _eventLogs;
-    private readonly List<EventLogWatcher> _watchers = new();
+    private readonly List<SecurityEvent> _eventLogs;
+    private readonly List<ProcessLog> _processLogs;
+    private readonly List<NetworkLog> _networkLogs;
+    private readonly List<FileLog> _fileLogs;
+    private readonly List<EventLogWatcher> _watchers;
+    private readonly FileSystemWatcher _fileWatcher;
     private static readonly object _fileLock = new object();
     private string? _accessToken;
     private string? _refreshToken;
@@ -45,7 +50,23 @@ public class RwsmsClientService : IDisposable
         }
         _httpClient.BaseAddress = new Uri(apiBaseUrl);
         _jsonOptions = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
-        _eventLogs = new List<Dictionary<string, object>>();
+        _eventLogs = [];
+        _processLogs = [];
+        _networkLogs = [];
+        _fileLogs = [];
+        _watchers = [];
+
+        string monitorPath = configuration.GetValue<string>("WorkerSettings:MonitorPath") ?? @"C:\Windows\System32";
+        _fileWatcher = new FileSystemWatcher(monitorPath)
+        {
+            NotifyFilter = NotifyFilters.FileName | NotifyFilters.LastWrite,
+            EnableRaisingEvents = true
+        };
+        _fileWatcher.Changed += (s, e) => HandleFileChange(e);
+        _fileWatcher.Created += (s, e) => HandleFileChange(e);
+        _fileWatcher.Deleted += (s, e) => HandleFileChange(e);
+        _fileWatcher.Renamed += (s, e) => HandleFileRename(e);
+        _logger.LogInformation($"Subscribed to file system changes in {monitorPath}.");
     }
 
     public async Task<bool> RegisterClientAsync(string userEmail, string fullName)
@@ -181,11 +202,11 @@ public class RwsmsClientService : IDisposable
 
             var userData = new
             {
-                AccountInfo = GetAccountInfo(),
-                Groups = GetUserGroups(),
-                Profiles = GetUserProfiles(),
-                Sessions = GetUserSessions(),
-                Environment = GetEnvironmentInfo()
+                account_info = GetAccountInfo(),
+                groups = GetUserGroups(),
+                profiles = GetUserProfiles(),
+                sessions = GetUserSessions(),
+                environment = GetEnvironmentInfo()
             };
             var payload = new
             {
@@ -219,12 +240,6 @@ public class RwsmsClientService : IDisposable
             return;
         }
 
-        if (!File.Exists(logFilePath))
-        {
-            _logger.LogWarning($"Log file {logFilePath} does not exist.");
-            return;
-        }
-
         try
         {
             if (string.IsNullOrEmpty(_accessToken) && !await RefreshTokenAsync())
@@ -233,11 +248,16 @@ public class RwsmsClientService : IDisposable
                 return;
             }
 
-            var json = await File.ReadAllTextAsync(logFilePath);
-            var logs = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(json, _jsonOptions);
-            if (logs == null || logs.Count == 0)
+            List<SecurityEvent> logs;
+            lock (_eventLogs)
             {
-                _logger.LogInformation("No logs to send.");
+                logs = new List<SecurityEvent>(_eventLogs);
+                _eventLogs.Clear();
+            }
+
+            if (logs.Count == 0)
+            {
+                _logger.LogInformation("No event logs to send.");
                 return;
             }
 
@@ -251,17 +271,144 @@ public class RwsmsClientService : IDisposable
             var response = await _httpClient.PostAsync("api/logs/", content);
             if (response.IsSuccessStatusCode)
             {
-                _logger.LogInformation($"Sent {logs.Count} logs to server.");
-                await File.WriteAllTextAsync(logFilePath, "[]"); // Clear file
+                _logger.LogInformation($"Sent {logs.Count} event logs to server.");
             }
             else
             {
-                _logger.LogError($"Failed to send logs: {response.StatusCode} {response.ReasonPhrase}, {await response.Content.ReadAsStringAsync()}");
+                _logger.LogError($"Failed to send event logs: {response.StatusCode} {response.ReasonPhrase}, {await response.Content.ReadAsStringAsync()}");
             }
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Failed to send logs.");
+            _logger.LogError(ex, "Failed to send event logs.");
+        }
+    }
+
+    public async Task SendProcessLogsAsync()
+    {
+        try
+        {
+            if (string.IsNullOrEmpty(_accessToken) && !await RefreshTokenAsync())
+            {
+                _logger.LogError("Failed to refresh token before sending process logs.");
+                return;
+            }
+
+            var logs = GetRunningProcesses();
+            if (logs.Count == 0)
+            {
+                _logger.LogInformation("No process logs to send.");
+                return;
+            }
+
+            var payload = new
+            {
+                client_id = _credentials.ClientId,
+                logs
+            };
+            using var content = new StringContent(JsonSerializer.Serialize(payload, _jsonOptions), Encoding.UTF8, "application/json");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _accessToken);
+            var response = await _httpClient.PostAsync("api/processes/", content);
+            if (response.IsSuccessStatusCode)
+            {
+                _logger.LogInformation($"Sent {logs.Count} process logs to server.");
+                lock (_processLogs) { _processLogs.Clear(); }
+            }
+            else
+            {
+                _logger.LogError($"Failed to send process logs: {response.StatusCode} {response.ReasonPhrase}, {await response.Content.ReadAsStringAsync()}");
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to send process logs.");
+        }
+    }
+
+    public async Task SendNetworkLogsAsync()
+    {
+        try
+        {
+            if (string.IsNullOrEmpty(_accessToken) && !await RefreshTokenAsync())
+            {
+                _logger.LogError("Failed to refresh token before sending network logs.");
+                return;
+            }
+
+            var logs = GetNetworkConnections();
+            if (logs.Count == 0)
+            {
+                _logger.LogInformation("No network logs to send.");
+                return;
+            }
+
+            var payload = new
+            {
+                client_id = _credentials.ClientId,
+                logs
+            };
+            using var content = new StringContent(JsonSerializer.Serialize(payload, _jsonOptions), Encoding.UTF8, "application/json");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _accessToken);
+            var response = await _httpClient.PostAsync("api/network/", content);
+            if (response.IsSuccessStatusCode)
+            {
+                _logger.LogInformation($"Sent {logs.Count} network logs to server.");
+                lock (_networkLogs) { _networkLogs.Clear(); }
+            }
+            else
+            {
+                _logger.LogError($"Failed to send network logs: {response.StatusCode} {response.ReasonPhrase}, {await response.Content.ReadAsStringAsync()}");
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to send network logs.");
+        }
+    }
+
+    public async Task SendFileLogsAsync()
+    {
+        try
+        {
+            if (string.IsNullOrEmpty(_accessToken) && !await RefreshTokenAsync())
+            {
+                _logger.LogError("Failed to refresh token before sending file logs.");
+                return;
+            }
+
+            List<FileLog> logs;
+            lock (_fileLogs)
+            {
+                logs = new List<FileLog>(_fileLogs);
+                _fileLogs.Clear();
+            }
+
+            if (logs.Count == 0)
+            {
+                _logger.LogInformation("No file logs to send.");
+                return;
+            }
+
+            var payload = new
+            {
+                client_id = _credentials.ClientId,
+                logs
+            };
+            using var content = new StringContent(JsonSerializer.Serialize(payload, _jsonOptions), Encoding.UTF8, "application/json");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _accessToken);
+            var response = await _httpClient.PostAsync("api/files/", content);
+            if (response.IsSuccessStatusCode)
+            {
+                _logger.LogInformation($"Sent {logs.Count} file logs to server.");
+            }
+            else
+            {
+                _logger.LogError($"Failed to send file logs: {response.StatusCode} {response.ReasonPhrase}, {await response.Content.ReadAsStringAsync()}");
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to send file logs.");
         }
     }
 
@@ -273,15 +420,14 @@ public class RwsmsClientService : IDisposable
             throw new InvalidOperationException("LogFilePath is not configured.");
         }
         int batchSize = _configuration.GetValue<int>("WorkerSettings:BatchSize");
-        string[] logNames = _configuration.GetSection("WorkerSettings:LogNames").Get<string[]>() 
-            ?? ["System", "Application", "Security"];
+        string[] logNames = _configuration.GetSection("WorkerSettings:LogNames").Get<string[]>() ?? ["System", "Application", "Security"];
         foreach (var logName in logNames)
         {
             try
             {
-                var query = new EventLogQuery(logName, PathType.LogName);
+                var query = new EventLogQuery(logName, PathType.LogName, "EventID=4624 or EventID=4625 or EventID=4672");
                 var watcher = new EventLogWatcher(query);
-                watcher.EventRecordWritten += (sender, e) => HandleEventRecord(e.EventRecord, logFilePath, batchSize);
+                watcher.EventRecordWritten += (sender, e) => HandleEventRecord(e.EventRecord, batchSize);
                 watcher.Enabled = true;
                 _watchers.Add(watcher);
                 _logger.LogInformation($"Subscribed to {logName} log.");
@@ -293,7 +439,7 @@ public class RwsmsClientService : IDisposable
         }
     }
 
-    private void HandleEventRecord(EventRecord? record, string logFilePath, int batchSize)
+    private void HandleEventRecord(EventRecord? record, int batchSize)
     {
         if (record == null) return;
 
@@ -304,20 +450,20 @@ public class RwsmsClientService : IDisposable
                 _logger.LogWarning("Event record {EventId} has no timestamp.", record.Id);
             }
 
-            var logEntry = new Dictionary<string, object>
+            var logEntry = new SecurityEvent
             {
-                { "event_type", record.Id },
-                { "event_id", record.Id },
-                { "source", record.LogName },
-                { "timestamp", record.TimeCreated?.ToString("o") ?? DateTime.UtcNow.ToString("o") },
-                { "details", record.FormatDescription() ?? string.Empty }
+                EventType = record.Id.ToString(),
+                EventId = record.Id,
+                Source = record.LogName ?? string.Empty,
+                Timestamp = record.TimeCreated?.ToString("o") ?? DateTime.UtcNow.ToString("o"),
+                Details = record.FormatDescription() ?? string.Empty
             };
             lock (_eventLogs)
             {
                 _eventLogs.Add(logEntry);
                 if (_eventLogs.Count >= batchSize)
                 {
-                    Task.Run(() => SaveLogsToFileAsync(logFilePath)).GetAwaiter().GetResult();
+                    Task.Run(SendEventLogsAsync).GetAwaiter().GetResult();
                 }
             }
         }
@@ -327,51 +473,121 @@ public class RwsmsClientService : IDisposable
         }
     }
 
-    private async Task SaveLogsToFileAsync(string logFilePath)
+    private void HandleFileChange(FileSystemEventArgs e)
     {
         try
         {
-            lock (_fileLock)
+            var logEntry = new FileLog
             {
-                List<Dictionary<string, object>> logsToSave;
-                lock (_eventLogs)
+                EventType = "FileChange",
+                Path = e.FullPath,
+                ChangeType = e.ChangeType.ToString(),
+                OldPath = string.Empty,
+                Timestamp = DateTime.UtcNow.ToString("o")
+            };
+            lock (_fileLogs)
+            {
+                _fileLogs.Add(logEntry);
+                int batchSize = _configuration.GetValue<int>("WorkerSettings:BatchSize");
+                if (_fileLogs.Count >= batchSize)
                 {
-                    logsToSave = new List<Dictionary<string, object>>(_eventLogs);
-                    _eventLogs.Clear();
+                    Task.Run(SendFileLogsAsync).GetAwaiter().GetResult();
                 }
-
-                List<Dictionary<string, object>> existingLogs = [];
-                if (File.Exists(logFilePath))
-                {
-                    var json = File.ReadAllText(logFilePath);
-                    var deserialized = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(json, _jsonOptions);
-                    if (deserialized != null)
-                    {
-                        existingLogs = deserialized;
-                    }
-                }
-
-                existingLogs.AddRange(logsToSave);
-                var updatedJson = JsonSerializer.Serialize(existingLogs, new JsonSerializerOptions { WriteIndented = true });
-                File.WriteAllText(logFilePath, updatedJson);
-                _logger.LogInformation($"Saved {logsToSave.Count} logs to {logFilePath}");
             }
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Failed to save logs to file {FilePath}.", logFilePath);
+            _logger.LogError(ex, "Failed to handle file change event for {Path}.", e.FullPath);
         }
     }
 
-    private Dictionary<string, object> GetAccountInfo()
+    private void HandleFileRename(RenamedEventArgs e)
     {
         try
         {
-            return new Dictionary<string, object>
+            var logEntry = new FileLog
             {
-                { "username", Environment.UserName },
-                { "domain", Environment.UserDomainName },
-                { "sid", _credentials.Sid }
+                EventType = "FileRename",
+                Path = e.FullPath,
+                ChangeType = e.ChangeType.ToString(),
+                OldPath = e.OldFullPath,
+                Timestamp = DateTime.UtcNow.ToString("o")
+            };
+            lock (_fileLogs)
+            {
+                _fileLogs.Add(logEntry);
+                int batchSize = _configuration.GetValue<int>("WorkerSettings:BatchSize");
+                if (_fileLogs.Count >= batchSize)
+                {
+                    Task.Run(SendFileLogsAsync).GetAwaiter().GetResult();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to handle file rename event for {Path}.", e.OldFullPath);
+        }
+    }
+
+    private List<ProcessLog> GetRunningProcesses()
+    {
+        try
+        {
+            var processes = Process.GetProcesses();
+            var logs = processes.Select(p => new ProcessLog
+            {
+                Name = p.ProcessName,
+                Pid = p.Id,
+                Path = p.MainModule?.FileName ?? "N/A",
+                StartTime = p.StartTime.ToString("o")
+            }).ToList();
+            lock (_processLogs)
+            {
+                _processLogs.AddRange(logs);
+            }
+            return logs;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to get running processes.");
+            return [];
+        }
+    }
+
+    private List<NetworkLog> GetNetworkConnections()
+    {
+        try
+        {
+            var connections = IPGlobalProperties.GetIPGlobalProperties().GetActiveTcpConnections();
+            var logs = connections.Select(c => new NetworkLog
+            {
+                LocalAddress = c.LocalEndPoint.ToString(),
+                RemoteAddress = c.RemoteEndPoint.ToString(),
+                State = c.State.ToString(),
+                Timestamp = DateTime.UtcNow.ToString("o")
+            }).ToList();
+            lock (_networkLogs)
+            {
+                _networkLogs.AddRange(logs);
+            }
+            return logs;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to get network connections.");
+            return [];
+        }
+    }
+
+    private UserAccount GetAccountInfo()
+    {
+        try
+        {
+            return new UserAccount
+            {
+                Username = Environment.UserName,
+                Domain = Environment.UserDomainName,
+                Sid = _credentials.Sid
             };
         }
         catch (Exception ex)
@@ -381,13 +597,14 @@ public class RwsmsClientService : IDisposable
         }
     }
 
-    private List<string> GetUserGroups()
+    private UserGroup GetUserGroups()
     {
         try
         {
-            var identity = System.Security.Principal.WindowsIdentity.GetCurrent();
-            return identity.Groups?.Select(g => g.Translate(typeof(System.Security.Principal.NTAccount)).Value).ToList() 
+            var identity = WindowsIdentity.GetCurrent();
+            var groups = identity.Groups?.Select(g => g.Translate(typeof(NTAccount)).Value).ToList()
                 ?? throw new Exception("No groups found for current user.");
+            return new UserGroup { Groups = groups };
         }
         catch (Exception ex)
         {
@@ -396,14 +613,14 @@ public class RwsmsClientService : IDisposable
         }
     }
 
-    private Dictionary<string, object> GetUserProfiles()
+    private UserProfile GetUserProfiles()
     {
         try
         {
-            return new Dictionary<string, object>
+            return new UserProfile
             {
-                { "profile_path", Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) },
-                { "roaming_profile", Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Winlogon", "ProfileImagePath", "")?.ToString() ?? "" }
+                ProfilePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+                RoamingProfile = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Winlogon", "ProfileImagePath", "")?.ToString() ?? ""
             };
         }
         catch (Exception ex)
@@ -413,15 +630,15 @@ public class RwsmsClientService : IDisposable
         }
     }
 
-    private List<Dictionary<string, object>> GetUserSessions()
+    private List<UserSession> GetUserSessions()
     {
         try
         {
             return [
-                new Dictionary<string, object>
+                new UserSession
                 {
-                    { "session_id", Process.GetCurrentProcess().SessionId },
-                    { "start_time", DateTime.Now.ToString("o") }
+                    SessionId = Process.GetCurrentProcess().SessionId,
+                    StartTime = DateTime.Now.ToString("o")
                 }
             ];
         }
@@ -432,15 +649,15 @@ public class RwsmsClientService : IDisposable
         }
     }
 
-    private Dictionary<string, object> GetEnvironmentInfo()
+    private EnvironmentInfo GetEnvironmentInfo()
     {
         try
         {
-            return new Dictionary<string, object>
+            return new EnvironmentInfo
             {
-                { "os_version", Environment.OSVersion.VersionString },
-                { "machine_name", Environment.MachineName },
-                { "processor_count", Environment.ProcessorCount }
+                OsVersion = Environment.OSVersion.VersionString,
+                MachineName = Environment.MachineName,
+                ProcessorCount = Environment.ProcessorCount
             };
         }
         catch (Exception ex)
@@ -456,6 +673,7 @@ public class RwsmsClientService : IDisposable
         {
             watcher.Dispose();
         }
+        _fileWatcher?.Dispose();
     }
 
     private class AuthResponse
