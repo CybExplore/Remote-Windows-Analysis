@@ -80,15 +80,15 @@ public class CredentialStore
     {
         const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         var result = new char[length];
-        var bytes = new byte[length * 4]; // Larger buffer to reduce rejection rate
+        var bytes = new byte[length * 4];
         for (int i = 0; i < length; i++)
         {
             int value;
             do
             {
                 RandomNumberGenerator.Fill(bytes);
-                value = BitConverter.ToInt32(bytes, i * 4) & 0x7FFFFFFF; // Positive int
-            } while (value >= int.MaxValue - (int.MaxValue % chars.Length)); // Avoid bias
+                value = BitConverter.ToInt32(bytes, i * 4) & 0x7FFFFFFF;
+            } while (value >= int.MaxValue - (int.MaxValue % chars.Length));
             result[i] = chars[value % chars.Length];
         }
         return new string(result);

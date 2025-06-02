@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RwsmsClient")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2540bcec2c4e65a4c96fa47286412a2c6b1d2205")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4272f82e7ac7ba550d4d3f9d92fddfe7f3cf92be")]
 [assembly: System.Reflection.AssemblyProductAttribute("RwsmsClient")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RwsmsClient")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

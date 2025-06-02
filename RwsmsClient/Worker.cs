@@ -29,14 +29,13 @@ public class Worker : BackgroundService
         _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         
         _userEmail = configuration.GetValue<string>("WorkerSettings:UserEmail");
-        _fullName = configuration.GetValue<string>("WorkerSettings:FullName") 
-            ?? "Default User";
+        _fullName = configuration.GetValue<string>("WorkerSettings:FullName") ?? "Default User";
         _retryDelaySeconds = configuration.GetValue<int>("WorkerSettings:RetryDelaySeconds", 60);
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        string userEmail = _userEmail ?? GetEmailFromConsole();
+        string? userEmail = _userEmail ?? GetEmailFromConsole();
         if (string.IsNullOrWhiteSpace(userEmail))
         {
             _logger.LogError("Email address is required for registration.");
@@ -59,7 +58,7 @@ public class Worker : BackgroundService
                 }
 
                 await SendDataAsync(stoppingToken);
-                await Task.Delay(TimeSpan.FromMinutes(5), stoppingToken);
+                await Task.Delay(TimeSpan.FromSeconds(_configuration.GetValue<int>("WorkerSettings:PollIntervalSeconds", 5)), stoppingToken);
             }
             catch (TaskCanceledException)
             {
@@ -104,13 +103,13 @@ public class Worker : BackgroundService
 
         _isRegistered = true;
         LaunchFrontend();
+        _clientService.SubscribeToEventLogs();
         return true;
     }
 
     private void LaunchFrontend()
     {
-        string frontendUrl = _configuration.GetValue<string>("WorkerSettings:FrontendUrl") 
-            ?? "http://localhost:3000/";
+        string frontendUrl = _configuration.GetValue<string>("WorkerSettings:FrontendUrl") ?? "http://localhost:3000/";
         if (!Uri.TryCreate(frontendUrl, UriKind.Absolute, out _))
         {
             _logger.LogError("Invalid FrontendUrl: {Url}", frontendUrl);
@@ -160,6 +159,15 @@ public class Worker : BackgroundService
 
         _logger.LogInformation("Sending event logs...");
         await _clientService.SendEventLogsAsync();
+
+        _logger.LogInformation("Sending process logs...");
+        await _clientService.SendProcessLogsAsync();
+
+        _logger.LogInformation("Sending network logs...");
+        await _clientService.SendNetworkLogsAsync();
+
+        _logger.LogInformation("Sending file logs...");
+        await _clientService.SendFileLogsAsync();
     }
 
     private static bool IsValidEmail(string? email)
