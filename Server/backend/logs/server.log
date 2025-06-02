@@ -163,3 +163,12 @@ INFO 2025-06-02 21:43:04,791 views Login failed for identifier: admin@cybexplore
 WARNING 2025-06-02 21:43:04,792 log Unauthorized: /api/auth/login/
 WARNING 2025-06-02 21:48:34,007 log Method Not Allowed: /api/client/auth/
 WARNING 2025-06-02 21:57:58,714 log Not Found: /api/auth/refresh/
+WARNING 2025-06-02 22:12:58,373 log Not Found: /api/auth/refresh/
+WARNING 2025-06-02 22:27:58,584 log Not Found: /api/auth/refresh/
+INFO 2025-06-02 22:40:24,113 autoreload Watching for file changes with StatReloader
+WARNING 2025-06-02 22:42:59,195 log Not Found: /api/auth/refresh/
+WARNING 2025-06-02 22:57:10,147 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-02 22:57:10,149 log Bad Request: /api/client/register/
+WARNING 2025-06-02 22:57:58,909 log Not Found: /api/auth/refresh/
+WARNING 2025-06-02 22:58:10,503 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-02 22:58:10,504 log Bad Request: /api/client/register/
