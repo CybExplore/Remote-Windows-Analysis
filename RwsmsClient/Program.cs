@@ -1,22 +1,18 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Configuration;
+using RwsmsClient;
 
-// namespace RwsmsClient;
-
-public class Program
-{
-    public static void Main(string[] args)
+IHost host = Host.CreateDefaultBuilder(args)
+    .ConfigureServices((context, services) =>
     {
-        CreateHostBuilder(args).Build().Run();
-    }
+        services.AddOptions<WorkerSettings>()
+            .Bind(context.Configuration.GetSection("WorkerSettings"))
+            .ValidateDataAnnotations();
+        services.AddHttpClient<RwsmsClientService>();
+        services.AddSingleton<CredentialStore>();
+        services.AddHostedService<Worker>();
+    })
+    .Build();
 
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args)
-            .ConfigureServices((hostContext, services) =>
-            {
-                services.AddHostedService<Worker>();
-                services.AddHttpClient<RwsmsClientService>();
-                services.AddSingleton<CredentialStore>();
-            })
-            .UseWindowsService();
-}
+await host.RunAsync();

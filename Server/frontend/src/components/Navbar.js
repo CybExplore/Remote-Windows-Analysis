@@ -1,76 +1,39 @@
-import React from 'react';
+import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Menu, Button, Avatar, Dropdown } from 'antd';
-import { UserOutlined, LoginOutlined, LogoutOutlined } from '@ant-design/icons';
-import { toast } from 'react-toastify';
-import { useAuth } from '../context/AuthContext';
+import { AuthContext } from '../context/AuthContext';
 
-const Navbar = () => {
-  const { user, isAuthenticated, logout } = useAuth();
+function Navbar() {
+  const { logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
-    toast.success('Logged out successfully!', {
-      position: 'top-right',  
-      // position: 'bottom-right',
-      autoClose: 5000,
-      style: { backgroundColor: '#4CAF50', color: '#fff' },
-    
-    });
     navigate('/login');
   };
 
-  const userMenuItems = [
-    {
-      key: 'profile',
-      label: <Link to="/profile">Profile</Link>,
-    },
-    {
-      key: 'logout',
-      label: (
-        <span onClick={handleLogout}>
-          <LogoutOutlined /> Logout
-        </span>
-      ),
-    },
-  ];
-
-  const menuItems = [
-    {
-      key: 'dashboard',
-      label: <Link to="/">Dashboard</Link>,
-    },
-    {
-      key: 'auth',
-      label: isAuthenticated ? (
-        <Dropdown menu={{ items: userMenuItems }} placement="bottomRight">
-          <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
-            <Avatar icon={<UserOutlined />} style={{ marginRight: 8 }} />
-            <span>{user?.email || user?.sid || 'User'}</span>
-          </div>
-        </Dropdown>
-      ) : (
-        <Button
-          type="primary"
-          icon={<LoginOutlined />}
-          onClick={() => {
-            toast.info('Redirecting to login...', {
-              position: 'top-right',
-            });
-            navigate('/login');
-          }}
-        >
-          Login
-        </Button>
-      ),
-      style: { marginLeft: 'auto' },
-    },
-  ];
-
   return (
-    <Menu mode="horizontal" theme="dark" style={{ lineHeight: '64px' }} items={menuItems} />
+    <nav className="bg-blue-600 p-4">
+      <div className="container mx-auto flex justify-between items-center">
+        <div className="flex items-center">
+          <img src="/logo.png" alt="Logo" className="h-8 mr-2" />
+          <Link to="/dashboard" className="text-white text-xl font-bold">Security Monitor</Link>
+        </div>
+        <div className="space-x-4">
+          <Link to="/dashboard" className="text-white hover:text-gray-200">Dashboard</Link>
+          <Link to="/security-events" className="text-white hover:text-gray-200">Security Events</Link>
+          <Link to="/user-account" className="text-white hover:text-gray-200">User Account</Link>
+          <Link to="/user-groups" className="text-white hover:text-gray-200">User Groups</Link>
+          <Link to="/user-profile" className="text-white hover:text-gray-200">User Profile</Link>
+          <Link to="/user-sessions" className="text-white hover:text-gray-200">User Sessions</Link>
+          <Link to="/environment-info" className="text-white hover:text-gray-200">Environment Info</Link>
+          <Link to="/process-logs" className="text-white hover:text-gray-200">Process Logs</Link>
+          <Link to="/network-logs" className="text-white hover:text-gray-200">Network Logs</Link>
+          <Link to="/file-logs" className="text-white hover:text-gray-200">File Logs</Link>
+          <button onClick={handleLogout} className="text-white hover:text-gray-200">Logout</button>
+        </div>
+      </div>
+    </nav>
   );
-};
+}
 
 export default Navbar;

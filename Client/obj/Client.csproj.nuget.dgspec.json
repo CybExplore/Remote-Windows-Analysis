@@ -60,7 +60,7 @@
             },
             "Microsoft.Extensions.Configuration.Json": {
               "target": "Package",
-              "version": "[9.0.0, )"
+              "version": "[9.0.5, )"
             },
             "Microsoft.Extensions.Hosting": {
               "target": "Package",
@@ -72,7 +72,19 @@
             },
             "Microsoft.Extensions.Logging": {
               "target": "Package",
-              "version": "[9.0.0, )"
+              "version": "[9.0.5, )"
+            },
+            "Microsoft.Extensions.Options.DataAnnotations": {
+              "target": "Package",
+              "version": "[9.0.5, )"
+            },
+            "Microsoft.Win32": {
+              "target": "Package",
+              "version": "[2.0.1, )"
+            },
+            "Microsoft.Win32.Registry": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -86,9 +98,13 @@
               "target": "Package",
               "version": "[6.0.0, )"
             },
+            "System.Diagnostics.DiagnosticSource": {
+              "target": "Package",
+              "version": "[9.0.5, )"
+            },
             "System.Diagnostics.EventLog": {
               "target": "Package",
-              "version": "[9.0.0, )"
+              "version": "[9.0.5, )"
             },
             "System.Management": {
               "target": "Package",
@@ -97,6 +113,10 @@
             "System.Security.Cryptography.ProtectedData": {
               "target": "Package",
               "version": "[9.0.0, )"
+            },
+            "System.Text.Json": {
+              "target": "Package",
+              "version": "[9.0.5, )"
             }
           },
           "imports": [
