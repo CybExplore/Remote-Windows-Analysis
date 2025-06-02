@@ -10,5 +10,5 @@ router.register(r'files', FileLogViewSet, basename='files')
 router.register(r'user/profile', UserDataViewSet, basename='user-profile')
 
 urlpatterns = [
-    path('api/', include(router.urls)),
+    path('', include(router.urls)),
 ]

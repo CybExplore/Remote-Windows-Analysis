@@ -3,7 +3,17 @@ import logging
 import secrets
 import uuid
 from datetime import timedelta
+import logging
 
+from rest_framework import status
+from rest_framework.generics import CreateAPIView
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+
+from accounts.models import Client
+from accounts.serializers import ClientRegisterSerializer
+
+logger = logging.getLogger(__name__)
 from django.conf import settings
 from django.contrib.auth import (authenticate, login, logout,
                                  update_session_auth_hash)
@@ -29,7 +39,7 @@ from accounts.permissions import IsClientAuthenticated, IsOwnerOrAdmin
 from accounts.serializers import (AuthSerializer, ClientRegisterSerializer,
                                   ClientSerializer, CustomUserSerializer,
                                   GroupSerializer, LoginSerializer,
-                                  PasswordChangeSerializer,
+                                  PasswordChangeSerializer, ClientAuthSerializer,
                                   PasswordResetConfirmSerializer,
                                   PasswordResetRequestSerializer,
                                   UserProfileSerializer,
@@ -127,39 +137,39 @@ class ClientViewSet(viewsets.ModelViewSet):
 #         except Exception as e:
 #             return Response({'error': str(e)}, status=400)
 
-import logging
 
-from rest_framework import status
-from rest_framework.generics import CreateAPIView
-from rest_framework.permissions import AllowAny
-from rest_framework.response import Response
-
-from accounts.models import Client
-from accounts.serializers import ClientRegisterSerializer
-
-logger = logging.getLogger(__name__)
 
 
 class ClientRegisterView(CreateAPIView):
-    permission_classes = [AllowAny]
-    serializer_class = ClientRegisterSerializer
+    authentication_classes = []
+    permission_classes = []
 
-    def perform_create(self, serializer):
-        client = serializer.save()
-
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        return Response(
-            {
-                "status": "success",
-                "client_id": str(serializer.instance.client_id),
-                "sid": serializer.instance.sid,
-                "user_email": serializer.instance.user.email,
-            },
-            status=status.HTTP_201_CREATED,
-        )
+    def post(self, request):
+        serializer = ClientSerializer(data=request.data)
+        if serializer.is_valid():
+            user_email = serializer.validated_data['user_email']
+            try:
+                user = CustomUser.objects.get(email__iexact=user_email)
+            except CustomUser.DoesNotExist:
+                logger.error(f"Registration failed: No user found for email {user_email}")
+                return Response({"status": "error", "message": "No user found with this email"}, status=status.HTTP_404_NOT_FOUND)
+            
+            try:
+                client = Client.objects.create(
+                    client_id=serializer.validated_data['client_id'],
+                    secret_id=serializer.validated_data['secret_id'],
+                    sid=serializer.validated_data['sid'],
+                    user_email=user_email,
+                    full_name=serializer.validated_data['full_name'],
+                    user=user
+                )
+                logger.info(f"Client {client.client_id} registered successfully for user {user_email}")
+                return Response({"status": "success", "message": "Client registered successfully"}, status=status.HTTP_201_CREATED)
+            except Exception as e:
+                logger.error(f"Registration error for client {client_id}: {str(e)}")
+                return Response({"status": "error", "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        logger.warning(f"Invalid registration data: {serializer.errors}")
+        return Response({"status": "error", "message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UserRegisterView(generics.CreateAPIView):
@@ -244,29 +254,41 @@ class UserProfileDetailView(APIView):
         )
 
 
-class ClientAuthView(APIView):
-    permission_classes = [AllowAny]
+class ClientAuthView(CreateAPIView):
+    authentication_classes = []
+    permission_classes = []
 
     def post(self, request):
-        client_id = request.data["client_id"]
-        secret_id = request.data["secret_id"]
-        sid = request.data["sid"]
+        serializer = ClientAuthSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.validated_data['user']
+            access_token = str(AccessToken.for_user(user))
+            refresh_token = str(RefreshToken.for_user(user))
+            logger.info(f"Client {serializer.validated_data['client_id']} authenticated successfully for user {user.email}")
+            return Response({"access_token": access_token, "refresh_token": refresh_token})
+        logger.warning(f"Client authentication failed: {serializer.errors}")
+        return Response({"status": "error", "message": serializer.errors}, status=status.HTTP_401_UNAUTHORIZED)
 
-        try:
-            client = Client.objects.get(client_id=client_id, sid=sid)
-            if check_password(secret_id, client.secret_id):
-                refresh = RefreshToken.for_user(client.user)
-                return Response(
-                    {
-                        "user": client.user,
-                        "access_token": str(refresh.access_token),
-                        "refresh_token": str(refresh),
-                    }
-                )
-            return Response({"error": "Invalid credentials"}, status=401)
-        except Client.DoesNotExist:
-            return Response({"error": "Client not found"}, status=404)
 
+class UserLoginView(CreateAPIView):
+    authentication_classes = []
+    permission_classes = []
+
+    def post(self, request):
+        serializer = UserLoginSerializer(data=request.data)
+        if serializer.is_valid():
+            identifier = serializer.validated_data['identifier']
+            password = serializer.validated_data['password']
+            user = authenticate(request=request, identifier=identifier, password=password)
+            if user:
+                access_token = str(AccessToken.for_user(user))
+                refresh_token = str(RefreshToken.for_user(user))
+                logger.info(f"User {user.email} logged in successfully from IP: {request.META.get('REMOTE_ADDR', 'unknown')}")
+                return Response({"access_token": access_token, "refresh_token": refresh_token})
+            logger.info(f"Login failed for identifier: {identifier}")
+            return Response({"status": "error", "message": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
+        logger.warning(f"Invalid login data: {serializer.errors}")
+        return Response({"status": "error", "message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 class LogReceiverView(APIView):
     permission_classes = [IsAuthenticated]

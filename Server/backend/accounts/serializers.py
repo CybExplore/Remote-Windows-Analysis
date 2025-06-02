@@ -167,7 +167,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ["url", "username", "email", "groups"]
+        fields = ["url", "sid", "email", "groups"]
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
@@ -192,13 +192,65 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ["id", "email", "sid", "username"]
+        fields = ["id", "email", "sid"]
 
 
 class ClientSerializer(serializers.ModelSerializer):
+    user_email = serializers.EmailField()
+
     class Meta:
         model = Client
-        fields = ["client_id", "secret_id", "sid", "user_email", "full_name"]
+        fields = ['client_id', 'secret_id', 'sid', 'user_email', 'full_name']
+        extra_kwargs = {
+            'client_id': {'required': True},
+            'secret_id': {'required': True},
+            'sid': {'required': True},
+            'user_email': {'required': True},
+            'full_name': {'required': True},
+        }
+
+    def validate_user_email(self, value):
+        try:
+            CustomUser.objects.get(email__iexact=value)
+        except CustomUser.DoesNotExist:
+            raise serializers.ValidationError("No user found with this email address.")
+        return value
+
+    def validate_client_id(self, value):
+        if Client.objects.filter(client_id=value).exists():
+            raise serializers.ValidationError("A client with this client_id already exists.")
+        return value
+
+class ClientAuthSerializer(serializers.Serializer):
+    email = serializers.EmailField(required=False)
+    sid = serializers.CharField(required=False)
+    client_id = serializers.CharField(required=True)
+    secret_id = serializers.CharField(required=True)
+
+    def validate(self, data):
+        if not (data.get('email') or data.get('sid')):
+            raise serializers.ValidationError("Either email or sid must be provided.")
+        try:
+            client = Client.objects.get(
+                client_id=data['client_id'],
+                secret_id=data['secret_id']
+            )
+            user = CustomUser.objects.filter(
+                email__iexact=data.get('email', '') if data.get('email') else None,
+                sid=data.get('sid') if data.get('sid') else None
+            ).first()
+            if not user or client.user != user:
+                raise serializers.ValidationError("Invalid client or user credentials.")
+        except Client.DoesNotExist:
+            raise serializers.ValidationError("Client not found.")
+        data['user'] = user
+        return data
+
+class UserLoginSerializer(serializers.Serializer):
+    identifier = serializers.CharField()
+    password = serializers.CharField(write_only=True)
+
+
 
 
 # class UserProfileSerializer(serializers.ModelSerializer):

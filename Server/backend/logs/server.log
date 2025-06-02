@@ -1,1 +1,32 @@
 INFO 2025-06-02 20:22:49,667 autoreload Watching for file changes with StatReloader
+WARNING 2025-06-02 20:27:46,049 log Not Found: /
+WARNING 2025-06-02 20:27:50,127 log Not Found: /api/
+INFO 2025-06-02 20:28:20,685 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/urls.py changed, reloading.
+INFO 2025-06-02 20:28:23,697 autoreload Watching for file changes with StatReloader
+WARNING 2025-06-02 20:28:36,688 log Unauthorized: /api/
+WARNING 2025-06-02 20:28:59,394 log Forbidden: /api/client/
+INFO 2025-06-02 20:55:42,131 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-02 20:55:44,913 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 20:56:02,428 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/serializers.py changed, reloading.
+INFO 2025-06-02 20:56:05,079 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 20:56:17,777 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/serializers.py changed, reloading.
+INFO 2025-06-02 20:56:20,528 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 20:56:29,773 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/serializers.py changed, reloading.
+INFO 2025-06-02 20:56:30,752 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 20:56:36,889 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/serializers.py changed, reloading.
+INFO 2025-06-02 20:56:39,977 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 20:57:00,003 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/serializers.py changed, reloading.
+INFO 2025-06-02 20:57:02,084 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 20:59:47,234 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-02 20:59:49,781 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 21:00:00,179 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-02 21:00:01,754 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 21:00:40,539 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 21:00:56,835 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-02 21:00:59,322 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 21:01:18,705 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-02 21:01:21,964 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 21:01:50,771 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-02 21:01:53,136 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 21:01:59,373 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-02 21:02:00,562 autoreload Watching for file changes with StatReloader
