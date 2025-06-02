@@ -163,6 +163,9 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         logger.info(f"Created new user: {validated_data['email']}")
         return user
 
+class UserLoginSerializer(serializers.Serializer):
+    identifier = serializers.CharField()
+    password = serializers.CharField(write_only=True)
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

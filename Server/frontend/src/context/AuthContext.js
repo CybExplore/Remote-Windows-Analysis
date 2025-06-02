@@ -10,7 +10,8 @@ export const AuthProvider = ({ children }) => {
   const [refreshToken, setRefreshToken] = useState(localStorage.getItem('refreshToken'));
   const [isFirstLogin, setIsFirstLogin] = useState(false);
   const API_URL = 'http://localhost:8001/api/';
-  const navigate = useNavigate();
+  
+  // const navigate = useNavigate();
 
   useEffect(() => {
     if (accessToken) {
@@ -22,9 +23,12 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     if (user && isFirstLogin) {
-      navigate('/change-password');
+      // navigate('/change-password');
+      window.location.pathname = '/change-password';
+      
     }
-  }, [user, isFirstLogin, navigate]);
+  }, [user, isFirstLogin]);
+  // }, [user, isFirstLogin, navigate]);
 
   const login = async (identifier, password) => {
     try {
@@ -78,9 +82,13 @@ export const AuthProvider = ({ children }) => {
         { current_password: currentPassword, new_password: newPassword },
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );
+
+      console.log(response);
+
       setIsFirstLogin(false);
       localStorage.setItem('isFirstLogin', 'false');
       return true;
+
     } catch (error) {
       console.error('Password change failed:', error.response?.data || error.message);
       return false;
@@ -117,7 +125,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const interval = setInterval(refreshAccessToken, 15 * 60 * 1000); // Refresh every 15 minutes
+    const interval = setInterval(refreshAccessToken, 15 * 60 * 1000);
     return () => clearInterval(interval);
   }, [refreshToken]);
 
@@ -129,3 +137,4 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => useContext(AuthContext);
+
