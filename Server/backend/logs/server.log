@@ -30,3 +30,136 @@ INFO 2025-06-02 21:01:50,771 autoreload /home/cybexplore/Remote-Windows-Analysis
 INFO 2025-06-02 21:01:53,136 autoreload Watching for file changes with StatReloader
 INFO 2025-06-02 21:01:59,373 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
 INFO 2025-06-02 21:02:00,562 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 21:03:12,005 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/urls.py changed, reloading.
+INFO 2025-06-02 21:03:13,129 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 21:11:45,857 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 21:15:43,787 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 21:16:44,842 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-02 21:16:47,336 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 21:18:09,888 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 21:18:22,459 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/urls.py changed, reloading.
+INFO 2025-06-02 21:18:23,450 autoreload Watching for file changes with StatReloader
+WARNING 2025-06-02 21:19:54,004 log Forbidden: /api/client/
+ERROR 2025-06-02 21:19:58,930 log Internal Server Error: /api/client/register/
+Traceback (most recent call last):
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/rest_framework/renderers.py", line 731, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/rest_framework/renderers.py", line 662, in get_context
+    raw_data_post_form = self.get_raw_data_form(data, view, 'POST', request)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/rest_framework/renderers.py", line 558, in get_raw_data_form
+    serializer = view.get_serializer()
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/rest_framework/generics.py", line 112, in get_serializer
+    serializer_class = self.get_serializer_class()
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/rest_framework/generics.py", line 126, in get_serializer_class
+    assert self.serializer_class is not None, (
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'ClientRegisterView' should either include a `serializer_class` attribute, or override the `get_serializer_class()` method.
+INFO 2025-06-02 21:21:03,648 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-02 21:21:05,800 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 21:21:26,897 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-02 21:21:28,656 autoreload Watching for file changes with StatReloader
+WARNING 2025-06-02 21:21:37,204 log Method Not Allowed: /api/client/register/
+ERROR 2025-06-02 21:22:02,681 log Internal Server Error: /api/client/auth/
+Traceback (most recent call last):
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/rest_framework/renderers.py", line 731, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/rest_framework/renderers.py", line 662, in get_context
+    raw_data_post_form = self.get_raw_data_form(data, view, 'POST', request)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/rest_framework/renderers.py", line 558, in get_raw_data_form
+    serializer = view.get_serializer()
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/rest_framework/generics.py", line 112, in get_serializer
+    serializer_class = self.get_serializer_class()
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/rest_framework/generics.py", line 126, in get_serializer_class
+    assert self.serializer_class is not None, (
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'ClientAuthView' should either include a `serializer_class` attribute, or override the `get_serializer_class()` method.
+INFO 2025-06-02 21:22:59,288 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-02 21:23:00,647 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 21:23:11,313 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-02 21:23:12,805 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 21:23:17,997 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-02 21:23:18,927 autoreload Watching for file changes with StatReloader
+WARNING 2025-06-02 21:23:23,478 log Method Not Allowed: /api/client/auth/
+WARNING 2025-06-02 21:23:39,587 log Not Found: /api/client/login/
+WARNING 2025-06-02 21:23:44,001 log Forbidden: /api/client/
+WARNING 2025-06-02 21:23:46,845 log Not Found: /api/client/ds
+ERROR 2025-06-02 21:24:00,073 log Internal Server Error: /api/auth/login/
+Traceback (most recent call last):
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/rest_framework/renderers.py", line 731, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/rest_framework/renderers.py", line 662, in get_context
+    raw_data_post_form = self.get_raw_data_form(data, view, 'POST', request)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/rest_framework/renderers.py", line 558, in get_raw_data_form
+    serializer = view.get_serializer()
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/rest_framework/generics.py", line 112, in get_serializer
+    serializer_class = self.get_serializer_class()
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/rest_framework/generics.py", line 126, in get_serializer_class
+    assert self.serializer_class is not None, (
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'UserLoginView' should either include a `serializer_class` attribute, or override the `get_serializer_class()` method.
+INFO 2025-06-02 21:24:30,626 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-02 21:24:31,573 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 21:24:33,444 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-02 21:24:35,088 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 21:24:50,102 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-02 21:24:51,481 autoreload Watching for file changes with StatReloader
+WARNING 2025-06-02 21:24:58,593 log Method Not Allowed: /api/auth/login/
+INFO 2025-06-02 21:26:31,362 backends No user found for identifier: admin@cybexplore.org
+INFO 2025-06-02 21:26:31,363 views Login failed for identifier: admin@cybexplore.org
+WARNING 2025-06-02 21:26:31,394 log Unauthorized: /api/auth/login/
+INFO 2025-06-02 21:35:02,175 backends No user found for identifier: admin@cybexplore.org
+INFO 2025-06-02 21:35:02,175 views Login failed for identifier: admin@cybexplore.org
+WARNING 2025-06-02 21:35:02,177 log Unauthorized: /api/auth/login/
+INFO 2025-06-02 21:43:04,790 backends No user found for identifier: admin@cybexplore.org
+INFO 2025-06-02 21:43:04,791 views Login failed for identifier: admin@cybexplore.org
+WARNING 2025-06-02 21:43:04,792 log Unauthorized: /api/auth/login/
+WARNING 2025-06-02 21:48:34,007 log Method Not Allowed: /api/client/auth/
+WARNING 2025-06-02 21:57:58,714 log Not Found: /api/auth/refresh/
