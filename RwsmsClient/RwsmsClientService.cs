@@ -106,7 +106,8 @@ public class RwsmsClientService : IDisposable
             {
                 client_id = _credentials.ClientId,
                 secret_id = _credentials.SecretId,
-                sid = _credentials.Sid
+                sid = _credentials.Sid,
+                
             };
             using var content = new StringContent(JsonSerializer.Serialize(payload, _jsonOptions), Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync("api/client/auth/", content);

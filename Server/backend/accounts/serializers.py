@@ -140,7 +140,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             email=validated_data["email"].lower(),
             password=temporary_password,
             full_name=validated_data.get("full_name", ""),
-        )
+        ) # type: ignore
         send_mail(
             subject=f"Welcome to {settings.SITE_NAME}",
             message=f"""
@@ -163,7 +163,6 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         logger.info(f"Created new user: {validated_data['email']}")
         return user
 
-
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
@@ -174,19 +173,6 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Group
         fields = ["url", "email"]
-
-
-# class CustomUserSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = CustomUser
-#         fields = [
-#             'sid',
-#             'email',
-#             'is_active',
-#             'created_at',
-#             'updated_at'
-#         ]
-#         read_only_fields = ['is_active', 'created_at', 'updated_at']
 
 
 class CustomUserSerializer(serializers.ModelSerializer):
@@ -227,7 +213,7 @@ class ClientAuthSerializer(serializers.Serializer):
     client_id = serializers.CharField(required=True)
     secret_id = serializers.CharField(required=True)
 
-    def validate(self, data):
+    def validate(self, data): # type: ignore
         if not (data.get('email') or data.get('sid')):
             raise serializers.ValidationError("Either email or sid must be provided.")
         try:
@@ -249,29 +235,6 @@ class ClientAuthSerializer(serializers.Serializer):
 class UserLoginSerializer(serializers.Serializer):
     identifier = serializers.CharField()
     password = serializers.CharField(write_only=True)
-
-
-
-
-# class UserProfileSerializer(serializers.ModelSerializer):
-#     user = CustomUserSerializer(read_only=True)
-
-#     class Meta:
-#         model = UserProfile
-#         fields = [
-#             'user',
-#             'enabled',
-#             'locked_out',
-#             'client_id',
-#             'last_logon',
-#             'last_login_ip',
-#             'logon_count'
-#         ]
-#         read_only_fields = [
-#             'last_logon',
-#             'last_login_ip',
-#             'logon_count'
-#         ]
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -320,7 +283,7 @@ class LoginSerializer(serializers.Serializer):
                 "User account is disabled", code="authentication"
             )
 
-        if hasattr(user, "profile") and user.profile.locked_out:
+        if hasattr(user, "profile") and user.profile.locked_out: # type: ignore
             raise serializers.ValidationError(
                 "Account locked due to too many failed attempts", code="authentication"
             )
@@ -359,7 +322,7 @@ class PasswordChangeSerializer(serializers.Serializer):
             raise serializers.ValidationError("Current password is incorrect")
         return value
 
-    def validate(self, data):
+    def validate(self, data): # type: ignore
         if data["new_password"] != data["confirm_password"]:
             raise serializers.ValidationError(
                 {"confirm_password": "Passwords do not match"}
@@ -386,7 +349,7 @@ class PasswordResetConfirmSerializer(serializers.Serializer):
     token = serializers.CharField(write_only=True)
     uidb64 = serializers.CharField(write_only=True)
 
-    def validate(self, data):
+    def validate(self, data): # type: ignore
         if data["new_password"] != data["confirm_password"]:
             raise serializers.ValidationError(
                 {"confirm_password": "Passwords do not match"}
