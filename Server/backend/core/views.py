@@ -1,84 +1,102 @@
-from rest_framework.views import APIView
-from rest_framework import generics, status, permissions, viewsets
-
+from rest_framework import viewsets, status
 from rest_framework.response import Response
-from rest_framework import status
-from core.models import SecurityEvent, ServerInfo, FirewallStatus
-from core.serializers import SecurityEventSerializer, ServerInfoSerializer, FirewallStatusSerializer
-from accounts.permissions import IsClientAuthenticated
-from accounts.models import CustomUser, UserProfile
+from rest_framework.permissions import IsAuthenticated
+from .models import SecurityEvent, ProcessLog, NetworkLog, FileLog, UserAccount, UserGroup, UserProfileModel, UserSession, EnvironmentInfo
+from .serializers import (
+    SecurityEventSerializer, ProcessLogSerializer, NetworkLogSerializer, FileLogSerializer,
+    UserDataSerializer, UserAccountSerializer, UserGroupSerializer, UserProfileModelSerializer,
+    UserSessionSerializer, EnvironmentInfoSerializer, BulkDataSerializer
+)
+from accounts.models import Client
 
+class SecurityEventViewSet(viewsets.ModelViewSet):
+    queryset = SecurityEvent.objects.all()
+    serializer_class = SecurityEventSerializer
+    permission_classes = [IsAuthenticated]
 
-
-# Security Tables
-class ServerInfoView(APIView):
-    permission_classes = [IsClientAuthenticated]
-
-    def post(self, request):
-        serializer = ServerInfoSerializer(data=request.data)
+    def create(self, request):
+        serializer = BulkDataSerializer(data=request.data)
         if serializer.is_valid():
+            client_id = serializer.validated_data['client_id']
             try:
-                client = CustomUser.objects.get(sid=serializer.validated_data['client']['sid'])
-                serializer.save(client=client)
-                return Response({"message": "Server info saved"}, status=status.HTTP_201_CREATED)
-            except CustomUser.DoesNotExist:
+                client = Client.objects.get(client_id=client_id)
+                for log in serializer.validated_data['logs']:
+                    SecurityEvent.objects.create(client=client, **log)
+                return Response({"status": "Logs saved"}, status=status.HTTP_201_CREATED)
+            except Client.DoesNotExist:
                 return Response({"error": "Client not found"}, status=status.HTTP_404_NOT_FOUND)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def get(self, request):
-        client = request.user
-        user_profile = UserProfile.objects.get(
-            user=request.user,
-        )
-        print(user_profile.client_id)
-        # client_id = request.user
-        # client_id = request.auth.application.client_id
-        # print(client_id)
-        server_infos = ServerInfo.objects.filter(client=client)
-        serializer = ServerInfoSerializer(server_infos, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+class ProcessLogViewSet(viewsets.ModelViewSet):
+    queryset = ProcessLog.objects.all()
+    serializer_class = ProcessLogSerializer
+    permission_classes = [IsAuthenticated]
 
-
-class SecurityEventView(APIView):
-    permission_classes = [IsClientAuthenticated]
-
-    def post(self, request):
-        serializer = SecurityEventSerializer(data=request.data)
+    def create(self, request):
+        serializer = BulkDataSerializer(data=request.data)
         if serializer.is_valid():
+            client_id = serializer.validated_data['client_id']
             try:
-                client = CustomUser.objects.get(sid=serializer.validated_data['client']['sid'])
-                serializer.save(client=client)
-                return Response({"message": "Security event saved"}, status=status.HTTP_201_CREATED)
-            except CustomUser.DoesNotExist:
+                client = Client.objects.get(client_id=client_id)
+                for log in serializer.validated_data['logs']:
+                    ProcessLog.objects.create(client=client, **log)
+                return Response({"status": "Logs saved"}, status=status.HTTP_201_CREATED)
+            except Client.DoesNotExist:
                 return Response({"error": "Client not found"}, status=status.HTTP_404_NOT_FOUND)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def get(self, request):
-        client = request.user
-        events = SecurityEvent.objects.filter(client=client)
-        serializer = SecurityEventSerializer(events, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+class NetworkLogViewSet(viewsets.ModelViewSet):
+    queryset = NetworkLog.objects.all()
+    serializer_class = NetworkLogSerializer
+    permission_classes = [IsAuthenticated]
 
-
-class FirewallStatusView(APIView):
-    permission_classes = [IsClientAuthenticated]
-
-    def post(self, request):
-        serializer = FirewallStatusSerializer(data=request.data)
+    def create(self, request):
+        serializer = BulkDataSerializer(data=request.data)
         if serializer.is_valid():
+            client_id = serializer.validated_data['client_id']
             try:
-                client = CustomUser.objects.get(sid=serializer.validated_data['client']['sid'])
-                serializer.save(client=client)
-                return Response({"message": "Firewall status saved"}, status=status.HTTP_201_CREATED)
-            except CustomUser.DoesNotExist:
+                client = Client.objects.get(client_id=client_id)
+                for log in serializer.validated_data['logs']:
+                    NetworkLog.objects.create(client=client, **log)
+                return Response({"status": "Logs saved"}, status=status.HTTP_201_CREATED)
+            except Client.DoesNotExist:
                 return Response({"error": "Client not found"}, status=status.HTTP_404_NOT_FOUND)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def get(self, request):
-        client = request.user
-        statuses = FirewallStatus.objects.filter(client=client)
-        serializer = FirewallStatusSerializer(statuses, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+class FileLogViewSet(viewsets.ModelViewSet):
+    queryset = FileLog.objects.all()
+    serializer_class = FileLogSerializer
+    permission_classes = [IsAuthenticated]
 
+    def create(self, request):
+        serializer = BulkDataSerializer(data=request.data)
+        if serializer.is_valid():
+            client_id = serializer.validated_data['client_id']
+            try:
+                client = Client.objects.get(client_id=client_id)
+                for log in serializer.validated_data['logs']:
+                    FileLog.objects.create(client=client, **log)
+                return Response({"status": "Logs saved"}, status=status.HTTP_201_CREATED)
+            except Client.DoesNotExist:
+                return Response({"error": "Client not found"}, status=status.HTTP_404_NOT_FOUND)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class UserDataViewSet(viewsets.ViewSet):
+    permission_classes = [IsAuthenticated]
 
+    def create(self, request):
+        serializer = UserDataSerializer(data=request.data['user_data'])
+        if serializer.is_valid():
+            client_id = request.data.get('client_id')
+            try:
+                client = Client.objects.get(client_id=client_id)
+                UserAccount.objects.create(client=client, **serializer.validated_data['account_info'])
+                UserGroup.objects.create(client=client, **serializer.validated_data['groups'])
+                UserProfileModel.objects.create(client=client, **serializer.validated_data['profiles'])
+                for session in serializer.validated_data['sessions']:
+                    UserSession.objects.create(client=client, **session)
+                EnvironmentInfo.objects.create(client=client, **serializer.validated_data['environment'])
+                return Response({"status": "User data saved"}, status=status.HTTP_201_CREATED)
+            except Client.DoesNotExist:
+                return Response({"error": "Client not found"}, status=status.HTTP_404_NOT_FOUND)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

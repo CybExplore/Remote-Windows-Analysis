@@ -1,35 +1,105 @@
 from django.db import models
-from accounts.models import CustomUser
-
-class ServerInfo(models.Model):
-    client = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='server_info')
-    machine_name = models.CharField(max_length=255)
-    os_version = models.CharField(max_length=100)
-    processor_count = models.IntegerField()
-    timestamp = models.DateTimeField()
-    is_64bit = models.BooleanField()
-    created_at = models.DateTimeField(auto_now_add=True)
+from accounts.models import Client
 
 class SecurityEvent(models.Model):
-    client = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='security_events')
-    event_id = models.BigIntegerField()
-    time_created = models.DateTimeField()
-    description = models.TextField()
-    source = models.CharField(max_length=50, default="Security")
-    logon_type = models.CharField(max_length=50, null=True, blank=True)
-    failure_reason = models.CharField(max_length=255, null=True, blank=True)
-    target_account = models.CharField(max_length=255, null=True, blank=True)
-    group_name = models.CharField(max_length=255, null=True, blank=True)
-    privilege_name = models.CharField(max_length=255, null=True, blank=True)
-    process_name = models.CharField(max_length=255, null=True, blank=True)
-    service_name = models.CharField(max_length=255, null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-class FirewallStatus(models.Model):
-    client = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='firewall_status')
-    is_enabled = models.BooleanField()
-    profile = models.CharField(max_length=50)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    event_type = models.CharField(max_length=100)
+    event_id = models.IntegerField()
+    source = models.CharField(max_length=100)
     timestamp = models.DateTimeField()
-    created_at = models.DateTimeField(auto_now_add=True)
+    details = models.TextField()
 
+    class Meta:
+        indexes = [
+            models.Index(fields=['client', 'timestamp']),
+        ]
 
+    def __str__(self):
+        return f"{self.event_type} ({self.client.client_id})"
+
+class ProcessLog(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    pid = models.IntegerField()
+    path = models.CharField(max_length=255)
+    start_time = models.DateTimeField()
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['client', 'start_time']),
+        ]
+
+    def __str__(self):
+        return f"{self.name} ({self.client.client_id})"
+
+class NetworkLog(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    local_address = models.CharField(max_length=100)
+    remote_address = models.CharField(max_length=100)
+    state = models.CharField(max_length=50)
+    timestamp = models.DateTimeField()
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['client', 'timestamp']),
+        ]
+
+    def __str__(self):
+        return f"{self.local_address} -> {self.remote_address} ({self.client.client_id})"
+
+class FileLog(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    event_type = models.CharField(max_length=100)
+    path = models.CharField(max_length=255)
+    change_type = models.CharField(max_length=50)
+    old_path = models.CharField(max_length=255, blank=True)
+    timestamp = models.DateTimeField()
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['client', 'timestamp']),
+        ]
+
+    def __str__(self):
+        return f"{self.event_type} ({self.path})"
+
+class UserAccount(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    username = models.CharField(max_length=100)
+    domain = models.CharField(max_length=100)
+    sid = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.username} ({self.client.client_id})"
+
+class UserGroup(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    groups = models.JSONField()
+
+    def __str__(self):
+        return f"Groups for {self.client.client_id}"
+
+class UserProfileModel(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    profile_path = models.CharField(max_length=255)
+    roaming_profile = models.CharField(max_length=255, blank=True)
+
+    def __str__(self):
+        return f"Profile for {self.client.client_id}"
+
+class UserSession(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    session_id = models.IntegerField()
+    start_time = models.DateTimeField()
+
+    def __str__(self):
+        return f"Session {self.session_id} ({self.client.client_id})"
+
+class EnvironmentInfo(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    os_version = models.CharField(max_length=100)
+    machine_name = models.CharField(max_length=100)
+    processor_count = models.IntegerField()
+
+    def __str__(self):
+        return f"Environment for {self.client.client_id}"

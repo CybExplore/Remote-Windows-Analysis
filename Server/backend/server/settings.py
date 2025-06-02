@@ -10,8 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
-import secrets, logging, os
+import logging
+import os
+import secrets
+from datetime import timedelta
 from pathlib import Path
+
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,95 +27,86 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 generated_key = secrets.token_urlsafe(50)
-SECRET_KEY = config('DJANGO_SECRET_KEY', default=generated_key)
+SECRET_KEY = config("DJANGO_SECRET_KEY", default=generated_key)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DJANGO_DEBUG', default=False, cast=bool)
+DEBUG = config("DJANGO_DEBUG", default=False, cast=bool)
 
 # ALLOWED_HOSTS
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='*').split(',')
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="*").split(",")
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    
-   'drf_yasg',
-
-    'accounts.apps.AccountsConfig',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "drf_yasg",
+    "accounts.apps.AccountsConfig",
+    "core.apps.CoreConfig",
 ]
 
 INSTALLED_APPS += [
-    'rest_framework',
-    'rest_framework.authtoken',
-    'rest_framework_simplejwt',
-    'corsheaders',
+    "rest_framework",
+    "rest_framework.authtoken",
+    "rest_framework_simplejwt",
+    "corsheaders",
 ]
-
 
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
     # 'accounts.middleware.PasswordChangeMiddleware',
     # 'accounts.middleware.CheckPasswordChangedMiddleware',
-
-    # 'accounts.middleware.AuditLogMiddleware', 
-    
+    # 'accounts.middleware.AuditLogMiddleware',
 ]
 
-ROOT_URLCONF = 'server.urls'
+ROOT_URLCONF = "server.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'server.wsgi.application'
-ASGI_APPLICATION = 'server.asgi.application'
+WSGI_APPLICATION = "server.wsgi.application"
+ASGI_APPLICATION = "server.asgi.application"
 
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT', default='3306'),
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": config("DB_NAME"),
+        "USER": config("DB_USER"),
+        "PASSWORD": config("DB_PASSWORD"),
+        "HOST": config("DB_HOST"),
+        "PORT": config("DB_PORT", default="3306"),
     }
 }
-
-
-
 
 
 # Password validation
@@ -119,16 +114,16 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
@@ -136,9 +131,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -148,28 +143,28 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "static"
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Email settings
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-EMAIL_FILE_PATH = config('EMAIL_FILE_PATH', default='email-messages')
+EMAIL_FILE_PATH = config("EMAIL_FILE_PATH", default="email-messages")
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='admin@localhost')
+DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default="admin@localhost")
 
 # Custom App Constants
-SUPPORT_EMAIL = config('SUPPORT_EMAIL', default='support@example.com')
-SUPPORT_PHONE = config('SUPPORT_PHONE', default='+000000000')
-SITE_NAME = config('SITE_NAME', default='CybExplore')
+SUPPORT_EMAIL = config("SUPPORT_EMAIL", default="support@example.com")
+SUPPORT_PHONE = config("SUPPORT_PHONE", default="+000000000")
+SITE_NAME = config("SITE_NAME", default="CybExplore")
 
 
 # Authentication Framework
@@ -178,143 +173,133 @@ SITE_NAME = config('SITE_NAME', default='CybExplore')
 #         # For development/testing (keep only in DEBUG mode)
 #         'rest_framework.authentication.SessionAuthentication',
 #         'rest_framework.authentication.BasicAuthentication',
-        
+
 #         # Production authentication
 #         'rest_framework_simplejwt.authentication.JWTAuthentication',
 #     ],
-    
+
 #     'DEFAULT_PERMISSION_CLASSES': [
 #         'rest_framework.permissions.IsAuthenticated',  # Default secure stance
 #     ],
-    
+
 #     'DEFAULT_RENDERER_CLASSES': [
 #         'rest_framework.renderers.JSONRenderer',
 #         'rest_framework.renderers.BrowsableAPIRenderer' if DEBUG else None,
 #     ],
-    
+
 #     'DEFAULT_THROTTLE_CLASSES': [
 #         'rest_framework.throttling.AnonRateThrottle',
 #         'rest_framework.throttling.UserRateThrottle',
 #     ],
-    
+
 #     'DEFAULT_THROTTLE_RATES': {
 #         'anon': '100/hour',  # Anonymous users
 #         'user': '1000/hour',  # Authenticated users
 #         'login': '10/minute',
 #         'password_reset': '5/hour',
 #     },
-    
+
 #     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
-    
+
 #     'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler',
-    
+
 #     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
 #     'PAGE_SIZE': 20,
 # }
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
 }
 
 # Conditional settings (add to your config)
 if not DEBUG:
-    REST_FRAMEWORK.update({
-        'DEFAULT_AUTHENTICATION_CLASSES': [
-            'rest_framework_simplejwt.authentication.JWTAuthentication',
-        ],
-        'DEFAULT_RENDERER_CLASSES': [
-            'rest_framework.renderers.JSONRenderer',
-        ],
-    })
+    REST_FRAMEWORK.update(
+        {
+            "DEFAULT_AUTHENTICATION_CLASSES": [
+                "rest_framework_simplejwt.authentication.JWTAuthentication",
+            ],
+            "DEFAULT_RENDERER_CLASSES": [
+                "rest_framework.renderers.JSONRenderer",
+            ],
+        }
+    )
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Remote Window Security Monitoring System',
-    'DESCRIPTION': 'This project monitors and analyzes security events on remote Windows machines.',
-    'VERSION': '1.0.0',
-    'SERVE_INCLUDE_SCHEMA': False,
-    'SCHEMA_PATH_PREFIX': '/api',
-    'COMPONENT_SPLIT_REQUEST': True,
-    'SERVE_PERMISSIONS': ['rest_framework.permissions.IsAuthenticated'],
-
-    
-    'SWAGGER_UI_DIST': 'SIDECAR', 
-    'SWAGGER_UI_FAVICON_HREF': 'SIDECAR',
-    'REDOC_DIST': 'SIDECAR',
+    "TITLE": "Remote Window Security Monitoring System",
+    "DESCRIPTION": "This project monitors and analyzes security events on remote Windows machines.",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "SCHEMA_PATH_PREFIX": "/api",
+    "COMPONENT_SPLIT_REQUEST": True,
+    "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAuthenticated"],
+    "SWAGGER_UI_DIST": "SIDECAR",
+    "SWAGGER_UI_FAVICON_HREF": "SIDECAR",
+    "REDOC_DIST": "SIDECAR",
 }
 
 
-LOGIN_URL = '/api/login/'
+LOGIN_URL = "/api/login/"
 
-AUTH_USER_MODEL = 'accounts.CustomUser'
+AUTH_USER_MODEL = "accounts.CustomUser"
 
 AUTHENTICATION_BACKENDS = [
-    'accounts.backends.DualAuthBackend', 
-    'django.contrib.auth.backends.ModelBackend', 
+    "accounts.backends.DualAuthBackend",
+    "django.contrib.auth.backends.ModelBackend",
 ]
 
-from datetime import timedelta
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    'AUTH_HEADER_TYPES': ('Bearer',),
-    'ROTATE_REFRESH_TOKENS': True,
-    'BLACKLIST_AFTER_ROTATION': True,
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "AUTH_HEADER_TYPES": ("Bearer",),
+    # 'ROTATE_REFRESH_TOKENS': True,
+    # 'BLACKLIST_AFTER_ROTATION': True,
 }
 
 # Ensure the logs directory exists
-LOGS_DIR = os.path.join(BASE_DIR, 'logs')
+LOGS_DIR = os.path.join(BASE_DIR, "logs")
 if not os.path.exists(LOGS_DIR):
     os.makedirs(LOGS_DIR)
 
-logger = logging.getLogger('accounts')
-logger.info('This is an info log message.')
+logger = logging.getLogger("accounts")
+logger.info("This is an info log message.")
 
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-        },
-        'file': {
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(LOGS_DIR, 'django.log'),
-            'level': 'INFO',  # Adjust log level as necessary
-            'formatter': 'verbose',  # Optional: Define formatter below
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {message}",
+            "style": "{",
         },
     },
-    'loggers': {
-        'django': {
-            'handlers': ['console', 'file'],
-            'level': 'INFO',
-            'propagate': True,
+    "handlers": {
+        "file": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(BASE_DIR, "logs", "server.log"),
+            "formatter": "verbose",
         },
-        'accounts': {
-            'handlers': ['console', 'file'],
-            'level': 'INFO',
+        "console": {
+            "level": "INFO",
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
         },
     },
-    'formatters': {
-        'verbose': {
-            'format': '{levelname} {asctime} {module} {message}',
-            'style': '{',  # Use f-string style for formatting
-        },
-        'simple': {
-            'format': '{levelname} {message}',
-            'style': '{',
+    "loggers": {
+        "": {
+            "handlers": ["file", "console"],
+            "level": "INFO",
+            "propagate": True,
         },
     },
 }
 
-logger = logging.getLogger('accounts')
-logger.info('Logging configured.')
+logger = logging.getLogger("accounts")
+logger.info("Logging configured.")
 
 # CORS Settings
 CORS_ALLOWED_ORIGINS = [
@@ -334,16 +319,14 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'UTC'
+CELERY_BROKER_URL = "redis://localhost:6379/0"
+CELERY_RESULT_BACKEND = "redis://localhost:6379/0"
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TIMEZONE = "UTC"
 
 
 # Frontend URL for React app
-FRONTEND_URL = 'http://localhost:3000'
-SITE_URL = 'http://localhost:8001'
-
-
+FRONTEND_URL = "http://localhost:3000"
+SITE_URL = "http://localhost:8001"

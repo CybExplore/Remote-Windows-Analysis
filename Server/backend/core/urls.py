@@ -1,16 +1,14 @@
-from django.urls import path
-from core.views import (
-    ServerInfoView, SecurityEventView, FirewallStatusView
-)
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import SecurityEventViewSet, ProcessLogViewSet, NetworkLogViewSet, FileLogViewSet, UserDataViewSet
 
-# Using DefaultRouter to manage URLs
+router = DefaultRouter()
+router.register(r'logs', SecurityEventViewSet, basename='logs')
+router.register(r'processes', ProcessLogViewSet, basename='processes')
+router.register(r'network', NetworkLogViewSet, basename='network')
+router.register(r'files', FileLogViewSet, basename='files')
+router.register(r'user/profile', UserDataViewSet, basename='user-profile')
 
-
-# Register APIViews with URLs
 urlpatterns = [
-    path('server-info/', ServerInfoView.as_view(), name='server-info'),
-    path('events/', SecurityEventView.as_view(), name='security-events'),
-    path('firewall-status/', FirewallStatusView.as_view(), name='firewall-status'),
+    path('api/', include(router.urls)),
 ]
-
-# urlpatterns += router.urls

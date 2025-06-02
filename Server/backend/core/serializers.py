@@ -1,47 +1,58 @@
 from rest_framework import serializers
-from core.models import SecurityEvent, ServerInfo, FirewallStatus
-from accounts.serializers import CustomUserSerializer
-
-
-class ServerInfoSerializer(serializers.ModelSerializer):
-    client = serializers.CharField(source='client.sid')
-
-    class Meta:
-        model = ServerInfo
-        fields = ['client', 'machine_name', 'os_version', 'processor_count', 'timestamp', 'is_64bit']
-
-    def validate(self, data):
-        if not data.get('client'):
-            raise serializers.ValidationError("Client SID is required.")
-        return data
-
+from .models import SecurityEvent, ProcessLog, NetworkLog, FileLog, UserAccount, UserGroup, UserProfileModel, UserSession, EnvironmentInfo
 
 class SecurityEventSerializer(serializers.ModelSerializer):
-    client = serializers.CharField(source='client.sid')
-
     class Meta:
         model = SecurityEvent
-        fields = [
-            'client', 'event_id', 'time_created', 'description', 'source', 'logon_type',
-            'failure_reason', 'target_account', 'group_name', 'privilege_name',
-            'process_name', 'service_name'
-        ]
+        fields = ['event_type', 'event_id', 'source', 'timestamp', 'details']
 
-    def validate(self, data):
-        if not data.get('client'):
-            raise serializers.ValidationError("Client SID is required.")
-        return data
-    
-
-class FirewallStatusSerializer(serializers.ModelSerializer):
-    client = serializers.CharField(source='client.sid')
+class ProcessLogSerializer(serializers.ModelSerializer):
     class Meta:
-        model = FirewallStatus
-        fields = ['client', 'is_enabled', 'profile', 'timestamp']
-    def validate(self, data):
-        if not data.get('client'):
-            raise serializers.ValidationError("Client SID is required.")
-        return data
+        model = ProcessLog
+        fields = ['name', 'pid', 'path', 'start_time']
 
+class NetworkLogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = NetworkLog
+        fields = ['local_address', 'remote_address', 'state', 'timestamp']
 
+class FileLogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FileLog
+        fields = ['event_type', 'path', 'change_type', 'old_path', 'timestamp']
 
+class UserAccountSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserAccount
+        fields = ['username', 'domain', 'sid']
+
+class UserGroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserGroup
+        fields = ['groups']
+
+class UserProfileModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfileModel
+        fields = ['profile_path', 'roaming_profile']
+
+class UserSessionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserSession
+        fields = ['session_id', 'start_time']
+
+class EnvironmentInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EnvironmentInfo
+        fields = ['os_version', 'machine_name', 'processor_count']
+
+class UserDataSerializer(serializers.Serializer):
+    account_info = UserAccountSerializer()
+    groups = UserGroupSerializer()
+    profiles = UserProfileModelSerializer()
+    sessions = UserSessionSerializer(many=True)
+    environment = EnvironmentInfoSerializer()
+
+class BulkDataSerializer(serializers.Serializer):
+    client_id = serializers.CharField(max_length=36)
+    logs = serializers.ListSerializer(child=serializers.DictField())

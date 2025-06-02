@@ -1,10 +1,11 @@
 import logging
-from django.core.mail import send_mail
+
 from django.conf import settings
-from django.utils.timezone import now as timezone_now
 from django.contrib.auth.tokens import default_token_generator
-from django.utils.http import urlsafe_base64_encode
+from django.core.mail import send_mail
 from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
+from django.utils.timezone import now as timezone_now
 
 logger = logging.getLogger(__name__)
 
@@ -12,6 +13,7 @@ SITE_NAME = settings.SITE_NAME
 SUPPORT_EMAIL = settings.SUPPORT_EMAIL
 SUPPORT_PHONE = settings.SUPPORT_PHONE
 SITE_URL = settings.SITE_URL
+
 
 def send_password_change_email(user, request):
     """Send a password change notification email to the user."""
@@ -29,11 +31,12 @@ def send_password_change_email(user, request):
     except Exception as e:
         logger.error(f"Failed to send password change email to {user.email}: {str(e)}")
 
+
 def build_password_change_email_message(user, request):
     """Construct a detailed password change notification email."""
-    timestamp = timezone_now().strftime('%Y-%m-%d at %H:%M %Z')
+    timestamp = timezone_now().strftime("%Y-%m-%d at %H:%M %Z")
     ip_address = get_client_ip(request)
-    user_agent = request.META.get('HTTP_USER_AGENT', 'unknown device')
+    user_agent = request.META.get("HTTP_USER_AGENT", "unknown device")
 
     return f"""
 Security Notification: Password Changed
@@ -75,10 +78,8 @@ For security reasons, this email cannot be replied to.
 If you need assistance, please contact {SUPPORT_EMAIL}.
 """
 
+
 def get_client_ip(request):
     """Return the client's real IP address."""
-    x_forwarded = request.META.get('HTTP_X_FORWARDED_FOR')
-    return x_forwarded.split(',')[0] if x_forwarded else request.META.get('REMOTE_ADDR')
-
-
-
+    x_forwarded = request.META.get("HTTP_X_FORWARDED_FOR")
+    return x_forwarded.split(",")[0] if x_forwarded else request.META.get("REMOTE_ADDR")
