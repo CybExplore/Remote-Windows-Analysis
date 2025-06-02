@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "V9ffZwmqsQ0=",
+  "dgSpecHash": "ws1t5/4/sZc=",
   "success": true,
   "projectFilePath": "C:\\Users\\CybExplore\\OneDrive\\Dokumente\\Final-Year-Projects\\Remote-Windows-Analysis\\RwsmsClient\\RwsmsClient.csproj",
   "expectedPackageFiles": [
@@ -21,6 +21,7 @@
     "C:\\Users\\CybExplore\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\9.0.5\\microsoft.extensions.filesystemglobbing.9.0.5.nupkg.sha512",
     "C:\\Users\\CybExplore\\.nuget\\packages\\microsoft.extensions.hosting\\9.0.5\\microsoft.extensions.hosting.9.0.5.nupkg.sha512",
     "C:\\Users\\CybExplore\\.nuget\\packages\\microsoft.extensions.hosting.abstractions\\9.0.5\\microsoft.extensions.hosting.abstractions.9.0.5.nupkg.sha512",
+    "C:\\Users\\CybExplore\\.nuget\\packages\\microsoft.extensions.http\\9.0.5\\microsoft.extensions.http.9.0.5.nupkg.sha512",
     "C:\\Users\\CybExplore\\.nuget\\packages\\microsoft.extensions.logging\\9.0.5\\microsoft.extensions.logging.9.0.5.nupkg.sha512",
     "C:\\Users\\CybExplore\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\9.0.5\\microsoft.extensions.logging.abstractions.9.0.5.nupkg.sha512",
     "C:\\Users\\CybExplore\\.nuget\\packages\\microsoft.extensions.logging.configuration\\9.0.5\\microsoft.extensions.logging.configuration.9.0.5.nupkg.sha512",
@@ -30,10 +31,16 @@
     "C:\\Users\\CybExplore\\.nuget\\packages\\microsoft.extensions.logging.eventsource\\9.0.5\\microsoft.extensions.logging.eventsource.9.0.5.nupkg.sha512",
     "C:\\Users\\CybExplore\\.nuget\\packages\\microsoft.extensions.options\\9.0.5\\microsoft.extensions.options.9.0.5.nupkg.sha512",
     "C:\\Users\\CybExplore\\.nuget\\packages\\microsoft.extensions.options.configurationextensions\\9.0.5\\microsoft.extensions.options.configurationextensions.9.0.5.nupkg.sha512",
+    "C:\\Users\\CybExplore\\.nuget\\packages\\microsoft.extensions.options.dataannotations\\9.0.5\\microsoft.extensions.options.dataannotations.9.0.5.nupkg.sha512",
     "C:\\Users\\CybExplore\\.nuget\\packages\\microsoft.extensions.primitives\\9.0.5\\microsoft.extensions.primitives.9.0.5.nupkg.sha512",
+    "C:\\Users\\CybExplore\\.nuget\\packages\\microsoft.win32\\2.0.1\\microsoft.win32.2.0.1.nupkg.sha512",
+    "C:\\Users\\CybExplore\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\CybExplore\\.nuget\\packages\\system.codedom\\9.0.5\\system.codedom.9.0.5.nupkg.sha512",
+    "C:\\Users\\CybExplore\\.nuget\\packages\\system.diagnostics.diagnosticsource\\9.0.5\\system.diagnostics.diagnosticsource.9.0.5.nupkg.sha512",
     "C:\\Users\\CybExplore\\.nuget\\packages\\system.diagnostics.eventlog\\9.0.5\\system.diagnostics.eventlog.9.0.5.nupkg.sha512",
-    "C:\\Users\\CybExplore\\.nuget\\packages\\system.management\\9.0.5\\system.management.9.0.5.nupkg.sha512"
+    "C:\\Users\\CybExplore\\.nuget\\packages\\system.management\\9.0.5\\system.management.9.0.5.nupkg.sha512",
+    "C:\\Users\\CybExplore\\.nuget\\packages\\system.security.cryptography.protecteddata\\9.0.5\\system.security.cryptography.protecteddata.9.0.5.nupkg.sha512",
+    "C:\\Users\\CybExplore\\.nuget\\packages\\system.text.json\\9.0.5\\system.text.json.9.0.5.nupkg.sha512"
   ],
   "logs": []
 }

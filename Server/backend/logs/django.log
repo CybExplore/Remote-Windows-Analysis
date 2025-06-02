@@ -1697,6 +1697,7 @@ INFO 2025-05-25 19:08:13,570 autoreload Watching for file changes with StatReloa
 WARNING 2025-05-25 19:39:36,329 log Method Not Allowed: /api/client/register/
 WARNING 2025-05-25 19:39:36,330 basehttp "GET /api/client/register/ HTTP/1.1" 405 8732
 INFO 2025-06-02 13:21:27,278 autoreload Watching for file changes with StatReloader
+<<<<<<< HEAD
 INFO 2025-06-02 18:08:22,869 autoreload Watching for file changes with StatReloader
 WARNING 2025-06-02 18:08:56,212 log Not Found: /
 WARNING 2025-06-02 18:08:56,213 basehttp "GET / HTTP/1.1" 404 3327
@@ -1735,3 +1736,9 @@ INFO 2025-06-02 18:17:05,406 basehttp "GET /static/rest_framework/img/grid.png H
 INFO 2025-06-02 18:17:59,888 basehttp "OPTIONS /api/token/ HTTP/1.1" 200 0
 WARNING 2025-06-02 18:17:59,939 log Bad Request: /api/token/
 WARNING 2025-06-02 18:17:59,940 basehttp "POST /api/token/ HTTP/1.1" 400 35
+=======
+INFO 2025-06-02 08:34:27,058 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 09:18:49,240 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 09:24:07,844 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 09:28:30,925 autoreload Watching for file changes with StatReloader
+>>>>>>> 4272f82e7ac7ba550d4d3f9d92fddfe7f3cf92be

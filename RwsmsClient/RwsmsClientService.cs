@@ -1,49 +1,64 @@
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using System;
+using Microsoft.Extensions.Options;
 using System.Collections.Generic;
-using System.Linq;
-using System.Management;
+using System.Diagnostics.Eventing.Reader;
 using System.Diagnostics;
+using System.IO;
+using Microsoft.Win32;
+using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 
 namespace RwsmsClient;
 
-public class RwsmsClientService
+public class RwsmsClientService : IDisposable
 {
     private readonly HttpClient _httpClient;
     private readonly CredentialStore _credentials;
     private readonly ILogger<RwsmsClientService> _logger;
-    public string AccessToken { get; private set; }
-    private string _refreshToken;
+    private readonly IConfiguration _configuration;
+    private readonly JsonSerializerOptions _jsonOptions;
+    private readonly List<Dictionary<string, object>> _eventLogs;
+    private readonly List<EventLogWatcher> _watchers = new();
+    private static readonly object _fileLock = new object();
+    private string? _accessToken;
+    private string? _refreshToken;
 
-    private static readonly JsonSerializerOptions _jsonOptions = new JsonSerializerOptions
-    {
-        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-    };
+    public string AccessToken => _accessToken ?? string.Empty;
 
-    private const string BaseApiUrl = "http://localhost:8001/";
-
-    public RwsmsClientService(HttpClient httpClient, CredentialStore credentials, ILogger<RwsmsClientService> logger)
+    public RwsmsClientService(HttpClient httpClient, CredentialStore credentials, ILogger<RwsmsClientService> logger, IConfiguration configuration)
     {
         _httpClient = httpClient;
-        _httpClient.BaseAddress = new Uri(BaseApiUrl);
-        _credentials = credentials;
+        _credentials = credentials ?? throw new ArgumentNullException(nameof(credentials));
         _logger = logger;
+        _configuration = configuration;
+        string? apiBaseUrl = configuration.GetValue<string>("WorkerSettings:ApiBaseUrl");
+        if (string.IsNullOrEmpty(apiBaseUrl) || !Uri.TryCreate(apiBaseUrl, UriKind.Absolute, out _))
+        {
+            throw new InvalidOperationException("ApiBaseUrl is not configured or is invalid.");
+        }
+        _httpClient.BaseAddress = new Uri(apiBaseUrl);
+        _jsonOptions = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+        _eventLogs = new List<Dictionary<string, object>>();
     }
 
-    public async Task<bool> RegisterClientAsync(string userEmail)
+    public async Task<bool> RegisterClientAsync(string userEmail, string fullName)
     {
         try
         {
             var payload = new
             {
-                clientId = _credentials.ClientId,
-                secretId = _credentials.SecretId,
+                client_id = _credentials.ClientId,
+                secret_id = _credentials.SecretId,
                 sid = _credentials.Sid,
-                userEmail
+                user_email = userEmail,
+                full_name = fullName
             };
             using var content = new StringContent(JsonSerializer.Serialize(payload, _jsonOptions), Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync("api/client/register/", content);
@@ -68,24 +83,32 @@ public class RwsmsClientService
         {
             var payload = new
             {
-                clientId = _credentials.ClientId,
-                secretId = _credentials.SecretId,
+                client_id = _credentials.ClientId,
+                secret_id = _credentials.SecretId,
                 sid = _credentials.Sid
             };
             using var content = new StringContent(JsonSerializer.Serialize(payload, _jsonOptions), Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync("api/client/auth/", content);
             if (response.IsSuccessStatusCode)
             {
-                var result = JsonSerializer.Deserialize<AuthResponse>(await response.Content.ReadAsStringAsync(), _jsonOptions);
-                if (result == null || string.IsNullOrWhiteSpace(result.AccessToken))
+                try
                 {
-                    _logger.LogError("Authentication response was invalid.");
+                    var authResponse = JsonSerializer.Deserialize<AuthResponse>(await response.Content.ReadAsStringAsync(), _jsonOptions);
+                    if (authResponse != null && !string.IsNullOrEmpty(authResponse.AccessToken))
+                    {
+                        _accessToken = authResponse.AccessToken;
+                        _refreshToken = authResponse.RefreshToken;
+                        _logger.LogInformation("Authentication successful.");
+                        return true;
+                    }
+                    _logger.LogError("Authentication response is null or missing access token.");
                     return false;
                 }
-                AccessToken = result.AccessToken;
-                _refreshToken = result.RefreshToken;
-                _logger.LogInformation("Authentication successful.");
-                return true;
+                catch (JsonException ex)
+                {
+                    _logger.LogError(ex, "Failed to deserialize authentication response.");
+                    return false;
+                }
             }
             _logger.LogError($"Authentication failed: {response.StatusCode} {response.ReasonPhrase}, {await response.Content.ReadAsStringAsync()}");
             return false;
@@ -101,21 +124,33 @@ public class RwsmsClientService
     {
         try
         {
-            var payload = new { refreshToken = _refreshToken };
+            var payload = new
+            {
+                client_id = _credentials.ClientId,
+                refresh_token = _refreshToken
+            };
             using var content = new StringContent(JsonSerializer.Serialize(payload, _jsonOptions), Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync("api/token/refresh/", content);
+            var response = await _httpClient.PostAsync("api/client/refresh/", content);
             if (response.IsSuccessStatusCode)
             {
-                var result = JsonSerializer.Deserialize<AuthResponse>(await response.Content.ReadAsStringAsync(), _jsonOptions);
-                if (result == null || string.IsNullOrWhiteSpace(result.AccessToken))
+                try
                 {
-                    _logger.LogError("Refresh response was invalid.");
+                    var authResponse = JsonSerializer.Deserialize<AuthResponse>(await response.Content.ReadAsStringAsync(), _jsonOptions);
+                    if (authResponse != null && !string.IsNullOrEmpty(authResponse.AccessToken))
+                    {
+                        _accessToken = authResponse.AccessToken;
+                        _refreshToken = authResponse.RefreshToken;
+                        _logger.LogInformation("Token refreshed successfully.");
+                        return true;
+                    }
+                    _logger.LogError("Token refresh response is null or missing access token.");
                     return false;
                 }
-                AccessToken = result.AccessToken;
-                _refreshToken = result.RefreshToken;
-                _logger.LogInformation("Token refreshed successfully.");
-                return true;
+                catch (JsonException ex)
+                {
+                    _logger.LogError(ex, "Failed to deserialize token refresh response.");
+                    return false;
+                }
             }
             _logger.LogError($"Token refresh failed: {response.StatusCode} {response.ReasonPhrase}, {await response.Content.ReadAsStringAsync()}");
             return false;
@@ -129,24 +164,40 @@ public class RwsmsClientService
 
     public async Task SendUserDataAsync()
     {
+        string? logFilePath = _configuration.GetValue<string>("WorkerSettings:LogFilePath");
+        if (string.IsNullOrEmpty(logFilePath))
+        {
+            _logger.LogError("LogFilePath is not configured.");
+            return;
+        }
+
         try
         {
-            var userData = CollectUserData();
-            var payload = new { clientId = _credentials.ClientId, userData };
-            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", AccessToken);
+            if (string.IsNullOrEmpty(_accessToken) && !await RefreshTokenAsync())
+            {
+                _logger.LogError("Failed to refresh token before sending user data.");
+                return;
+            }
 
+            var userData = new
+            {
+                AccountInfo = GetAccountInfo(),
+                Groups = GetUserGroups(),
+                Profiles = GetUserProfiles(),
+                Sessions = GetUserSessions(),
+                Environment = GetEnvironmentInfo()
+            };
+            var payload = new
+            {
+                client_id = _credentials.ClientId,
+                user_data = userData
+            };
             using var content = new StringContent(JsonSerializer.Serialize(payload, _jsonOptions), Encoding.UTF8, "application/json");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _accessToken);
             var response = await _httpClient.PostAsync("api/user/profile/", content);
             if (response.IsSuccessStatusCode)
             {
-                _logger.LogInformation("User profile data sent successfully.");
-            }
-            else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized && await RefreshTokenAsync())
-            {
-                _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", AccessToken);
-                response = await _httpClient.PostAsync("api/user/profile/", content);
-                if (response.IsSuccessStatusCode)
-                    _logger.LogInformation("User profile data sent successfully after token refresh.");
+                _logger.LogInformation("User data sent successfully.");
             }
             else
             {
@@ -155,241 +206,261 @@ public class RwsmsClientService
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error sending user data.");
+            _logger.LogError(ex, "Failed to send user data.");
         }
     }
 
     public async Task SendEventLogsAsync()
     {
+        string? logFilePath = _configuration.GetValue<string>("WorkerSettings:LogFilePath");
+        if (string.IsNullOrEmpty(logFilePath))
+        {
+            _logger.LogError("LogFilePath is not configured.");
+            return;
+        }
+
+        if (!File.Exists(logFilePath))
+        {
+            _logger.LogWarning($"Log file {logFilePath} does not exist.");
+            return;
+        }
+
         try
         {
-            var logs = CollectEventLogs();
-            if (!logs.Any()) return;
+            if (string.IsNullOrEmpty(_accessToken) && !await RefreshTokenAsync())
+            {
+                _logger.LogError("Failed to refresh token before sending event logs.");
+                return;
+            }
 
-            var payload = new { clientId = _credentials.ClientId, logs };
-            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", AccessToken);
+            var json = await File.ReadAllTextAsync(logFilePath);
+            var logs = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(json, _jsonOptions);
+            if (logs == null || logs.Count == 0)
+            {
+                _logger.LogInformation("No logs to send.");
+                return;
+            }
 
+            var payload = new
+            {
+                client_id = _credentials.ClientId,
+                logs
+            };
             using var content = new StringContent(JsonSerializer.Serialize(payload, _jsonOptions), Encoding.UTF8, "application/json");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _accessToken);
             var response = await _httpClient.PostAsync("api/logs/", content);
             if (response.IsSuccessStatusCode)
             {
-                _logger.LogInformation($"Sent {logs.Count} event logs.");
-            }
-            else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized && await RefreshTokenAsync())
-            {
-                _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", AccessToken);
-                response = await _httpClient.PostAsync("api/logs/", content);
-                if (response.IsSuccessStatusCode)
-                    _logger.LogInformation($"Sent {logs.Count} event logs after token refresh.");
+                _logger.LogInformation($"Sent {logs.Count} logs to server.");
+                await File.WriteAllTextAsync(logFilePath, "[]"); // Clear file
             }
             else
             {
-                _logger.LogError($"Failed to send event logs: {response.StatusCode} {response.ReasonPhrase}, {await response.Content.ReadAsStringAsync()}");
+                _logger.LogError($"Failed to send logs: {response.StatusCode} {response.ReasonPhrase}, {await response.Content.ReadAsStringAsync()}");
             }
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error sending event logs.");
+            _logger.LogError(ex, "Failed to send logs.");
         }
     }
 
-    private object CollectUserData()
+    public void SubscribeToEventLogs()
     {
-        string username = Environment.UserName;
-        return new
+        string? logFilePath = _configuration.GetValue<string>("WorkerSettings:LogFilePath");
+        if (string.IsNullOrEmpty(logFilePath))
         {
-            accountInfo = GetUserAccountInfo(username),
-            groups = GetUserGroups(username),
-            profiles = GetUserProfiles(username),
-            sessions = GetLoggedOnSessions(username),
-            environment = Environment.GetEnvironmentVariables()
-        };
+            throw new InvalidOperationException("LogFilePath is not configured.");
+        }
+        int batchSize = _configuration.GetValue<int>("WorkerSettings:BatchSize");
+        string[] logNames = _configuration.GetSection("WorkerSettings:LogNames").Get<string[]>() 
+            ?? ["System", "Application", "Security"];
+        foreach (var logName in logNames)
+        {
+            try
+            {
+                var query = new EventLogQuery(logName, PathType.LogName);
+                var watcher = new EventLogWatcher(query);
+                watcher.EventRecordWritten += (sender, e) => HandleEventRecord(e.EventRecord, logFilePath, batchSize);
+                watcher.Enabled = true;
+                _watchers.Add(watcher);
+                _logger.LogInformation($"Subscribed to {logName} log.");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Failed to subscribe to {logName} log.");
+            }
+        }
     }
 
-    private Dictionary<string, object> GetUserAccountInfo(string username)
+    private void HandleEventRecord(EventRecord? record, string logFilePath, int batchSize)
+    {
+        if (record == null) return;
+
+        try
+        {
+            if (record.TimeCreated == null)
+            {
+                _logger.LogWarning("Event record {EventId} has no timestamp.", record.Id);
+            }
+
+            var logEntry = new Dictionary<string, object>
+            {
+                { "event_type", record.Id },
+                { "event_id", record.Id },
+                { "source", record.LogName },
+                { "timestamp", record.TimeCreated?.ToString("o") ?? DateTime.UtcNow.ToString("o") },
+                { "details", record.FormatDescription() ?? string.Empty }
+            };
+            lock (_eventLogs)
+            {
+                _eventLogs.Add(logEntry);
+                if (_eventLogs.Count >= batchSize)
+                {
+                    Task.Run(() => SaveLogsToFileAsync(logFilePath)).GetAwaiter().GetResult();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to handle event record {EventId}.", record.Id);
+        }
+    }
+
+    private async Task SaveLogsToFileAsync(string logFilePath)
     {
         try
         {
-            var scope = new ManagementScope(@"\\.\root\cimv2");
-            var query = new ObjectQuery($"SELECT * FROM Win32_UserAccount WHERE Name = '{username}'");
-            using var searcher = new ManagementObjectSearcher(scope, query);
-            var user = searcher.Get().Cast<ManagementObject>().FirstOrDefault();
-            if (user == null) return new();
-
-            return new()
+            lock (_fileLock)
             {
-                { "AccountType", user["AccountType"] },
-                { "Caption", user["Caption"] },
-                { "Description", user["Description"] },
-                { "Disabled", user["Disabled"] },
-                { "Domain", user["Domain"] },
-                { "FullName", user["FullName"] },
-                { "InstallDate", user["InstallDate"] },
-                { "LocalAccount", user["LocalAccount"] },
-                { "Lockout", user["Lockout"] },
-                { "Name", user["Name"] },
-                { "PasswordChangeable", user["PasswordChangeable"] },
-                { "PasswordExpires", user["PasswordExpires"] },
-                { "PasswordRequired", user["PasswordRequired"] },
-                { "SID", user["SID"] },
-                { "SIDType", user["SIDType"] },
-                { "Status", user["Status"] }
+                List<Dictionary<string, object>> logsToSave;
+                lock (_eventLogs)
+                {
+                    logsToSave = new List<Dictionary<string, object>>(_eventLogs);
+                    _eventLogs.Clear();
+                }
+
+                List<Dictionary<string, object>> existingLogs = [];
+                if (File.Exists(logFilePath))
+                {
+                    var json = File.ReadAllText(logFilePath);
+                    var deserialized = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(json, _jsonOptions);
+                    if (deserialized != null)
+                    {
+                        existingLogs = deserialized;
+                    }
+                }
+
+                existingLogs.AddRange(logsToSave);
+                var updatedJson = JsonSerializer.Serialize(existingLogs, new JsonSerializerOptions { WriteIndented = true });
+                File.WriteAllText(logFilePath, updatedJson);
+                _logger.LogInformation($"Saved {logsToSave.Count} logs to {logFilePath}");
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to save logs to file {FilePath}.", logFilePath);
+        }
+    }
+
+    private Dictionary<string, object> GetAccountInfo()
+    {
+        try
+        {
+            return new Dictionary<string, object>
+            {
+                { "username", Environment.UserName },
+                { "domain", Environment.UserDomainName },
+                { "sid", _credentials.Sid }
             };
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error collecting user account info.");
-            return new();
+            _logger.LogError(ex, "Failed to get account info for user {UserName}.", Environment.UserName);
+            throw;
         }
     }
 
-    private List<string> GetUserGroups(string username)
+    private List<string> GetUserGroups()
     {
         try
         {
-            var groups = new List<string>();
-            var scope = new ManagementScope(@"\\.\root\cimv2");
-            var query = new ObjectQuery($"SELECT * FROM Win32_GroupUser WHERE PartComponent LIKE '%Name=\"{username}\"%'");
-            using var searcher = new ManagementObjectSearcher(scope, query);
-            foreach (var group in searcher.Get())
-            {
-                string groupComponent = group["GroupComponent"]?.ToString();
-                if (!string.IsNullOrEmpty(groupComponent))
-                {
-                    try
-                    {
-                        var groupName = groupComponent.Split("Name=\"")[1].Split('"')[0];
-                        groups.Add(groupName);
-                    }
-                    catch { }
-                }
-            }
-            return groups;
+            var identity = System.Security.Principal.WindowsIdentity.GetCurrent();
+            return identity.Groups?.Select(g => g.Translate(typeof(System.Security.Principal.NTAccount)).Value).ToList() 
+                ?? throw new Exception("No groups found for current user.");
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error collecting user groups.");
-            return new();
+            _logger.LogError(ex, "Failed to get user groups for user {UserName}.", Environment.UserName);
+            throw;
         }
     }
 
-    private List<object> GetUserProfiles(string username)
+    private Dictionary<string, object> GetUserProfiles()
     {
         try
         {
-            var profiles = new List<object>();
-            var scope = new ManagementScope(@"\\.\root\cimv2");
-            var query = new ObjectQuery("SELECT LocalPath, LastUseTime, Status FROM Win32_UserProfile");
-            using var searcher = new ManagementObjectSearcher(scope, query);
-            foreach (var profile in searcher.Get())
+            return new Dictionary<string, object>
             {
-                var localPath = profile["LocalPath"]?.ToString();
-                if (!string.IsNullOrEmpty(localPath) && localPath.Contains(username, StringComparison.OrdinalIgnoreCase))
-                {
-                    profiles.Add(new
-                    {
-                        LocalPath = localPath,
-                        LastUseTime = ConvertWmiDateTime(profile["LastUseTime"]?.ToString()),
-                        Status = profile["Status"]?.ToString()
-                    });
-                }
-            }
-            return profiles;
+                { "profile_path", Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) },
+                { "roaming_profile", Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Winlogon", "ProfileImagePath", "")?.ToString() ?? "" }
+            };
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error collecting user profiles.");
-            return new();
+            _logger.LogError(ex, "Failed to get user profiles for user {UserName}.", Environment.UserName);
+            throw;
         }
     }
 
-    private List<object> GetLoggedOnSessions(string username)
+    private List<Dictionary<string, object>> GetUserSessions()
     {
         try
         {
-            var sessions = new List<object>();
-            var scope = new ManagementScope(@"\\.\root\cimv2");
-            var query = new ObjectQuery("SELECT * FROM Win32_LogonSession");
-            using var searcher = new ManagementObjectSearcher(scope, query);
-            foreach (var session in searcher.Get())
-            {
-                var assocQuery = new ObjectQuery($"ASSOCIATORS OF {{Win32_LogonSession.LogonId='{session["LogonId"]}'}} WHERE AssocClass=Win32_LoggedOnUser Role=Dependent");
-                using var assocSearcher = new ManagementObjectSearcher(scope, assocQuery);
-                foreach (var user in assocSearcher.Get())
+            return [
+                new Dictionary<string, object>
                 {
-                    if (user["Name"]?.ToString().Equals(username, StringComparison.OrdinalIgnoreCase) == true)
-                    {
-                        sessions.Add(new
-                        {
-                            LogonId = session["LogonId"]?.ToString(),
-                            LogonType = session["LogonType"]?.ToString(),
-                            StartTime = ConvertWmiDateTime(session["StartTime"]?.ToString())
-                        });
-                    }
+                    { "session_id", Process.GetCurrentProcess().SessionId },
+                    { "start_time", DateTime.Now.ToString("o") }
                 }
-            }
-            return sessions;
+            ];
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error collecting user sessions.");
-            return new();
+            _logger.LogError(ex, "Failed to get user sessions for user {UserName}.", Environment.UserName);
+            throw;
         }
     }
 
-    private List<object> CollectEventLogs()
+    private Dictionary<string, object> GetEnvironmentInfo()
     {
         try
         {
-            var logs = new List<object>();
-            string[] logNames = { "Security", "Application", "System" };
-            var recentTime = DateTime.UtcNow.AddMinutes(-5);
-
-            foreach (var logName in logNames)
+            return new Dictionary<string, object>
             {
-                using var eventLog = new EventLog(logName);
-                foreach (EventLogEntry entry in eventLog.Entries.Cast<EventLogEntry>().Where(e => e.TimeGenerated >= recentTime))
-                {
-                    logs.Add(new
-                    {
-                        eventType = logName,
-                        eventId = entry.EventID,
-                        source = entry.Source,
-                        timestamp = entry.TimeGenerated.ToUniversalTime().ToString("o"),
-                        details = new
-                        {
-                            message = entry.Message,
-                            category = entry.Category,
-                            instanceId = entry.InstanceId
-                        }
-                    });
-                }
-            }
-            return logs;
+                { "os_version", Environment.OSVersion.VersionString },
+                { "machine_name", Environment.MachineName },
+                { "processor_count", Environment.ProcessorCount }
+            };
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error collecting event logs.");
-            return new();
+            _logger.LogError(ex, "Failed to get environment info for machine {MachineName}.", Environment.MachineName);
+            throw;
         }
     }
 
-    private string ConvertWmiDateTime(string wmiDate)
+    public void Dispose()
     {
-        if (string.IsNullOrWhiteSpace(wmiDate)) return null;
-        try
+        foreach (var watcher in _watchers)
         {
-            return DateTime.ParseExact(wmiDate.Split('.')[0], "yyyyMMddHHmmss", null).ToString("o");
-        }
-        catch
-        {
-            return wmiDate;
+            watcher.Dispose();
         }
     }
-}
 
-public class AuthResponse
-{
-    public string AccessToken { get; set; }
-    public string RefreshToken { get; set; }
+    private class AuthResponse
+    {
+        public string? AccessToken { get; set; }
+        public string? RefreshToken { get; set; }
+    }
 }

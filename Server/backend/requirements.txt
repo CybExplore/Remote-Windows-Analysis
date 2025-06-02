@@ -9,6 +9,8 @@ daphne
 scipy
 django-celery-results
 python-decouple
+coreapi 
+coreschema
 Pillow
 celery 
 redis 
@@ -30,7 +32,12 @@ django-cors-headers
 uvicorn
 drf-yasg
 drf-yasg[validation]
+<<<<<<< HEAD
 coreapi
 black
 isort
+=======
+isort
+black
+>>>>>>> 4272f82e7ac7ba550d4d3f9d92fddfe7f3cf92be
 pre-commit
