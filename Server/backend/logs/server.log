@@ -874,3 +874,41 @@ WARNING 2025-06-13 17:07:41,948 views Client authentication failed: {'non_field_
 WARNING 2025-06-13 17:07:41,949 log Unauthorized: /api/client/auth/
 INFO 2025-06-13 17:08:02,138 autoreload /home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/numpy/linalg/linalg.py changed, reloading.
 INFO 2025-06-13 17:08:03,596 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 18:22:43,909 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 18:29:27,089 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/migrations/0001_initial.py changed, reloading.
+INFO 2025-06-13 18:29:28,580 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 18:30:47,898 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/serializers.py changed, reloading.
+INFO 2025-06-13 18:30:51,678 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 18:32:10,786 serializers Created new user: admin@cybexplore.org
+INFO 2025-06-13 18:32:12,724 views Client af8d17a6-e4eb-41ec-a661-b131ad7278ca registered successfully for user
+WARNING 2025-06-13 18:32:13,448 views Client authentication failed: {'non_field_errors': [ErrorDetail(string='Client not found.', code='invalid')]}
+WARNING 2025-06-13 18:32:13,456 log Unauthorized: /api/client/auth/
+WARNING 2025-06-13 18:33:13,797 views Client authentication failed: {'non_field_errors': [ErrorDetail(string='Client not found.', code='invalid')]}
+WARNING 2025-06-13 18:33:13,798 log Unauthorized: /api/client/auth/
+WARNING 2025-06-13 18:34:16,013 views Client authentication failed: {'non_field_errors': [ErrorDetail(string='Client not found.', code='invalid')]}
+WARNING 2025-06-13 18:34:16,014 log Unauthorized: /api/client/auth/
+WARNING 2025-06-13 18:35:16,075 views Client authentication failed: {'non_field_errors': [ErrorDetail(string='Client not found.', code='invalid')]}
+WARNING 2025-06-13 18:35:16,077 log Unauthorized: /api/client/auth/
+WARNING 2025-06-13 18:36:19,182 views Client authentication failed: {'non_field_errors': [ErrorDetail(string='Client not found.', code='invalid')]}
+WARNING 2025-06-13 18:36:19,183 log Unauthorized: /api/client/auth/
+INFO 2025-06-13 18:37:00,782 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/serializers.py changed, reloading.
+INFO 2025-06-13 18:37:04,999 autoreload Watching for file changes with StatReloader
+WARNING 2025-06-13 18:37:21,250 views Client authentication failed: {'non_field_errors': [ErrorDetail(string='Client not found.', code='invalid')]}
+WARNING 2025-06-13 18:37:21,254 log Unauthorized: /api/client/auth/
+INFO 2025-06-13 18:38:19,245 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-13 18:38:24,009 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 18:38:52,301 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-13 18:38:53,551 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 18:39:04,122 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-13 18:39:08,881 autoreload Watching for file changes with StatReloader
+WARNING 2025-06-13 18:39:28,659 views Client authentication failed: {'non_field_errors': [ErrorDetail(string='Client not found.', code='invalid')]}
+WARNING 2025-06-13 18:39:28,674 log Unauthorized: /api/client/auth/
+WARNING 2025-06-13 18:40:28,733 views Client authentication failed: {'non_field_errors': [ErrorDetail(string='Client not found.', code='invalid')]}
+WARNING 2025-06-13 18:40:28,743 log Unauthorized: /api/client/auth/
+WARNING 2025-06-13 18:41:31,009 views Client authentication failed: {'non_field_errors': [ErrorDetail(string='Client not found.', code='invalid')]}
+WARNING 2025-06-13 18:41:31,011 log Unauthorized: /api/client/auth/
+INFO 2025-06-13 18:41:45,319 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/server/settings.py changed, reloading.
+INFO 2025-06-13 18:41:48,726 autoreload Watching for file changes with StatReloader
+WARNING 2025-06-13 18:42:33,063 views Client authentication failed: {'non_field_errors': [ErrorDetail(string='Client not found.', code='invalid')]}
+WARNING 2025-06-13 18:42:33,066 log Unauthorized: /api/client/auth/
+INFO 2025-06-13 18:43:04,554 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/server/settings.py changed, reloading.

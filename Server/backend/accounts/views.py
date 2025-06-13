@@ -141,27 +141,28 @@ class ClientViewSet(viewsets.ModelViewSet):
     #         logger.warning(f"Invalid registration data: {serializer.errors}")
     #         return Response({"status": "error", "message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
-    # class ClientAuthView(APIView):
-    authentication_classes = []
-    permission_classes = []
 
-    def post(self, request):
-        serializer = ClientAuthSerializer(data=request.data)
-        if serializer.is_valid():
-            user = serializer.validated_data["user"]
-            access_token = str(AccessToken.for_user(user))
-            refresh_token = str(RefreshToken.for_user(user))
-            logger.info(
-                f"Client {serializer.validated_data['client_id']} authenticated successfully for user {user.email}"
-            )
-            return Response(
-                {"access_token": access_token, "refresh_token": refresh_token}
-            )
-        logger.warning(f"Client authentication failed: {serializer.errors}")
-        return Response(
-            {"status": "error", "message": serializer.errors},
-            status=status.HTTP_401_UNAUTHORIZED,
-        )
+# class ClientAuthView(APIView):
+#     authentication_classes = []
+#     permission_classes = []
+
+#     def post(self, request):
+#         serializer = ClientAuthSerializer(data=request.data)
+#         if serializer.is_valid():
+#             user = serializer.validated_data["user"]
+#             access_token = str(AccessToken.for_user(user))
+#             refresh_token = str(RefreshToken.for_user(user))
+#             logger.info(
+#                 f"Client {serializer.validated_data['client_id']} authenticated successfully for user {user.email}"
+#             )
+#             return Response(
+#                 {"access_token": access_token, "refresh_token": refresh_token}
+#             )
+#         logger.warning(f"Client authentication failed: {serializer.errors}")
+#         return Response(
+#             {"status": "error", "message": serializer.errors},
+#             status=status.HTTP_401_UNAUTHORIZED,
+#         )
 
 
 class UserLoginView(APIView):
@@ -293,7 +294,7 @@ class ClientRegisterView(generics.CreateAPIView):
         access_token = str(AccessToken.for_user(client.user))
         refresh_token = str(RefreshToken.for_user(client.user))
         logger.info(
-            f"Client {client.client_id} registered successfully for user {client.user.email}"
+            f"Client {client.client_id} registered successfully for user {client.user.email or 'unknown'} (ID: {client.user.id})"
         )
         return Response(
             {
@@ -306,7 +307,7 @@ class ClientRegisterView(generics.CreateAPIView):
         )
 
 
-class ClientAuthView(CreateAPIView):
+class ClientAuthView(generics.CreateAPIView):
     authentication_classes = []
     permission_classes = [AllowAny]
     serializer_class = ClientAuthSerializer
@@ -318,7 +319,7 @@ class ClientAuthView(CreateAPIView):
             access_token = str(AccessToken.for_user(user))
             refresh_token = str(RefreshToken.for_user(user))
             logger.info(
-                f"Client {serializer.validated_data['client_id']} authenticated successfully for user {user.email}"
+                f"Client {serializer.validated_data['client_id']} authenticated successfully for user {user.email} (ID: {user.id})"
             )
             return Response(
                 {"access_token": access_token, "refresh_token": refresh_token},

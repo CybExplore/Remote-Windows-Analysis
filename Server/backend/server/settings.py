@@ -159,7 +159,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = config("EMAIL_FILE_PATH", default="email-messages")
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default="admin@localhost")
+DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default="admin@cybexplore.org")
 
 # Custom App Constants
 SUPPORT_EMAIL = config("SUPPORT_EMAIL", default="support@example.com")
@@ -294,6 +294,16 @@ LOGGING = {
             "handlers": ["file", "console"],
             "level": "INFO",
             "propagate": True,
+        },
+    },
+    "root": {"handlers": ["console"], "level": "DEBUG"},
+    "loggers": {
+        "accounts": {"handlers": ["console"], "level": "DEBUG", "propagate": False},
+        "django": {"handlers": ["console"], "level": "DEBUG", "propagate": False},
+        "django.core.mail": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+            "propagate": False,
         },
     },
 }

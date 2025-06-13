@@ -40,7 +40,7 @@ class ClientRegisterSerializer(serializers.Serializer):
         max_length=500, required=False, allow_blank=True, help_text="User full name"
     )
 
-    def validate(self, data): # type: ignore
+    def validate(self, data):  # type: ignore
         user_email = data["user_email"].lower()
         sid = data["sid"]
 
@@ -193,15 +193,8 @@ class ClientSerializer(serializers.ModelSerializer):
             "secret_id": {"required": True},
             "sid": {"required": True},
             "user_email": {"required": True},
-            "full_name": {"required": True},
+            "full_name": {"required": False, "allow_blank": True},
         }
-
-    # def validate_user_email(self, value):
-    #     try:
-    #         CustomUser.objects.get(email__iexact=value)
-    #     except CustomUser.DoesNotExist:
-    #         raise serializers.ValidationError("No user found with this email address.")
-    #     return value
 
     def validate_user_email(self, value):
         return value.lower()
@@ -225,9 +218,11 @@ class ClientSerializer(serializers.ModelSerializer):
         sid = data["sid"]
         temporary_password = secrets.token_urlsafe(16)
 
+        logger.debug(f"Validating user_email: {user_email}")
         user, created = CustomUser.objects.get_or_create(
             email__iexact=user_email,
             defaults={
+                "email": user_email,
                 "sid": sid,
                 "full_name": data.get("full_name") or user_email.split("@")[0],
                 "password": make_password(temporary_password),
@@ -235,6 +230,7 @@ class ClientSerializer(serializers.ModelSerializer):
             },
         )
         if created:
+            logger.info(f"Created new user: {user_email} (ID: {user.id})")
             try:
                 send_mail(
                     subject=f"Welcome to {settings.SITE_NAME}",
@@ -250,17 +246,30 @@ class ClientSerializer(serializers.ModelSerializer):
                     recipient_list=[user_email],
                     fail_silently=False,
                 )
-                logger.info(f"Created new user: {user_email}")
+                logger.info(f"Sent registration email to: {user_email}")
             except Exception as e:
                 logger.error(f"Failed to send email to {user_email}: {str(e)}")
-                raise serializers.ValidationError("Failed to send registration email.")
+                raise serializers.ValidationError(
+                    f"Failed to send registration email: {str(e)}"
+                )
+        elif user.email != user_email:
+            logger.warning(
+                f"Updating email for user {user.id} from '{user.email}' to '{user_email}'"
+            )
+            user.email = user_email
+            user.save()
         data["user"] = user
         return data
 
     def create(self, validated_data):
         user = validated_data.pop("user")
+        client_id = validated_data["client_id"]
         validated_data["secret_id"] = make_password(validated_data["secret_id"])
+        validated_data["user_email"] = validated_data["user_email"]
         client = Client.objects.create(user=user, **validated_data)
+        logger.info(
+            f"Created client: {client_id} for user: {user.email} (ID: {user.id})"
+        )
         return client
 
 
@@ -270,7 +279,7 @@ class ClientAuthSerializer(serializers.Serializer):
     client_id = serializers.CharField(required=True)
     secret_id = serializers.CharField(required=True)
 
-    def validate(self, data): # type: ignore
+    def validate(self, data):  # type: ignore
         if not (data.get("email") or data.get("sid")):
             raise serializers.ValidationError("Either email or sid must be provided.")
 
