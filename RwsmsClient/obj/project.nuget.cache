@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "JwbwrnpyVJo=",
+  "dgSpecHash": "tTgyLHquQNw=",
   "success": true,
   "projectFilePath": "C:\\Users\\CybExplore\\OneDrive\\Dokumente\\Final-Year-Projects\\Remote-Windows-Analysis\\RwsmsClient\\RwsmsClient.csproj",
   "expectedPackageFiles": [
@@ -40,7 +40,11 @@
     "C:\\Users\\CybExplore\\.nuget\\packages\\system.diagnostics.eventlog\\9.0.5\\system.diagnostics.eventlog.9.0.5.nupkg.sha512",
     "C:\\Users\\CybExplore\\.nuget\\packages\\system.management\\9.0.5\\system.management.9.0.5.nupkg.sha512",
     "C:\\Users\\CybExplore\\.nuget\\packages\\system.security.cryptography.protecteddata\\9.0.5\\system.security.cryptography.protecteddata.9.0.5.nupkg.sha512",
-    "C:\\Users\\CybExplore\\.nuget\\packages\\system.text.json\\9.0.5\\system.text.json.9.0.5.nupkg.sha512"
+    "C:\\Users\\CybExplore\\.nuget\\packages\\system.text.json\\9.0.5\\system.text.json.9.0.5.nupkg.sha512",
+    "C:\\Users\\CybExplore\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.4\\microsoft.netcore.app.ref.9.0.4.nupkg.sha512",
+    "C:\\Users\\CybExplore\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\9.0.4\\microsoft.windowsdesktop.app.ref.9.0.4.nupkg.sha512",
+    "C:\\Users\\CybExplore\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\9.0.4\\microsoft.aspnetcore.app.ref.9.0.4.nupkg.sha512",
+    "C:\\Users\\CybExplore\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\9.0.4\\microsoft.netcore.app.host.win-x64.9.0.4.nupkg.sha512"
   ],
   "logs": []
 }

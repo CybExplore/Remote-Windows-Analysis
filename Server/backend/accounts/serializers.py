@@ -40,7 +40,7 @@ class ClientRegisterSerializer(serializers.Serializer):
         max_length=500, required=False, allow_blank=True, help_text="User full name"
     )
 
-    def validate(self, data):
+    def validate(self, data): # type: ignore
         user_email = data["user_email"].lower()
         sid = data["sid"]
 
@@ -270,7 +270,7 @@ class ClientAuthSerializer(serializers.Serializer):
     client_id = serializers.CharField(required=True)
     secret_id = serializers.CharField(required=True)
 
-    def validate(self, data):
+    def validate(self, data): # type: ignore
         if not (data.get("email") or data.get("sid")):
             raise serializers.ValidationError("Either email or sid must be provided.")
 
