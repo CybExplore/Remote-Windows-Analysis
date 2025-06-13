@@ -140,7 +140,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             email=validated_data["email"].lower(),
             password=temporary_password,
             full_name=validated_data.get("full_name", ""),
-        ) # type: ignore
+        )  # type: ignore
         send_mail(
             subject=f"Welcome to {settings.SITE_NAME}",
             message=f"""
@@ -162,6 +162,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         )
         logger.info(f"Created new user: {validated_data['email']}")
         return user
+
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -186,26 +187,82 @@ class ClientSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Client
-        fields = ['client_id', 'secret_id', 'sid', 'user_email', 'full_name']
+        fields = ["client_id", "secret_id", "sid", "user_email", "full_name"]
         extra_kwargs = {
-            'client_id': {'required': True},
-            'secret_id': {'required': True},
-            'sid': {'required': True},
-            'user_email': {'required': True},
-            'full_name': {'required': True},
+            "client_id": {"required": True},
+            "secret_id": {"required": True},
+            "sid": {"required": True},
+            "user_email": {"required": True},
+            "full_name": {"required": True},
         }
 
+    # def validate_user_email(self, value):
+    #     try:
+    #         CustomUser.objects.get(email__iexact=value)
+    #     except CustomUser.DoesNotExist:
+    #         raise serializers.ValidationError("No user found with this email address.")
+    #     return value
+
     def validate_user_email(self, value):
-        try:
-            CustomUser.objects.get(email__iexact=value)
-        except CustomUser.DoesNotExist:
-            raise serializers.ValidationError("No user found with this email address.")
-        return value
+        return value.lower()
 
     def validate_client_id(self, value):
         if Client.objects.filter(client_id=value).exists():
-            raise serializers.ValidationError("A client with this client_id already exists.")
+            raise serializers.ValidationError(
+                "A client with this client_id already exists."
+            )
         return value
+
+    def validate_sid(self, value):
+        validator = RegexValidator(
+            regex=r"^S-1-5-21-\d+-\d+-\d+-\d+$", message="Invalid SID format"
+        )
+        validator(value)
+        return value
+
+    def validate(self, data):
+        user_email = data["user_email"]
+        sid = data["sid"]
+        temporary_password = secrets.token_urlsafe(16)
+
+        user, created = CustomUser.objects.get_or_create(
+            email__iexact=user_email,
+            defaults={
+                "sid": sid,
+                "full_name": data.get("full_name") or user_email.split("@")[0],
+                "password": make_password(temporary_password),
+                "is_first_login": True,
+            },
+        )
+        if created:
+            try:
+                send_mail(
+                    subject=f"Welcome to {settings.SITE_NAME}",
+                    message=f"""
+                    Welcome to {settings.SITE_NAME}!
+                    Your account has been created:
+                    SID: {sid}
+                    Email: {user_email}
+                    Temporary Password: {temporary_password}
+                    Please log in at {settings.SITE_URL}/login and change your password.
+                    """,
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    recipient_list=[user_email],
+                    fail_silently=False,
+                )
+                logger.info(f"Created new user: {user_email}")
+            except Exception as e:
+                logger.error(f"Failed to send email to {user_email}: {str(e)}")
+                raise serializers.ValidationError("Failed to send registration email.")
+        data["user"] = user
+        return data
+
+    def create(self, validated_data):
+        user = validated_data.pop("user")
+        validated_data["secret_id"] = make_password(validated_data["secret_id"])
+        client = Client.objects.create(user=user, **validated_data)
+        return client
+
 
 class ClientAuthSerializer(serializers.Serializer):
     email = serializers.EmailField(required=False)
@@ -213,24 +270,34 @@ class ClientAuthSerializer(serializers.Serializer):
     client_id = serializers.CharField(required=True)
     secret_id = serializers.CharField(required=True)
 
-    def validate(self, data): # type: ignore
-        if not (data.get('email') or data.get('sid')):
+    def validate(self, data):
+        if not (data.get("email") or data.get("sid")):
             raise serializers.ValidationError("Either email or sid must be provided.")
+
         try:
-            client = Client.objects.get(
-                client_id=data['client_id'],
-                secret_id=data['secret_id']
-            )
-            user = CustomUser.objects.filter(
-                email__iexact=data.get('email', '') if data.get('email') else None,
-                sid=data.get('sid') if data.get('sid') else None
-            ).first()
+            client = Client.objects.get(client_id=data["client_id"])
+            if not check_password(data["client_secret"], client.secret_id):
+                raise serializers.ValidationError("Invalid client secret.")
+
+            user = None
+            if data.get("email"):
+                user = CustomUser.objects.filter(email__iexact=data["email"]).first()
+            elif data.get("sid"):
+                user = CustomUser.objects.filter(sid=data["sid"]).first()
+
             if not user or client.user != user:
                 raise serializers.ValidationError("Invalid client or user credentials.")
+            if not user.is_active or (
+                hasattr(user, "profile") and user.profile.locked_out
+            ):
+                raise serializers.ValidationError("User account is disabled or locked.")
+
         except Client.DoesNotExist:
             raise serializers.ValidationError("Client not found.")
-        data['user'] = user
+
+        data["user"] = user
         return data
+
 
 class UserLoginSerializer(serializers.Serializer):
     identifier = serializers.CharField()
@@ -283,7 +350,7 @@ class LoginSerializer(serializers.Serializer):
                 "User account is disabled", code="authentication"
             )
 
-        if hasattr(user, "profile") and user.profile.locked_out: # type: ignore
+        if hasattr(user, "profile") and user.profile.locked_out:  # type: ignore
             raise serializers.ValidationError(
                 "Account locked due to too many failed attempts", code="authentication"
             )
@@ -322,7 +389,7 @@ class PasswordChangeSerializer(serializers.Serializer):
             raise serializers.ValidationError("Current password is incorrect")
         return value
 
-    def validate(self, data): # type: ignore
+    def validate(self, data):  # type: ignore
         if data["new_password"] != data["confirm_password"]:
             raise serializers.ValidationError(
                 {"confirm_password": "Passwords do not match"}
@@ -349,7 +416,7 @@ class PasswordResetConfirmSerializer(serializers.Serializer):
     token = serializers.CharField(write_only=True)
     uidb64 = serializers.CharField(write_only=True)
 
-    def validate(self, data): # type: ignore
+    def validate(self, data):  # type: ignore
         if data["new_password"] != data["confirm_password"]:
             raise serializers.ValidationError(
                 {"confirm_password": "Passwords do not match"}

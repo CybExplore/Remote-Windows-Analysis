@@ -1,5 +1,7 @@
 from django.db import models
+
 from accounts.models import Client
+
 
 class SecurityEvent(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
@@ -11,11 +13,12 @@ class SecurityEvent(models.Model):
 
     class Meta:
         indexes = [
-            models.Index(fields=['client', 'timestamp']),
+            models.Index(fields=["client", "timestamp"]),
         ]
 
     def __str__(self):
         return f"{self.event_type} ({self.client.client_id})"
+
 
 class ProcessLog(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
@@ -26,11 +29,12 @@ class ProcessLog(models.Model):
 
     class Meta:
         indexes = [
-            models.Index(fields=['client', 'start_time']),
+            models.Index(fields=["client", "start_time"]),
         ]
 
     def __str__(self):
         return f"{self.name} ({self.client.client_id})"
+
 
 class NetworkLog(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
@@ -41,11 +45,14 @@ class NetworkLog(models.Model):
 
     class Meta:
         indexes = [
-            models.Index(fields=['client', 'timestamp']),
+            models.Index(fields=["client", "timestamp"]),
         ]
 
     def __str__(self):
-        return f"{self.local_address} -> {self.remote_address} ({self.client.client_id})"
+        return (
+            f"{self.local_address} -> {self.remote_address} ({self.client.client_id})"
+        )
+
 
 class FileLog(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
@@ -57,11 +64,12 @@ class FileLog(models.Model):
 
     class Meta:
         indexes = [
-            models.Index(fields=['client', 'timestamp']),
+            models.Index(fields=["client", "timestamp"]),
         ]
 
     def __str__(self):
         return f"{self.event_type} ({self.path})"
+
 
 class UserAccount(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
@@ -72,12 +80,14 @@ class UserAccount(models.Model):
     def __str__(self):
         return f"{self.username} ({self.client.client_id})"
 
+
 class UserGroup(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     groups = models.JSONField()
 
     def __str__(self):
         return f"Groups for {self.client.client_id}"
+
 
 class UserProfileModel(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
@@ -87,6 +97,7 @@ class UserProfileModel(models.Model):
     def __str__(self):
         return f"Profile for {self.client.client_id}"
 
+
 class UserSession(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     session_id = models.IntegerField()
@@ -94,6 +105,7 @@ class UserSession(models.Model):
 
     def __str__(self):
         return f"Session {self.session_id} ({self.client.client_id})"
+
 
 class EnvironmentInfo(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)

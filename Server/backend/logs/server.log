@@ -174,3 +174,603 @@ WARNING 2025-06-02 22:58:10,503 views Invalid registration data: {'user_email': 
 WARNING 2025-06-02 22:58:10,504 log Bad Request: /api/client/register/
 INFO 2025-06-02 22:59:52,577 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/serializers.py changed, reloading.
 INFO 2025-06-02 22:59:59,503 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 23:07:14,276 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-02 23:07:16,091 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 23:07:34,801 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/core/admin.py changed, reloading.
+INFO 2025-06-02 23:07:38,874 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 23:08:42,170 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-02 23:08:43,426 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 23:08:46,638 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-02 23:08:48,025 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 23:09:11,666 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-02 23:09:13,796 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 23:09:16,677 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/core/admin.py changed, reloading.
+INFO 2025-06-02 23:09:18,309 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 23:09:28,154 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 23:10:08,295 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 23:12:34,423 autoreload /home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/MySQLdb/times.py changed, reloading.
+INFO 2025-06-02 23:12:36,174 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 23:12:49,680 autoreload /home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/_distutils_hack/__init__.py changed, reloading.
+INFO 2025-06-02 23:12:52,249 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 23:12:56,106 autoreload /home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/asgiref/sync.py changed, reloading.
+INFO 2025-06-02 23:12:57,785 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 23:13:09,126 autoreload /home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/attr/_make.py changed, reloading.
+INFO 2025-06-02 23:13:15,142 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 23:15:31,508 autoreload /home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/certifi/core.py changed, reloading.
+INFO 2025-06-02 23:15:34,385 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 23:15:56,985 autoreload /home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/click/core.py changed, reloading.
+INFO 2025-06-02 23:16:00,514 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 23:16:14,204 autoreload /home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/decouple.py changed, reloading.
+INFO 2025-06-02 23:16:17,019 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 23:17:13,525 autoreload /home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/drf_yasg/app_settings.py changed, reloading.
+INFO 2025-06-02 23:17:15,514 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 23:17:19,628 autoreload /home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/drf_yasg/utils.py changed, reloading.
+INFO 2025-06-02 23:17:21,646 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 23:17:44,787 autoreload /home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/idna/core.py changed, reloading.
+INFO 2025-06-02 23:17:48,392 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 23:18:00,840 autoreload /home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/jsonschema/__init__.py changed, reloading.
+INFO 2025-06-02 23:18:08,367 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 23:18:12,387 autoreload /home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/jsonschema/_utils.py changed, reloading.
+INFO 2025-06-02 23:18:18,608 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 23:18:27,514 autoreload /home/cybexplore/Remote-Windows-Analysis/venv/lib/python3.12/site-packages/jsonschema/validators.py changed, reloading.
+INFO 2025-06-02 23:18:29,861 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 10:47:37,570 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 10:51:16,211 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 10:52:18,537 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-13 10:52:22,724 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 11:00:58,015 autoreload Watching for file changes with StatReloader
+WARNING 2025-06-13 11:02:37,942 log Not Found: /
+WARNING 2025-06-13 11:02:38,330 log Not Found: /favicon.ico
+WARNING 2025-06-13 11:02:46,527 log Unauthorized: /api/
+WARNING 2025-06-13 11:02:52,464 log Not Found: /ap
+WARNING 2025-06-13 11:20:53,739 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:20:53,740 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:21:52,887 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:21:52,888 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:22:55,436 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:22:55,437 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:23:55,812 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:23:55,813 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:24:58,116 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:24:58,117 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:25:58,361 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:25:58,362 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:26:59,420 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:26:59,421 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:27:59,674 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:27:59,675 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:29:01,728 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:29:01,728 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:30:02,308 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:30:02,309 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:31:04,957 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:31:04,958 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:32:04,739 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:32:04,741 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:33:06,838 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:33:06,839 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:34:07,349 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:34:07,355 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:35:09,457 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:35:09,459 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:36:09,490 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:36:09,491 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:37:11,556 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:37:11,557 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:38:11,582 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:38:11,583 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:39:13,644 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:39:13,645 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:40:13,653 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:40:13,655 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:41:15,727 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:41:15,728 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:42:15,746 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:42:15,747 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:43:17,835 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:43:17,836 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:44:17,851 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:44:17,852 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:45:19,918 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:45:19,919 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:46:19,941 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:46:19,942 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:47:21,984 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:47:21,985 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:48:22,006 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:48:22,007 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:49:24,082 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:49:24,083 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:50:24,101 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:50:24,102 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:51:26,158 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:51:26,159 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:52:26,183 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:52:26,184 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:53:28,240 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:53:28,241 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:54:28,253 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:54:28,254 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:55:30,346 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:55:30,350 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:56:30,364 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:56:30,365 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:57:32,427 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:57:32,428 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:58:32,452 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:58:32,452 log Bad Request: /api/client/register/
+WARNING 2025-06-13 11:59:34,504 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 11:59:34,505 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:00:34,511 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:00:34,512 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:01:36,552 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:01:36,553 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:02:36,580 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:02:36,581 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:03:38,640 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:03:38,641 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:04:38,659 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:04:38,660 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:05:40,704 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:05:40,704 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:06:40,717 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:06:40,718 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:07:42,786 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:07:42,788 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:08:42,798 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:08:42,799 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:09:44,868 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:09:44,868 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:10:44,877 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:10:44,878 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:11:46,933 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:11:46,934 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:12:46,958 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:12:46,959 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:13:49,028 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:13:49,029 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:14:49,049 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:14:49,050 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:15:51,107 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:15:51,109 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:16:51,123 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:16:51,123 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:17:53,196 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:17:53,197 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:18:53,221 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:18:53,222 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:19:55,305 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:19:55,306 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:20:55,326 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:20:55,327 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:21:57,400 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:21:57,401 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:22:01,108 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 12:22:02,881 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 12:22:03,130 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 12:22:03,369 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 12:22:03,578 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 12:22:57,425 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:22:57,426 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:23:59,471 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:23:59,472 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:24:02,901 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 12:24:02,949 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 12:24:03,084 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 12:24:03,229 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 12:24:59,474 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:24:59,475 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:26:01,536 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:26:01,537 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:27:01,547 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:27:01,548 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:28:03,611 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:28:03,612 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:29:03,646 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:29:03,647 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:30:05,725 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:30:05,726 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:31:05,739 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:31:05,739 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:32:07,807 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:32:07,808 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:33:07,813 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:33:07,814 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:34:09,874 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:34:09,875 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:35:09,894 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:35:09,896 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:36:11,995 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:36:11,996 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:37:12,005 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:37:12,006 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:38:14,113 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:38:14,114 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:39:14,164 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:39:14,166 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:40:16,259 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:40:16,260 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:41:16,306 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:41:16,307 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:42:19,609 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:42:19,610 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:43:19,786 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:43:19,786 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:44:21,835 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:44:21,835 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:45:21,863 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:45:21,864 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:46:23,920 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:46:23,924 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:47:23,964 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:47:23,965 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:48:26,021 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:48:26,022 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:49:26,034 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:49:26,034 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:50:28,110 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:50:28,111 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:51:28,129 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:51:28,130 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:52:30,193 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:52:30,194 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:53:30,222 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:53:30,223 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:54:32,275 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:54:32,276 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:55:32,277 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:55:32,278 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:56:32,287 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:56:32,288 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:57:34,371 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:57:34,372 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:58:34,385 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:58:34,386 log Bad Request: /api/client/register/
+WARNING 2025-06-13 12:59:36,426 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 12:59:36,427 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:00:36,440 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:00:36,441 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:01:38,511 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:01:38,512 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:02:38,527 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:02:38,528 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:03:40,561 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:03:40,562 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:04:40,574 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:04:40,575 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:05:42,648 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:05:42,649 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:06:42,677 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:06:42,678 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:07:44,720 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:07:44,720 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:08:44,731 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:08:44,731 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:09:46,781 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:09:46,781 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:10:46,799 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:10:46,800 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:11:48,864 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:11:48,865 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:12:48,896 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:12:48,897 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:13:50,992 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:13:50,993 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:14:51,015 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:14:51,016 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:15:53,065 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:15:53,066 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:16:53,078 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:16:53,079 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:17:55,128 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:17:55,129 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:18:55,150 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:18:55,151 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:19:57,193 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:19:57,194 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:20:57,233 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:20:57,234 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:21:59,323 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:21:59,324 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:22:59,336 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:22:59,337 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:23:00,552 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:00,688 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:00,946 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:01,505 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:01,704 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:01,883 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:02,057 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:02,650 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:02,969 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:03,323 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:10,366 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:10,537 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:10,734 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:10,902 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:11,146 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:11,417 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:11,692 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:11,926 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:12,312 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:12,533 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:12,763 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:13,298 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:13,626 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:13,861 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:14,037 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:14,292 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:14,588 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:14,844 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:15,045 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:15,268 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:15,521 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:16,112 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:16,437 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:17,758 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:18,112 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:18,360 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:19,148 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:19,410 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:19,587 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:20,343 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:20,592 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:20,875 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:21,506 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:21,846 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:22,081 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:22,542 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:22,814 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:23,011 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:24,081 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:24,362 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:24,612 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:25,191 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:25,524 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:25,759 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:26,071 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:26,250 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:26,440 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:26,901 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:27,174 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:27,374 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:27,910 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:28,265 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:28,593 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:28,763 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:29,032 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:29,362 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:29,503 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:29,703 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:29,883 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:30,144 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:30,317 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:30,664 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:30,927 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:31,164 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:31,357 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:31,581 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:31,756 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:32,004 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:32,172 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:32,395 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:32,624 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:32,756 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:32,984 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:33,171 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:33,305 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:23:33,481 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:24:01,743 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:24:01,746 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:25:01,815 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:25:01,816 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:26:03,886 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:26:03,887 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:27:03,904 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:27:03,905 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:28:05,976 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:28:05,977 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:29:06,002 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:29:06,003 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:30:08,097 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:30:08,098 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:31:08,121 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:31:08,122 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:32:10,191 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:32:10,192 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:33:10,203 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:33:10,204 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:34:12,279 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:34:12,280 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:35:12,299 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:35:12,300 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:36:14,380 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:36:14,381 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:37:14,419 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:37:14,420 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:38:16,495 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:38:16,496 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:39:16,514 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:39:16,515 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:40:18,580 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:40:18,581 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:41:11,465 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:41:18,612 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 13:41:18,618 log Bad Request: /api/client/register/
+WARNING 2025-06-13 13:41:48,625 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:41:48,974 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 13:41:49,307 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:55:53,303 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:55:58,958 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 14:55:58,960 log Bad Request: /api/client/register/
+WARNING 2025-06-13 14:56:44,671 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:56:44,976 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:56:46,389 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:56:47,084 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:56:47,673 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:56:48,373 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:56:48,836 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:56:50,400 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:56:50,678 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:56:50,963 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:56:54,057 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:56:54,446 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:56:55,519 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:56:55,840 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:56:56,168 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:56:57,404 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:56:57,824 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:56:58,080 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:56:58,841 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:56:59,067 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:56:59,379 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:56:59,949 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 14:56:59,950 log Bad Request: /api/client/register/
+WARNING 2025-06-13 14:57:00,088 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:00,339 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:00,518 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:00,682 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:01,241 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:01,456 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:01,635 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:02,691 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:02,886 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:03,739 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:03,961 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:04,184 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:04,348 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:04,841 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:05,030 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:05,235 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:05,462 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:05,953 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:06,148 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:06,373 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:06,919 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:07,058 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:07,782 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:07,999 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:08,173 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:08,306 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:08,430 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:08,590 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:08,802 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:09,014 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:09,159 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:09,687 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:09,893 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:10,046 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:10,175 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:10,332 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:10,501 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:10,708 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:10,958 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:11,152 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:11,317 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:11,466 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:11,600 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:11,777 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:12,010 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:57:12,146 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:58:00,027 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 14:58:00,028 log Bad Request: /api/client/register/
+WARNING 2025-06-13 14:59:00,501 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 14:59:00,502 log Bad Request: /api/client/register/
+WARNING 2025-06-13 14:59:14,388 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:59:14,420 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:59:14,545 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:59:14,641 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:59:14,735 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:59:14,848 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:59:14,958 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 14:59:15,089 log Not Found: /api/client/refresh/
+WARNING 2025-06-13 15:00:00,583 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 15:00:00,584 log Bad Request: /api/client/register/
+WARNING 2025-06-13 15:01:00,468 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 15:01:00,469 log Bad Request: /api/client/register/
+WARNING 2025-06-13 15:02:02,492 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 15:02:02,493 log Bad Request: /api/client/register/
+WARNING 2025-06-13 15:03:02,361 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 15:03:02,363 log Bad Request: /api/client/register/
+WARNING 2025-06-13 15:04:04,990 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 15:04:04,992 log Bad Request: /api/client/register/
+WARNING 2025-06-13 15:04:40,180 views Invalid registration data: {'user_email': [ErrorDetail(string='No user found with this email address.', code='invalid')]}
+WARNING 2025-06-13 15:04:40,181 log Bad Request: /api/client/register/
+INFO 2025-06-13 16:05:27,256 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 16:06:57,469 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 16:12:50,018 cli Starting server at tcp:port=8002:interface=127.0.0.1
+INFO 2025-06-13 16:12:50,019 server HTTP/2 support enabled
+INFO 2025-06-13 16:12:50,020 server Configuring endpoint tcp:port=8002:interface=127.0.0.1
+INFO 2025-06-13 16:12:50,021 server Listening on TCP address 127.0.0.1:8002
+WARNING 2025-06-13 16:12:57,736 log Not Found: /
+WARNING 2025-06-13 16:12:57,928 log Not Found: /favicon.ico
+WARNING 2025-06-13 16:13:04,371 log Not Found: /static/drf-yasg/style.css
+WARNING 2025-06-13 16:13:04,452 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui.css
+WARNING 2025-06-13 16:13:04,469 log Not Found: /static/drf-yasg/insQ.min.js
+WARNING 2025-06-13 16:13:04,477 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-bundle.js
+WARNING 2025-06-13 16:13:04,514 log Not Found: /static/drf-yasg/immutable.min.js
+WARNING 2025-06-13 16:13:04,528 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-standalone-preset.js
+WARNING 2025-06-13 16:13:04,551 log Not Found: /static/drf-yasg/swagger-ui-init.js
+WARNING 2025-06-13 16:13:04,628 log Not Found: /static/drf-yasg/swagger-ui-dist/favicon-32x32.png
+WARNING 2025-06-13 16:13:06,984 log Not Found: /api/login/
+WARNING 2025-06-13 16:13:17,321 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-standalone-preset.js
+WARNING 2025-06-13 16:13:17,323 log Not Found: /static/drf-yasg/immutable.min.js
+WARNING 2025-06-13 16:13:17,325 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-bundle.js
+WARNING 2025-06-13 16:13:17,330 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui.css
+WARNING 2025-06-13 16:13:17,342 log Not Found: /static/drf-yasg/style.css
+WARNING 2025-06-13 16:13:17,343 log Not Found: /static/drf-yasg/insQ.min.js
+WARNING 2025-06-13 16:13:17,424 log Not Found: /static/drf-yasg/swagger-ui-init.js
+WARNING 2025-06-13 16:13:39,198 log Not Found: /static/drf-yasg/style.css
+WARNING 2025-06-13 16:13:39,207 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-bundle.js
+WARNING 2025-06-13 16:13:39,211 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-standalone-preset.js
+WARNING 2025-06-13 16:13:39,225 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui.css
+WARNING 2025-06-13 16:13:39,246 log Not Found: /static/drf-yasg/immutable.min.js
+WARNING 2025-06-13 16:13:39,281 log Not Found: /static/drf-yasg/insQ.min.js
+WARNING 2025-06-13 16:13:39,376 log Not Found: /static/drf-yasg/swagger-ui-init.js
+INFO 2025-06-13 16:13:41,432 server Killed 0 pending application instances
+INFO 2025-06-13 16:13:44,603 cli Starting server at tcp:port=8002:interface=127.0.0.1
+INFO 2025-06-13 16:13:44,604 server HTTP/2 support enabled
+INFO 2025-06-13 16:13:44,604 server Configuring endpoint tcp:port=8002:interface=127.0.0.1
+INFO 2025-06-13 16:13:44,605 server Listening on TCP address 127.0.0.1:8002
+WARNING 2025-06-13 16:13:48,416 log Unauthorized: /swagger/
+WARNING 2025-06-13 16:13:52,501 log Unauthorized: /swagger/
+WARNING 2025-06-13 16:13:53,147 log Unauthorized: /swagger/
+INFO 2025-06-13 16:14:01,110 server Killed 0 pending application instances
+INFO 2025-06-13 16:14:04,385 autoreload Watching for file changes with StatReloader
+WARNING 2025-06-13 16:14:17,703 log Not Found: /d/
+INFO 2025-06-13 16:22:14,296 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/serializers.py changed, reloading.
+INFO 2025-06-13 16:22:16,373 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 16:22:36,727 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/serializers.py changed, reloading.
+INFO 2025-06-13 16:22:39,964 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 16:22:54,892 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/serializers.py changed, reloading.
+INFO 2025-06-13 16:22:57,161 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 16:23:23,522 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/serializers.py changed, reloading.
+INFO 2025-06-13 16:23:26,265 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 16:23:59,641 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/serializers.py changed, reloading.
+INFO 2025-06-13 16:24:04,373 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 16:24:44,215 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/serializers.py changed, reloading.
+INFO 2025-06-13 16:24:46,437 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 16:26:04,973 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-13 16:26:07,755 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 16:26:30,652 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-13 16:26:33,795 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 16:26:51,823 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-13 16:26:54,820 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 16:27:18,871 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-13 16:27:21,600 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 16:27:55,291 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-13 16:27:57,577 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 16:28:25,132 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-13 16:28:28,909 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 16:29:03,531 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-13 16:29:07,427 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 16:29:34,021 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/views.py changed, reloading.
+INFO 2025-06-13 16:29:37,973 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 16:30:55,087 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/models.py changed, reloading.
+INFO 2025-06-13 16:30:57,916 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 16:31:49,063 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/models.py changed, reloading.
+INFO 2025-06-13 16:31:50,534 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 16:32:15,364 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/models.py changed, reloading.
+INFO 2025-06-13 16:32:16,921 autoreload Watching for file changes with StatReloader
+INFO 2025-06-13 16:32:37,197 autoreload /home/cybexplore/Remote-Windows-Analysis/Server/backend/accounts/models.py changed, reloading.
+INFO 2025-06-13 16:32:38,915 autoreload Watching for file changes with StatReloader

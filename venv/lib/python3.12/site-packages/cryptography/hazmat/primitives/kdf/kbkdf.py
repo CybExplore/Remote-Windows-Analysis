@@ -59,10 +59,7 @@ class _KBKDFDeriver:
         if break_location is None and location is CounterLocation.MiddleFixed:
             raise ValueError("Please specify a break_location")
 
-        if (
-            break_location is not None
-            and location != CounterLocation.MiddleFixed
-        ):
+        if break_location is not None and location != CounterLocation.MiddleFixed:
             raise ValueError(
                 "break_location is ignored when location is not"
                 " CounterLocation.MiddleFixed"
@@ -121,9 +118,7 @@ class _KBKDFDeriver:
             return False
         return True
 
-    def derive(
-        self, key_material: utils.Buffer, prf_output_size: int
-    ) -> bytes:
+    def derive(self, key_material: utils.Buffer, prf_output_size: int) -> bytes:
         if self._used:
             raise AlreadyFinalized
 
@@ -152,9 +147,9 @@ class _KBKDFDeriver:
             data_before_ctr = fixed
             data_after_ctr = b""
         else:
-            if isinstance(
-                self._break_location, int
-            ) and self._break_location > len(fixed):
+            if isinstance(self._break_location, int) and self._break_location > len(
+                fixed
+            ):
                 raise ValueError("break_location offset > len(fixed)")
             data_before_ctr = fixed[: self._break_location]
             data_after_ctr = fixed[self._break_location :]
@@ -254,9 +249,9 @@ class KBKDFCMAC(KeyDerivationFunction):
         *,
         break_location: int | None = None,
     ):
-        if not issubclass(
-            algorithm, ciphers.BlockCipherAlgorithm
-        ) or not issubclass(algorithm, ciphers.CipherAlgorithm):
+        if not issubclass(algorithm, ciphers.BlockCipherAlgorithm) or not issubclass(
+            algorithm, ciphers.CipherAlgorithm
+        ):
             raise UnsupportedAlgorithm(
                 "Algorithm supplied is not a supported cipher algorithm.",
                 _Reasons.UNSUPPORTED_CIPHER,

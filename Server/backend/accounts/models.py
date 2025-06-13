@@ -50,6 +50,7 @@ class CustomUser(AbstractUser):
     last_login = models.DateTimeField(blank=True, null=True)
     is_first_login = models.BooleanField(default=True)
     date_joined = models.DateTimeField(auto_now_add=True)
+    password_changed = models.BooleanField(default=False)
 
     # Timestamps
     created_at = models.DateTimeField(auto_now_add=True)
@@ -180,3 +181,6 @@ class PasswordHistory(models.Model):
         verbose_name_plural = "Password Histories"
         ordering = ["-changed_at"]
         get_latest_by = "changed_at"
+
+    def __str__(self):
+        return f"Password history for {self.user.email}"

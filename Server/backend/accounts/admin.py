@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.html import format_html
 
-from .models import CustomUser, PasswordHistory, UserProfile, Client
+from .models import Client, CustomUser, PasswordHistory, UserProfile
 
 
 class UserProfileInline(admin.StackedInline):
@@ -54,18 +54,20 @@ class UserProfileInline(admin.StackedInline):
 
 @admin.register(CustomUser)
 class CustomUserAdmin(admin.ModelAdmin):
-    list_display = ['email', 'sid', 'is_active']
-    search_fields = ['email', 'sid']
+    list_display = ["email", "sid", "is_active"]
+    search_fields = ["email", "sid"]
+
 
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ['client_id', 'user_email', 'full_name', 'created_at']
-    search_fields = ['client_id', 'user_email']
+    list_display = ["client_id", "user_email", "full_name", "created_at"]
+    search_fields = ["client_id", "user_email"]
+
 
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ['user', 'locked_out', 'last_login_ip']
-    search_fields = ['user__email']
+    list_display = ["user", "locked_out", "last_login_ip"]
+    search_fields = ["user__email"]
 
 
 # class UserProfileAdmin(admin.ModelAdmin):
