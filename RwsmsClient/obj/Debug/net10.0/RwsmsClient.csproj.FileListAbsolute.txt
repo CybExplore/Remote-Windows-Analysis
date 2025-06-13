@@ -1,0 +1,6 @@
+C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\RwsmsClient\obj\Debug\net10.0\RwsmsClient.csproj.AssemblyReference.cache
+C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\RwsmsClient\obj\Debug\net10.0\RwsmsClient.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\RwsmsClient\obj\Debug\net10.0\RwsmsClient.AssemblyInfoInputs.cache
+C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\RwsmsClient\obj\Debug\net10.0\RwsmsClient.AssemblyInfo.cs
+C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\RwsmsClient\obj\Debug\net10.0\RwsmsClient.csproj.CoreCompileInputs.cache
+C:\Users\CybExplore\OneDrive\Dokumente\Final-Year-Projects\Remote-Windows-Analysis\RwsmsClient\obj\Debug\net10.0\RwsmsClient.sourcelink.json
