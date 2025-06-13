@@ -5,3 +5,7 @@ Remote-Windows-Analysis/Server/frontend/node_modules/
 
 .fake
 venv
+*.log
+venv/
+*.pyc
+__pycache__/
